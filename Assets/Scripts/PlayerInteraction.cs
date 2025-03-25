@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Lanzamiento")]
     [SerializeField] private float throwForce = 10f;
+
+    [Header("Feedback Visual")]
+    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private GameObject dropHintUI;
 
     private IInteractable currentInteractable;
     private GameObject heldObject;
@@ -35,7 +40,6 @@ public class PlayerInteraction : MonoBehaviour
             DropObject();
         }
     }
-
     private void TryPickUp()
     {
         RaycastHit hit;
@@ -54,37 +58,54 @@ public class PlayerInteraction : MonoBehaviour
         heldObject = objToPickUp;
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
-                heldObjectRb = rb;
+             heldObjectRb = rb;
 
         if (objToPickUp.TryGetComponent(out Collider col))
-                heldObjectCollider = col;
+             heldObjectCollider = col;
 
         if (heldObjectRb != null)
-                heldObjectRb.isKinematic = true;
+            heldObjectRb.isKinematic = true;
 
         if (heldObjectCollider != null)
-                heldObjectCollider.enabled = false;
+            heldObjectCollider.isTrigger = true;
 
         heldObject.transform.SetParent(holdPosition);
         heldObject.transform.localPosition = Vector3.zero;
         heldObject.transform.localRotation = Quaternion.identity;
+
+        if (dropHintUI != null)
+        {
+            dropHintUI.SetActive(true);
+        }
     }
 
     private void DropObject()
     {
-        if (heldObjectRb != null)
+
+        if (heldObject != null)
+        {
+            heldObject.transform.position += Vector3.up * 0.2f;
+
+            if (heldObjectRb != null)
+            {
                 heldObjectRb.isKinematic = false;
+                heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                heldObjectRb.AddForce(cameraTransform.forward * throwForce, ForceMode.Impulse);
+            }
 
-        if (heldObjectCollider != null)
-                heldObjectCollider.enabled = true;
+            if (heldObjectCollider != null)
+                heldObjectCollider.isTrigger = false;
 
-        Vector3 forceDirection = cameraTransform.forward;
-        heldObjectRb.AddForce(forceDirection * throwForce, ForceMode.Impulse);
+            if (dropHintUI != null)
+            {
+                dropHintUI.SetActive(false);
+            }
 
-        heldObject.transform.SetParent(null);
-        heldObject = null;
-        heldObjectRb = null;
-        heldObjectCollider = null; 
+            heldObject.transform.SetParent(null);
+            heldObject = null;
+            heldObjectRb = null;
+            heldObjectCollider = null;
+        }
     }
 }
 
