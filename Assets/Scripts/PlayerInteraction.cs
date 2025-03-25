@@ -17,17 +17,15 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float throwForce = 10f;
 
     [Header("Feedback Visual")]
-    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Color outlineColor = Color.magenta;
+    [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
 
     private IInteractable currentInteractable;
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
-
-    private GameObject lastHighlightedObject;
-    private Material[] originalMaterials;
-    private Renderer highlightedRenderer;
+    private Outline currentOutline;
 
     private void Update()
     {
@@ -54,31 +52,24 @@ public class PlayerInteraction : MonoBehaviour
             RemoveHighlight();
             return;
         }
+
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            if (hit.collider.gameObject == lastHighlightedObject)
+            if (hit.collider.gameObject == (currentOutline != null ? currentOutline.gameObject : null))
                 return;
 
             RemoveHighlight();
 
-            lastHighlightedObject = hit.collider.gameObject;
-
-            highlightedRenderer = lastHighlightedObject.GetComponent<Renderer>();
-            if(highlightedRenderer != null)
+            currentOutline = hit.collider.GetComponent<Outline>();
+            if (currentOutline == null)
             {
-                originalMaterials = highlightedRenderer.materials;
-
-                Material[] newMaterials = new Material[originalMaterials.Length + 1];
-
-                for (int i = 0; i < originalMaterials.Length; i++)
-                {
-                    newMaterials[i] = originalMaterials[i];
-                }
-                newMaterials[originalMaterials.Length] = highlightMaterial;
-
-                highlightedRenderer.materials = newMaterials;
+                currentOutline = hit.collider.gameObject.AddComponent<Outline>();
             }
+
+            currentOutline.OutlineColor = outlineColor;
+            currentOutline.OutlineWidth = outlineWidth;
+            currentOutline.enabled = true;
         }
         else
         {
@@ -88,13 +79,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private void RemoveHighlight()
     {
-        if (lastHighlightedObject != null && highlightedRenderer != null)
+        if (currentOutline != null)
         {
-            highlightedRenderer.materials = originalMaterials;
-
-            lastHighlightedObject = null;
-            highlightedRenderer = null;
-            originalMaterials = null;
+            currentOutline.enabled = false;
+            Destroy(currentOutline);
+            currentOutline = null;
         }
     }
 

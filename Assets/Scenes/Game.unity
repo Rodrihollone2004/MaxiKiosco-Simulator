@@ -1517,7 +1517,8 @@ MonoBehaviour:
     m_Bits: 8
   holdPosition: {fileID: 255105130}
   throwForce: 10
-  highlightMaterial: {fileID: 2100000, guid: 837269b606211464292741bf7476867f, type: 2}
+  outlineColor: {r: 1, g: 0, b: 1, a: 1}
+  outlineWidth: 7
   dropHintUI: {fileID: 272109866}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
