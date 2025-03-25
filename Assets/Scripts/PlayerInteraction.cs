@@ -25,8 +25,14 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
 
+    private GameObject lastHighlightedObject;
+    private Material[] originalMaterials;
+    private Renderer highlightedRenderer;
+
     private void Update()
     {
+        HandleHighlight();
+
         if (Input.GetKeyDown(interactKey))
         {
             if (heldObject == null)
@@ -40,6 +46,58 @@ public class PlayerInteraction : MonoBehaviour
             DropObject();
         }
     }
+
+    private void HandleHighlight()
+    {
+        if (heldObject != null)
+        {
+            RemoveHighlight();
+            return;
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
+        {
+            if (hit.collider.gameObject == lastHighlightedObject)
+                return;
+
+            RemoveHighlight();
+
+            lastHighlightedObject = hit.collider.gameObject;
+
+            highlightedRenderer = lastHighlightedObject.GetComponent<Renderer>();
+            if(highlightedRenderer != null)
+            {
+                originalMaterials = highlightedRenderer.materials;
+
+                Material[] newMaterials = new Material[originalMaterials.Length + 1];
+
+                for (int i = 0; i < originalMaterials.Length; i++)
+                {
+                    newMaterials[i] = originalMaterials[i];
+                }
+                newMaterials[originalMaterials.Length] = highlightMaterial;
+
+                highlightedRenderer.materials = newMaterials;
+            }
+        }
+        else
+        {
+            RemoveHighlight();
+        }
+    }
+
+    private void RemoveHighlight()
+    {
+        if (lastHighlightedObject != null && highlightedRenderer != null)
+        {
+            highlightedRenderer.materials = originalMaterials;
+
+            lastHighlightedObject = null;
+            highlightedRenderer = null;
+            originalMaterials = null;
+        }
+    }
+
     private void TryPickUp()
     {
         RaycastHit hit;
@@ -55,6 +113,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickUp(GameObject objToPickUp)
     {
+        RemoveHighlight();
+
         heldObject = objToPickUp;
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))

@@ -424,7 +424,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6e720f744c974b48b4ef2de98d25cebe",
     "m_Id": 0,
-    "m_DisplayName": "Scale",
+    "m_DisplayName": "OutlineWidth",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -524,10 +524,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -187.0,
-            "y": 282.9999694824219,
-            "width": 142.00001525878907,
-            "height": 34.000030517578128
+            "x": -179.0,
+            "y": 257.0000305175781,
+            "width": 141.99998474121095,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -737,11 +737,11 @@
     "m_Guid": {
         "m_GuidSerialized": "1c4e5c48-fb4d-41c6-9e39-fede8064192a"
     },
-    "m_Name": "Scale",
+    "m_Name": "OutlineWidth",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Scale",
-    "m_DefaultReferenceName": "_Scale",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "OutlineWidth",
+    "m_DefaultReferenceName": "_OutlineWidth",
+    "m_OverrideReferenceName": "_OutlineWidth",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
