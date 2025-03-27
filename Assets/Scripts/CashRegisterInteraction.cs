@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
 {
+    [SerializeField] private ClientQueueManager queueManager;
     [SerializeField] Transform cameraTarget;
     [SerializeField] GameObject cashRegisterCanvas;
     [SerializeField] PlayerMovement playerMovement;
@@ -41,6 +43,11 @@ public class CashRegisterInteraction : MonoBehaviour
         if (inCashRegister && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCashRegisterMode();
+        }
+
+        if (inCashRegister && Input.GetKeyDown(KeyCode.Space))
+        {
+            ProcessPayment();
         }
     }
 
@@ -80,5 +87,27 @@ public class CashRegisterInteraction : MonoBehaviour
         Cursor.visible = false;
 
         cashRegisterCanvas.SetActive(false);
+    }
+
+    void ProcessPayment()
+    {
+        if (queueManager.clientQueue.Count > 0)
+        {
+            Client client = queueManager.clientQueue.Peek().GetComponent<Client>();
+            float paY = client.AmountToPay;
+            Debug.Log("Cliente pagO $" + paY);
+
+            queueManager.PayText.text = "Pago: $" + paY;
+
+            queueManager.RemoveClient();
+
+            StartCoroutine(HideText());
+        }
+    }
+
+    private IEnumerator HideText()
+    {
+        yield return new WaitForSeconds(2f);
+        queueManager.PayText.text = "";
     }
 }

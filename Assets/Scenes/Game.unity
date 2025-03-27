@@ -781,6 +781,55 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &485706439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485706441}
+  - component: {fileID: 485706440}
+  m_Layer: 0
+  m_Name: ClientQueueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &485706440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485706439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd3649a3dbbf3d43a0b8e3c33e7f858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  payPosition: {fileID: 485706441}
+  moveSpeed: 3
+  clientPrefab: {fileID: 4329429266909648612, guid: dfb044151d4fc6641b38275784b9eb51,
+    type: 3}
+  payText: {fileID: 1776404263}
+--- !u!4 &485706441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485706439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.46, y: 0.89, z: 1.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &494681118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asdasdasdasd
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2016,6 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209b1786d7de7c946b51216be46e7abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueManager: {fileID: 485706440}
   cameraTarget: {fileID: 1345452872}
   cashRegisterCanvas: {fileID: 326095220}
   playerMovement: {fileID: 1964649764}
@@ -2035,7 +2085,7 @@ GameObject:
   - component: {fileID: 2006025491}
   - component: {fileID: 2006025490}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: CajaRegistradora
   m_TagString: CashRegister
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2146,3 +2196,4 @@ SceneRoots:
   - {fileID: 326095224}
   - {fileID: 1345452872}
   - {fileID: 2006025493}
+  - {fileID: 485706441}
