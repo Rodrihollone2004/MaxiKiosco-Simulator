@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+    [Header("Sensibilidad")]
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
 
+    [Header("Referencias")]
     [SerializeField] private Transform orientation;
 
     private float xRotation;

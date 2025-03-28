@@ -810,11 +810,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd3649a3dbbf3d43a0b8e3c33e7f858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  payPosition: {fileID: 485706441}
-  moveSpeed: 3
   clientPrefab: {fileID: 4329429266909648612, guid: dfb044151d4fc6641b38275784b9eb51,
     type: 3}
+  payPosition: {fileID: 485706441}
+  moveSpeed: 5
+  initialPoolSize: 5
+  timeBetweenClients: 2
   payText: {fileID: 1776404263}
+  OnClientServed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnQueueUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &485706441
 Transform:
   m_ObjectHideFlags: 0
@@ -1101,7 +1109,7 @@ GameObject:
   - component: {fileID: 998297933}
   - component: {fileID: 998297932}
   m_Layer: 3
-  m_Name: Cube
+  m_Name: Product
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1370,7 +1378,7 @@ Transform:
   m_GameObject: {fileID: 1345452871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.61, y: 1.524, z: 0}
+  m_LocalPosition: {x: 0.127, y: 1.524, z: 0.777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2051,7 +2059,7 @@ MonoBehaviour:
   holdPosition: {fileID: 255105130}
   throwForce: 10
   outlineColor: {r: 0.084590435, g: 1, b: 0, a: 1}
-  outlineWidth: 7
+  outlineWidth: 25
   dropHintUI: {fileID: 272109866}
 --- !u!114 &1964649766
 MonoBehaviour:

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
 {
-    [SerializeField] private ClientQueueManager queueManager;
+    [SerializeField] ClientQueueManager queueManager;
     [SerializeField] Transform cameraTarget;
     [SerializeField] GameObject cashRegisterCanvas;
     [SerializeField] PlayerMovement playerMovement;
@@ -55,7 +55,7 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         inCashRegister = true;
         playerMovement.enabled = false;
-        playerCam.enabled = false;
+        //playerCam.enabled = false;
         moveCamera.enabled = false;
 
         playerRb.velocity = Vector3.zero;
@@ -67,9 +67,6 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCamera.transform.position = cameraTarget.position;
         playerCamera.transform.rotation = cameraTarget.rotation;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
         cashRegisterCanvas.SetActive(true);
     }
 
@@ -77,25 +74,22 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         inCashRegister = false;
         playerMovement.enabled = true;
-        playerCam.enabled = true;
+        //playerCam.enabled = true;
         moveCamera.enabled = true;
 
         playerCamera.transform.position = originalCameraPos;
         playerCamera.transform.rotation = originalCameraRot;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         cashRegisterCanvas.SetActive(false);
     }
 
     void ProcessPayment()
     {
-        if (queueManager.clientQueue.Count > 0)
+        if (queueManager.ClientQueue.Count > 0)
         {
-            Client client = queueManager.clientQueue.Peek().GetComponent<Client>();
-            float paY = client.AmountToPay;
-            Debug.Log("Cliente pagO $" + paY);
+            Client client = queueManager.ClientQueue.Peek().GetComponent<Client>();
+            float paY = client.CalculateCartTotal();
+            Debug.Log("Cliente pago $" + paY);
 
             queueManager.PayText.text = "Pago: $" + paY;
 

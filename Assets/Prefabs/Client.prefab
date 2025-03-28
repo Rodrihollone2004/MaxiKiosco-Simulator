@@ -123,6 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeb513017366584b98fb20e3cdb0338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billDenominations: e8030000f40100006400000032000000140000000a000000
+  minTotalMoney: 500
+  maxTotalMoney: 2000
 --- !u!54 &-8554870657187098238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,5 +151,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0

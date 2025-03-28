@@ -2,86 +2,179 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClientQueueManager : MonoBehaviour
 {
-    public Queue<GameObject> clientQueue = new Queue<GameObject>();
-    public Transform payPosition;
-    public float moveSpeed = 3f;
+    [Header("Configuracion")]
     [SerializeField] private GameObject clientPrefab;
+    [SerializeField] private Transform payPosition;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private int initialPoolSize = 5;
+    [SerializeField] private float timeBetweenClients = 2f;
+
+    [Header("Referencias UI")]
     [SerializeField] private TMP_Text payText;
 
-    public TMP_Text PayText { get => payText; set => payText = value; }
+    [Header("Eventos")]
+    public UnityEvent<Client> OnClientServed;
+    public UnityEvent OnQueueUpdated;
 
-    void Start()
+    private Queue<GameObject> _clientQueue = new Queue<GameObject>();
+    private Queue<GameObject> _clientPool = new Queue<GameObject>();
+    private bool _isMovingClient = false;
+    private Dictionary<GameObject, Rigidbody> _clientRigidbodies = new Dictionary<GameObject, Rigidbody>();
+
+    public TMP_Text PayText { get => payText; set => payText = value; }
+    public Queue<GameObject> ClientQueue { get => _clientQueue; set => _clientQueue = value; }
+
+    private void Awake()
+    {
+        InitializePool(initialPoolSize);
+    }
+
+    private void Start()
     {
         payText.text = "";
-        for (int i = 0; i < 3; i++) 
+        SpawnInitialClients(3);
+    }
+
+    private void InitializePool(int size)
+    {
+        for (int i = 0; i < size; i++)
         {
-            GameObject newClient = Instantiate(clientPrefab, transform.position, Quaternion.identity);
-            AddClient(newClient);
+            GameObject client = Instantiate(clientPrefab, transform.position, Quaternion.identity);
+            client.SetActive(false);
+            _clientRigidbodies[client] = client.GetComponent<Rigidbody>();
+            _clientPool.Enqueue(client);
         }
     }
-    public void AddClient(GameObject client)
-    {
-        Vector3 spawnPosition = transform.position; 
 
-        if (clientQueue.Count > 0)
+    private GameObject GetClientFromPool()
+    {
+        if (_clientPool.Count > 0)
         {
-            GameObject lastClient = clientQueue.ToArray()[clientQueue.Count - 1];
-            spawnPosition = lastClient.transform.position - new Vector3(-2f, 0, 0);
+            GameObject client = _clientPool.Dequeue();
+            client.SetActive(true);
+            return client;
+        }
+        else
+        {
+            GameObject newClient = Instantiate(clientPrefab, transform.position, Quaternion.identity);
+            _clientRigidbodies[newClient] = newClient.GetComponent<Rigidbody>();
+            return newClient;
+        }
+    }
+
+    private void ReturnClientToPool(GameObject client)
+    {
+        client.SetActive(false);
+        _clientPool.Enqueue(client);
+    }
+
+    private void SpawnInitialClients(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            SpawnNewClient();
+        }
+    }
+
+    private void SpawnNewClient()
+    {
+        GameObject newClient = GetClientFromPool();
+        Vector3 spawnPosition = GetSpawnPosition();
+
+        newClient.transform.position = spawnPosition;
+        _clientQueue.Enqueue(newClient);
+
+        if (_clientQueue.Count == 1 && !_isMovingClient)
+        {
+            MoveNextClientToPay();
         }
 
-        client.transform.position = spawnPosition;
-        clientQueue.Enqueue(client);
+        OnQueueUpdated?.Invoke();
+    }
 
-        if (clientQueue.Count == 1)
+    private Vector3 GetSpawnPosition()
+    {
+        if (_clientQueue.Count == 0)
         {
-            MoveNextClient();
+            return transform.position;
+        }
+        else
+        {
+            GameObject lastClient = _clientQueue.ToArray()[_clientQueue.Count - 1];
+            return lastClient.transform.position - new Vector3(-2f, 0, 0);
         }
     }
 
     public void RemoveClient()
     {
-        if (clientQueue.Count > 0)
-        {
-            GameObject client = clientQueue.Dequeue();
-            Destroy(client);
+        if (_clientQueue.Count == 0) return;
 
-            StartCoroutine(WaitAndSpawnNewClient());
-            StartCoroutine(WaitAndMoveNext());
-        }
+        GameObject client = _clientQueue.Dequeue();
+        Client clientData = client.GetComponent<Client>();
+
+        OnClientServed?.Invoke(clientData);
+        ReturnClientToPool(client);
+
+        StartCoroutine(WaitAndSpawnNewClient());
+        MoveNextClientToPay();
+        OnQueueUpdated?.Invoke();
     }
 
-    private IEnumerator WaitAndSpawnNewClient()
+    private void MoveNextClientToPay()
     {
-        yield return new WaitForSeconds(2f);
+        if (_clientQueue.Count == 0 || _isMovingClient) return;
 
-        GameObject newClient = Instantiate(clientPrefab, transform.position, Quaternion.identity);
-        AddClient(newClient);
-    }
-
-    private IEnumerator WaitAndMoveNext()
-    {
-        yield return null;
-        MoveNextClient();
-    }
-
-    private void MoveNextClient()
-    {
-        if (clientQueue.Count > 0)
-        {
-            GameObject nextClient = clientQueue.Peek();
-            StartCoroutine(MoveClientToPosition(nextClient, payPosition.position));
-        }
+        GameObject nextClient = _clientQueue.Peek();
+        StartCoroutine(MoveClientToPosition(nextClient, payPosition.position));
     }
 
     private IEnumerator MoveClientToPosition(GameObject client, Vector3 targetPosition)
     {
-        while (client != null && Vector3.Distance(client.transform.position, targetPosition) > 0.1f)
+        _isMovingClient = true;
+
+        Rigidbody rb = _clientRigidbodies[client];
+
+        while (Vector3.Distance(client.transform.position, targetPosition) > 0.1f)
         {
-            client.transform.position = Vector3.MoveTowards(client.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            Vector3 direction = (targetPosition - client.transform.position).normalized;
+            rb.MovePosition(client.transform.position + direction * moveSpeed * Time.deltaTime);
             yield return null;
         }
+
+        _isMovingClient = false;
     }
+
+    private IEnumerator WaitAndSpawnNewClient()
+    {
+        yield return new WaitForSeconds(timeBetweenClients);
+        SpawnNewClient();
+    }
+
+public void TryProcessPayment(out float amountPaid)
+{
+    amountPaid = 0f;
+
+    if (_clientQueue.Count > 0)
+    {
+        Client client = _clientQueue.Peek().GetComponent<Client>();
+        amountPaid = client.CalculateCartTotal();
+
+        Dictionary<int, int> paymentDetails = client.GetPaymentDetails(amountPaid);
+
+        string paymentText = $"Pago: ${amountPaid:F2}\n";
+
+        foreach (var bill in paymentDetails)
+        {
+            paymentText += $"{bill.Value}x ${bill.Key}  ";
+        }
+
+        payText.text = paymentText;
+
+        RemoveClient();
+    }
+}
 }
