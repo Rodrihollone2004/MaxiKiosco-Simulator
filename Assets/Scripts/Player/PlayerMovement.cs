@@ -29,6 +29,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerHeight;
     [SerializeField] private LayerMask whatIsGround;
     private bool grounded;
+    private bool wasGrounded;
+
+    //[Header("Sounds")]
+    //[SerializeField] private AudioSource movementAudioSource;
+    //[SerializeField] private AudioSource jumpAudioSource;
+    //[SerializeField] private AudioClip[] footstepSounds;
+    //[SerializeField] private AudioClip jumpSound;
+    //[SerializeField] private AudioClip landSound;
+    //[SerializeField] private float footstepIntervalWalk = 0.5f;
+    //[SerializeField] private float footstepIntervalRun = 0.3f;
+    //private float footstepTimer;
 
     [SerializeField] private Transform orientation;
 
@@ -57,12 +68,20 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         startYScale = transform.localScale.y;
+        //wasGrounded = grounded;
     }
 
+    // verifica contacto con el suelo, procesa inputs, maneja estados y aplica drag si esta entierra
     private void Update()
     {
         float groundCheckDistance = (transform.localScale.y / startYScale) * (playerHeight * 0.5f + 0.2f);
         grounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, whatIsGround);
+
+        //if (grounded && !wasGrounded)
+        //{
+        //    PlayLandingSound();
+        //}
+        //wasGrounded = grounded;
 
         MyInput();
         SpeedControl();
@@ -74,11 +93,13 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
     }
 
+    // mueve al jugador con fisicas
     private void FixedUpdate()
     {
         MovePlayer();
     }
 
+    // captura los inputs y maneja la logica de salto con un cooldown, ademas de cambiar la escala si se agacha
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -89,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
 
             Jump();
-
+            //PlayJumpSound();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
@@ -104,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // determina el estado actual
     private void StateHandler()
     {
         if (Input.GetKey(crouchKey))
@@ -128,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // calcula la direccion relativa a la orientacion
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -139,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
+    // limita la velocidad horizontal maxima
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -150,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // resetea la velocidad vertical
     private void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -157,8 +182,53 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
+    // reactiva el salto
     private void ResetJump()
     {
         readyToJump = true;
     }
+
+    // para sonidos
+    //private void HandleFootsteps()
+    //{
+    //    if (!grounded || (horizontalInput == 0 && verticalInput == 0))
+    //    {
+    //        footstepTimer = 0;
+    //        return;
+    //    }
+
+    //    float currentInterval = state == MovementState.sprinting ? footstepIntervalRun : footstepIntervalWalk;
+    //    footstepTimer += Time.deltaTime;
+
+    //    if (footstepTimer >= currentInterval)
+    //    {
+    //        PlayFootstepSound();
+    //        footstepTimer = 0;
+    //    }
+    //}
+
+    //private void PlayFootstepSound()
+    //{
+    //    if (footstepSounds.Length == 0 || !movementAudioSource) return;
+
+    //    AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+    //    movementAudioSource.pitch = Random.Range(0.9f, 1.1f);
+    //    movementAudioSource.PlayOneShot(clip);
+    //}
+
+    //private void PlayJumpSound()
+    //{
+    //    if (jumpSound && jumpAudioSource)
+    //    {
+    //        jumpAudioSource.PlayOneShot(jumpSound);
+    //    }
+    //}
+
+    //private void PlayLandingSound()
+    //{
+    //    if (landSound && movementAudioSource)
+    //    {
+    //        movementAudioSource.PlayOneShot(landSound);
+    //    }
+    //}
 }

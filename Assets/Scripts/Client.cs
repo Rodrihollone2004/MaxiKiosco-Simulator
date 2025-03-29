@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    [Header("Configuracion de Billetes")]
+    [Header("Bill configuration")]
     [SerializeField] private int[] billDenominations = { 1000, 500, 100, 50, 20, 10 };
     [SerializeField] private int minTotalMoney = 500;
     [SerializeField] private int maxTotalMoney = 10000;
@@ -12,7 +12,7 @@ public class Client : MonoBehaviour
     private Dictionary<int, int> wallet = new Dictionary<int, int>();
     private float totalMoney;
     private List<Product> cart = new List<Product>();
-    private Product[] allProducts;
+    private Product[] allProducts;     // para probar que funciona metodo. metodo para agregar productos random
 
     private void Awake()
     {
@@ -40,6 +40,7 @@ public class Client : MonoBehaviour
         }
     }
 
+    // prepara el diccionario de billetes
     private void InitializeWallet()
     {
         foreach (int denomination in billDenominations)
@@ -48,6 +49,7 @@ public class Client : MonoBehaviour
         }
     }
 
+    // genera una cantidad aleatoria de dinero distribuida en billetes
     private void GenerateRandomMoney()
     {
         totalMoney = Random.Range(minTotalMoney, maxTotalMoney + 1);
@@ -74,11 +76,13 @@ public class Client : MonoBehaviour
         }
     }
 
+    // virifica si el cliente puede pagar monto
     public bool CanAfford(float amount)
     {
         return GetTotalMoney() >= amount;
     }
 
+    // intenta realizar un pago y devuelve un resultado (exitoso/fracaso + cambio)
     public PaymentResult TryMakePayment(float amount)
     {
         if (!CanAfford(amount))
@@ -99,6 +103,7 @@ public class Client : MonoBehaviour
         return new PaymentResult(false, 0f, null);
     }
 
+    // algoritmo con recursividad, calcula como pagar un monto con los billetes disponibles
     private bool TryCalculatePayment(float remaining, List<int> denominations, int index, Dictionary<int, int> payment, float currentTotal)
     {
         if (remaining <= 0) return true;
@@ -131,11 +136,13 @@ public class Client : MonoBehaviour
         return false;
     }
 
+    //añade un producto al carrito
     public void AddToCart(Product product)
     {
         cart.Add(product);
     }
 
+    // suma los precios de todos los productos del carrito
     public float CalculateCartTotal()
     {
         float total = 0;
@@ -146,6 +153,8 @@ public class Client : MonoBehaviour
         return total;
     }
 
+    // finaliza una compra restando los billetes usados y vaciando el carrito
+    // kvp = key - value - pair
     public void CompletePurchase(Dictionary<int, int> payment)
     {
         foreach (var kvp in payment)
@@ -155,6 +164,7 @@ public class Client : MonoBehaviour
         cart.Clear();
     }
 
+    // calcula el total de dinero sumando todos los billetes
     private float GetTotalMoney()
     {
         float total = 0f;
@@ -165,6 +175,7 @@ public class Client : MonoBehaviour
         return total;
     }
 
+    // suma los precios de todos los productos del carrito
     private float CalculatePaymentTotal(Dictionary<int, int> payment)
     {
         float total = 0f;
@@ -175,6 +186,7 @@ public class Client : MonoBehaviour
         return total;
     }
 
+    // obtiene los detalles de como se pagaria un monto especifico
     public Dictionary<int, int> GetPaymentDetails(float amountToPay)
     {
         Dictionary<int, int> payment = new Dictionary<int, int>();
@@ -187,6 +199,7 @@ public class Client : MonoBehaviour
         return new Dictionary<int, int>();
     }
 
+    // muestra en consola la informacion del dinero del cliente
     private void LogWalletInfo()
     {
         string info = $"Cliente tiene ${GetTotalMoney():F2} en total. Billetes: ";

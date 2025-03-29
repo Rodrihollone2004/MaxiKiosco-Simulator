@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
@@ -13,13 +14,18 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
 
-    [Header("Lanzamiento")]
+    [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
 
-    [Header("Feedback Visual")]
+    [Header("Feedback")]
     [SerializeField] private Color outlineColor = Color.magenta;
     [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
+
+    //[Header("Efects")]
+    //[SerializeField] private AudioClip pickupSound;
+    //[SerializeField] private AudioClip dropSound;
+    //private AudioSource audioSource;
 
     private IInteractable currentInteractable;
     private GameObject heldObject;
@@ -45,6 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // detecta los objetos con raycast y aplica el outline
     private void HandleHighlight()
     {
         if (heldObject != null)
@@ -77,6 +84,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // limpia el resaltado anterior
     private void RemoveHighlight()
     {
         if (currentOutline != null)
@@ -87,6 +95,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // intenta recoger un objeto con el raycast
     private void TryPickUp()
     {
         RaycastHit hit;
@@ -100,6 +109,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // hace el objeto hijo del holdposition
     private void PickUp(GameObject objToPickUp)
     {
         RemoveHighlight();
@@ -126,8 +136,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             dropHintUI.SetActive(true);
         }
+
+        //if (audioSource != null && pickupSound != null)
+        //{
+        //    audioSource.PlayOneShot(pickupSound);
+        //}
     }
 
+    // devuelve todas las propiedades al objeto y aplica fuerza de lanzamiento
     private void DropObject()
     {
 
@@ -154,6 +170,11 @@ public class PlayerInteraction : MonoBehaviour
             heldObject = null;
             heldObjectRb = null;
             heldObjectCollider = null;
+
+            //if (audioSource != null && dropSound != null)
+            //{
+            //    audioSource.PlayOneShot(dropSound);
+            //}
         }
     }
 }

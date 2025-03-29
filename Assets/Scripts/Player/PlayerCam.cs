@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    [Header("Sensibilidad")]
+    [Header("Sensibility")]
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
 
-    [Header("Referencias")]
+    [Header("References")]
     [SerializeField] private Transform orientation;
 
-    [Header("Limites caja registradora")]
+    [Header("Cash Register limits")]
     [SerializeField] private float minAngle = 0;
     [SerializeField] private float maxAngle = 180;
     private bool isInCashRegister = false;
@@ -33,7 +33,7 @@ public class PlayerCam : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
 
-
+        // limita el movimiento de camara si esta en la caja registradora
         if (IsInCashRegister)
         {
             xRotation = Mathf.Clamp(xRotation, -25f, 50f);
@@ -44,6 +44,7 @@ public class PlayerCam : MonoBehaviour
         }
         else
         {
+            // movimiento de camara normal
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
