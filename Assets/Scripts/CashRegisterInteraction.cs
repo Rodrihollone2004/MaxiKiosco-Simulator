@@ -14,6 +14,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] Rigidbody playerRb;
 
     private bool inCashRegister = false;
+    private bool canClickTheCashRegister = true;
 
     private Vector3 originalCameraPos;
     private Quaternion originalCameraRot;
@@ -27,18 +28,21 @@ public class CashRegisterInteraction : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f))
+    { 
+            if (Input.GetMouseButtonDown(0))
             {
-                if (hit.collider.CompareTag("CashRegister"))
-                {
-                    EnterCashRegisterMode();
+                if (canClickTheCashRegister) 
+                { 
+                    RaycastHit hit;
+                    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f))
+                    {
+                            if (hit.collider.CompareTag("CashRegister"))
+                            {
+                                EnterCashRegisterMode();
+                            }
+                    }
                 }
             }
-        }
 
         if (inCashRegister && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -55,8 +59,8 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         inCashRegister = true;
         playerMovement.enabled = false;
-        //playerCam.enabled = false;
         moveCamera.enabled = false;
+        canClickTheCashRegister = false;
 
         playerRb.velocity = Vector3.zero;
         playerRb.angularVelocity = Vector3.zero;
@@ -67,6 +71,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCamera.transform.position = cameraTarget.position;
         playerCamera.transform.rotation = cameraTarget.rotation;
 
+        playerCam.IsInCashRegister = true;
+
         cashRegisterCanvas.SetActive(true);
     }
 
@@ -74,11 +80,13 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         inCashRegister = false;
         playerMovement.enabled = true;
-        //playerCam.enabled = true;
         moveCamera.enabled = true;
+        canClickTheCashRegister = true;
 
         playerCamera.transform.position = originalCameraPos;
         playerCamera.transform.rotation = originalCameraRot;
+
+        playerCam.IsInCashRegister = false;
 
         cashRegisterCanvas.SetActive(false);
     }
@@ -88,10 +96,10 @@ public class CashRegisterInteraction : MonoBehaviour
         if (queueManager.ClientQueue.Count > 0)
         {
             Client client = queueManager.ClientQueue.Peek().GetComponent<Client>();
-            float paY = client.CalculateCartTotal();
-            Debug.Log("Cliente pago $" + paY);
+            float pay = client.CalculateCartTotal();
+            Debug.Log("Cliente pago $" + pay);
 
-            queueManager.PayText.text = "Pago: $" + paY;
+            queueManager.PayText.text = "Pago: $" + pay;
 
             queueManager.RemoveClient();
 

@@ -9,8 +9,15 @@ public class PlayerCam : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private Transform orientation;
 
+    [Header("Limites caja registradora")]
+    [SerializeField] private float minAngle = 0;
+    [SerializeField] private float maxAngle = 180;
+    private bool isInCashRegister = false;
+
     private float xRotation;
     private float yRotation;
+
+    public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
 
     private void Start()
     {
@@ -24,11 +31,23 @@ public class PlayerCam : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
-
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        if (IsInCashRegister)
+        {
+            xRotation = Mathf.Clamp(xRotation, -25f, 50f);
+            yRotation = Mathf.Clamp(yRotation, minAngle, maxAngle);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        else
+        {
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 }

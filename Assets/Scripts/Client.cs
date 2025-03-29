@@ -16,7 +16,7 @@ public class Client : MonoBehaviour
 
     private void Awake()
     {
-        allProducts = FindObjectsOfType<Product>();     // no se porque se ve asi
+        allProducts = FindObjectsOfType<Product>();
     }
 
     private void Start()
