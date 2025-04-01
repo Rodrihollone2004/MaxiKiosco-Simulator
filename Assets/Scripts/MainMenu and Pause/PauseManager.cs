@@ -8,6 +8,9 @@ public class PauseManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] GameObject pauseMenuObject;
     [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject graphicsMenu;
+    [SerializeField] GameObject soundMenu;
+    [SerializeField] GameObject gameplayMenu;
     [Header("Settings")]
     [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
     [SerializeField] PlayerCam playerCam;
@@ -62,6 +65,9 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuObject.SetActive(false);
         optionsMenu.SetActive(false);
+        graphicsMenu.SetActive(false);
+        soundMenu.SetActive(false);
+        gameplayMenu.SetActive(false);
         isPaused = false;
 
         Time.timeScale = 1f;
