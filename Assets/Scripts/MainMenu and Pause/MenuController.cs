@@ -16,8 +16,11 @@ public class MenuController : MonoBehaviour
     [Header("Gameplay Settings")]
     [SerializeField] private TMP_Text controllerSensTextValue = null;
     [SerializeField] private Slider controllerSensSlider = null;
-    [SerializeField] private int defaultSens = 4;
+    [SerializeField] private int defaultSens = 100;
     public int mainControllerSens = 4;
+
+    [Header("Player Camera")]
+    [SerializeField] private PlayerCam playerCam;
 
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
@@ -88,11 +91,18 @@ public class MenuController : MonoBehaviour
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
             SceneManager.LoadScene(levelToLoad);
+            StartCoroutine(WaitForSceneLoad());
         }
         else
         {
             noSavedGameDialog.SetActive(true);
         }
+    }
+
+    private IEnumerator WaitForSceneLoad()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<PauseManager>().LoadGame();
     }
 
     public void ExitButton()
@@ -117,6 +127,11 @@ public class MenuController : MonoBehaviour
     {
         mainControllerSens = Mathf.RoundToInt(sensitivity);
         controllerSensTextValue.text = sensitivity.ToString("0");
+
+        if (playerCam != null)
+        {
+            playerCam.Sensitivity = sensitivity;
+        }
     }
 
     public void GameplayApply()

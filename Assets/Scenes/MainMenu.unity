@@ -2018,9 +2018,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1523858242}
   m_Direction: 0
   m_MinValue: 1
-  m_MaxValue: 8
+  m_MaxValue: 200
   m_WholeNumbers: 1
-  m_Value: 4
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5079,7 +5079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10456,8 +10456,9 @@ MonoBehaviour:
   defaultVolume: 1
   controllerSensTextValue: {fileID: 670264123}
   controllerSensSlider: {fileID: 307285107}
-  defaultSens: 4
-  mainControllerSens: 4
+  defaultSens: 100
+  mainControllerSens: 100
+  playerCam: {fileID: 0}
   invertYToggle: {fileID: 308490404}
   brightnessSlider: {fileID: 2040039626}
   brightnessTextValue: {fileID: 640570406}

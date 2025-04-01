@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour
 {
     [Header("Sensibility")]
-    [SerializeField] private float sensX;
-    [SerializeField] private float sensY;
+    [SerializeField] private float sensitivity;
 
     [Header("References")]
     [SerializeField] private Transform orientation;
@@ -18,17 +17,23 @@ public class PlayerCam : MonoBehaviour
     private float yRotation;
 
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
+    public float Sensitivity { get => sensitivity; set => sensitivity = value; }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (PlayerPrefs.HasKey("masterSen"))
+        {
+            sensitivity = PlayerPrefs.GetFloat("masterSen");
+        }
     }
 
     private void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivity;
 
         yRotation += mouseX;
         xRotation -= mouseY;
