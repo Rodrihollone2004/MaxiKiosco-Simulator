@@ -12,6 +12,7 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] private float minAngle = 0;
     [SerializeField] private float maxAngle = 180;
     private bool isInCashRegister = false;
+    private bool invertY = false;
 
     private float xRotation;
     private float yRotation;
@@ -24,16 +25,15 @@ public class PlayerCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (PlayerPrefs.HasKey("masterSen"))
-        {
-            sensitivity = PlayerPrefs.GetFloat("masterSen");
-        }
+
     }
 
     private void Update()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivity;
+
+        mouseY = invertY ? -mouseY : mouseY;
 
         yRotation += mouseX;
         xRotation -= mouseY;
@@ -43,17 +43,23 @@ public class PlayerCam : MonoBehaviour
         {
             xRotation = Mathf.Clamp(xRotation, -25f, 50f);
             yRotation = Mathf.Clamp(yRotation, minAngle, maxAngle);
-
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         else
         {
             // movimiento de camara normal
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        }
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        if (PlayerPrefs.HasKey("masterSen"))
+        {
+            sensitivity = PlayerPrefs.GetFloat("masterSen");
+        }
+        if (PlayerPrefs.HasKey("masterInvertY"))
+        {
+            invertY = PlayerPrefs.GetInt("masterInvertY") == 1;
         }
     }
 }

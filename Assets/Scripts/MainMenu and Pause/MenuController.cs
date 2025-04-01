@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using NUnit.Framework;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class MenuController : MonoBehaviour
 {
@@ -17,10 +20,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TMP_Text controllerSensTextValue = null;
     [SerializeField] private Slider controllerSensSlider = null;
     [SerializeField] private int defaultSens = 100;
-    public int mainControllerSens = 4;
-
-    [Header("Player Camera")]
-    [SerializeField] private PlayerCam playerCam;
+    public int mainControllerSens = 100;
 
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
@@ -50,6 +50,9 @@ public class MenuController : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
+    [SerializeField] private Volume postProcessingVolume;
+    private ColorAdjustments colorAdjustments;
+
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -72,6 +75,11 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+            if (postProcessingVolume.profile.TryGet(out colorAdjustments))
+            {
+                SetBrightness(defaultBrightness);
+            }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -91,18 +99,11 @@ public class MenuController : MonoBehaviour
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
             SceneManager.LoadScene(levelToLoad);
-            StartCoroutine(WaitForSceneLoad());
         }
         else
         {
             noSavedGameDialog.SetActive(true);
         }
-    }
-
-    private IEnumerator WaitForSceneLoad()
-    {
-        yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<PauseManager>().LoadGame();
     }
 
     public void ExitButton()
@@ -127,11 +128,8 @@ public class MenuController : MonoBehaviour
     {
         mainControllerSens = Mathf.RoundToInt(sensitivity);
         controllerSensTextValue.text = sensitivity.ToString("0");
-
-        if (playerCam != null)
-        {
-            playerCam.Sensitivity = sensitivity;
-        }
+        PlayerPrefs.SetFloat("masterSen", sensitivity);
+        PlayerPrefs.Save();
     }
 
     public void GameplayApply()
@@ -153,6 +151,11 @@ public class MenuController : MonoBehaviour
     {
         _brightnessLevel = brightness;
         brightnessTextValue.text = brightness.ToString("0.0");
+
+        if (colorAdjustments != null)
+        {
+            colorAdjustments.postExposure.value = brightness * 2f - 1f; 
+        }
     }
 
     public void SetFullScreen(bool isFullScreen)
