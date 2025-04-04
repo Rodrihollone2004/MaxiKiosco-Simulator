@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Config")]
+     [Header("Config")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private KeyCode interactKey = KeyCode.E;
