@@ -8,8 +8,8 @@ public class Wallet : MonoBehaviour
     [SerializeField] private int minTotalMoney = 500;
     [SerializeField] private int maxTotalMoney = 10000;
 
-    protected Dictionary<int, int> wallet = new Dictionary<int, int>();
-    protected float totalMoney;
+    private Dictionary<int, int> wallet = new Dictionary<int, int>();
+    private float totalMoney;
 
     public int[] BillDenominations => billDenominations;
     public Dictionary<int, int> WalletData => wallet;
@@ -59,6 +59,12 @@ public class Wallet : MonoBehaviour
             total += kvp.Key * kvp.Value;
         }
         return total;
+    }
+
+    public void Initialize()
+    {
+        InitializeWallet();
+        GenerateRandomMoney();
     }
 
     public void CompletePurchase(Dictionary<int, int> paymentUsed)

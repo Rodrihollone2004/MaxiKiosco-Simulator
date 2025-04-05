@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Client : Wallet
+public class Client : MonoBehaviour
 {
     private List<Product> cart = new List<Product>();
+    private Wallet wallet;
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
+        wallet = GetComponent<Wallet>();
+    }
+    private void Start()
+    {
+        wallet.Initialize();
         AddRandomProductsToCart();
         PrintWallet();
     }
@@ -37,13 +42,13 @@ public class Client : Wallet
 
     public PaymentResult TryMakePayment(float amount)
     {
-        if (!CanAfford(amount))
+        if (!wallet.CanAfford(amount))
         {
             return new PaymentResult(false, 0f, null);
         }
 
         Dictionary<int, int> paymentUsed = new Dictionary<int, int>();
-        List<int> denominations = new List<int>(BillDenominations);
+        List<int> denominations = new List<int>(wallet.BillDenominations);
         denominations.Sort((a, b) => b.CompareTo(a));
 
         if (TryCalculatePayment(amount, denominations, 0, paymentUsed))
@@ -60,7 +65,7 @@ public class Client : Wallet
         if (index >= denominations.Count) return false;
 
         int currentBill = denominations[index];
-        int available = WalletData[currentBill];
+        int available = wallet.WalletData[currentBill];
         int maxPossible = Mathf.Min((int)(remaining / currentBill), available);
 
         for (int i = maxPossible; i >= 0; i--)
@@ -100,13 +105,13 @@ public class Client : Wallet
     private void PrintWallet()
     {
         string walletInfo = $"Cliente {name} tiene: ";
-        foreach (var kvp in WalletData)
+        foreach (var kvp in wallet.WalletData)
         {
             walletInfo += $"{kvp.Value}x${kvp.Key}, ";
         }
 
         walletInfo = walletInfo.TrimEnd(',', ' ');
-        walletInfo += $". Total: ${GetTotalMoney()}";
+        walletInfo += $". Total: ${wallet.GetTotalMoney()}";
         Debug.Log(walletInfo);
     }
 }
