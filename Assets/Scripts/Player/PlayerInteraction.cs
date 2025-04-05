@@ -21,6 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Color outlineColor = Color.magenta;
     [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
+    [SerializeField] private Material outlineMaterial;
+    [SerializeField] private Material defaultMaterial;
 
     //[Header("Efects")]
     //[SerializeField] private AudioClip pickupSound;
@@ -31,7 +33,14 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
-    private Outline currentOutline;
+
+    private Renderer currentRenderer;
+    private MaterialPropertyBlock propBlock;
+
+    private void Awake()
+    {
+        propBlock = new MaterialPropertyBlock();
+    }
 
     private void Update()
     {
@@ -56,43 +65,51 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
-            RemoveHighlight();
+            if (currentRenderer != null)
+            {
+                RemoveHighlight(currentRenderer);
+                currentRenderer = null;
+            }
             return;
         }
 
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            if (hit.collider.gameObject == (currentOutline != null ? currentOutline.gameObject : null))
-                return;
+            Renderer renderer = hit.collider.GetComponent<Renderer>();
 
-            RemoveHighlight();
+            if (renderer == null) return;
 
-            currentOutline = hit.collider.GetComponent<Outline>();
-            if (currentOutline == null)
+            if (renderer != currentRenderer)
             {
-                currentOutline = hit.collider.gameObject.AddComponent<Outline>();
+                if (currentRenderer != null)
+                {
+                    RemoveHighlight(currentRenderer);
+                }
+                currentRenderer = renderer;
+                ApplyHighlight(currentRenderer);
             }
-
-            currentOutline.OutlineColor = outlineColor;
-            currentOutline.OutlineWidth = outlineWidth;
-            currentOutline.enabled = true;
         }
         else
         {
-            RemoveHighlight();
+            if (currentRenderer != null)
+            {
+                RemoveHighlight(currentRenderer);
+                currentRenderer = null;
+            }
         }
     }
 
-    // limpia el resaltado anterior
-    private void RemoveHighlight()
+    private void ApplyHighlight(Renderer renderer)
     {
-        if (currentOutline != null)
-        {
-            currentOutline.enabled = false;
-            Destroy(currentOutline);
-            currentOutline = null;
-        }
+        renderer.material = outlineMaterial;
+        renderer.material.SetFloat("_OutlineWidth", outlineWidth);
+        renderer.material.SetColor("_OutlineColor", outlineColor);
+    }
+
+    private void RemoveHighlight(Renderer renderer)
+    {
+        renderer.material = defaultMaterial;
     }
 
     // intenta recoger un objeto con el raycast
@@ -112,7 +129,10 @@ public class PlayerInteraction : MonoBehaviour
     // hace el objeto hijo del holdposition
     private void PickUp(GameObject objToPickUp)
     {
-        RemoveHighlight();
+        if (currentRenderer != null)
+        {
+            RemoveHighlight(currentRenderer);
+        }
 
         heldObject = objToPickUp;
 

@@ -6398,8 +6398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  - {fileID: 2100000, guid: 3f03c9aabf8b26048a3a6219c81bb26f, type: 2}
+  - {fileID: 2100000, guid: 05519c76a6c8f5c49883cf708589003f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12561,6 +12560,8 @@ MonoBehaviour:
   outlineColor: {r: 0.084590435, g: 1, b: 0, a: 1}
   outlineWidth: 25
   dropHintUI: {fileID: 272109866}
+  outlineMaterial: {fileID: 2100000, guid: 27bc76b01bf0d6c4c995cdf2f272bcd9, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 05519c76a6c8f5c49883cf708589003f, type: 2}
 --- !u!114 &1964649766
 MonoBehaviour:
   m_ObjectHideFlags: 0
