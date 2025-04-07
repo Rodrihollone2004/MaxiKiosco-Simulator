@@ -21,6 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Color outlineColor = Color.magenta;
     [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
+    [SerializeField] private Material outlineMaterial;
+    [SerializeField] private Material defaultMaterial;
 
     //[Header("Efects")]
     //[SerializeField] private AudioClip pickupSound;
@@ -33,12 +35,12 @@ public class PlayerInteraction : MonoBehaviour
     private Collider heldObjectCollider;
 
     private Renderer currentRenderer;
-    private MaterialPropertyBlock propBlock;
+    //private MaterialPropertyBlock propBlock;
 
-    private void Awake()
-    {
-        propBlock = new MaterialPropertyBlock();
-    }
+    //private void Awake()
+    //{
+    //    propBlock = new MaterialPropertyBlock();
+    //}
 
     private void Update()
     {
@@ -100,17 +102,39 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ApplyHighlight(Renderer renderer)
     {
-        renderer.GetPropertyBlock(propBlock);
-        propBlock.SetColor("_Color", outlineColor);
-        propBlock.SetFloat("_Scale", outlineWidth);
-        renderer.SetPropertyBlock(propBlock);
+        //renderer.GetPropertyBlock(propBlock);
+        //propBlock.SetColor("_Color", outlineColor);
+        //propBlock.SetFloat("_Scale", outlineWidth);
+        //renderer.SetPropertyBlock(propBlock);
+
+        Material[] materials = renderer.sharedMaterials;
+
+        if (materials.Length == 1 || materials[materials.Length - 1] != outlineMaterial)
+        {
+            Material[] newMaterials = new Material[materials.Length + 1];
+            materials.CopyTo(newMaterials, 0);
+            newMaterials[materials.Length] = outlineMaterial;
+            renderer.materials = newMaterials;
+        }
     }
 
     private void RemoveHighlight(Renderer renderer)
     {
-        renderer.GetPropertyBlock(propBlock);
-        propBlock.SetFloat("_Scale", 0f);
-        renderer.SetPropertyBlock(propBlock);
+        //renderer.GetPropertyBlock(propBlock);
+        //propBlock.SetFloat("_Scale", 0f);
+        //renderer.SetPropertyBlock(propBlock);
+
+        Material[] materials = renderer.sharedMaterials;
+
+        if (materials.Length > 1 && materials[materials.Length - 1] == outlineMaterial)
+        {
+            Material[] newMaterials = new Material[materials.Length - 1];
+            for (int i = 0; i < newMaterials.Length; i++)
+            {
+                newMaterials[i] = materials[i];
+            }
+            renderer.materials = newMaterials;
+        }
     }
 
     // intenta recoger un objeto con el raycast
