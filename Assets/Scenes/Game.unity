@@ -6399,6 +6399,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 05519c76a6c8f5c49883cf708589003f, type: 2}
+  - {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12558,10 +12559,8 @@ MonoBehaviour:
   holdPosition: {fileID: 255105130}
   throwForce: 10
   outlineColor: {r: 0.084590435, g: 1, b: 0, a: 1}
-  outlineWidth: 25
+  outlineWidth: 1.03
   dropHintUI: {fileID: 272109866}
-  outlineMaterial: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: 05519c76a6c8f5c49883cf708589003f, type: 2}
 --- !u!114 &1964649766
 MonoBehaviour:
   m_ObjectHideFlags: 0
