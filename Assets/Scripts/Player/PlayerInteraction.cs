@@ -21,8 +21,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Color outlineColor = Color.magenta;
     [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
-    [SerializeField] private Material outlineMaterial;
-    [SerializeField] private Material defaultMaterial;
 
     //[Header("Efects")]
     //[SerializeField] private AudioClip pickupSound;
@@ -102,14 +100,17 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ApplyHighlight(Renderer renderer)
     {
-        renderer.material = outlineMaterial;
-        renderer.material.SetFloat("_OutlineWidth", outlineWidth);
-        renderer.material.SetColor("_OutlineColor", outlineColor);
+        renderer.GetPropertyBlock(propBlock);
+        propBlock.SetColor("_Color", outlineColor);
+        propBlock.SetFloat("_Scale", outlineWidth);
+        renderer.SetPropertyBlock(propBlock);
     }
 
     private void RemoveHighlight(Renderer renderer)
     {
-        renderer.material = defaultMaterial;
+        renderer.GetPropertyBlock(propBlock);
+        propBlock.SetFloat("_Scale", 0f);
+        renderer.SetPropertyBlock(propBlock);
     }
 
     // intenta recoger un objeto con el raycast
