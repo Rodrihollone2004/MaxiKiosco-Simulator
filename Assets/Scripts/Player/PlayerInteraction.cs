@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-     [Header("Config")]
+    [Header("Config")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private KeyCode interactKey = KeyCode.E;
@@ -17,9 +17,6 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
 
-    [Header("Feedback")]
-    [SerializeField] private Color outlineColor = Color.magenta;
-    [SerializeField] private float outlineWidth = 7.0f;
     [SerializeField] private GameObject dropHintUI;
 
     //[Header("Efects")]
@@ -32,13 +29,6 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
 
-    private Renderer currentRenderer;
-    private MaterialPropertyBlock propBlock;
-
-    private void Awake()
-    {
-        propBlock = new MaterialPropertyBlock();
-    }
 
     private void Update()
     {
@@ -63,10 +53,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
-            if (currentRenderer != null)
+            if (currentInteractable != null)
             {
-                RemoveHighlight(currentRenderer);
-                currentRenderer = null;
+                (currentInteractable as Product)?.Unhighlight();
+                currentInteractable = null;
             }
             return;
         }
@@ -74,43 +64,26 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            Renderer renderer = hit.collider.GetComponent<Renderer>();
-
-            if (renderer == null) return;
-
-            if (renderer != currentRenderer)
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (currentRenderer != null)
+                if (interactable != currentInteractable)
                 {
-                    RemoveHighlight(currentRenderer);
+                    if (currentInteractable != null)
+                        (currentInteractable as Product)?.Unhighlight();
+
+                    currentInteractable = interactable;
+                    (currentInteractable as Product)?.Highlight();
                 }
-                currentRenderer = renderer;
-                ApplyHighlight(currentRenderer);
             }
         }
         else
         {
-            if (currentRenderer != null)
+            if (currentInteractable != null)
             {
-                RemoveHighlight(currentRenderer);
-                currentRenderer = null;
+                (currentInteractable as Product)?.Unhighlight();
+                currentInteractable = null;
             }
         }
-    }
-
-    private void ApplyHighlight(Renderer renderer)
-    {
-        renderer.GetPropertyBlock(propBlock);
-        propBlock.SetColor("_Color", outlineColor);
-        propBlock.SetFloat("_Scale", outlineWidth);
-        renderer.SetPropertyBlock(propBlock);
-    }
-
-    private void RemoveHighlight(Renderer renderer)
-    {
-        renderer.GetPropertyBlock(propBlock);
-        propBlock.SetFloat("_Scale", 0f);
-        renderer.SetPropertyBlock(propBlock);
     }
 
     // intenta recoger un objeto con el raycast
@@ -130,9 +103,9 @@ public class PlayerInteraction : MonoBehaviour
     // hace el objeto hijo del holdposition
     private void PickUp(GameObject objToPickUp)
     {
-        if (currentRenderer != null)
+        if (currentInteractable != null)
         {
-            RemoveHighlight(currentRenderer);
+            (currentInteractable as Product)?.Unhighlight();
         }
 
         heldObject = objToPickUp;
