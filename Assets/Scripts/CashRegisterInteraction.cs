@@ -17,6 +17,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [Header("Configurations")]
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private string cashRegisterTag = "CashRegister";
+    [SerializeField] private PlayerEconomy playerEconomy;
 
     //[Header("Sounds")]
     //[SerializeField] private AudioSource registerAudioSource;
@@ -133,11 +134,11 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             Client client = queueManager.ClientQueue.Peek();
             float pay = client.CalculateCartTotal();
-            queueManager.PayText.text = $"Pago: " + pay;
+            queueManager.PayText.text = $"Pago: ${pay}";
 
-            //PlayRegisterSound(paymentSound);
+            playerEconomy.ReceivePayment(pay);
 
-            Debug.Log($"Cliente pago: " + pay);
+            Debug.Log($"Cliente pagó ${pay}");
 
             queueManager.RemoveClient();
 
