@@ -31,15 +31,15 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private bool wasGrounded;
 
-    //[Header("Sounds")]
-    //[SerializeField] private AudioSource movementAudioSource;
-    //[SerializeField] private AudioSource jumpAudioSource;
-    //[SerializeField] private AudioClip[] footstepSounds;
-    //[SerializeField] private AudioClip jumpSound;
-    //[SerializeField] private AudioClip landSound;
-    //[SerializeField] private float footstepIntervalWalk = 0.5f;
-    //[SerializeField] private float footstepIntervalRun = 0.3f;
-    //private float footstepTimer;
+    [Header("Sounds")]
+    [SerializeField] private AudioSource movementAudioSource;
+    [SerializeField] private AudioSource jumpAudioSource;
+    [SerializeField] private AudioClip footstepSounds;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip landSound;
+    [SerializeField] private float footstepIntervalWalk = 0.5f;
+    [SerializeField] private float footstepIntervalRun = 0.3f;
+    private float footstepTimer;
 
     [SerializeField] private Transform orientation;
 
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         startYScale = transform.localScale.y;
-        //wasGrounded = grounded;
+        wasGrounded = grounded;
     }
 
     // verifica contacto con el suelo, procesa inputs, maneja estados y aplica drag si esta entierra
@@ -77,15 +77,16 @@ public class PlayerMovement : MonoBehaviour
         float groundCheckDistance = (transform.localScale.y / startYScale) * (playerHeight * 0.5f + 0.2f);
         grounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, whatIsGround);
 
-        //if (grounded && !wasGrounded)
-        //{
-        //    PlayLandingSound();
-        //}
-        //wasGrounded = grounded;
+        if (grounded && !wasGrounded)
+        {
+            PlayLandingSound();
+        }
+        wasGrounded = grounded;
 
         MyInput();
         SpeedControl();
         StateHandler();
+        HandleFootsteps();
 
         if (grounded)
             rb.drag = groundDrag;
@@ -110,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
 
             Jump();
-            //PlayJumpSound();
+            PlayJumpSound();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
@@ -189,46 +190,47 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // para sonidos
-    //private void HandleFootsteps()
-    //{
-    //    if (!grounded || (horizontalInput == 0 && verticalInput == 0))
-    //    {
-    //        footstepTimer = 0;
-    //        return;
-    //    }
+    private void HandleFootsteps()
+    {
+        if (!grounded || (horizontalInput == 0 && verticalInput == 0))
+        {
+            footstepTimer = 0;
+            return;
+        }
 
-    //    float currentInterval = state == MovementState.sprinting ? footstepIntervalRun : footstepIntervalWalk;
-    //    footstepTimer += Time.deltaTime;
+        float currentInterval = state == MovementState.sprinting ? footstepIntervalRun : footstepIntervalWalk;
+        footstepTimer += Time.deltaTime;
 
-    //    if (footstepTimer >= currentInterval)
-    //    {
-    //        PlayFootstepSound();
-    //        footstepTimer = 0;
-    //    }
-    //}
+        if (footstepTimer >= currentInterval)
+        {
+            PlayFootstepSound();
+            footstepTimer = 0;
+        }
+    }
 
-    //private void PlayFootstepSound()
-    //{
-    //    if (footstepSounds.Length == 0 || !movementAudioSource) return;
+    private void PlayFootstepSound()
+    {
+        if (!movementAudioSource.isPlaying)
+        {
+            movementAudioSource.clip = footstepSounds;
+            movementAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            movementAudioSource.Play();
+        }
+    }
 
-    //    AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-    //    movementAudioSource.pitch = Random.Range(0.9f, 1.1f);
-    //    movementAudioSource.PlayOneShot(clip);
-    //}
+    private void PlayJumpSound()
+    {
+        if (jumpSound && jumpAudioSource)
+        {
+            jumpAudioSource.PlayOneShot(jumpSound);
+        }
+    }
 
-    //private void PlayJumpSound()
-    //{
-    //    if (jumpSound && jumpAudioSource)
-    //    {
-    //        jumpAudioSource.PlayOneShot(jumpSound);
-    //    }
-    //}
-
-    //private void PlayLandingSound()
-    //{
-    //    if (landSound && movementAudioSource)
-    //    {
-    //        movementAudioSource.PlayOneShot(landSound);
-    //    }
-    //}
+    private void PlayLandingSound()
+    {
+        if (landSound && movementAudioSource)
+        {
+            movementAudioSource.PlayOneShot(landSound);
+        }
+    }
 }
