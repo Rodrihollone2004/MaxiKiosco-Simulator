@@ -19,17 +19,16 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject dropHintUI;
 
-    //[Header("Efects")]
-    //[SerializeField] private AudioClip pickupSound;
-    //[SerializeField] private AudioClip dropSound;
-    //private AudioSource audioSource;
+    [Header("Efects")]
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField] private AudioClip dropSound;
+    [SerializeField] private AudioSource audioSource;
 
     private IInteractable currentInteractable;
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
-
-
+    
     private void Update()
     {
         HandleHighlight();
@@ -131,10 +130,10 @@ public class PlayerInteraction : MonoBehaviour
             dropHintUI.SetActive(true);
         }
 
-        //if (audioSource != null && pickupSound != null)
-        //{
-        //    audioSource.PlayOneShot(pickupSound);
-        //}
+        if (audioSource != null && pickupSound != null)
+        {
+            audioSource.PlayOneShot(pickupSound);
+        }
     }
 
     // devuelve todas las propiedades al objeto y aplica fuerza de lanzamiento
@@ -165,10 +164,10 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectRb = null;
             heldObjectCollider = null;
 
-            //if (audioSource != null && dropSound != null)
-            //{
-            //    audioSource.PlayOneShot(dropSound);
-            //}
+            if (audioSource != null && dropSound != null)
+            {
+                audioSource.PlayOneShot(dropSound);
+            }
         }
     }
 }

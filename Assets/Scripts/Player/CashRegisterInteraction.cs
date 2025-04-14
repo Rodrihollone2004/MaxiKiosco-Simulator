@@ -19,12 +19,11 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] private string cashRegisterTag = "CashRegister";
     [SerializeField] private PlayerEconomy playerEconomy;
 
-    //[Header("Sounds")]
-    //[SerializeField] private AudioSource registerAudioSource;
-    //[SerializeField] private AudioClip registerOpenSound;
-    //[SerializeField] private AudioClip registerCloseSound;
-    //[SerializeField] private AudioClip paymentSound;
-    //[SerializeField] private AudioClip errorSound;
+    [Header("Sounds")]
+    [SerializeField] private AudioSource registerAudioSource;
+    [SerializeField] private AudioClip registerOpenSound;
+    [SerializeField] private AudioClip registerCloseSound;
+    [SerializeField] private AudioClip paymentSound;
 
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
@@ -36,11 +35,11 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private void Awake()
     {
-        //if (registerAudioSource == null)
-        //{
-        //    registerAudioSource = gameObject.AddComponent<AudioSource>();
-        //    registerAudioSource.spatialBlend = 0.8f; // Sonido 3D
-        //}
+        if (registerAudioSource == null)
+        {
+            registerAudioSource = gameObject.AddComponent<AudioSource>();
+            registerAudioSource.spatialBlend = 0.8f;
+        }
     }
 
     private void Start()
@@ -105,7 +104,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
         cashRegisterCanvas.SetActive(true);
 
-        //PlayRegisterSound(registerOpenSound);
+        PlayRegisterSound(registerOpenSound);
     }
 
     // configuracion al salir de la caja registradora
@@ -124,7 +123,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
         cashRegisterCanvas.SetActive(false);
 
-        //PlayRegisterSound(registerCloseSound);
+        PlayRegisterSound(registerCloseSound);
     }
 
     // obtiene el cliente actual de la cola y calcula total a pagar
@@ -135,6 +134,8 @@ public class CashRegisterInteraction : MonoBehaviour
             Client client = queueManager.ClientQueue.Peek();
             float pay = client.CalculateCartTotal();
             queueManager.PayText.text = $"Pago: ${pay}";
+
+            PlayRegisterSound(paymentSound);
 
             playerEconomy.ReceivePayment(pay);
 
@@ -152,11 +153,11 @@ public class CashRegisterInteraction : MonoBehaviour
         queueManager.PayText.text = "";
     }
 
-    //private void PlayRegisterSound(AudioClip clip)
-    //{
-    //    if (registerAudioSource != null && clip != null)
-    //    {
-    //        registerAudioSource.PlayOneShot(clip);
-    //    }
-    //}
+    private void PlayRegisterSound(AudioClip clip)
+    {
+        if (registerAudioSource != null && clip != null)
+        {
+            registerAudioSource.PlayOneShot(clip);
+        }
+    }
 }

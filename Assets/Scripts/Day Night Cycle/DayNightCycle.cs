@@ -54,6 +54,7 @@ public class DayNightCycle : MonoBehaviour
         }
         AdjustSunRotation();
         SunIntensity();
+        AdjustSunColor();
         UpdateModules();
     }
     private void UpdateTimeScale()
