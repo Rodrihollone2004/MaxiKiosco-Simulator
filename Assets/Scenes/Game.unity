@@ -12674,6 +12674,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  movementAudioSource: {fileID: 1964649771}
+  jumpAudioSource: {fileID: 1964649771}
+  footstepSounds: {fileID: 8300000, guid: a951c8cd73df7694ca69155a8b532183, type: 3}
+  jumpSound: {fileID: 8300000, guid: e993e07b431ff1647ac2ab579dfea983, type: 3}
+  landSound: {fileID: 8300000, guid: 71d9449722b2b644680f43389ffacd4b, type: 3}
+  footstepIntervalWalk: 0.5
+  footstepIntervalRun: 0.3
   orientation: {fileID: 1359053179}
   state: 0
 --- !u!114 &1964649765
@@ -12801,7 +12808,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
