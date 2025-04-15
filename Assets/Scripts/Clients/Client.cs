@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ public class Client : MonoBehaviour
     public float CalculateCartTotal()
     {
         float total = 0;
-        foreach (var product in cart)
+        foreach (Product product in cart)
         {
             total += product.Price;
         }
@@ -105,7 +104,7 @@ public class Client : MonoBehaviour
     private void PrintWallet()
     {
         string walletInfo = $"Cliente {name} tiene: ";
-        foreach (var kvp in wallet.WalletData)
+        foreach (KeyValuePair<int, int> kvp in wallet.WalletData)
         {
             walletInfo += $"{kvp.Value}x${kvp.Key}, ";
         }

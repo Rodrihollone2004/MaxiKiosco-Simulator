@@ -9,7 +9,6 @@ public class Wallet : MonoBehaviour
     [SerializeField] private int maxTotalMoney = 10000;
 
     private Dictionary<int, int> wallet = new Dictionary<int, int>();
-    private float totalMoney;
 
     public int[] BillDenominations => billDenominations;
     public Dictionary<int, int> WalletData => wallet;
@@ -33,7 +32,7 @@ public class Wallet : MonoBehaviour
         float totalMoney = Random.Range(minTotalMoney, maxTotalMoney + 1);
         float remaining = totalMoney;
 
-        foreach (var bill in billDenominations)
+        foreach (int bill in billDenominations)
         {
             if (remaining <= 0) break;
             int maxPossible = Mathf.FloorToInt(remaining / bill);
@@ -54,7 +53,7 @@ public class Wallet : MonoBehaviour
     public float GetTotalMoney()
     {
         float total = 0;
-        foreach (var kvp in wallet)
+        foreach (KeyValuePair<int, int> kvp in wallet)
         {
             total += kvp.Key * kvp.Value;
         }
@@ -69,7 +68,7 @@ public class Wallet : MonoBehaviour
 
     public void CompletePurchase(Dictionary<int, int> paymentUsed)
     {
-        foreach (var kvp in paymentUsed)
+        foreach (KeyValuePair<int, int> kvp in paymentUsed)
         {
             wallet[kvp.Key] -= kvp.Value;
         }

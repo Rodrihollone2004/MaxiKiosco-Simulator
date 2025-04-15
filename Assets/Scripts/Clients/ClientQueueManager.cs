@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,7 +23,6 @@ public class ClientQueueManager : MonoBehaviour
 
     private Queue<Client> _clientQueue = new Queue<Client>();
     private List<GameObject> _clientPool = new List<GameObject>();
-    private Coroutine _currentMovement;
 
     public Queue<Client> ClientQueue { get => _clientQueue; set => _clientQueue = value; }
     public TMP_Text PayText { get => payText; set => payText = value; }

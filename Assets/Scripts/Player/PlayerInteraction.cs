@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -24,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private AudioClip dropSound;
     [SerializeField] private AudioSource audioSource;
 
+    //Esto es para el objeto a pickear, su rigidBody, Collider, etc.
     private IInteractable currentInteractable;
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
