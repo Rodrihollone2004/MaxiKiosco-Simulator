@@ -32,14 +32,12 @@ public class PlayerMovement : MonoBehaviour
     private bool wasGrounded;
 
     [Header("Sounds")]
-    [SerializeField] private AudioSource movementAudioSource;
-    [SerializeField] private AudioSource jumpAudioSource;
-    [SerializeField] private AudioClip footstepSounds;
-    [SerializeField] private AudioClip jumpSound;
-    [SerializeField] private AudioClip landSound;
-    [SerializeField] private float footstepIntervalWalk = 0.5f;
-    [SerializeField] private float footstepIntervalRun = 0.3f;
-    private float footstepTimer;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound, landSound, walkSound, sprintSound;
+    [SerializeField] private float sprintSoundInterval = 1.5f;
+    private float sprintSoundTimer = 0.01f;
+
+    private bool isWalking = false;
 
     [SerializeField] private Transform orientation;
 
@@ -77,21 +75,26 @@ public class PlayerMovement : MonoBehaviour
         float groundCheckDistance = (transform.localScale.y / startYScale) * (playerHeight * 0.5f + 0.2f);
         grounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, whatIsGround);
 
-        if (grounded && !wasGrounded)
-        {
-            PlayLandingSound();
-        }
-        wasGrounded = grounded;
-
         MyInput();
         SpeedControl();
         StateHandler();
-        HandleFootsteps();
 
         if (grounded)
+        {
             rb.drag = groundDrag;
+
+            if (!wasGrounded)
+            {
+                audioSource.PlayOneShot(landSound);
+                wasGrounded = true;
+            }
+        }
         else
+        {
             rb.drag = 0;
+            wasGrounded = false;
+        }
+        HandleFootsteps();
     }
 
     // mueve al jugador con fisicas
@@ -111,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
 
             Jump();
-            PlayJumpSound();
+
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
@@ -181,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        audioSource.PlayOneShot(jumpSound);
     }
 
     // reactiva el salto
@@ -192,45 +196,38 @@ public class PlayerMovement : MonoBehaviour
     // para sonidos
     private void HandleFootsteps()
     {
-        if (!grounded || (horizontalInput == 0 && verticalInput == 0))
+        if (grounded && (horizontalInput != 0 || verticalInput != 0))
         {
-            footstepTimer = 0;
-            return;
+            if (state == MovementState.walking)
+            {
+                if (!audioSource.isPlaying || audioSource.clip != walkSound)
+                {
+                    audioSource.clip = walkSound;
+                    audioSource.Play();
+                }
+            }
+            else if (state == MovementState.sprinting)
+            {
+                sprintSoundTimer -= Time.deltaTime;
+                if (sprintSoundTimer <= 0f)
+                {
+                    if (audioSource.clip != sprintSound || !audioSource.isPlaying)
+                    {
+                        audioSource.clip = sprintSound;
+                        audioSource.Play();
+                    }
+                    sprintSoundTimer = sprintSoundInterval;
+                }
+            }
+
+            isWalking = true;
         }
-
-        float currentInterval = state == MovementState.sprinting ? footstepIntervalRun : footstepIntervalWalk;
-        footstepTimer += Time.deltaTime;
-
-        if (footstepTimer >= currentInterval)
+        else if (isWalking)
         {
-            PlayFootstepSound();
-            footstepTimer = 0;
-        }
-    }
-
-    private void PlayFootstepSound()
-    {
-        if (!movementAudioSource.isPlaying)
-        {
-            movementAudioSource.clip = footstepSounds;
-            movementAudioSource.pitch = Random.Range(0.9f, 1.1f);
-            movementAudioSource.Play();
-        }
-    }
-
-    private void PlayJumpSound()
-    {
-        if (jumpSound && jumpAudioSource)
-        {
-            jumpAudioSource.PlayOneShot(jumpSound);
-        }
-    }
-
-    private void PlayLandingSound()
-    {
-        if (landSound && movementAudioSource)
-        {
-            movementAudioSource.PlayOneShot(landSound);
+            audioSource.Stop();
+            isWalking = false;
+            sprintSoundTimer = 0f;
         }
     }
+   
 }
