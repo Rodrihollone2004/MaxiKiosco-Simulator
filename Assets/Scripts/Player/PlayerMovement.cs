@@ -34,8 +34,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound, landSound, walkSound, sprintSound;
-    [SerializeField] private float sprintSoundInterval = 1.5f;
-    private float sprintSoundTimer = 0.01f;
 
     private bool isWalking = false;
 
@@ -196,6 +194,9 @@ public class PlayerMovement : MonoBehaviour
     // para sonidos
     private void HandleFootsteps()
     {
+        // No reproducir pasos si estamos en el aire
+        if (!grounded) return;
+
         if (grounded && (horizontalInput != 0 || verticalInput != 0))
         {
             if (state == MovementState.walking)
@@ -208,26 +209,19 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (state == MovementState.sprinting)
             {
-                sprintSoundTimer -= Time.deltaTime;
-                if (sprintSoundTimer <= 0f)
+                if (!audioSource.isPlaying || audioSource.clip != sprintSound)
                 {
-                    if (audioSource.clip != sprintSound || !audioSource.isPlaying)
-                    {
-                        audioSource.clip = sprintSound;
-                        audioSource.Play();
-                    }
-                    sprintSoundTimer = sprintSoundInterval;
+                    audioSource.clip = sprintSound;
+                    audioSource.Play();
                 }
             }
-
             isWalking = true;
         }
         else if (isWalking)
         {
             audioSource.Stop();
             isWalking = false;
-            sprintSoundTimer = 0f;
         }
     }
-   
+
 }
