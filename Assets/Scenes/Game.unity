@@ -6483,7 +6483,7 @@ GameObject:
   - component: {fileID: 998297929}
   - component: {fileID: 998297928}
   - component: {fileID: 998297933}
-  - component: {fileID: 998297932}
+  - component: {fileID: 998297934}
   m_Layer: 3
   m_Name: Product
   m_TagString: Untagged
@@ -6534,7 +6534,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 05519c76a6c8f5c49883cf708589003f, type: 2}
+  - {fileID: 2100000, guid: ea8a8fa008ca568498471c5bc622fab2, type: 2}
   - {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -6580,22 +6580,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &998297932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998297927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productName: Papas
-  price: 11
-  outlineColor: {r: 1, g: 0, b: 1, a: 1}
-  outlineWidth: 1.03
 --- !u!54 &998297933
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6623,6 +6607,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &998297934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998297927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7159bc19b5602c9458e3c6c5973281b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ProductName>k__BackingField: Coca-Cola 500ml
+  <Price>k__BackingField: 1500
+  outlineColor: {r: 0.9811321, g: 0, b: 0, a: 1}
+  outlineWidth: 1.03
+  volumeInMl: 500
+  isAlcoholic: 0
+  carbonation: 0
+  hasSugar: 1
+  isDiet: 0
+  variant: Original
 --- !u!1 &998453920
 GameObject:
   m_ObjectHideFlags: 0

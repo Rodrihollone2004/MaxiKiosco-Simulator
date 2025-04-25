@@ -51,7 +51,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (currentInteractable != null)
             {
-                (currentInteractable as Product)?.Unhighlight();
+                if (currentInteractable is Product oldProduct)
+                    oldProduct.Unhighlight();
+
                 currentInteractable = null;
             }
             return;
@@ -64,21 +66,22 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (interactable != currentInteractable)
                 {
-                    if (currentInteractable != null)
-                        (currentInteractable as Product)?.Unhighlight();
+                    if (currentInteractable is Product oldProduct)
+                        oldProduct.Unhighlight();
 
                     currentInteractable = interactable;
-                    (currentInteractable as Product)?.Highlight();
+
+                    if (currentInteractable is Product newProduct)
+                        newProduct.Highlight();
                 }
             }
         }
         else
         {
-            if (currentInteractable != null)
-            {
-                (currentInteractable as Product)?.Unhighlight();
-                currentInteractable = null;
-            }
+            if (currentInteractable is Product oldProduct)
+                oldProduct.Unhighlight();
+
+            currentInteractable = null;
         }
     }
 
@@ -96,7 +99,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    // hace el objeto hijo del holdposition
+    // hace el objeto hijo del holdposition al agarrarlo
     private void PickUp(GameObject objToPickUp)
     {
         if (currentInteractable != null)

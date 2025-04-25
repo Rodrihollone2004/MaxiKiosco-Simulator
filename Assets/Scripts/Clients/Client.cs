@@ -13,6 +13,7 @@ public class Client : MonoBehaviour
     private void Start()
     {
         wallet.Initialize();
+        Product[] debugProducts = FindObjectsOfType<Product>();
         AddRandomProductsToCart();
         PrintWallet();
     }
