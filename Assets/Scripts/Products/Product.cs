@@ -4,6 +4,8 @@ public abstract class Product : MonoBehaviour, IInteractable
     [Header("Product Base Settings")]
     [field: SerializeField] public string ProductName { get; protected set; }
     [field: SerializeField] public float Price { get; protected set; }
+    [field: SerializeField] public float Pack { get; protected set; }
+    [field: SerializeField] public float PackPrice { get; protected set; }
     [SerializeField] protected private Color outlineColor = Color.red;
     [SerializeField] protected private float outlineWidth = 1.03f;
 
