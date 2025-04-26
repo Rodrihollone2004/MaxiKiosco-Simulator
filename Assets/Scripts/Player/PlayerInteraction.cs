@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (currentInteractable != null)
             {
-                if (currentInteractable is Product oldProduct)
+                if (currentInteractable is ProductInteractable oldProduct)
                     oldProduct.Unhighlight();
 
                 currentInteractable = null;
@@ -66,19 +66,19 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (interactable != currentInteractable)
                 {
-                    if (currentInteractable is Product oldProduct)
+                    if (currentInteractable is ProductInteractable oldProduct)
                         oldProduct.Unhighlight();
 
                     currentInteractable = interactable;
 
-                    if (currentInteractable is Product newProduct)
+                    if (currentInteractable is ProductInteractable newProduct)
                         newProduct.Highlight();
                 }
             }
         }
         else
         {
-            if (currentInteractable is Product oldProduct)
+            if (currentInteractable is ProductInteractable oldProduct)
                 oldProduct.Unhighlight();
 
             currentInteractable = null;
@@ -104,7 +104,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            (currentInteractable as Product)?.Unhighlight();
+            (currentInteractable as ProductInteractable)?.Unhighlight();
         }
 
         heldObject = objToPickUp;

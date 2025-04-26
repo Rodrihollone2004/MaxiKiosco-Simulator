@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    private List<Product> cart = new List<Product>();
+    private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
 
     private void Awake()
@@ -13,29 +13,35 @@ public class Client : MonoBehaviour
     private void Start()
     {
         wallet.Initialize();
-        Product[] debugProducts = FindObjectsOfType<Product>();
         AddRandomProductsToCart();
         PrintWallet();
     }
 
     private void AddRandomProductsToCart()
     {
-        Product[] allProducts = FindObjectsOfType<Product>();
-        int productCount = Random.Range(1, 4);
+        ProductInteractable[] allProducts = FindObjectsOfType<ProductInteractable>();
 
+        if (allProducts.Length == 0)
+        {
+            Debug.LogWarning("No hay productos físicos en la escena!");
+            return;
+        }
+
+        int productCount = Random.Range(1, Mathf.Min(4, allProducts.Length + 1));
         for (int i = 0; i < productCount; i++)
         {
-            Product randomProduct = allProducts[Random.Range(0, allProducts.Length)];
+            ProductInteractable randomProduct = allProducts[Random.Range(0, allProducts.Length)];
             cart.Add(randomProduct);
+            Debug.Log($"Añadido al carrito: {randomProduct.ProductData.Name} (${randomProduct.ProductData.Price})");
         }
     }
 
     public float CalculateCartTotal()
     {
         float total = 0;
-        foreach (Product product in cart)
+        foreach (ProductInteractable product in cart)
         {
-            total += product.Price;
+            total += product.ProductData.Price;
         }
         return total;
     }
