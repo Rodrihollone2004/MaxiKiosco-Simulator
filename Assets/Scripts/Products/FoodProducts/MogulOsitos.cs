@@ -1,7 +1,8 @@
 public class MogulOsitos : CandyProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Mogul Ositos";
         Price = 1200f;
         weightInGrams = 50f;

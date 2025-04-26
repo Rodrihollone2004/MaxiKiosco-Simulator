@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2643433401573494187}
   - component: {fileID: 2888642548493452414}
   - component: {fileID: 296227877360218386}
-  - component: {fileID: 4626144684619696396}
   - component: {fileID: -8554870657187098238}
+  - component: {fileID: 4626144684619696396}
   - component: {fileID: 3232937801390470855}
   m_Layer: 0
   m_Name: Client
@@ -112,18 +112,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4626144684619696396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4329429266909648612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeeb513017366584b98fb20e3cdb0338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &-8554870657187098238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +139,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4626144684619696396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329429266909648612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeeb513017366584b98fb20e3cdb0338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3232937801390470855
 MonoBehaviour:
   m_ObjectHideFlags: 0

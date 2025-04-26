@@ -1,7 +1,8 @@
 public class AlfajorCachafazNegro : AlfajorProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Alfajor Cachafaz Negro";
         Price = 1200f;
         weightInGrams = 60f;

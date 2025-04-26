@@ -1,7 +1,8 @@
 public class Snickers48g : CandyProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Snickers 48g";
         Price = 1800f;
         weightInGrams = 48f;

@@ -1,7 +1,8 @@
 public class PepsiBlack500ml : ColaProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Pepsi Black 500ml";
         Price = 1400f;
         volumeInMl = 500f;

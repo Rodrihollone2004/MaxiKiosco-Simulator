@@ -6485,7 +6485,7 @@ GameObject:
   - component: {fileID: 998297933}
   - component: {fileID: 998297934}
   m_Layer: 3
-  m_Name: Product
+  m_Name: CocaCola
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6621,6 +6621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ProductName>k__BackingField: Coca-Cola 500ml
   <Price>k__BackingField: 1500
+  <Pack>k__BackingField: 0
+  <PackPrice>k__BackingField: 0
   outlineColor: {r: 0.9811321, g: 0, b: 0, a: 1}
   outlineWidth: 1.03
   volumeInMl: 500
@@ -6909,7 +6911,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130907453}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

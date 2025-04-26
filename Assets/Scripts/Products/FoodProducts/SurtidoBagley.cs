@@ -1,7 +1,8 @@
 public class SurtidoBagley : CookieProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Surtido Bagley";
         Price = 1500f;
         weightInGrams = 250f;

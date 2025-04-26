@@ -1,7 +1,8 @@
 public class Marroc : CandyProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Marroc";
         Price = 685f;
         weightInGrams = 14f;

@@ -1,7 +1,8 @@
 public class PilasEnergizerAAA : BatteryProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Pilas Energizer AAA";
         Price = 600f;
         type = BatteryType.AAA;

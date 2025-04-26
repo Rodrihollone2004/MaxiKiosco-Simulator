@@ -1,7 +1,8 @@
 public class KinderBueno : CandyProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Kinder Bueno";
         Price = 2500f;
         weightInGrams = 43f;

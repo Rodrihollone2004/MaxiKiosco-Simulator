@@ -1,7 +1,8 @@
 public class AlfajorMilkaMousse : AlfajorProduct
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ProductName = "Alfajor Milka Mousse";
         Price = 1800f;
         weightInGrams = 55f;
