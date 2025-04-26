@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94ffaf297345bc4ebd8bf88a440129c, type: 3}
   m_Name: ProductDatabase_General
   m_EditorClassIdentifier: 
-  AllProducts:
-  - {fileID: 11400000, guid: 069a972c16f3ede4db4a38f5555ed235, type: 2}
-  - {fileID: 11400000, guid: df0ffbd8a5adce84ea4ac3101f467e6f, type: 2}
+  categories:
+  - Name: Bebidas
+    Id: 0
+    products:
+    - {fileID: 11400000, guid: 069a972c16f3ede4db4a38f5555ed235, type: 2}
+    - {fileID: 11400000, guid: df0ffbd8a5adce84ea4ac3101f467e6f, type: 2}
