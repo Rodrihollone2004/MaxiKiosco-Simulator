@@ -132,19 +132,45 @@ public class CashRegisterInteraction : MonoBehaviour
         if (queueManager.ClientQueue.Count > 0)
         {
             Client client = queueManager.ClientQueue.Peek();
-            float pay = client.CalculateCartTotal();
-            queueManager.PayText.text = $"Pago: ${pay}";
+            float totalToPay = client.CalculateCartTotal();
 
+            // Simulamos que el cliente paga con un monto aleatorio (mayor o igual al total)
+            float clientPayment = GetRandomPaymentAmount(totalToPay);
+
+            // Calcular vuelto
+            float change = clientPayment - totalToPay;
+
+            if (change > 0)
+            {
+                Debug.Log($"Cliente pagó ${clientPayment} (Vuelto: ${change})");
+                if (playerEconomy.TryGiveChange(change))
+                {
+                    Debug.Log($"Vuelto dado al cliente: ${change}");
+                }
+                else
+                {
+                    Debug.LogWarning("No hay suficiente dinero en la caja para dar vuelto.");
+                }
+            }
+            else
+            {
+                Debug.Log($"Cliente pagó ${clientPayment}");
+            }
+
+            playerEconomy.ReceivePayment(totalToPay);
+            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${clientPayment}\nVuelto: ${change}";
             PlayRegisterSound(paymentSound);
-
-            playerEconomy.ReceivePayment(pay);
-
-            Debug.Log($"Cliente pagó ${pay}");
-
             queueManager.RemoveClient();
-
             StartCoroutine(HideText());
         }
+    }
+
+    // Genera un pago aleatorio (siempre mayor o igual al total)
+    private float GetRandomPaymentAmount(float total)
+    {
+        float minPayment = total;
+        float maxPayment = total * 1.5f; // Paga hasta 50% más
+        return Mathf.Round(Random.Range(minPayment, maxPayment) / 10) * 10; // Redondea a múltiplos de 10
     }
 
     private IEnumerator HideText()

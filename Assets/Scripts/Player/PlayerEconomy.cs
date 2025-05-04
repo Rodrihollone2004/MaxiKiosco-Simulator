@@ -40,4 +40,14 @@ public class PlayerEconomy : MonoBehaviour
             return false;
         }
     }
+    public bool TryGiveChange(float amount)
+    {
+        if (currentMoney >= amount)
+        {
+            currentMoney -= amount;
+            moneyText.text = $"{currentMoney}";
+            return true;
+        }
+        return false;
+    }
 }
