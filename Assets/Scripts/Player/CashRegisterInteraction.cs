@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -132,17 +133,16 @@ public class CashRegisterInteraction : MonoBehaviour
         if (queueManager.ClientQueue.Count > 0)
         {
             Client client = queueManager.ClientQueue.Peek();
-            float totalToPay = client.CalculateCartTotal();
+            int totalToPay = client.CalculateCartTotal();
 
-            // Simulamos que el cliente paga con un monto aleatorio (mayor o igual al total)
-            float clientPayment = GetRandomPaymentAmount(totalToPay);
+            List<int> clientPayment = client.TryMakePayment(totalToPay);
 
             // Calcular vuelto
-            float change = clientPayment - totalToPay;
+            int change = clientPayment.Sum() - totalToPay;
 
             if (change > 0)
             {
-                Debug.Log($"Cliente pagó ${clientPayment} (Vuelto: ${change})");
+                Debug.Log($"Cliente pagó ${clientPayment.Sum()} (Vuelto: ${change})");
                 if (playerEconomy.TryGiveChange(change))
                 {
                     Debug.Log($"Vuelto dado al cliente: ${change}");
@@ -154,23 +154,15 @@ public class CashRegisterInteraction : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Cliente pagó ${clientPayment}");
+                Debug.Log($"Cliente pagó ${clientPayment.Sum()}");
             }
 
             playerEconomy.ReceivePayment(totalToPay);
-            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${clientPayment}\nVuelto: ${change}";
+            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${clientPayment.Sum()}\nVuelto: ${change}";
             PlayRegisterSound(paymentSound);
             queueManager.RemoveClient();
             StartCoroutine(HideText());
         }
-    }
-
-    // Genera un pago aleatorio (siempre mayor o igual al total)
-    private float GetRandomPaymentAmount(float total)
-    {
-        float minPayment = total;
-        float maxPayment = total * 1.5f; // Paga hasta 50% más
-        return Mathf.Round(Random.Range(minPayment, maxPayment) / 10) * 10; // Redondea a múltiplos de 10
     }
 
     private IEnumerator HideText()

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 296227877360218386}
   - component: {fileID: -8554870657187098238}
   - component: {fileID: 4626144684619696396}
-  - component: {fileID: 3232937801390470855}
   m_Layer: 0
   m_Name: Client
   m_TagString: Untagged
@@ -151,19 +150,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeb513017366584b98fb20e3cdb0338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productDatabase: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
---- !u!114 &3232937801390470855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4329429266909648612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711e10504ea319f4ba74acb0ed09ca75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  billDenominations: e8030000f40100006400000032000000140000000a000000
-  minTotalMoney: 500
-  maxTotalMoney: 10000

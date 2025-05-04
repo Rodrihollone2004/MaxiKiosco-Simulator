@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Client : MonoBehaviour
@@ -6,13 +7,9 @@ public class Client : MonoBehaviour
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
 
-    private void Awake()
-    {
-        wallet = GetComponent<Wallet>();
-    }
     private void Start()
     {
-        wallet.Initialize();
+        wallet = new Wallet();
         AddRandomProductsToCart();
         PrintWallet();
     }
@@ -36,9 +33,9 @@ public class Client : MonoBehaviour
         }
     }
 
-    public float CalculateCartTotal()
+    public int CalculateCartTotal()
     {
-        float total = 0;
+        int total = 0;
         foreach (ProductInteractable product in cart)
         {
             total += product.ProductData.Price;
@@ -46,52 +43,62 @@ public class Client : MonoBehaviour
         return total;
     }
 
-    public PaymentResult TryMakePayment(float amount)
+    public List<int> TryMakePayment(int cost)
     {
-        if (!wallet.CanAfford(amount))
-        {
-            return new PaymentResult(false, 0f, null);
-        }
+        List<int> allBills = new List<int>();
 
-        Dictionary<int, int> paymentUsed = new Dictionary<int, int>();
-        List<int> denominations = new List<int>(wallet.BillDenominations);
-        denominations.Sort((a, b) => b.CompareTo(a));
+        foreach (var Bill in wallet.WalletData)
+            for(int i = 0; i < Bill.Value; i++)
+                allBills.Add(Bill.Key);
 
-        if (TryCalculatePayment(amount, denominations, 0, paymentUsed))
-        {
-            return new PaymentResult(true, amount, paymentUsed);
-        }
+        if (allBills.Count == 0)
+            return null; // No tiene plata
 
-        return new PaymentResult(false, 0f, null);
+        allBills.Sort();
+
+        List<int> bestCombination = new List<int>();
+        List<int> minBills = new List<int>();
+
+        bool found = TryCalculatePayment(cost, 0, allBills, 0, new List<int>(), bestCombination, minBills);
+
+        if (found)
+            return bestCombination; // Cantidad exacta
+
+        return minBills; // Necesita vuelto
     }
 
-    private bool TryCalculatePayment(float remaining, List<int> denominations, int index, Dictionary<int, int> payment)
+    public bool TryCalculatePayment(int cost, int current, List<int> allBills, int index, List<int> currentBills, List<int> bestCombination, List<int> minBills)
     {
-        if (remaining <= 0) return true;
-        if (index >= denominations.Count) return false;
-
-        int currentBill = denominations[index];
-        int available = wallet.WalletData[currentBill];
-        int maxPossible = Mathf.Min((int)(remaining / currentBill), available);
-
-        for (int i = maxPossible; i >= 0; i--)
+        if (current == cost)
         {
-            float newRemaining = remaining - (i * currentBill);
-            if (i > 0) payment[currentBill] = i;
-
-            if (newRemaining < 0 && (-newRemaining) < (remaining - newRemaining))
-            {
-                return true;
-            }
-
-            if (TryCalculatePayment(newRemaining, denominations, index + 1, payment))
-            {
-                return true;
-            }
-
-            if (i > 0) payment.Remove(currentBill);
+            bestCombination.Clear();
+            bestCombination.AddRange(currentBills);
+            return true;
         }
 
+        if (current > cost)
+        {
+            if (minBills.Count == 0 || currentBills.Count < minBills.Count)
+            {
+                minBills.Clear();
+                minBills.AddRange(currentBills);
+            }
+
+            return false;
+        }
+
+        if (index >= allBills.Count)
+            return false;
+
+        currentBills.Add(allBills[index]);
+
+        if (TryCalculatePayment(cost, currentBills.Sum(), allBills, index + 1, currentBills, bestCombination, minBills))
+            return true;
+
+        currentBills.RemoveAt(currentBills.Count - 1);
+
+        if (TryCalculatePayment(cost, current, allBills, index + 1, currentBills, bestCombination, minBills))
+            return true;
         return false;
     }
     public class PaymentResult
