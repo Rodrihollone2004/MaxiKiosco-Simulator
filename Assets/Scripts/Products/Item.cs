@@ -8,10 +8,10 @@ public class Item : ScriptableObject
     public string Name => _name;
     public int Id => _id;
 
-#if UNITY_EDITOR
+
     public void SetId_Editor(int id)
     {
         _id = id;
     }
-#endif
+
 }

@@ -8,7 +8,7 @@ public class ProductCategory
 
     public List<Product> products;
 
-#if UNITY_EDITOR
+
     public void SetId_Editor(int idCategory)
     {
         Id = idCategory;
@@ -18,5 +18,5 @@ public class ProductCategory
             products[i].SetId_Editor(idProduct);
         }
     }
-#endif
+
 }
