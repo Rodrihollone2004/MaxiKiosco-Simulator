@@ -8119,6 +8119,74 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!1001 &1298391765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.211985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000047683716
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.6379824
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fd237a4cde953f4d94acfcef83b8bf5,
+        type: 3}
+      propertyPath: m_Name
+      value: Botellas Iarex
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3fd237a4cde953f4d94acfcef83b8bf5, type: 3}
 --- !u!1 &1310676905
 GameObject:
   m_ObjectHideFlags: 0
@@ -14444,3 +14512,4 @@ SceneRoots:
   - {fileID: 485706441}
   - {fileID: 929740116}
   - {fileID: 880010574}
+  - {fileID: 1298391765}
