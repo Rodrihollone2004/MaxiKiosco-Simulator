@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -104,6 +102,7 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = true;
 
         cashRegisterCanvas.SetActive(true);
+        DisplayClientPaymentInfo(); // Mostrar total del cliente al entrar
 
         PlayRegisterSound(registerOpenSound);
     }
@@ -122,10 +121,31 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = false;
 
+        queueManager.PayText.text = ""; // Limpiar texto al salir
         cashRegisterCanvas.SetActive(false);
 
         PlayRegisterSound(registerCloseSound);
     }
+
+    void DisplayClientPaymentInfo()
+    {
+        if (queueManager.ClientQueue.Count > 0)
+        {
+            Client client = queueManager.ClientQueue.Peek();
+            int totalToPay = client.CalculateCartTotal();
+
+            List<int> simulatedPayment = client.TryMakePayment(totalToPay);
+            int simulatedTotal = simulatedPayment.Sum();
+            int change = simulatedTotal - totalToPay;
+
+            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${simulatedTotal}\nVuelto: ${change}";
+        }
+        else
+        {
+            queueManager.PayText.text = "";
+        }
+    }
+
 
     // obtiene el cliente actual de la cola y calcula total a pagar
     void ProcessPayment()
@@ -158,17 +178,10 @@ public class CashRegisterInteraction : MonoBehaviour
             }
 
             playerEconomy.ReceivePayment(totalToPay);
-            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${clientPayment.Sum()}\nVuelto: ${change}";
             PlayRegisterSound(paymentSound);
             queueManager.RemoveClient();
-            StartCoroutine(HideText());
+            DisplayClientPaymentInfo();
         }
-    }
-
-    private IEnumerator HideText()
-    {
-        yield return new WaitForSeconds(2f);
-        queueManager.PayText.text = "";
     }
 
     private void PlayRegisterSound(AudioClip clip)

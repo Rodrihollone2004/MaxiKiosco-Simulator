@@ -24,13 +24,24 @@ public class Client : MonoBehaviour
             return;
         }
 
-        int productCount = Random.Range(1, Mathf.Min(4, allProducts.Length + 1));
-        for (int i = 0; i < productCount; i++)
+        List<ProductInteractable> availableProducts = new List<ProductInteractable>(allProducts);
+        availableProducts = availableProducts.OrderBy(x => Random.value).ToList(); // Mezclar productos para que agarre random
+
+        int total = 0;
+
+        foreach (var product in availableProducts)
         {
-            ProductInteractable randomProduct = allProducts[Random.Range(0, allProducts.Length)];
-            cart.Add(randomProduct);
-            Debug.Log($"Añadido al carrito: {randomProduct.ProductData.Name} (${randomProduct.ProductData.Price})");
+            int newTotal = total + product.ProductData.Price;
+
+            if (wallet.CanAfford(newTotal))
+            {
+                cart.Add(product);
+                total = newTotal;
+                Debug.Log($"Añadido al carrito: {product.ProductData.Name} (${product.ProductData.Price})");
+            }
         }
+
+        Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.GetTotalMoney()}");
     }
 
     public int CalculateCartTotal()

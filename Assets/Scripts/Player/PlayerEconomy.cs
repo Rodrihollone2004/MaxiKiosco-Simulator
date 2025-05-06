@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -19,7 +17,6 @@ public class PlayerEconomy : MonoBehaviour
     // Sumar plata del cliente
     public void ReceivePayment(float amount)
     {
-        Debug.Log($"Recibiendo ${amount} del cliente");
         currentMoney += amount;
         moneyText.text = $"{currentMoney}";
     }
