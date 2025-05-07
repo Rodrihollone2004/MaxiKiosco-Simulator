@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class ProductInteractable : MonoBehaviour, IInteractable
+public class MoneyBill : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Product _productData;
-    [SerializeField] private Color _highlightColor = Color.red;
-    [SerializeField] private float _highlightWidth = 1.03f;
-    public Product ProductData => _productData;
+    [SerializeField] private int billValue = 1;
+    [SerializeField] private Color highlightColor = Color.green;
+    [SerializeField] private float highlightWidth = 1.03f;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
 
-    public bool CanBePickedUp => true;
+    public bool CanBePickedUp => false;
 
     private void Awake()
     {
@@ -20,15 +19,15 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log($"Interactuando con {_productData.Name} (${_productData.Price})");
+        Debug.Log($"Interactuando con billete de: {billValue}");
     }
 
     public void Highlight()
     {
         if (!_renderer) return;
         _renderer.GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", _highlightColor);
-        _propBlock.SetFloat("_Scale", _highlightWidth);
+        _propBlock.SetColor("_Color", highlightColor);
+        _propBlock.SetFloat("_Scale", highlightWidth);
         _renderer.SetPropertyBlock(_propBlock);
     }
 

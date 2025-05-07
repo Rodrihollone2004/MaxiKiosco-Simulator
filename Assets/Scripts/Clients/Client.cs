@@ -54,6 +54,11 @@ public class Client : MonoBehaviour
         return total;
     }
 
+    public List<ProductInteractable> GetCart()
+    {
+        return cart;
+    }
+
     public List<int> TryMakePayment(int cost)
     {
         List<int> allBills = new List<int>();

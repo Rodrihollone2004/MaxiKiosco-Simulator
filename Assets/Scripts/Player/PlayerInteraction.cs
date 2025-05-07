@@ -51,9 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (currentInteractable != null)
             {
-                if (currentInteractable is ProductInteractable oldProduct)
-                    oldProduct.Unhighlight();
-
+                currentInteractable.Unhighlight();
                 currentInteractable = null;
             }
             return;
@@ -66,22 +64,21 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (interactable != currentInteractable)
                 {
-                    if (currentInteractable is ProductInteractable oldProduct)
-                        oldProduct.Unhighlight();
+                    if (currentInteractable != null)
+                        currentInteractable.Unhighlight();
 
                     currentInteractable = interactable;
-
-                    if (currentInteractable is ProductInteractable newProduct)
-                        newProduct.Highlight();
+                    currentInteractable.Highlight(); 
                 }
             }
         }
         else
         {
-            if (currentInteractable is ProductInteractable oldProduct)
-                oldProduct.Unhighlight();
-
-            currentInteractable = null;
+            if (currentInteractable != null)
+            {
+                currentInteractable.Unhighlight();
+                currentInteractable = null;
+            }
         }
     }
 
@@ -91,7 +88,7 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            if (hit.collider.TryGetComponent(out IInteractable interactable) && interactable.CanBePickedUp)
             {
                 interactable.Interact();
                 PickUp(hit.collider.gameObject);
@@ -104,7 +101,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            (currentInteractable as ProductInteractable)?.Unhighlight();
+            currentInteractable.Unhighlight();
+            currentInteractable = null; 
         }
 
         heldObject = objToPickUp;
@@ -163,6 +161,7 @@ public class PlayerInteraction : MonoBehaviour
             heldObject = null;
             heldObjectRb = null;
             heldObjectCollider = null;
+            currentInteractable = null;
 
             if (audioSource != null && dropSound != null)
             {

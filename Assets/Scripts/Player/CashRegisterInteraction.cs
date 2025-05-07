@@ -138,7 +138,16 @@ public class CashRegisterInteraction : MonoBehaviour
             int simulatedTotal = simulatedPayment.Sum();
             int change = simulatedTotal - totalToPay;
 
-            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${simulatedTotal}\nVuelto: ${change}";
+
+            List<ProductInteractable> cart = client.GetCart();
+            string cartInfo = "Carrito:\n";
+
+            foreach (var product in cart)
+            {
+                cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
+            }
+
+            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${simulatedTotal}\nVuelto: ${change}\n{cartInfo}";
         }
         else
         {
