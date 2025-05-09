@@ -7,7 +7,6 @@ public class CashRegisterInteraction : MonoBehaviour
     [Header("References")]
     [SerializeField] ClientQueueManager queueManager;
     [SerializeField] Transform cameraTarget;
-    [SerializeField] GameObject cashRegisterCanvas;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerCam playerCam;
     [SerializeField] MoveCamera moveCamera;
@@ -43,7 +42,6 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private void Start()
     {
-        cashRegisterCanvas.SetActive(false);
         playerCamera = Camera.main;
     }
 
@@ -101,7 +99,6 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = true;
 
-        cashRegisterCanvas.SetActive(true);
         DisplayClientPaymentInfo(); // Mostrar total del cliente al entrar
 
         PlayRegisterSound(registerOpenSound);
@@ -122,7 +119,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = false;
 
         queueManager.PayText.text = ""; // Limpiar texto al salir
-        cashRegisterCanvas.SetActive(false);
+
+        DisplayClientPaymentInfo();
 
         PlayRegisterSound(registerCloseSound);
     }
