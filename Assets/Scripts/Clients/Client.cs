@@ -79,6 +79,8 @@ public class Client : MonoBehaviour
 
         bool found = TryCalculatePayment(cost, 0, allBills, 0, new List<int>(), bestCombination, minBills);
 
+        //onClientWantPay?.Invoke(this);
+
         if (found)
             return bestCombination; // Cantidad exacta
 
