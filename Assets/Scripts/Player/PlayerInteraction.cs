@@ -5,7 +5,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Config")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
+    [SerializeField] private KeyCode interactKey = KeyCode.Mouse0;
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
@@ -88,10 +88,11 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable) && interactable.CanBePickedUp)
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-                PickUp(hit.collider.gameObject);
+                if(interactable.CanBePickedUp)
+                    PickUp(hit.collider.gameObject);
             }
         }
     }

@@ -26,10 +26,16 @@ public class CashRegisterInteraction : MonoBehaviour
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
 
+    List<int> clientPayment = new();
     private Vector3 originalCameraPos;
     private Quaternion originalCameraRot;
 
     private Camera playerCamera;
+
+
+    Client currentClient;
+    int change = 0;
+
 
     private void Awake()
     {
@@ -38,6 +44,8 @@ public class CashRegisterInteraction : MonoBehaviour
             registerAudioSource = gameObject.AddComponent<AudioSource>();
             registerAudioSource.spatialBlend = 0.8f;
         }
+        playerEconomy.onFinishPay += HandlePaymentFinished;
+        Client.onClientWantPay += ProcessPayment;
     }
 
     private void Start()
@@ -46,7 +54,7 @@ public class CashRegisterInteraction : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
         // metodo para entrar a la caja registradora
         if (Input.GetMouseButtonDown(0) && canClickTheCashRegister)
         {
@@ -60,9 +68,9 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // espacio procesas el pago
-        if (inCashRegister && Input.GetKeyDown(KeyCode.Space))
+        if (inCashRegister && Input.GetKeyDown(KeyCode.Space) && currentClient != null)
         {
-            ProcessPayment();
+            ProcessPayment(currentClient);
         }
     }
 
@@ -99,7 +107,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = true;
 
-        DisplayClientPaymentInfo(); // Mostrar total del cliente al entrar
+        currentClient = queueManager.ClientQueue.Peek();
+        ProcessPayment(currentClient); // Mostrar total del cliente al entrar
 
         PlayRegisterSound(registerOpenSound);
     }
@@ -120,22 +129,24 @@ public class CashRegisterInteraction : MonoBehaviour
 
         queueManager.PayText.text = ""; // Limpiar texto al salir
 
-        DisplayClientPaymentInfo();
+        ProcessPayment(currentClient);
 
         PlayRegisterSound(registerCloseSound);
     }
 
-    void DisplayClientPaymentInfo()
+    void ProcessPayment(Client client)
     {
+        currentClient = client;
         if (queueManager.ClientQueue.Count > 0)
         {
-            Client client = queueManager.ClientQueue.Peek();
+            client = queueManager.ClientQueue.Peek();
             int totalToPay = client.CalculateCartTotal();
 
-            List<int> simulatedPayment = client.TryMakePayment(totalToPay);
-            int simulatedTotal = simulatedPayment.Sum();
-            int change = simulatedTotal - totalToPay;
+            clientPayment = client.TryMakePayment(totalToPay);
+            int simulatedTotal = clientPayment.Sum();
 
+            //calcular vuelto
+            change = clientPayment.Sum() - totalToPay;
 
             List<ProductInteractable> cart = client.GetCart();
             string cartInfo = "Carrito:\n";
@@ -153,41 +164,14 @@ public class CashRegisterInteraction : MonoBehaviour
         }
     }
 
-
-    // obtiene el cliente actual de la cola y calcula total a pagar
-    void ProcessPayment()
+    public void HandlePaymentFinished(int vuelto)
     {
-        if (queueManager.ClientQueue.Count > 0)
+        if (vuelto == change)
         {
-            Client client = queueManager.ClientQueue.Peek();
-            int totalToPay = client.CalculateCartTotal();
-
-            List<int> clientPayment = client.TryMakePayment(totalToPay);
-
-            // Calcular vuelto
-            int change = clientPayment.Sum() - totalToPay;
-
-            if (change > 0)
-            {
-                Debug.Log($"Cliente pagó ${clientPayment.Sum()} (Vuelto: ${change})");
-                if (playerEconomy.TryGiveChange(change))
-                {
-                    Debug.Log($"Vuelto dado al cliente: ${change}");
-                }
-                else
-                {
-                    Debug.LogWarning("No hay suficiente dinero en la caja para dar vuelto.");
-                }
-            }
-            else
-            {
-                Debug.Log($"Cliente pagó ${clientPayment.Sum()}");
-            }
-
-            playerEconomy.ReceivePayment(totalToPay);
+            Debug.Log("vuelto");
+            playerEconomy.ReceivePayment(clientPayment.Sum());
             PlayRegisterSound(paymentSound);
-            queueManager.RemoveClient();
-            DisplayClientPaymentInfo();
+            queueManager.RemoveClient(currentClient);
         }
     }
 

@@ -57,6 +57,11 @@ public class ClientQueueManager : MonoBehaviour
         return client.GetComponent<Client>();
     }
 
+    public void RemoveClient(Client client)
+    {
+        _clientQueue.Dequeue();
+    }
+
     public void RemoveClient()
     {
         if (_clientQueue.Count == 0) return;

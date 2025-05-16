@@ -13339,7 +13339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 330585546}
   interactRange: 2
-  interactKey: 101
+  interactKey: 323
   dropKey: 103
   interactLayer:
     serializedVersion: 2
@@ -13364,7 +13364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queueManager: {fileID: 485706440}
   cameraTarget: {fileID: 1345452872}
-  cashRegisterCanvas: {fileID: 326095220}
   playerMovement: {fileID: 1964649764}
   playerCam: {fileID: 330585548}
   moveCamera: {fileID: 1732188501}
@@ -13438,6 +13437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMoney: 100
   moneyText: {fileID: 5509060}
+  vuelto: 0
 --- !u!82 &1964649771
 AudioSource:
   m_ObjectHideFlags: 0

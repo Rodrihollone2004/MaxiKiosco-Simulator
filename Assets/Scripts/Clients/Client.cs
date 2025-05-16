@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Client : MonoBehaviour
 {
+    public static event Action<Client> onClientWantPay;
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
 
@@ -25,7 +27,7 @@ public class Client : MonoBehaviour
         }
 
         List<ProductInteractable> availableProducts = new List<ProductInteractable>(allProducts);
-        availableProducts = availableProducts.OrderBy(x => Random.value).ToList(); // Mezclar productos para que agarre random
+        availableProducts = availableProducts.OrderBy(x => UnityEngine.Random.value).ToList(); // Mezclar productos para que agarre random
 
         int total = 0;
 
