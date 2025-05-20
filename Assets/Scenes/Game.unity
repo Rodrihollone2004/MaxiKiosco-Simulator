@@ -13435,9 +13435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac3fcb344f3c4a469c66413ce353406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoney: 100
+  currentMoney: 5000
   moneyText: {fileID: 5509060}
-  vuelto: 0
+  currentChange: 0
 --- !u!82 &1964649771
 AudioSource:
   m_ObjectHideFlags: 0

@@ -32,10 +32,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private Camera playerCamera;
 
-
     Client currentClient;
     int change = 0;
-
 
     private void Awake()
     {
@@ -45,7 +43,7 @@ public class CashRegisterInteraction : MonoBehaviour
             registerAudioSource.spatialBlend = 0.8f;
         }
         playerEconomy.onFinishPay += HandlePaymentFinished;
-        Client.onClientWantPay += ProcessPayment;
+        //Client.onClientWantPay += ProcessPayment;
     }
 
     private void Start()
@@ -85,7 +83,6 @@ public class CashRegisterInteraction : MonoBehaviour
             }
         }
     }
-
 
     // configuracion al entrar a la caja registradora
     void EnterCashRegisterMode()
@@ -168,10 +165,11 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         if (vuelto == change)
         {
-            Debug.Log("vuelto");
             playerEconomy.ReceivePayment(clientPayment.Sum());
             PlayRegisterSound(paymentSound);
             queueManager.RemoveClient(currentClient);
+            change = 0;
+            Debug.Log("vuelto correcto");
         }
     }
 

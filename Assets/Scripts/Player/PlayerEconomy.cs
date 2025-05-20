@@ -5,10 +5,10 @@ using System;
 public class PlayerEconomy : MonoBehaviour
 {
     [Header("Player Money")]
-    [SerializeField] private float currentMoney = 100f;
+    [SerializeField] private int currentMoney = 100;
     [SerializeField] private TMP_Text moneyText;
     public event Action<int> onFinishPay;
-    [SerializeField] private int vuelto = 0;
+    [SerializeField] private int currentChange = 0;
 
     public float CurrentMoney => currentMoney;
     private void Awake()
@@ -18,10 +18,10 @@ public class PlayerEconomy : MonoBehaviour
 
     private void MoneyBill_onPickBill(int obj)
     {
-        vuelto += obj;
-        if (TryGiveChange(vuelto))
+        currentChange += obj;
+        if (TryGiveChange(obj))
         {
-            onFinishPay?.Invoke(vuelto);
+            onFinishPay?.Invoke(currentChange);
         }
     }
 
@@ -31,14 +31,15 @@ public class PlayerEconomy : MonoBehaviour
     }
 
     // Sumar plata del cliente
-    public void ReceivePayment(float amount)
+    public void ReceivePayment(int amount)
     {
         currentMoney += amount;
         moneyText.text = $"{currentMoney}";
+        currentChange = 0;
     }
 
     // Restar plata al comprar
-    public bool TryPurchase(float cost)
+    public bool TryPurchase(int cost)
     {
         if (currentMoney >= cost)
         {
@@ -53,7 +54,7 @@ public class PlayerEconomy : MonoBehaviour
             return false;
         }
     }
-    public bool TryGiveChange(float amount)
+    public bool TryGiveChange(int amount)
     {
         if (currentMoney >= amount)
         {
