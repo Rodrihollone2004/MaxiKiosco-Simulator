@@ -65,8 +65,8 @@ public class CashRegisterInteraction : MonoBehaviour
             ExitCashRegisterMode();
         }
 
-        // espacio procesas el pago
-        if (inCashRegister && Input.GetKeyDown(KeyCode.Space) && currentClient != null)
+        // enter procesas el pago
+        if (inCashRegister && Input.GetKeyDown(KeyCode.Return) && currentClient != null)
         {
             ProcessPayment(currentClient);
         }
@@ -154,6 +154,8 @@ public class CashRegisterInteraction : MonoBehaviour
             }
 
             queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${simulatedTotal}\nVuelto: ${change}\n{cartInfo}";
+
+            HandlePaymentFinished(0);
         }
         else
         {
@@ -167,9 +169,9 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             playerEconomy.ReceivePayment(clientPayment.Sum());
             PlayRegisterSound(paymentSound);
-            queueManager.RemoveClient(currentClient);
+            queueManager.RemoveClient();
             change = 0;
-            Debug.Log("vuelto correcto");
+            Debug.Log($"vuelto correcto {vuelto}");
         }
     }
 
