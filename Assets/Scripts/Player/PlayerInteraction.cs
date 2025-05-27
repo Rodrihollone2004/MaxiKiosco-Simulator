@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private KeyCode interactKey = KeyCode.Mouse0;
+    [SerializeField] private KeyCode subtractKey = KeyCode.Mouse1;
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
@@ -38,6 +39,10 @@ public class PlayerInteraction : MonoBehaviour
                 TryPickUp();
             }
         }
+        if (Input.GetKeyDown(subtractKey))
+        {
+            TrySubtractBill();
+        }
 
         if (Input.GetKeyDown(dropKey) && heldObject != null)
         {
@@ -47,6 +52,19 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
         {
             furnitureBox.PlaceFurniture();
+        }
+    }
+
+    private void TrySubtractBill()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
+        {
+            // Solo interactuamos si el objeto tiene un componente MoneyBill
+            if (hit.collider.TryGetComponent(out MoneyBill moneyBill))
+            {
+                moneyBill.InteractSubtract(); // Llamar al nuevo método para restar
+            }
         }
     }
 

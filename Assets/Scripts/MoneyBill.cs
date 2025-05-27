@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoneyBill : MonoBehaviour, IInteractable
 {
-    public static event Action<int> onPickBill;
+    public static event Action<int, bool> onPickBill;
     [SerializeField] private int billValue = 1;
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
@@ -21,8 +21,14 @@ public class MoneyBill : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        onPickBill?.Invoke(billValue);
+        onPickBill?.Invoke(billValue, true);
         Debug.Log($"Interactuando con billete de: {billValue}");
+    }
+
+    public void InteractSubtract()
+    {
+        onPickBill?.Invoke(billValue, false);
+        Debug.Log($"Restando billete de: {billValue}");
     }
 
     public void Highlight()

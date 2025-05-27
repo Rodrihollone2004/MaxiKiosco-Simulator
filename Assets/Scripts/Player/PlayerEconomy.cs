@@ -16,13 +16,28 @@ public class PlayerEconomy : MonoBehaviour
         MoneyBill.onPickBill += MoneyBill_onPickBill;
     }
 
-    private void MoneyBill_onPickBill(int obj)
+    private void MoneyBill_onPickBill(int billValue, bool isAdding)
     {
-        currentChange += obj;
-        if (TryGiveChange(obj))
+        if (isAdding)
         {
-            onFinishPay?.Invoke(currentChange);
+            currentChange += billValue;
+            TryGiveChange(billValue);
         }
+        else
+        {
+            if (currentChange >= billValue)
+            {
+                currentChange -= billValue;
+                currentMoney += billValue;
+                moneyText.text = $"{currentMoney}";
+            }
+            else
+            {
+                Debug.LogWarning("No puedes restar más dinero del que ya has dado como vuelto.");
+            }
+        }
+
+        onFinishPay?.Invoke(currentChange);
     }
 
     public int GetCurrentChange()

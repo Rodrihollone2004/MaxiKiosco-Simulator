@@ -3195,6 +3195,7 @@ GameObject:
   - component: {fileID: 326095223}
   - component: {fileID: 326095222}
   - component: {fileID: 326095221}
+  - component: {fileID: 326095225}
   m_Layer: 5
   m_Name: CanvasCashRegister
   m_TagString: Untagged
@@ -3285,6 +3286,19 @@ RectTransform:
   m_AnchoredPosition: {x: 18.988, y: 1.321}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &326095225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326095220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9749744d157954c939ed4b27cd9a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  payText: {fileID: 1776404263}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -14558,6 +14572,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   interactRange: 2
   interactKey: 323
+  subtractKey: 324
   dropKey: 103
   interactLayer:
     serializedVersion: 2
@@ -14586,9 +14601,10 @@ MonoBehaviour:
   playerCam: {fileID: 330585548}
   moveCamera: {fileID: 1732188501}
   playerRb: {fileID: 1964649762}
+  playerEconomy: {fileID: 1964649770}
+  cashRegisterUI: {fileID: 326095225}
   interactionDistance: 3
   cashRegisterTag: CashRegister
-  playerEconomy: {fileID: 1964649770}
   registerAudioSource: {fileID: 587818190}
   registerOpenSound: {fileID: 8300000, guid: 05e72529dcd4aad478e282bb0f355fa3, type: 3}
   registerCloseSound: {fileID: 8300000, guid: 05e72529dcd4aad478e282bb0f355fa3, type: 3}

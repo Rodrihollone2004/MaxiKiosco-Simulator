@@ -11,11 +11,12 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] PlayerCam playerCam;
     [SerializeField] MoveCamera moveCamera;
     [SerializeField] Rigidbody playerRb;
+    [SerializeField] private PlayerEconomy playerEconomy;
+    [SerializeField] private CashRegisterUI cashRegisterUI;
 
     [Header("Configurations")]
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private string cashRegisterTag = "CashRegister";
-    [SerializeField] private PlayerEconomy playerEconomy;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource registerAudioSource;
@@ -68,6 +69,7 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (inCashRegister /*&& Input.GetKeyDown(KeyCode.Return)*/ && currentClient != null)
         {
+            cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
             ProcessPayment(currentClient);
         }
     }
@@ -131,66 +133,17 @@ public class CashRegisterInteraction : MonoBehaviour
         PlayRegisterSound(registerCloseSound);
     }
 
-    void ProcessPayment(Client client)
+    private void ProcessPayment(Client client)
     {
+        if (queueManager.ClientQueue.Count == 0) return;
+
         currentClient = client;
-        if (queueManager.ClientQueue.Count > 0)
-        {
-            client = queueManager.ClientQueue.Peek();
-            int totalToPay = client.CalculateCartTotal();
-
-            clientPayment = client.TryMakePayment(totalToPay);
-            int simulatedTotal = clientPayment.Sum();
-
-            //calcular vuelto
-            change = clientPayment.Sum() - totalToPay;
-
-            List<ProductInteractable> cart = client.GetCart();
-            string cartInfo = "Carrito:\n";
-
-            foreach (var product in cart)
-            {
-                cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
-            }
-
-            int playerGivenChange = playerEconomy.GetCurrentChange();
-
-            queueManager.PayText.text =
-                $"Total: ${totalToPay}\n" +
-                $"Pago: ${simulatedTotal}\n" +
-                $"Vuelto esperado: ${change}\n" +
-                $"Vuelto entregado: ${playerGivenChange}\n\n" +
-                $"{cartInfo}";
-
-
-            HandlePaymentFinished(0);
-        }
-        else
-        {
-            queueManager.PayText.text = "";
-        }
-    }
-
-    void UpdatePaymentText(Client client)
-    {
         int totalToPay = client.CalculateCartTotal();
-        int simulatedTotal = clientPayment.Sum();
-        int playerGivenChange = playerEconomy.GetCurrentChange();
-        change = simulatedTotal - totalToPay;
 
-        List<ProductInteractable> cart = client.GetCart();
-        string cartInfo = "Carrito:\n";
-        foreach (var product in cart)
-        {
-            cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
-        }
+        clientPayment = client.TryMakePayment(totalToPay);
+        change = clientPayment.Sum() - totalToPay;
 
-        queueManager.PayText.text =
-            $"Total: ${totalToPay}\n" +
-            $"Pago: ${simulatedTotal}\n" +
-            $"Vuelto esperado: ${change}\n" +
-            $"Vuelto entregado: ${playerGivenChange}\n\n" +
-            $"{cartInfo}";
+        HandlePaymentFinished(0); 
     }
 
     public void HandlePaymentFinished(int vuelto)
