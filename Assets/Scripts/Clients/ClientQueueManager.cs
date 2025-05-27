@@ -31,7 +31,7 @@ public class ClientQueueManager : MonoBehaviour
     {
         InitializePool(5);
         payText.text = "";
-        SpawnInitialClients(3);
+        SpawnInitialClients(1);
     }
 
     private void InitializePool(int size)
@@ -56,11 +56,6 @@ public class ClientQueueManager : MonoBehaviour
         client.SetActive(true);
         return client.GetComponent<Client>();
     }
-
-    //public void RemoveClient(Client client)
-    //{
-    //   public void RemoveClient()
-    //}
 
     public void RemoveClient()
     {

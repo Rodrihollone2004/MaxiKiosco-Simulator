@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
+    private FurnitureBox furnitureBox;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -25,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
-    
+
     private void Update()
     {
         HandleHighlight();
@@ -41,6 +42,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(dropKey) && heldObject != null)
         {
             DropObject();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
+        {
+            furnitureBox.PlaceFurniture();
         }
     }
 
@@ -68,7 +74,7 @@ public class PlayerInteraction : MonoBehaviour
                         currentInteractable.Unhighlight();
 
                     currentInteractable = interactable;
-                    currentInteractable.Highlight(); 
+                    currentInteractable.Highlight();
                 }
             }
         }
@@ -91,7 +97,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-                if(interactable.CanBePickedUp)
+                if (interactable.CanBePickedUp)
                     PickUp(hit.collider.gameObject);
             }
         }
@@ -103,16 +109,19 @@ public class PlayerInteraction : MonoBehaviour
         if (currentInteractable != null)
         {
             currentInteractable.Unhighlight();
-            currentInteractable = null; 
+            currentInteractable = null;
         }
 
         heldObject = objToPickUp;
 
+        if (objToPickUp.TryGetComponent(out FurnitureBox fur))
+            furnitureBox = fur;
+
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
-             heldObjectRb = rb;
+            heldObjectRb = rb;
 
         if (objToPickUp.TryGetComponent(out Collider col))
-             heldObjectCollider = col;
+            heldObjectCollider = col;
 
         if (heldObjectRb != null)
             heldObjectRb.isKinematic = true;
@@ -138,7 +147,6 @@ public class PlayerInteraction : MonoBehaviour
     // devuelve todas las propiedades al objeto y aplica fuerza de lanzamiento
     private void DropObject()
     {
-
         if (heldObject != null)
         {
             heldObject.transform.position += Vector3.up * 0.2f;
@@ -163,6 +171,12 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectRb = null;
             heldObjectCollider = null;
             currentInteractable = null;
+
+            if (furnitureBox.CurrentPreview != null)
+                furnitureBox.CurrentPreview.SetActive(false);
+
+            if (furnitureBox != null)
+                furnitureBox = null;
 
             if (audioSource != null && dropSound != null)
             {
