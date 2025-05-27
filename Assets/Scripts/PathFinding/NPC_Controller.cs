@@ -7,32 +7,30 @@ public class NPC_Controller : MonoBehaviour
     public List<Node> path = new List<Node>();
 
     public bool isAllNodes;
+    public bool isBack;
 
     [SerializeField] int nodesAmount = 3;
-    public static NPC_Controller instance;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     private void Start()
     {
         currentNode = AStarManager.instance.startNode;
+        CashRegisterInteraction.onFinishPath += BackToStart;
     }
 
     private void Update()
     {
-        if (currentNode != AStarManager.instance.endNode)
-        {
+        if (currentNode != AStarManager.instance.endNode && !isBack)
             CreatePath();
+        else if (currentNode != AStarManager.instance.startNode && isBack)
+            CreatePath();
+        else if (currentNode == AStarManager.instance.startNode && isBack)
+        {
+            isBack = false;
+
+            ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
+            queueManager.RemoveClient();
         }
+
     }
 
     public void CreatePath()
@@ -90,6 +88,19 @@ public class NPC_Controller : MonoBehaviour
             }
 
             path = totalPath;
+        }
+    }
+
+    public void BackToStart()
+    {
+        if (currentNode == AStarManager.instance.endNode && !isBack)
+        {
+            isBack = true;
+            List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.startNode);
+            if (backPath != null && backPath.Count > 0)
+            {
+                path.AddRange(backPath);
+            }
         }
     }
 }

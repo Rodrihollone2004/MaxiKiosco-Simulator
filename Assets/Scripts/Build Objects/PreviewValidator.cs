@@ -57,6 +57,10 @@ public class PreviewValidator : MonoBehaviour
         Color targetColor = IsValidPlacement ? validColor : invalidColor;
         block.SetColor("_Color", targetColor);
         meshRenderer.SetPropertyBlock(block);
+
+        //con estas lineas si funciona pero hace una nueva instancia del material
+        //Color debugColor = IsValidPlacement ? Color.green : Color.red;
+        //GetComponent<Renderer>().material.color = debugColor;
     }
 
     private void OnDrawGizmosSelected()

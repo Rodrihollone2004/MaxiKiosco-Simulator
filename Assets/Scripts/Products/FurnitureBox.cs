@@ -27,7 +27,7 @@ public class FurnitureBox : MonoBehaviour, IInteractable
         if (currentPreview != null)
             Destroy(currentPreview);
 
-        containerPrefab = transform.GameObject();
+        containerPrefab = gameObject;
 
         buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
         currentPreview = Instantiate(buildPrefab, Vector3.zero, buildPrefab.transform.localRotation);

@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3871330133517541b262e0a0e1c3abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNode: {fileID: 0}
   path: []
   isAllNodes: 0
-  nodesAmount: 3
+  isBack: 0
+  nodesAmount: 1

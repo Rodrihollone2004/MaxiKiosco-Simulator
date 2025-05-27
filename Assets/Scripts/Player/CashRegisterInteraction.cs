@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] private AudioClip registerOpenSound;
     [SerializeField] private AudioClip registerCloseSound;
     [SerializeField] private AudioClip paymentSound;
+
+    public static event Action onFinishPath;
 
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
@@ -151,9 +154,9 @@ public class CashRegisterInteraction : MonoBehaviour
         if (vuelto == change)
         {
             playerEconomy.ReceivePayment(clientPayment.Sum());
-            NPC_Controller.instance.currentNode = AStarManager.instance.startNode;
             PlayRegisterSound(paymentSound);
-            queueManager.RemoveClient();
+            onFinishPath.Invoke();
+            //queueManager.RemoveClient(); // Esta línea hace desaparecer el cliente cuando lo tiene que desaparecer después de haber llegado al final de Back to Start
             change = 0;
             Debug.Log($"vuelto correcto {vuelto}");
         }

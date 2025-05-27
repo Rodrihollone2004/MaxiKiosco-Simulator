@@ -10,7 +10,7 @@ public class PlayerEconomy : MonoBehaviour
     public event Action<int> onFinishPay;
     [SerializeField] private int currentChange = 0;
 
-    public float CurrentMoney => currentMoney;
+
     private void Awake()
     {
         MoneyBill.onPickBill += MoneyBill_onPickBill;
