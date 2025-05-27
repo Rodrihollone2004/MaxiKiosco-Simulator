@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -30,7 +31,6 @@ public class ClientQueueManager : MonoBehaviour
     private void Start()
     {
         InitializePool(5);
-        payText.text = "";
         SpawnInitialClients(1);
     }
 

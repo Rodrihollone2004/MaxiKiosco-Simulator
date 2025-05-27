@@ -31,10 +31,6 @@ public class PlayerEconomy : MonoBehaviour
                 currentMoney += billValue;
                 moneyText.text = $"{currentMoney}";
             }
-            else
-            {
-                Debug.LogWarning("No puedes restar más dinero del que ya has dado como vuelto.");
-            }
         }
 
         onFinishPay?.Invoke(currentChange);

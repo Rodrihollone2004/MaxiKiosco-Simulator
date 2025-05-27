@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    public static event Action<Client> onClientWantPay;
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
 
@@ -66,7 +65,7 @@ public class Client : MonoBehaviour
         List<int> allBills = new List<int>();
 
         foreach (var Bill in wallet.WalletData)
-            for(int i = 0; i < Bill.Value; i++)
+            for (int i = 0; i < Bill.Value; i++)
                 allBills.Add(Bill.Key);
 
         if (allBills.Count == 0)
@@ -78,8 +77,6 @@ public class Client : MonoBehaviour
         List<int> minBills = new List<int>();
 
         bool found = TryCalculatePayment(cost, 0, allBills, 0, new List<int>(), bestCombination, minBills);
-
-        //onClientWantPay?.Invoke(this);
 
         if (found)
             return bestCombination; // Cantidad exacta

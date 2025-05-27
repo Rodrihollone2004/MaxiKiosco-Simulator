@@ -60,10 +60,9 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
-            // Solo interactuamos si el objeto tiene un componente MoneyBill
             if (hit.collider.TryGetComponent(out MoneyBill moneyBill))
             {
-                moneyBill.InteractSubtract(); // Llamar al nuevo método para restar
+                moneyBill.InteractSubtract(); 
             }
         }
     }

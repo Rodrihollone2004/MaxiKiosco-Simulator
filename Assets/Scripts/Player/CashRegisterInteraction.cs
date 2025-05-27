@@ -47,7 +47,6 @@ public class CashRegisterInteraction : MonoBehaviour
             registerAudioSource.spatialBlend = 0.8f;
         }
         playerEconomy.onFinishPay += HandlePaymentFinished;
-        //Client.onClientWantPay += ProcessPayment;
     }
 
     private void Start()
@@ -111,6 +110,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
         currentClient = queueManager.ClientQueue.Peek();
         ProcessPayment(currentClient); // Mostrar total del cliente al entrar
+        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
 
         PlayRegisterSound(registerOpenSound);
     }
@@ -129,9 +129,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = false;
 
-        queueManager.PayText.text = ""; // Limpiar texto al salir
-
         ProcessPayment(currentClient);
+        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
 
         PlayRegisterSound(registerCloseSound);
     }

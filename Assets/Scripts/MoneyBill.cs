@@ -7,6 +7,7 @@ public class MoneyBill : MonoBehaviour, IInteractable
     [SerializeField] private int billValue = 1;
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
+    [SerializeField] private PlayerCam playerCam;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -21,14 +22,14 @@ public class MoneyBill : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        onPickBill?.Invoke(billValue, true);
-        Debug.Log($"Interactuando con billete de: {billValue}");
+        if (playerCam.IsInCashRegister == true)
+            onPickBill?.Invoke(billValue, true);
     }
 
     public void InteractSubtract()
     {
-        onPickBill?.Invoke(billValue, false);
-        Debug.Log($"Restando billete de: {billValue}");
+        if (playerCam.IsInCashRegister == true)
+            onPickBill?.Invoke(billValue, false);
     }
 
     public void Highlight()
