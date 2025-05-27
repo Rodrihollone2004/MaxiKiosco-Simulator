@@ -5,8 +5,10 @@ public class AStarManager : MonoBehaviour
 {
     public static AStarManager instance;
 
-    [field: SerializeField] public Node startNode { get; private set; }
-    [field: SerializeField] public Node endNode { get; private set; }
+    [field: SerializeField] public Node StartNode { get; private set; }
+    [field: SerializeField] public Node EndNode { get; private set; }
+
+    [field: SerializeField] public bool IsAllNodes { get; set; }
 
     private void Awake()
     {
@@ -97,6 +99,8 @@ public class AStarManager : MonoBehaviour
     {
         if (from == to) return;
 
-        from.connections.Add(to);
+        if (!from.connections.Contains(to))
+            from.connections.Add(to);
+
     }
 }

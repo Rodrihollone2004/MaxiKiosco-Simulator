@@ -6,24 +6,23 @@ public class NPC_Controller : MonoBehaviour
     public Node currentNode;
     public List<Node> path = new List<Node>();
 
-    public bool isAllNodes;
     public bool isBack;
 
     [SerializeField] int nodesAmount = 3;
 
     private void Start()
     {
-        currentNode = AStarManager.instance.startNode;
+        currentNode = AStarManager.instance.StartNode;
         CashRegisterInteraction.onFinishPath += BackToStart;
     }
 
     private void Update()
     {
-        if (currentNode != AStarManager.instance.endNode && !isBack)
+        if (currentNode != AStarManager.instance.EndNode && !isBack)
             CreatePath();
-        else if (currentNode != AStarManager.instance.startNode && isBack)
+        else if (currentNode != AStarManager.instance.StartNode && isBack)
             CreatePath();
-        else if (currentNode == AStarManager.instance.startNode && isBack)
+        else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
             isBack = false;
 
@@ -50,10 +49,10 @@ public class NPC_Controller : MonoBehaviour
         {
             Node[] nodes = FindObjectsOfType<Node>();
 
-            if (!isAllNodes)
+            if (!AStarManager.instance.IsAllNodes)
             {
                 AStarManager.instance.CreateConnections(nodes);
-                isAllNodes = true;
+                AStarManager.instance.IsAllNodes = true;
             }
 
             List<Node> intermediateNodes = new List<Node>();
@@ -61,7 +60,7 @@ public class NPC_Controller : MonoBehaviour
             while (intermediateNodes.Count < nodesAmount)
             {
                 Node randomNode = nodes[Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.endNode && !intermediateNodes.Contains(randomNode))
+                if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
                 {
                     intermediateNodes.Add(randomNode);
                 }
@@ -81,7 +80,7 @@ public class NPC_Controller : MonoBehaviour
                 }
             }
 
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.endNode);
+            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndNode);
             if (finalPath != null && finalPath.Count > 0)
             {
                 totalPath.AddRange(finalPath);
@@ -93,10 +92,10 @@ public class NPC_Controller : MonoBehaviour
 
     public void BackToStart()
     {
-        if (currentNode == AStarManager.instance.endNode && !isBack)
+        if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
             isBack = true;
-            List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.startNode);
+            List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
                 path.AddRange(backPath);

@@ -14,7 +14,6 @@ public class PreviewValidator : MonoBehaviour
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        block = new MaterialPropertyBlock();
         blockedLayers = ~(1 << LayerMask.NameToLayer("Water"));
 
         Debug.Log(LayerMask.LayerToName(LayerMask.NameToLayer("Water")));
@@ -55,12 +54,9 @@ public class PreviewValidator : MonoBehaviour
         IsValidPlacement = !overlap;
 
         Color targetColor = IsValidPlacement ? validColor : invalidColor;
-        block.SetColor("_Color", targetColor);
+        block = new MaterialPropertyBlock();
+        block.SetColor("_BaseColor", targetColor);
         meshRenderer.SetPropertyBlock(block);
-
-        //con estas lineas si funciona pero hace una nueva instancia del material
-        //Color debugColor = IsValidPlacement ? Color.green : Color.red;
-        //GetComponent<Renderer>().material.color = debugColor;
     }
 
     private void OnDrawGizmosSelected()
