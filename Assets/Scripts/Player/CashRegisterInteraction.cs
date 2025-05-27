@@ -168,6 +168,7 @@ public class CashRegisterInteraction : MonoBehaviour
         if (vuelto == change)
         {
             playerEconomy.ReceivePayment(clientPayment.Sum());
+            NPC_Controller.instance.currentNode = AStarManager.instance.startNode;
             PlayRegisterSound(paymentSound);
             queueManager.RemoveClient();
             change = 0;

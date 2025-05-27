@@ -22,8 +22,6 @@ public class PlayerEconomy : MonoBehaviour
         if (TryGiveChange(obj))
         {
             onFinishPay?.Invoke(currentChange);
-
-            NPC_Controller.instance.currentNode = AStarManager.instance.startNode;
         }
     }
 
