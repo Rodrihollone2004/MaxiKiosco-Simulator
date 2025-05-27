@@ -610,6 +610,7 @@ MonoBehaviour:
   billValue: 10
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
+  playerCam: {fileID: 330585548}
 --- !u!65 &22657468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6450,6 +6451,7 @@ MonoBehaviour:
   billValue: 1
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
+  playerCam: {fileID: 330585548}
 --- !u!65 &802760620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13024,6 +13026,7 @@ MonoBehaviour:
   billValue: 100
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
+  playerCam: {fileID: 330585548}
 --- !u!65 &1787160674
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -22,13 +22,13 @@ public class MoneyBill : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (playerCam.IsInCashRegister == true)
+        if (playerCam.IsInCashRegister)
             onPickBill?.Invoke(billValue, true);
     }
 
     public void InteractSubtract()
     {
-        if (playerCam.IsInCashRegister == true)
+        if (playerCam.IsInCashRegister)
             onPickBill?.Invoke(billValue, false);
     }
 
