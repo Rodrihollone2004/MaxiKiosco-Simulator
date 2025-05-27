@@ -66,7 +66,7 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // enter procesas el pago
-        if (inCashRegister && Input.GetKeyDown(KeyCode.Return) && currentClient != null)
+        if (inCashRegister /*&& Input.GetKeyDown(KeyCode.Return)*/ && currentClient != null)
         {
             ProcessPayment(currentClient);
         }
@@ -153,7 +153,15 @@ public class CashRegisterInteraction : MonoBehaviour
                 cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
             }
 
-            queueManager.PayText.text = $"Total: ${totalToPay}\nPago: ${simulatedTotal}\nVuelto: ${change}\n{cartInfo}";
+            int playerGivenChange = playerEconomy.GetCurrentChange();
+
+            queueManager.PayText.text =
+                $"Total: ${totalToPay}\n" +
+                $"Pago: ${simulatedTotal}\n" +
+                $"Vuelto esperado: ${change}\n" +
+                $"Vuelto entregado: ${playerGivenChange}\n\n" +
+                $"{cartInfo}";
+
 
             HandlePaymentFinished(0);
         }
@@ -161,6 +169,28 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             queueManager.PayText.text = "";
         }
+    }
+
+    void UpdatePaymentText(Client client)
+    {
+        int totalToPay = client.CalculateCartTotal();
+        int simulatedTotal = clientPayment.Sum();
+        int playerGivenChange = playerEconomy.GetCurrentChange();
+        change = simulatedTotal - totalToPay;
+
+        List<ProductInteractable> cart = client.GetCart();
+        string cartInfo = "Carrito:\n";
+        foreach (var product in cart)
+        {
+            cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
+        }
+
+        queueManager.PayText.text =
+            $"Total: ${totalToPay}\n" +
+            $"Pago: ${simulatedTotal}\n" +
+            $"Vuelto esperado: ${change}\n" +
+            $"Vuelto entregado: ${playerGivenChange}\n\n" +
+            $"{cartInfo}";
     }
 
     public void HandlePaymentFinished(int vuelto)

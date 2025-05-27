@@ -25,6 +25,11 @@ public class PlayerEconomy : MonoBehaviour
         }
     }
 
+    public int GetCurrentChange()
+    {
+        return currentChange;
+    }
+
     private void Start()
     {
         moneyText.text = $"{currentMoney}";
