@@ -18,14 +18,11 @@ public class PlayerCam : MonoBehaviour
     private float yRotation;
 
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
-    public float Sensitivity { get => sensitivity; set => sensitivity = value; }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-
     }
 
     private void Update()

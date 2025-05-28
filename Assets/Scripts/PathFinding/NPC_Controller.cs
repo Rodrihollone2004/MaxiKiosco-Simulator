@@ -10,6 +10,8 @@ public class NPC_Controller : MonoBehaviour
 
     [SerializeField] int nodesAmount = 3;
 
+    public bool isInCashRegister;
+
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
@@ -19,9 +21,17 @@ public class NPC_Controller : MonoBehaviour
     private void Update()
     {
         if (currentNode != AStarManager.instance.EndNode && !isBack)
+        {
+            isInCashRegister = false;
             CreatePath();
+        }
+        else if(currentNode == AStarManager.instance.EndNode && !isBack)
+            isInCashRegister = true;
         else if (currentNode != AStarManager.instance.StartNode && isBack)
+        {
+            isInCashRegister = false;
             CreatePath();
+        }
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
             isBack = false;
@@ -94,6 +104,7 @@ public class NPC_Controller : MonoBehaviour
     {
         if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
+            isInCashRegister = false;
             isBack = true;
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)

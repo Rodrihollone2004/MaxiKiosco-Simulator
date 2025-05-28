@@ -7,7 +7,6 @@ public class PlayerEconomy : MonoBehaviour
     [Header("Player Money")]
     [SerializeField] private int currentMoney = 100;
     [SerializeField] private TMP_Text moneyText;
-    public event Action<int> onFinishPay;
     [SerializeField] private int currentChange = 0;
 
 
@@ -33,7 +32,6 @@ public class PlayerEconomy : MonoBehaviour
             }
         }
 
-        onFinishPay?.Invoke(currentChange);
     }
 
     public int GetCurrentChange()

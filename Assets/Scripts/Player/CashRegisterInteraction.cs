@@ -39,6 +39,8 @@ public class CashRegisterInteraction : MonoBehaviour
     Client currentClient;
     int change = 0;
 
+    NPC_Controller nPC_Controller;
+
     private void Awake()
     {
         if (registerAudioSource == null)
@@ -46,7 +48,6 @@ public class CashRegisterInteraction : MonoBehaviour
             registerAudioSource = gameObject.AddComponent<AudioSource>();
             registerAudioSource.spatialBlend = 0.8f;
         }
-        playerEconomy.onFinishPay += HandlePaymentFinished;
     }
 
     private void Start()
@@ -69,10 +70,25 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // enter procesas el pago
-        if (inCashRegister /*&& Input.GetKeyDown(KeyCode.Return)*/ && currentClient != null)
+        if (inCashRegister && currentClient != null)
         {
-            cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
-            ProcessPayment(currentClient);
+            if (nPC_Controller.isInCashRegister)
+            {
+                cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+                ProcessPayment(currentClient);
+            }
+        }
+
+        if (inCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
+        {
+            if (playerEconomy.GetCurrentChange() == change)
+            {
+                ConfirmPayment();
+            }
+            else
+            {
+                Debug.Log("El vuelto aún no es correcto.");
+            }
         }
     }
 
@@ -109,8 +125,10 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = true;
 
         currentClient = queueManager.ClientQueue.Peek();
+        nPC_Controller = currentClient.GetComponent<NPC_Controller>();
+        CashRegisterContext.SetCurrentClient(nPC_Controller);
         ProcessPayment(currentClient); // Mostrar total del cliente al entrar
-        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
+        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 
         PlayRegisterSound(registerOpenSound);
     }
@@ -130,7 +148,7 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = false;
 
         ProcessPayment(currentClient);
-        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange());
+        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 
         PlayRegisterSound(registerCloseSound);
     }
@@ -144,21 +162,16 @@ public class CashRegisterInteraction : MonoBehaviour
 
         clientPayment = client.TryMakePayment(totalToPay);
         change = clientPayment.Sum() - totalToPay;
-
-        HandlePaymentFinished(0); 
     }
 
-    public void HandlePaymentFinished(int vuelto)
+    private void ConfirmPayment()
     {
-        if (vuelto == change)
-        {
-            playerEconomy.ReceivePayment(clientPayment.Sum());
-            PlayRegisterSound(paymentSound);
-            onFinishPath.Invoke();
-            //queueManager.RemoveClient(); // Esta línea hace desaparecer el cliente cuando lo tiene que desaparecer después de haber llegado al final de Back to Start
-            change = 0;
-            Debug.Log($"vuelto correcto {vuelto}");
-        }
+        playerEconomy.ReceivePayment(clientPayment.Sum());
+        PlayRegisterSound(paymentSound);
+        onFinishPath?.Invoke();
+        cashRegisterUI.ClearText();
+        change = 0;
+        Debug.Log("Pago confirmado manualmente con ENTER.");
     }
 
     private void PlayRegisterSound(AudioClip clip)
