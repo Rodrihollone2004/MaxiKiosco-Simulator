@@ -17,6 +17,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject dropHintUI;
 
+    public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
+
     [Header("Efects")]
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private AudioClip dropSound;
@@ -33,38 +35,25 @@ public class PlayerInteraction : MonoBehaviour
         HandleHighlight();
 
         if (Input.GetKeyDown(interactKey))
-        {
             if (heldObject == null)
-            {
                 TryPickUp();
-            }
-        }
+
         if (Input.GetKeyDown(subtractKey))
-        {
             TrySubtractBill();
-        }
 
         if (Input.GetKeyDown(dropKey) && heldObject != null)
-        {
             DropObject();
-        }
 
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
-        {
             furnitureBox.PlaceFurniture();
-        }
     }
 
     private void TrySubtractBill()
     {
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
-        {
             if (hit.collider.TryGetComponent(out MoneyBill moneyBill))
-            {
-                moneyBill.InteractSubtract(); 
-            }
-        }
+                moneyBill.InteractSubtract();
     }
 
     // detecta los objetos con raycast y aplica el outline
@@ -151,14 +140,10 @@ public class PlayerInteraction : MonoBehaviour
         heldObject.transform.localRotation = Quaternion.identity;
 
         if (dropHintUI != null)
-        {
             dropHintUI.SetActive(true);
-        }
 
         if (audioSource != null && pickupSound != null)
-        {
             audioSource.PlayOneShot(pickupSound);
-        }
     }
 
     // devuelve todas las propiedades al objeto y aplica fuerza de lanzamiento
@@ -179,9 +164,7 @@ public class PlayerInteraction : MonoBehaviour
                 heldObjectCollider.isTrigger = false;
 
             if (dropHintUI != null)
-            {
                 dropHintUI.SetActive(false);
-            }
 
             heldObject.transform.SetParent(null);
             heldObject = null;
@@ -196,9 +179,7 @@ public class PlayerInteraction : MonoBehaviour
                 furnitureBox = null;
 
             if (audioSource != null && dropSound != null)
-            {
                 audioSource.PlayOneShot(dropSound);
-            }
         }
     }
 }

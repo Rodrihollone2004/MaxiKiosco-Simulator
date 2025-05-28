@@ -61,6 +61,9 @@ public class FurnitureBox : MonoBehaviour, IInteractable
             Instantiate(nodePrefab, nodePos, finalObj.transform.rotation, nodeContainer);
             AStarManager.instance.IsAllNodes = false;
 
+            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+            playerInteraction.DropHintUI.SetActive(false);
+
             Destroy(currentPreview);
             Destroy(containerPrefab);
         }
