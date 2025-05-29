@@ -26,7 +26,12 @@ public class NPC_Controller : MonoBehaviour
             CreatePath();
         }
         else if(currentNode == AStarManager.instance.EndNode && !isBack)
+        {
             isInCashRegister = true;
+            //ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
+
+            //queueManager.UpdateQueuePositions();
+        }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
             isInCashRegister = false;

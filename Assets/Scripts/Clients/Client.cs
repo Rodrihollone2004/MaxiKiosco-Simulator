@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
+    public NPC_Controller NpcController {get; set;}
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
     List<ProductInteractable> allProducts;

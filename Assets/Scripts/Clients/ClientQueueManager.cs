@@ -31,7 +31,7 @@ public class ClientQueueManager : MonoBehaviour
     private void Start()
     {
         InitializePool(5);
-        SpawnInitialClients(1);
+        SpawnInitialClients(2);
     }
 
     private void InitializePool(int size)
@@ -54,7 +54,12 @@ public class ClientQueueManager : MonoBehaviour
     {
         GameObject client = _clientPool.Find(c => !c.activeInHierarchy) ?? CreateNewClientInPool();
         client.SetActive(true);
-        return client.GetComponent<Client>();
+        Client clientComp = client.GetComponent<Client>();
+
+        NPC_Controller npc = client.GetComponent<NPC_Controller>();
+        clientComp.NpcController = npc;
+
+        return clientComp;
     }
 
     public void RemoveClient()
@@ -65,26 +70,26 @@ public class ClientQueueManager : MonoBehaviour
         OnClientServed?.Invoke(client);
         ReturnClientToPool(client);
 
-        UpdateQueuePositions();
+        //UpdateQueuePositions();
 
         StartCoroutine(WaitAndSpawnNewClient());
         OnQueueUpdated?.Invoke();
     }
 
-    private void UpdateQueuePositions()
+    public void UpdateQueuePositions()
     {
         int index = 0;
         foreach (Client client in _clientQueue)
         {
-            Vector3 targetPos = CalculateQueuePosition(index);
+            Vector3 targetPos = CalculateQueuePosition(index, payPosition);
             StartCoroutine(MoveClientToPosition(client.gameObject, targetPos));
             index++;
         }
     }
 
-    private Vector3 CalculateQueuePosition(int index)
+    private Vector3 CalculateQueuePosition(int index, Transform pos)
     {
-        return queueStartPosition.position + Vector3.back * distanceBetweenClients * index;
+        return pos.position + Vector3.back * distanceBetweenClients * index;
     }
 
     private IEnumerator MoveClientToPosition(GameObject client, Vector3 targetPos)
@@ -114,7 +119,7 @@ public class ClientQueueManager : MonoBehaviour
         {
             Client client = GetClientFromPool();
             _clientQueue.Enqueue(client);
-            client.transform.position = CalculateQueuePosition(i);
+            client.transform.position = CalculateQueuePosition(i, queueStartPosition);
         }
     }
 
@@ -124,6 +129,6 @@ public class ClientQueueManager : MonoBehaviour
         Client newClient = GetClientFromPool();
         newClient.AddRandomProductsToCart();
         _clientQueue.Enqueue(newClient);
-        newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1);
+        newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
     }
 }
