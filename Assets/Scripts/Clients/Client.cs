@@ -7,32 +7,37 @@ public class Client : MonoBehaviour
 {
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
+    List<ProductInteractable> allProducts;
 
     private void Start()
     {
+        allProducts = new List<ProductInteractable>();
         wallet = new Wallet();
         AddRandomProductsToCart();
         PrintWallet();
     }
 
-    private void AddRandomProductsToCart()
+    public void AddRandomProductsToCart()
     {
-        ProductInteractable[] allProducts = FindObjectsOfType<ProductInteractable>();
+        allProducts.Clear();
 
-        if (allProducts.Length == 0)
-        {
-            Debug.LogWarning("No hay productos físicos en la escena!");
-            return;
-        }
+        ProductInteractable[] productsInWorld = FindObjectsOfType<ProductInteractable>();
+
+        foreach (ProductInteractable product in productsInWorld) { allProducts.Add(product); }
 
         List<ProductInteractable> availableProducts = new List<ProductInteractable>(allProducts);
         availableProducts = availableProducts.OrderBy(x => UnityEngine.Random.value).ToList(); // Mezclar productos para que agarre random
 
         int total = 0;
+        int newTotal = 0;
 
-        foreach (var product in availableProducts)
+        cart.Clear();
+        wallet.GenerateRandomMoney();
+        PrintWallet();
+
+        foreach (ProductInteractable product in availableProducts)
         {
-            int newTotal = total + product.ProductData.Price;
+            newTotal = total + product.ProductData.Price;
 
             if (wallet.CanAfford(newTotal))
             {

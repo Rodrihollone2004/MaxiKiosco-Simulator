@@ -122,6 +122,7 @@ public class ClientQueueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenClients);
         Client newClient = GetClientFromPool();
+        newClient.AddRandomProductsToCart();
         _clientQueue.Enqueue(newClient);
         newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1);
     }

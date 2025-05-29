@@ -9,7 +9,6 @@ public class Wallet
 
     private Dictionary<int, int> wallet = new Dictionary<int, int>();
 
-    public int[] BillDenominations => billDenominations;
     public Dictionary<int, int> WalletData => wallet;
 
     public Wallet()
@@ -49,7 +48,7 @@ public class Wallet
         }
     }
 
-    private void GenerateRandomMoney()
+    public void GenerateRandomMoney()
     {
         int totalMoney = 0;
         do
