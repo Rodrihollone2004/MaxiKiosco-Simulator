@@ -70,8 +70,6 @@ public class ClientQueueManager : MonoBehaviour
         OnClientServed?.Invoke(client);
         ReturnClientToPool(client);
 
-        //UpdateQueuePositions();
-
         StartCoroutine(WaitAndSpawnNewClient());
         OnQueueUpdated?.Invoke();
     }
@@ -88,7 +86,7 @@ public class ClientQueueManager : MonoBehaviour
     }
 
     private Vector3 CalculateQueuePosition(int index, Transform pos)
-    {
+    { 
         return pos.position + Vector3.back * distanceBetweenClients * index;
     }
 
@@ -128,6 +126,7 @@ public class ClientQueueManager : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenClients);
         Client newClient = GetClientFromPool();
         newClient.AddRandomProductsToCart();
+        newClient.CalculateCost();
         _clientQueue.Enqueue(newClient);
         newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
     }

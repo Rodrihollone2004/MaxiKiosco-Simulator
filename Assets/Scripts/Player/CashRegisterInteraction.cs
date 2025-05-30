@@ -75,7 +75,6 @@ public class CashRegisterInteraction : MonoBehaviour
             if (nPC_Controller.isInCashRegister)
             {
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
-                ProcessPayment(currentClient);
             }
         }
 
@@ -157,11 +156,8 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         if (queueManager.ClientQueue.Count == 0) return;
 
-        currentClient = client;
-        int totalToPay = client.CalculateCartTotal();
-
-        clientPayment = client.TryMakePayment(totalToPay);
-        change = clientPayment.Sum() - totalToPay;
+        clientPayment = client.ClientPayment;
+        change = clientPayment.Sum() - client.totalCart;
     }
 
     private void ConfirmPayment()

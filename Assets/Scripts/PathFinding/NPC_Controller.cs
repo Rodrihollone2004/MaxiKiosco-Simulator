@@ -15,7 +15,6 @@ public class NPC_Controller : MonoBehaviour
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
-        CashRegisterInteraction.onFinishPath += BackToStart;
     }
 
     private void Update()
@@ -28,9 +27,12 @@ public class NPC_Controller : MonoBehaviour
         else if(currentNode == AStarManager.instance.EndNode && !isBack)
         {
             isInCashRegister = true;
-            //ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 
-            //queueManager.UpdateQueuePositions();
+            ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
+            queueManager.UpdateQueuePositions();
+
+            //se suscriben los 2 al evento y se invocan los 2
+            CashRegisterInteraction.onFinishPath += BackToStart;
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
@@ -109,6 +111,7 @@ public class NPC_Controller : MonoBehaviour
     {
         if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
+            CashRegisterInteraction.onFinishPath -= BackToStart;
             isInCashRegister = false;
             isBack = true;
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);

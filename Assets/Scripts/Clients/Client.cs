@@ -9,6 +9,8 @@ public class Client : MonoBehaviour
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
     List<ProductInteractable> allProducts;
+    public List<int> ClientPayment = new List<int>();
+    public int totalCart;
 
     private void Start()
     {
@@ -16,6 +18,13 @@ public class Client : MonoBehaviour
         wallet = new Wallet();
         AddRandomProductsToCart();
         PrintWallet();
+        CalculateCost();
+    }
+
+    public void CalculateCost()
+    {
+        totalCart = CalculateCartTotal();
+        ClientPayment = TryMakePayment(totalCart);
     }
 
     public void AddRandomProductsToCart()
