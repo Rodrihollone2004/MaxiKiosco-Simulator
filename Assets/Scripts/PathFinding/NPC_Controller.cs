@@ -30,9 +30,6 @@ public class NPC_Controller : MonoBehaviour
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
             queueManager.UpdateQueuePositions();
-
-            //se suscriben los 2 al evento y se invocan los 2
-            CashRegisterInteraction.onFinishPath += BackToStart;
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {

@@ -12,8 +12,8 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] PlayerCam playerCam;
     [SerializeField] MoveCamera moveCamera;
     [SerializeField] Rigidbody playerRb;
-    [SerializeField] private PlayerEconomy playerEconomy;
-    [SerializeField] private CashRegisterUI cashRegisterUI;
+    public PlayerEconomy playerEconomy;
+    public CashRegisterUI cashRegisterUI;
 
     [Header("Configurations")]
     [SerializeField] private float interactionDistance = 3f;
@@ -27,19 +27,20 @@ public class CashRegisterInteraction : MonoBehaviour
 
     public static event Action onFinishPath;
 
+    public int countClients;
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
 
-    List<int> clientPayment = new();
+    public List<int> clientPayment = new();
     private Vector3 originalCameraPos;
     private Quaternion originalCameraRot;
 
     private Camera playerCamera;
 
-    Client currentClient;
+    public Client currentClient;
     int change = 0;
 
-    NPC_Controller nPC_Controller;
+    public NPC_Controller nPC_Controller;
 
     private void Awake()
     {
@@ -72,8 +73,10 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (inCashRegister && currentClient != null)
         {
-            if (nPC_Controller.isInCashRegister)
+            if (nPC_Controller.isInCashRegister && countClients == 0)
             {
+                countClients++;
+                onFinishPath += currentClient.NpcController.BackToStart;
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
             }
         }
@@ -83,6 +86,7 @@ public class CashRegisterInteraction : MonoBehaviour
             if (playerEconomy.GetCurrentChange() == change)
             {
                 ConfirmPayment();
+                countClients--;
             }
             else
             {

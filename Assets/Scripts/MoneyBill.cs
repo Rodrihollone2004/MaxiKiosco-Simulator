@@ -8,6 +8,7 @@ public class MoneyBill : MonoBehaviour, IInteractable
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
     [SerializeField] private PlayerCam playerCam;
+    [SerializeField] private CashRegisterInteraction cashRegister;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -23,13 +24,19 @@ public class MoneyBill : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (playerCam.IsInCashRegister && CashRegisterContext.IsClientInCashRegister())
+        {
             onPickBill?.Invoke(billValue, true);
+            cashRegister.cashRegisterUI.UpdatePaymentText(cashRegister.currentClient, cashRegister.clientPayment, cashRegister.playerEconomy.GetCurrentChange(), cashRegister.nPC_Controller);
+        }
     }
 
     public void InteractSubtract()
     {
         if (playerCam.IsInCashRegister && CashRegisterContext.IsClientInCashRegister())
+        {
             onPickBill?.Invoke(billValue, false);
+            cashRegister.cashRegisterUI.UpdatePaymentText(cashRegister.currentClient, cashRegister.clientPayment, cashRegister.playerEconomy.GetCurrentChange(), cashRegister.nPC_Controller);
+        }
     }
 
     public void Highlight()
