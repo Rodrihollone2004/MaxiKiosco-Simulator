@@ -26,8 +26,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] private AudioClip paymentSound;
 
     public static event Action onFinishPath;
-
-    public int countClients;
+    
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
 
@@ -73,10 +72,8 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (inCashRegister && currentClient != null)
         {
-            if (nPC_Controller.isInCashRegister && countClients == 0)
+            if (nPC_Controller.isInCashRegister)
             {
-                countClients++;
-                onFinishPath += currentClient.NpcController.BackToStart;
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
             }
         }
@@ -86,7 +83,6 @@ public class CashRegisterInteraction : MonoBehaviour
             if (playerEconomy.GetCurrentChange() == change)
             {
                 ConfirmPayment();
-                countClients--;
             }
             else
             {
@@ -130,6 +126,12 @@ public class CashRegisterInteraction : MonoBehaviour
         currentClient = queueManager.ClientQueue.Peek();
         nPC_Controller = currentClient.GetComponent<NPC_Controller>();
         CashRegisterContext.SetCurrentClient(nPC_Controller);
+
+        if (queueManager.ClientQueue.Peek() == currentClient)
+        {
+            CashRegisterInteraction.onFinishPath -= nPC_Controller.BackToStart;
+            CashRegisterInteraction.onFinishPath += nPC_Controller.BackToStart;
+        }
         ProcessPayment(currentClient); // Mostrar total del cliente al entrar
         cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 

@@ -24,7 +24,7 @@ public class NPC_Controller : MonoBehaviour
             isInCashRegister = false;
             CreatePath();
         }
-        else if(currentNode == AStarManager.instance.EndNode && !isBack)
+        else if(currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
         {
             isInCashRegister = true;
 
@@ -39,6 +39,8 @@ public class NPC_Controller : MonoBehaviour
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
             isBack = false;
+
+            CashRegisterInteraction.onFinishPath -= BackToStart;
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
             queueManager.RemoveClient();
@@ -108,7 +110,6 @@ public class NPC_Controller : MonoBehaviour
     {
         if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
-            CashRegisterInteraction.onFinishPath -= BackToStart;
             isInCashRegister = false;
             isBack = true;
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);

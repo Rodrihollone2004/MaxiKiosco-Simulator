@@ -611,6 +611,7 @@ MonoBehaviour:
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
   playerCam: {fileID: 330585548}
+  cashRegister: {fileID: 1964649766}
 --- !u!65 &22657468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6517,6 +6518,7 @@ MonoBehaviour:
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
   playerCam: {fileID: 330585548}
+  cashRegister: {fileID: 1964649766}
 --- !u!65 &802760620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13137,6 +13139,7 @@ MonoBehaviour:
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
   playerCam: {fileID: 330585548}
+  cashRegister: {fileID: 1964649766}
 --- !u!65 &1787160674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14651,6 +14654,10 @@ MonoBehaviour:
   registerOpenSound: {fileID: 8300000, guid: 05e72529dcd4aad478e282bb0f355fa3, type: 3}
   registerCloseSound: {fileID: 8300000, guid: 05e72529dcd4aad478e282bb0f355fa3, type: 3}
   paymentSound: {fileID: 8300000, guid: ae07d56df2d4af84a8bd62bec72b73f5, type: 3}
+  countClients: 0
+  clientPayment: 
+  currentClient: {fileID: 0}
+  nPC_Controller: {fileID: 0}
 --- !u!114 &1964649769
 MonoBehaviour:
   m_ObjectHideFlags: 0

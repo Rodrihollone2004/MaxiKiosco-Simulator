@@ -24,19 +24,13 @@ public class MoneyBill : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (playerCam.IsInCashRegister && CashRegisterContext.IsClientInCashRegister())
-        {
             onPickBill?.Invoke(billValue, true);
-            cashRegister.cashRegisterUI.UpdatePaymentText(cashRegister.currentClient, cashRegister.clientPayment, cashRegister.playerEconomy.GetCurrentChange(), cashRegister.nPC_Controller);
-        }
     }
 
     public void InteractSubtract()
     {
         if (playerCam.IsInCashRegister && CashRegisterContext.IsClientInCashRegister())
-        {
             onPickBill?.Invoke(billValue, false);
-            cashRegister.cashRegisterUI.UpdatePaymentText(cashRegister.currentClient, cashRegister.clientPayment, cashRegister.playerEconomy.GetCurrentChange(), cashRegister.nPC_Controller);
-        }
     }
 
     public void Highlight()

@@ -105,7 +105,7 @@ public class ClientQueueManager : MonoBehaviour
         client.transform.position = targetPos;
     }
 
-    private void ReturnClientToPool(Client client)
+    public void ReturnClientToPool(Client client)
     {
         client.gameObject.SetActive(false);
         client.transform.position = queueStartPosition.position;
