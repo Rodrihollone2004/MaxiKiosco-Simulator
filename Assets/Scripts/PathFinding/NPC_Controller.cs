@@ -11,6 +11,7 @@ public class NPC_Controller : MonoBehaviour
     [SerializeField] int nodesAmount = 3;
 
     public bool isInCashRegister;
+    public bool isInDequeue;
 
     private void Start()
     {
@@ -39,11 +40,9 @@ public class NPC_Controller : MonoBehaviour
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
             isBack = false;
+            isInDequeue = true;
 
             CashRegisterInteraction.onFinishPath -= BackToStart;
-
-            ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
-            queueManager.RemoveClient();
         }
 
     }

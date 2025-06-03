@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -83,6 +84,7 @@ public class CashRegisterInteraction : MonoBehaviour
             if (playerEconomy.GetCurrentChange() == change)
             {
                 ConfirmPayment();
+                PeekClient();
             }
             else
             {
@@ -123,17 +125,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = true;
 
-        currentClient = queueManager.ClientQueue.Peek();
-        nPC_Controller = currentClient.GetComponent<NPC_Controller>();
-        CashRegisterContext.SetCurrentClient(nPC_Controller);
-
-        if (queueManager.ClientQueue.Peek() == currentClient)
-        {
-            CashRegisterInteraction.onFinishPath -= nPC_Controller.BackToStart;
-            CashRegisterInteraction.onFinishPath += nPC_Controller.BackToStart;
-        }
-        ProcessPayment(currentClient); // Mostrar total del cliente al entrar
-        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+        PeekClient();
 
         PlayRegisterSound(registerOpenSound);
     }
@@ -173,6 +165,8 @@ public class CashRegisterInteraction : MonoBehaviour
         onFinishPath?.Invoke();
         cashRegisterUI.ClearText();
         change = 0;
+        StartCoroutine(queueManager.RemoveClient());
+        queueManager.UpdateQueuePositions();
         Debug.Log("Pago confirmado manualmente con ENTER.");
     }
 
@@ -182,5 +176,26 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             registerAudioSource.PlayOneShot(clip);
         }
+    }
+
+    private void PeekClient()
+    {
+        if (queueManager.ClientQueue.Count > 0)
+        {
+            currentClient = queueManager.ClientQueue.Peek();
+            nPC_Controller = currentClient.GetComponent<NPC_Controller>();
+            CashRegisterContext.SetCurrentClient(nPC_Controller);
+
+            if (queueManager.ClientQueue.Peek() == currentClient)
+            {
+                CashRegisterInteraction.onFinishPath -= nPC_Controller.BackToStart;
+                CashRegisterInteraction.onFinishPath += nPC_Controller.BackToStart;
+            }
+
+            ProcessPayment(currentClient); // Mostrar total del cliente al entrar
+            cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+        }
+        else
+            Debug.LogWarning("No hay clientes en la cola");
     }
 }

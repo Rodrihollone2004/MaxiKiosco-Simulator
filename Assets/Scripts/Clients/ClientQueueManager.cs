@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,6 +28,8 @@ public class ClientQueueManager : MonoBehaviour
 
     public Queue<Client> ClientQueue { get => _clientQueue; set => _clientQueue = value; }
     public TMP_Text PayText { get => payText; set => payText = value; }
+
+    bool isInDequeue = false;
 
     private void Start()
     {
@@ -62,14 +65,18 @@ public class ClientQueueManager : MonoBehaviour
         return clientComp;
     }
 
-    public void RemoveClient()
+    public IEnumerator RemoveClient()
     {
-        if (_clientQueue.Count == 0) return;
+        if (_clientQueue.Count == 0) yield return null;
 
         Client client = _clientQueue.Dequeue();
         OnClientServed?.Invoke(client);
-        ReturnClientToPool(client);
 
+        Debug.Log("esperando que termine la vuelta");
+        yield return new WaitUntil(() => client.NpcController.isInDequeue);
+        Debug.Log("eliminando cliente: " + client.name);
+
+        ReturnClientToPool(client);
         StartCoroutine(WaitAndSpawnNewClient());
         OnQueueUpdated?.Invoke();
     }
@@ -79,14 +86,17 @@ public class ClientQueueManager : MonoBehaviour
         int index = 0;
         foreach (Client client in _clientQueue)
         {
-            Vector3 targetPos = CalculateQueuePosition(index, payPosition);
-            StartCoroutine(MoveClientToPosition(client.gameObject, targetPos));
-            index++;
+            if (client.NpcController.isInCashRegister)
+            {
+                Vector3 targetPos = CalculateQueuePosition(index, payPosition);
+                StartCoroutine(MoveClientToPosition(client.gameObject, targetPos));
+                index++;
+            }
         }
     }
 
     private Vector3 CalculateQueuePosition(int index, Transform pos)
-    { 
+    {
         return pos.position + Vector3.back * distanceBetweenClients * index;
     }
 
@@ -127,6 +137,7 @@ public class ClientQueueManager : MonoBehaviour
         Client newClient = GetClientFromPool();
         newClient.AddRandomProductsToCart();
         newClient.CalculateCost();
+        newClient.NpcController.isInDequeue = false;
         _clientQueue.Enqueue(newClient);
         newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
     }
