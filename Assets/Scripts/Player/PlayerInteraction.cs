@@ -172,7 +172,7 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider = null;
             currentInteractable = null;
 
-            if (furnitureBox.CurrentPreview != null)
+            if (furnitureBox != null && furnitureBox.CurrentPreview != null)
                 furnitureBox.CurrentPreview.SetActive(false);
 
             if (furnitureBox != null)
