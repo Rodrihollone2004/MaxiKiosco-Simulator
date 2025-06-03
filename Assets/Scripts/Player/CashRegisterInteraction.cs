@@ -54,6 +54,7 @@ public class CashRegisterInteraction : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
+        NPC_Controller.onShowScreen += PeekClient;
     }
 
     private void Update()

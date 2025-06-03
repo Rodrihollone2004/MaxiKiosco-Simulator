@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class NPC_Controller : MonoBehaviour
     public bool isInCashRegister;
     public bool isInDequeue;
 
+
+    public static event Action onShowScreen;
     Client client;
 
     private void Start()
@@ -35,6 +38,7 @@ public class NPC_Controller : MonoBehaviour
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
             queueManager._clientQueue.Enqueue(client);
             queueManager.UpdateQueuePositions();
+            onShowScreen?.Invoke();
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
@@ -78,7 +82,7 @@ public class NPC_Controller : MonoBehaviour
 
             while (intermediateNodes.Count < nodesAmount)
             {
-                Node randomNode = nodes[Random.Range(0, nodes.Length)];
+                Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
                 if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
                 {
                     intermediateNodes.Add(randomNode);
