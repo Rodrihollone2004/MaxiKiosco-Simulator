@@ -144,7 +144,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = false;
 
-        ProcessPayment(currentClient);
+        if (currentClient != null)
+            ProcessPayment(currentClient);
         cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 
         PlayRegisterSound(registerCloseSound);
