@@ -8,7 +8,6 @@ public class MoneyBill : MonoBehaviour, IInteractable
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
     [SerializeField] private PlayerCam playerCam;
-    [SerializeField] private CashRegisterInteraction cashRegister;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;

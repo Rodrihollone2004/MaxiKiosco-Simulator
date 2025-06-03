@@ -13,9 +13,12 @@ public class NPC_Controller : MonoBehaviour
     public bool isInCashRegister;
     public bool isInDequeue;
 
+    Client client;
+
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
+        client = GetComponent<Client>();
     }
 
     private void Update()
@@ -30,6 +33,7 @@ public class NPC_Controller : MonoBehaviour
             isInCashRegister = true;
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
+            queueManager._clientQueue.Enqueue(client);
             queueManager.UpdateQueuePositions();
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)

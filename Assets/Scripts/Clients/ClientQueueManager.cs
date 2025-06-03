@@ -23,18 +23,17 @@ public class ClientQueueManager : MonoBehaviour
     public UnityEvent<Client> OnClientServed;
     public UnityEvent OnQueueUpdated;
 
-    private Queue<Client> _clientQueue = new Queue<Client>();
+    public Queue<Client> _clientQueue = new Queue<Client>();
     private List<GameObject> _clientPool = new List<GameObject>();
 
     public Queue<Client> ClientQueue { get => _clientQueue; set => _clientQueue = value; }
     public TMP_Text PayText { get => payText; set => payText = value; }
 
-    bool isInDequeue = false;
-
     private void Start()
     {
         InitializePool(5);
         SpawnInitialClients(2);
+
     }
 
     private void InitializePool(int size)
@@ -126,7 +125,6 @@ public class ClientQueueManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Client client = GetClientFromPool();
-            _clientQueue.Enqueue(client);
             client.transform.position = CalculateQueuePosition(i, queueStartPosition);
         }
     }
@@ -138,7 +136,6 @@ public class ClientQueueManager : MonoBehaviour
         newClient.AddRandomProductsToCart();
         newClient.CalculateCost();
         newClient.NpcController.isInDequeue = false;
-        _clientQueue.Enqueue(newClient);
         newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
     }
 }
