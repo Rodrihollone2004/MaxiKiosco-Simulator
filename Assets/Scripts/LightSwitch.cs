@@ -20,7 +20,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     }
     private void Start()
     {
-        foreach (var light in lightsToControl)
+        foreach (Light light in lightsToControl)
         {
             if (light != null)
                 light.enabled = false;
@@ -31,7 +31,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     {
         lightsOn = !lightsOn;
 
-        foreach (var light in lightsToControl)
+        foreach (Light light in lightsToControl)
         {
             if (light != null)
                 light.enabled = lightsOn;
