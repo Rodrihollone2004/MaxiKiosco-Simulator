@@ -4579,6 +4579,7 @@ MonoBehaviour:
   moveSpeed: 3
   timeBetweenClients: 2
   distanceBetweenClients: 1.5
+  trashSpawner: {fileID: 1102810812}
   payText: {fileID: 1776404263}
   OnClientServed:
     m_PersistentCalls:
@@ -10288,8 +10289,6 @@ MonoBehaviour:
   - {fileID: 8306756186736812857, guid: dea5a3bca4d64594493e78574d6613a4, type: 3}
   spawnAreas:
   - {fileID: 131904028}
-  minSpawnTime: 10
-  maxSpawnTime: 30
   maxTrash: 10
 --- !u!4 &1102810813
 Transform:

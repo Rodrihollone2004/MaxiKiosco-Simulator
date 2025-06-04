@@ -13,6 +13,7 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float timeBetweenClients = 2f;
     [SerializeField] private float distanceBetweenClients = 1.5f;
+    [SerializeField] private ClientTrashSpawner trashSpawner;
 
     [Header("References UI")]
     [SerializeField] private TMP_Text payText;
@@ -72,6 +73,11 @@ public class ClientQueueManager : MonoBehaviour
         Debug.Log("esperando que termine la vuelta");
         yield return new WaitUntil(() => client.NpcController.isInDequeue);
         Debug.Log("eliminando cliente: " + client.name);
+
+        if (Random.value < 0.25f)
+        {
+            trashSpawner.SpawnTrash();
+        }
 
         ReturnClientToPool(client);
         StartCoroutine(WaitAndSpawnNewClient());
