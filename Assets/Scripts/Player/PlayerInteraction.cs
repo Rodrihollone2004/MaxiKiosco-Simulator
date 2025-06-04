@@ -30,13 +30,25 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody heldObjectRb;
     private Collider heldObjectCollider;
 
+    [Header("Cleaning")]
+    [SerializeField] private LayerMask trashLayer;
+    private Broom heldBroom;
+
     private void Update()
     {
         HandleHighlight();
 
         if (Input.GetKeyDown(interactKey))
+        {
             if (heldObject == null)
+            {
                 TryPickUp();
+            }
+            else if (heldBroom != null)
+            {
+                TryClean();
+            }
+        }
 
         if (Input.GetKeyDown(subtractKey))
             TrySubtractBill();
@@ -47,7 +59,6 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
             furnitureBox.PlaceFurniture();
     }
-
     private void TrySubtractBill()
     {
         RaycastHit hit;
@@ -109,6 +120,20 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    private void TryClean()
+    {
+        if (heldBroom == null) return;
+
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
+        {
+            if (hit.collider.TryGetComponent(out Trash trash) && trash.CanBeCleaned)
+            {
+                trash.Clean();
+            }
+        }
+    }
+
     // hace el objeto hijo del holdposition al agarrarlo
     private void PickUp(GameObject objToPickUp)
     {
@@ -119,6 +144,12 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         heldObject = objToPickUp;
+
+        if (objToPickUp.TryGetComponent(out Broom broom))
+        {
+            heldBroom = broom;
+            heldBroom.SetHeld(true);
+        }
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
             furnitureBox = fur;
@@ -152,6 +183,12 @@ public class PlayerInteraction : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.transform.position += Vector3.up * 0.2f;
+
+            if (heldBroom != null)
+            {
+                heldBroom.SetHeld(false);
+                heldBroom = null;
+            }
 
             if (heldObjectRb != null)
             {
