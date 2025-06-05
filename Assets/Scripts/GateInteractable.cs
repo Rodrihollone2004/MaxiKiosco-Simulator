@@ -9,8 +9,9 @@ public class GateInteractable : MonoBehaviour, IInteractable
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
-    private bool isOpening = false;
+    private bool isMoving = false;
     private bool isOpen = false;
+    private bool isClosing = false;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -30,19 +31,44 @@ public class GateInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!isOpen)
-            isOpening = true;
+        if (!isMoving)
+        {
+            if (!isOpen)
+            {
+                isMoving = true;
+                isClosing = false;
+            }
+            else
+            {
+                isMoving = true;
+                isClosing = true;
+            }
+        }
     }
     private void Update()
     {
-        if (isOpening)
+        if (isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, openPosition, openSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, openPosition) < 0.01f)
+            if (!isClosing)
             {
-                transform.position = openPosition;
-                isOpening = false;
-                isOpen = true;
+                transform.position = Vector3.MoveTowards(transform.position, openPosition, openSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, openPosition) < 0.01f)
+                {
+                    transform.position = openPosition;
+                    isMoving = false;
+                    isOpen = true;
+                }
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, closedPosition, openSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, closedPosition) < 0.01f)
+                {
+                    transform.position = closedPosition;
+                    isMoving = false;
+                    isOpen = false;
+                    isClosing = false;
+                }
             }
         }
     }

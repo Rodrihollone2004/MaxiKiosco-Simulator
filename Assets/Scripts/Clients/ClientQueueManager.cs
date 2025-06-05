@@ -14,6 +14,7 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private float timeBetweenClients = 2f;
     [SerializeField] private float distanceBetweenClients = 1.5f;
     [SerializeField] private ClientTrashSpawner trashSpawner;
+    [SerializeField] private GateInteractable gate;
 
     [Header("References UI")]
     [SerializeField] private TMP_Text payText;
@@ -32,7 +33,6 @@ public class ClientQueueManager : MonoBehaviour
     {
         InitializePool(5);
         SpawnInitialClients(2);
-
     }
 
     private void InitializePool(int size)
@@ -136,6 +136,7 @@ public class ClientQueueManager : MonoBehaviour
     private IEnumerator WaitAndSpawnNewClient()
     {
         yield return new WaitForSeconds(timeBetweenClients);
+
         Client newClient = GetClientFromPool();
         newClient.AddRandomProductsToCart();
         newClient.CalculateCost();
