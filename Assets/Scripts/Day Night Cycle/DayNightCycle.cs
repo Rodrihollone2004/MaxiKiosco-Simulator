@@ -1,24 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class DayNightCycle : MonoBehaviour
 {
     [Header("Time")]
     [Tooltip("Day Length in Minutes")]
-    [SerializeField] private float _targetDayLength = 0.5f; // largo del dia en minutos
+    [SerializeField] private float _targetDayLength = 13f; // largo del dia en minutos
     [SerializeField] private float elapsedTime;
-    [SerializeField] private bool use24Clock = true;
     [SerializeField] private TMP_Text clockText;
     [SerializeField]
     [Range(0f, 1f)]
     private float _timeOfDay;
     [SerializeField] private int _dayNumber = 0;// trackea los dias pasados
-    [SerializeField] private int _yearNumber = 0;
     private float _timeScale = 100f;
-    [SerializeField] private int _yearLength = 100;
     public bool pause = false;
     [SerializeField] private AnimationCurve timeCurve;
     private float timeCurveNormalization;
@@ -34,7 +29,7 @@ public class DayNightCycle : MonoBehaviour
     [Header("Seasonal Variables")]
     [SerializeField] private Transform sunSeasonalRotation;
     [SerializeField]
-    [Range(-45f,45f)]
+    [Range(-45f, 45f)]
     private float maxSeasonalTilt;
 
     [Header("Modules")]
@@ -43,6 +38,9 @@ public class DayNightCycle : MonoBehaviour
     private void Start()
     {
         NormalTimeCurve();
+        _timeOfDay = 8f / 24f;
+        elapsedTime = (_targetDayLength * 60) * _timeOfDay;
+        pause = true;
     }
     private void Update()
     {
@@ -56,6 +54,18 @@ public class DayNightCycle : MonoBehaviour
         SunIntensity();
         AdjustSunColor();
         UpdateModules();
+
+        if (pause && Input.GetKeyDown(KeyCode.Return))
+        {
+            if (_timeOfDay >= (22f / 24f))
+            {
+                StartNewDay();
+            }
+            else
+            {
+                pause = false;
+            }
+        }
     }
     private void UpdateTimeScale()
     {
@@ -80,50 +90,31 @@ public class DayNightCycle : MonoBehaviour
 
     private void UpdateTime()
     {
-        _timeOfDay += Time.deltaTime * _timeScale / 86400; // segundos en un dia
-        elapsedTime += Time.deltaTime;
-        if(_timeOfDay > 1)// dia nuevo
-        {
-            elapsedTime = 0;
-            _dayNumber++;
-            _timeOfDay -= 1;
+        float previousTimeOfDay = _timeOfDay;
 
-            if(_dayNumber > _yearLength)// año nuevo
-            {
-                _yearNumber++;
-                _dayNumber = 0;
-            }
+        _timeOfDay += Time.deltaTime * _timeScale / 86400f;
+
+        if (previousTimeOfDay < (22f / 24f) && _timeOfDay >= (22f / 24f))
+        {
+            pause = true;
+            _timeOfDay = 22f / 24f;
         }
+
+        elapsedTime = _timeOfDay * (_targetDayLength * 60);
     }
 
     private void UpdateClock()
     {
         float time = elapsedTime / (_targetDayLength * 60);
-        float hour = Mathf.FloorToInt(time * 24);
-        float minute = Mathf.FloorToInt(((time * 24) - hour) * 60);
+        int hour = Mathf.FloorToInt(time * 24);
+        int minute = Mathf.FloorToInt(((time * 24) - hour) * 60);
 
-        string hourString;
-        string minuteString;
+        minute = Mathf.Clamp(minute, 0, 59);
 
-        if (!use24Clock && hour > 12)
-            hour -= 12;
+        string hourString = hour.ToString("00");
+        string minuteString = minute.ToString("00");
 
-        if (hour < 10)
-            hourString = "0" + hour.ToString();
-        else
-            hourString = hour.ToString();
-
-        if (minute < 10)
-            minuteString = "0" + minute.ToString();
-        else
-            minuteString = minute.ToString();
-
-        if(use24Clock)
-            clockText.text = hourString + ":" + minuteString;
-        else if (time > 0.5f)
-            clockText.text = hourString + ":" + minuteString + "pm";
-        else
-            clockText.text = hourString + ":" + minuteString + "am";
+        clockText.text = hourString + ":" + minuteString;
     }
 
     // rotar el sol del dia
@@ -132,7 +123,7 @@ public class DayNightCycle : MonoBehaviour
         float sunAngle = _timeOfDay * 360f;
         dailyRotation.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, sunAngle));
 
-        float seasonalAngle = -maxSeasonalTilt * Mathf.Cos(_dayNumber / _yearLength * 2f * Mathf.PI);
+        float seasonalAngle = -maxSeasonalTilt * Mathf.Cos(_dayNumber * 2f * Mathf.PI);
         sunSeasonalRotation.localRotation = Quaternion.Euler(new Vector3(seasonalAngle, 0f, 0f));
     }
 
@@ -165,5 +156,19 @@ public class DayNightCycle : MonoBehaviour
         {
             module.UpdateModule(intensity);
         }
+    }
+
+    public void StartNewDay()
+    {
+        _dayNumber++;
+        _timeOfDay = 8f / 24f;
+
+        elapsedTime = (_targetDayLength * 60) * _timeOfDay;
+
+        pause = true;
+        UpdateClock();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(8, 1, 0);
     }
 }

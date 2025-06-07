@@ -1936,8 +1936,8 @@ Transform:
   m_GameObject: {fileID: 199328645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.675, y: 1.46, z: -0.269}
-  m_LocalScale: {x: 0.5, y: 2.74, z: 6.14}
+  m_LocalPosition: {x: 14.675, y: 1.46, z: -0.39}
+  m_LocalScale: {x: 0.5, y: 2.74, z: 6.41}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -7455,14 +7455,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bf1f0b36ae1954da1c4a7cbe56128d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetDayLength: 0.5
+  _targetDayLength: 13
   elapsedTime: 0
-  use24Clock: 0
   clockText: {fileID: 1707397089}
   _timeOfDay: 0
   _dayNumber: 0
-  _yearNumber: 0
-  _yearLength: 100
   pause: 0
   timeCurve:
     serializedVersion: 2
@@ -14949,7 +14946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 08:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15279,7 +15276,7 @@ Transform:
   m_GameObject: {fileID: 1732188500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.64, y: 1.5, z: 0}
+  m_LocalPosition: {x: 8, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18933,7 +18930,7 @@ Transform:
   m_GameObject: {fileID: 1964649761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.64, y: 1, z: 0}
+  m_LocalPosition: {x: 8, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
