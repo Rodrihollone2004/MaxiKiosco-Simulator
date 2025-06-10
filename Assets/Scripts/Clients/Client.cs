@@ -12,6 +12,7 @@ public class Client : MonoBehaviour
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
 
+
     private void Awake() 
     {
         allProducts = new List<ProductInteractable>();
@@ -38,7 +39,7 @@ public class Client : MonoBehaviour
         foreach (ProductInteractable product in productsInWorld) { allProducts.Add(product); }
 
         List<ProductInteractable> availableProducts = new List<ProductInteractable>(allProducts);
-        availableProducts = availableProducts.OrderBy(x => UnityEngine.Random.value).ToList(); // Mezclar productos para que agarre random
+        availableProducts = availableProducts.OrderBy(x => Random.value).ToList(); // Mezclar productos para que agarre random
 
         int total = 0;
         int newTotal = 0;

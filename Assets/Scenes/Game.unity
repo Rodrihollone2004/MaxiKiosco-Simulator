@@ -4862,7 +4862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 503118014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8285,7 +8285,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034451568}
-  m_Material: {fileID: 13400000, guid: 461a89d944ac3b344957af97ab1780b0, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9067,7 +9067,7 @@ GameObject:
   - component: {fileID: 1130907457}
   - component: {fileID: 1130907456}
   - component: {fileID: 1130907455}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12096,7 +12096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1359053179}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18939,7 +18939,7 @@ GameObject:
   - component: {fileID: 1964649769}
   - component: {fileID: 1964649770}
   - component: {fileID: 1964649771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
