@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,13 +10,15 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private Transform payPosition;
     [SerializeField] private Transform queueStartPosition;
     [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float timeBetweenClients = 2f;
+    [SerializeField] private float minTimeBetweenClients = 60f;
+    [SerializeField] private float maxTimeBetweenClients = 180f;
     [SerializeField] private float distanceBetweenClients = 1.5f;
     [SerializeField] private ClientTrashSpawner trashSpawner;
-    [SerializeField] private GateInteractable gate;
+    [SerializeField] private DayNightCycle dayNightCycle;
 
-    [Header("References UI")]
-    [SerializeField] private TMP_Text payText;
+    [Header("Daily Clients")]
+    [SerializeField] private int maxClientsPerDay = 10;
+    private int clientsSpawnedToday = 0;
 
     [Header("Events")]
     public UnityEvent<Client> OnClientServed;
@@ -27,12 +28,28 @@ public class ClientQueueManager : MonoBehaviour
     private List<GameObject> _clientPool = new List<GameObject>();
 
     public Queue<Client> ClientQueue { get => _clientQueue; set => _clientQueue = value; }
-    public TMP_Text PayText { get => payText; set => payText = value; }
+
+    private Coroutine clientSpawnCoroutine;
 
     private void Start()
     {
         InitializePool(5);
-        SpawnInitialClients(2);
+
+        clientsSpawnedToday = 0;
+    }
+
+    private void Update()
+    {
+        bool shouldSpawnClients = !dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay;
+
+        if (shouldSpawnClients && clientSpawnCoroutine == null)
+        {
+            StartClientSpawning();
+        }
+        else if (!shouldSpawnClients && clientSpawnCoroutine != null)
+        {
+            StopClientSpawning();
+        }
     }
 
     private void InitializePool(int size)
@@ -65,22 +82,22 @@ public class ClientQueueManager : MonoBehaviour
 
     public IEnumerator RemoveClient()
     {
-        if (_clientQueue.Count == 0) yield return null;
+        if (_clientQueue.Count == 0) yield break;
 
         Client client = _clientQueue.Dequeue();
         OnClientServed?.Invoke(client);
 
-        Debug.Log("esperando que termine la vuelta");
         yield return new WaitUntil(() => client.NpcController.isInDequeue);
-        Debug.Log("eliminando cliente: " + client.name);
 
         if (Random.value < 0.25f)
         {
-            trashSpawner.SpawnTrash();
+            if (trashSpawner != null)
+            {
+                trashSpawner.SpawnTrash();
+            }
         }
 
         ReturnClientToPool(client);
-        StartCoroutine(WaitAndSpawnNewClient());
         OnQueueUpdated?.Invoke();
     }
 
@@ -124,23 +141,49 @@ public class ClientQueueManager : MonoBehaviour
         client.transform.position = queueStartPosition.position;
     }
 
-    private void SpawnInitialClients(int count)
+    private IEnumerator ClientSpawnRoutine()
     {
-        for (int i = 0; i < count; i++)
+        while (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
         {
-            Client client = GetClientFromPool();
-            client.transform.position = CalculateQueuePosition(i, queueStartPosition);
+            float randomWaitTime = Random.Range(minTimeBetweenClients, maxTimeBetweenClients);
+            Debug.Log($"Next client in: {randomWaitTime:F1} seconds.");
+            yield return new WaitForSeconds(randomWaitTime);
+
+            if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
+            {
+                Client newClient = GetClientFromPool();
+                newClient.AddRandomProductsToCart();
+                newClient.CalculateCost();
+                newClient.NpcController.isInDequeue = false;
+                newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
+
+                clientsSpawnedToday++; 
+
+                UpdateQueuePositions();
+            }
+        }
+        clientSpawnCoroutine = null;
+    }
+
+    public void StartClientSpawning()
+    {
+        if (clientSpawnCoroutine == null)
+        {
+            clientSpawnCoroutine = StartCoroutine(ClientSpawnRoutine());
         }
     }
 
-    private IEnumerator WaitAndSpawnNewClient()
+    public void StopClientSpawning()
     {
-        yield return new WaitForSeconds(timeBetweenClients);
+        if (clientSpawnCoroutine != null)
+        {
+            StopCoroutine(clientSpawnCoroutine);
+            clientSpawnCoroutine = null;
+        }
+    }
 
-        Client newClient = GetClientFromPool();
-        newClient.AddRandomProductsToCart();
-        newClient.CalculateCost();
-        newClient.NpcController.isInDequeue = false;
-        newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
+    private void ResetDailyClients()
+    {
+        clientsSpawnedToday = 0;
     }
 }

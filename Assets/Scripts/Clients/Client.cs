@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,16 +8,19 @@ public class Client : MonoBehaviour
     private List<ProductInteractable> cart = new List<ProductInteractable>();
     private Wallet wallet;
     List<ProductInteractable> allProducts;
+
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
 
-    private void Start()
+    private void Awake() 
     {
         allProducts = new List<ProductInteractable>();
-        wallet = new Wallet();
-        AddRandomProductsToCart();
+        wallet = new Wallet(); 
+    }
+
+    private void Start()
+    {
         PrintWallet();
-        CalculateCost();
     }
 
     public void CalculateCost()

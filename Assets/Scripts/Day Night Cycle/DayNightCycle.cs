@@ -35,6 +35,8 @@ public class DayNightCycle : MonoBehaviour
     [Header("Modules")]
     private List<DNModuleBase> moduleList = new List<DNModuleBase>();
 
+    public bool IsPaused => pause;
+
     private void Start()
     {
         NormalTimeCurve();
@@ -55,7 +57,7 @@ public class DayNightCycle : MonoBehaviour
         AdjustSunColor();
         UpdateModules();
 
-        if (pause && Input.GetKeyDown(KeyCode.Return))
+        if (pause && Input.GetKeyDown(KeyCode.P))
         {
             if (_timeOfDay >= (22f / 24f))
             {
