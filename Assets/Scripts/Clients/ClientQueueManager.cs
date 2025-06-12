@@ -40,7 +40,7 @@ public class ClientQueueManager : MonoBehaviour
 
     private void Update()
     {
-        bool shouldSpawnClients = !dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay;
+        bool shouldSpawnClients = !dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay && _clientQueue.Count < 3;
 
         if (shouldSpawnClients && clientSpawnCoroutine == null)
         {
@@ -99,6 +99,11 @@ public class ClientQueueManager : MonoBehaviour
 
         ReturnClientToPool(client);
         OnQueueUpdated?.Invoke();
+
+        if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
+        {
+            StartClientSpawning();
+        }
     }
 
     public void UpdateQueuePositions()
@@ -148,6 +153,12 @@ public class ClientQueueManager : MonoBehaviour
             float randomWaitTime = Random.Range(minTimeBetweenClients, maxTimeBetweenClients);
             Debug.Log($"Next client in: {randomWaitTime:F1} seconds.");
             yield return new WaitForSeconds(randomWaitTime);
+
+            if (_clientQueue.Count >= 3)
+            {
+                clientSpawnCoroutine = null;
+                yield break;
+            }
 
             if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
             {
