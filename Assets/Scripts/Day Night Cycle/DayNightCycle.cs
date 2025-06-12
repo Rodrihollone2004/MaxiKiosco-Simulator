@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class DayNightCycle : MonoBehaviour
 
     [Header("Modules")]
     private List<DNModuleBase> moduleList = new List<DNModuleBase>();
+
+    [Header("Configs")]
+    [SerializeField] private DailySummary summaryUI;
+    [SerializeField] private ClientQueueManager queueManager;
 
     public bool IsPaused => pause;
 
@@ -162,6 +167,7 @@ public class DayNightCycle : MonoBehaviour
 
     public void StartNewDay()
     {
+        summaryUI.ShowSummary(queueManager.GetClientsServedToday(), queueManager.GetMoneyEarnedToday());
         _dayNumber++;
         _timeOfDay = 8f / 24f;
 
@@ -170,7 +176,17 @@ public class DayNightCycle : MonoBehaviour
         pause = true;
         UpdateClock();
 
+        queueManager.ResetDailyStats();
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = new Vector3(8, 1, 0);
+
+        StartCoroutine(HideSummaryAfterDelay(5f));
+    }
+
+    private IEnumerator HideSummaryAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        summaryUI.HideSummary();
     }
 }

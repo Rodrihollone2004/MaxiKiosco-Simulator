@@ -31,6 +31,12 @@ public class ClientQueueManager : MonoBehaviour
 
     private Coroutine clientSpawnCoroutine;
 
+
+    private int clientsServedToday = 0;
+    private int moneyEarnedToday = 0;
+    public int GetClientsServedToday() => clientsServedToday;
+    public int GetMoneyEarnedToday() => moneyEarnedToday;
+
     private void Start()
     {
         InitializePool(5);
@@ -87,23 +93,19 @@ public class ClientQueueManager : MonoBehaviour
         Client client = _clientQueue.Dequeue();
         OnClientServed?.Invoke(client);
 
+        clientsServedToday++;
+        moneyEarnedToday += client.CalculateCartTotal();
+
         yield return new WaitUntil(() => client.NpcController.isInDequeue);
 
-        if (Random.value < 0.25f)
-        {
-            if (trashSpawner != null)
-            {
-                trashSpawner.SpawnTrash();
-            }
-        }
+        if (Random.value < 0.25f && trashSpawner != null)
+            trashSpawner.SpawnTrash();
 
         ReturnClientToPool(client);
         OnQueueUpdated?.Invoke();
 
         if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
-        {
             StartClientSpawning();
-        }
     }
 
     public void UpdateQueuePositions()
@@ -193,8 +195,10 @@ public class ClientQueueManager : MonoBehaviour
         }
     }
 
-    private void ResetDailyClients()
+    public void ResetDailyStats()
     {
+        clientsServedToday = 0;
+        moneyEarnedToday = 0;
         clientsSpawnedToday = 0;
     }
 }
