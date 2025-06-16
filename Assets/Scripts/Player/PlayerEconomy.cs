@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System;
 
 public class PlayerEconomy : MonoBehaviour
 {
@@ -8,7 +7,6 @@ public class PlayerEconomy : MonoBehaviour
     [SerializeField] private int currentMoney = 100;
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private int currentChange = 0;
-
 
     private void Awake()
     {
