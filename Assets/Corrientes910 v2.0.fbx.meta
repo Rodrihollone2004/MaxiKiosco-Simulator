@@ -3,7 +3,67 @@ guid: c7ae33ae60a64fd4282fab25fa12ec49
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AUTOS
+    second: {fileID: 2100000, guid: 6f9978ddcc53dfe4faa311a33ed044ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Button Material
+    second: {fileID: 2100000, guid: 5b7772e49050c304d9016809479f1673, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EDIFICIOS
+    second: {fileID: 2100000, guid: 53a9ae712d67708409b56048d9b4f51e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luz Blanca
+    second: {fileID: 2100000, guid: ecdc98bc830342a4788d39c94c7451eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luz Roja
+    second: {fileID: 2100000, guid: 47f742f646bbd584f818f1441ba6bced, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Luz Verde
+    second: {fileID: 2100000, guid: 37ff1ca1e5b0ba844a026349e069c091, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: 2b759aa4082a62842a994e45b8771998, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: 41d2b2a5530cb2947aa92c251d3c76dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.019
+    second: {fileID: 2100000, guid: 9b4b6691ea07ff74891065c6afe2aa96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.034
+    second: {fileID: 2100000, guid: 53020e375ee425145a467753f59a4dc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.050
+    second: {fileID: 2100000, guid: 4a1a9addf0b304748896df4d7793700b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SEMAFORO
+    second: {fileID: 2100000, guid: 9934aaee2f0ed9247a433035af3b653b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
