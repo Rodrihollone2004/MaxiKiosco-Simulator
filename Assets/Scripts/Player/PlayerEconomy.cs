@@ -51,12 +51,14 @@ public class PlayerEconomy : MonoBehaviour
     }
 
     // Restar plata al comprar
-    public bool TryPurchase(int cost)
+    public bool TryPurchase(Product product)
     {
-        if (currentMoney >= cost)
+        if (product == null) return false;
+
+        if (currentMoney >= product.Price)
         {
-            currentMoney -= cost;
-            Debug.Log($"Compra realizada por ${cost}. Dinero restante: ${currentMoney}");
+            currentMoney -= product.Price;
+            Debug.Log($"Compraste {product.Name}. Dinero restante: ${currentMoney}");
             moneyText.text = $"{currentMoney}";
             return true;
         }

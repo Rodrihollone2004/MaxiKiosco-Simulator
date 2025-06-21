@@ -17,6 +17,10 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
     }
+    public void Initialize(Product productData)
+    {
+        _productData = productData;
+    }
 
     public void Interact()
     {

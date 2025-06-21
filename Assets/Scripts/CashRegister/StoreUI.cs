@@ -7,10 +7,57 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private PlayerEconomy playerEconomy;
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private LayerMask productLayer;
 
     void Start()
     {
         PopulateStore();
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
+        return spawnPoint.position;
+    }
+
+    private void SpawnProduct(Product capturedProduct)
+    {
+        GameObject spawned = Instantiate(capturedProduct.Prefab, GetSpawnPosition(), Quaternion.identity);
+
+        SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
+
+        if (!spawned.TryGetComponent<Rigidbody>(out _))
+            spawned.AddComponent<Rigidbody>();
+
+        if (!spawned.TryGetComponent<Collider>(out _))
+            spawned.AddComponent<BoxCollider>();
+
+        ProductInteractable interactable;
+        if (!spawned.TryGetComponent<ProductInteractable>(out interactable))
+            interactable = spawned.AddComponent<ProductInteractable>();
+
+        interactable.Initialize(capturedProduct);
+    }
+
+    private void SetLayerRecursive(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursive(child.gameObject, layer);
+        }
+    }
+
+    private int LayerMaskToLayer(LayerMask layerMask)
+    {
+        int layer = 0;
+        int value = layerMask.value;
+        while (value > 1)
+        {
+            value >>= 1;
+            layer++;
+        }
+        return layer;
     }
 
     void PopulateStore()
@@ -23,9 +70,15 @@ public class StoreUI : MonoBehaviour
                 TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
                 text.text = $"{product.Name} - ${product.Price}";
 
+                Product capturedProduct = product;
+
                 buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
                 {
-                    playerEconomy.TryPurchase(0);
+                    bool purchased = playerEconomy.TryPurchase(capturedProduct);
+                    if (purchased && capturedProduct.Prefab != null)
+                    {
+                        SpawnProduct(capturedProduct);
+                    }
                 });
             }
         }

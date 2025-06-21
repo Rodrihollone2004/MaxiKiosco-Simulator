@@ -126,6 +126,9 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCam.IsInCashRegister = true;
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         PeekClient();
 
         PlayRegisterSound(registerOpenSound);
@@ -144,6 +147,9 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCamera.transform.rotation = originalCameraRot;
 
         playerCam.IsInCashRegister = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         if (currentClient != null)
             ProcessPayment(currentClient);
