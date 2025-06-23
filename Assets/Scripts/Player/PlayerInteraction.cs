@@ -210,8 +210,12 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider = null;
             currentInteractable = null;
 
-            if (furnitureBox != null && furnitureBox.CurrentPreview != null)
+            if (furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.AllZones.Length > 0)
+            {
                 furnitureBox.CurrentPreview.SetActive(false);
+                foreach (PlacementZone zone in furnitureBox.AllZones)
+                    zone.HideVisual();
+            }
 
             if (furnitureBox != null)
                 furnitureBox = null;

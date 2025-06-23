@@ -17,11 +17,13 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
     public bool CanBePickedUp => true;
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
+    public PlacementZone[] AllZones { get; private set; }
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
+        AllZones = FindObjectsOfType<PlacementZone>();
     }
 
     public void Interact()
@@ -41,6 +43,9 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
         Collider col = currentPreview.GetComponent<Collider>();
         if (col != null) col.enabled = false;
+
+        foreach (PlacementZone zone in AllZones)
+            zone.ShowVisual();
     }
 
     public void PlaceFurniture()
@@ -63,6 +68,9 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
             PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
             playerInteraction.DropHintUI.SetActive(false);
+
+            foreach (PlacementZone zone in AllZones)
+                zone.HideVisual();
 
             Destroy(currentPreview);
             Destroy(containerPrefab);
