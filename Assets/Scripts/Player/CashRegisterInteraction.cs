@@ -2,17 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] ClientQueueManager queueManager;
-    [SerializeField] Transform cameraTarget;
+    [SerializeField] Transform limitedCameraTarget;
+    [SerializeField] Transform lockedCameraTarget;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerCam playerCam;
     [SerializeField] MoveCamera moveCamera;
     [SerializeField] Rigidbody playerRb;
+    [SerializeField] ComputerUIScreenManager computerUIScreenManager;
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
@@ -27,7 +30,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] private AudioClip paymentSound;
 
     public static event Action onFinishPath;
-    
+
     private bool inCashRegister = false;
     private bool canClickTheCashRegister = true;
 
@@ -41,6 +44,9 @@ public class CashRegisterInteraction : MonoBehaviour
     int change = 0;
 
     public NPC_Controller nPC_Controller;
+
+    public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
+    public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
 
     private void Awake()
     {
@@ -66,9 +72,26 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // escape salis de la caja registradora
-        if (inCashRegister && Input.GetKeyDown(KeyCode.Escape))
+        if ((playerCam.IsLocked) && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCashRegisterMode();
+        }
+        if ((inCashRegister) && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //pruebas
+            playerCam.IsLocked = true;
+
+            playerCamera.transform.position = originalCameraPos;
+            playerCamera.transform.rotation = originalCameraRot;
+
+            playerCamera.transform.position = lockedCameraTarget.position;
+            playerCamera.transform.rotation = lockedCameraTarget.rotation;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            //EnterCashRegisterMode(true, lockedCameraTarget);
+            computerUIScreenManager.ShowHomeScreen();
         }
 
         // enter procesas el pago
@@ -101,13 +124,13 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag(cashRegisterTag))
             {
-                EnterCashRegisterMode();
+                EnterCashRegisterMode(true, lockedCameraTarget);
             }
         }
     }
 
     // configuracion al entrar a la caja registradora
-    void EnterCashRegisterMode()
+    public void EnterCashRegisterMode(bool lockCamera, Transform targetPosition)
     {
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
         inCashRegister = true;
@@ -121,21 +144,21 @@ public class CashRegisterInteraction : MonoBehaviour
         originalCameraPos = playerCamera.transform.position;
         originalCameraRot = playerCamera.transform.rotation;
 
-        playerCamera.transform.position = cameraTarget.position;
-        playerCamera.transform.rotation = cameraTarget.rotation;
+        playerCamera.transform.position = targetPosition.position;
+        playerCamera.transform.rotation = targetPosition.rotation;
 
         playerCam.IsInCashRegister = true;
+        playerCam.IsLocked = lockCamera;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = lockCamera;
 
         PeekClient();
-
         PlayRegisterSound(registerOpenSound);
     }
 
     // configuracion al salir de la caja registradora
-    void ExitCashRegisterMode()
+    public void ExitCashRegisterMode()
     {
         // revierte todos los cambios anteriores, restaura la posicion de la camara y reactiva los controles
         inCashRegister = false;
@@ -143,16 +166,21 @@ public class CashRegisterInteraction : MonoBehaviour
         moveCamera.enabled = true;
         canClickTheCashRegister = true;
 
-        playerCamera.transform.position = originalCameraPos;
-        playerCamera.transform.rotation = originalCameraRot;
+        if (playerCamera != null)
+        {
+            playerCamera.transform.position = originalCameraPos;
+            playerCamera.transform.rotation = originalCameraRot;
+        }
 
         playerCam.IsInCashRegister = false;
+        playerCam.IsLocked = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         if (currentClient != null)
             ProcessPayment(currentClient);
+
         cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 
         PlayRegisterSound(registerCloseSound);

@@ -13,11 +13,13 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] private float maxAngle = 180;
     private bool isInCashRegister = false;
     private bool invertY = false;
+    private bool isLocked = false;
 
     private float xRotation;
     private float yRotation;
 
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
+    public bool IsLocked { get => isLocked; set => isLocked = value; }
 
     private void Start()
     {
@@ -26,6 +28,10 @@ public class PlayerCam : MonoBehaviour
     }
     private void Update()
     {
+        if (isLocked)
+        {
+            return;
+        }
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivity;
 

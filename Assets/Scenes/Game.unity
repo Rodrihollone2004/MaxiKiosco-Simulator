@@ -3876,6 +3876,7 @@ MonoBehaviour:
   homeScreen: {fileID: 316721256}
   storeScreen: {fileID: 1270984785}
   cashRegisterScreen: {fileID: 1337121112}
+  cashRegisterInteraction: {fileID: 1964649766}
 --- !u!1 &326193043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2621715991313452292, guid: 3a377c4521d47a04f8304fd57a96ba84,
@@ -33076,13 +33077,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604316912}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.287931, y: 1.471, z: 0.916}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 20.106, y: 1.505, z: 1.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1604498309
 GameObject:
   m_ObjectHideFlags: 0
@@ -39327,11 +39328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   queueManager: {fileID: 485706440}
-  cameraTarget: {fileID: 1345452872}
+  limitedCameraTarget: {fileID: 1345452872}
+  lockedCameraTarget: {fileID: 1604316913}
   playerMovement: {fileID: 1964649764}
   playerCam: {fileID: 330585548}
   moveCamera: {fileID: 1732188501}
   playerRb: {fileID: 1964649762}
+  computerUIScreenManager: {fileID: 326095226}
   playerEconomy: {fileID: 1964649770}
   cashRegisterUI: {fileID: 1337121114}
   interactionDistance: 3

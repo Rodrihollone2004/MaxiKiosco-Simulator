@@ -6,6 +6,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject homeScreen;
     [SerializeField] private GameObject storeScreen;
     [SerializeField] private GameObject cashRegisterScreen;
+    [SerializeField] private CashRegisterInteraction cashRegisterInteraction;
 
     void Start()
     {
@@ -16,7 +17,6 @@ public class ComputerUIScreenManager : MonoBehaviour
     {
         homeScreen.SetActive(true);
         storeScreen.SetActive(false);
-        cashRegisterScreen.SetActive(false);
     }
 
     public void ShowStoreScreen()
@@ -31,5 +31,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(true);
+        cashRegisterInteraction.EnterCashRegisterMode(false, cashRegisterInteraction.LimitedCameraTarget);
     }
 }
