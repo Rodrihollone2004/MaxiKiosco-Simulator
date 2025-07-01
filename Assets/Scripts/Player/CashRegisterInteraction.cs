@@ -38,6 +38,10 @@ public class CashRegisterInteraction : MonoBehaviour
     private Vector3 originalCameraPos;
     private Quaternion originalCameraRot;
 
+    private Vector3 trueOriginalCameraPos;
+    private Quaternion trueOriginalCameraRot;
+    private bool hasStoredTrueOriginal = false;
+
     private Camera playerCamera;
 
     public Client currentClient;
@@ -78,19 +82,7 @@ public class CashRegisterInteraction : MonoBehaviour
         }
         if ((inCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
-            //pruebas
-            playerCam.IsLocked = true;
-
-            playerCamera.transform.position = originalCameraPos;
-            playerCamera.transform.rotation = originalCameraRot;
-
-            playerCamera.transform.position = lockedCameraTarget.position;
-            playerCamera.transform.rotation = lockedCameraTarget.rotation;
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            //EnterCashRegisterMode(true, lockedCameraTarget);
+            EnterCashRegisterMode(true, lockedCameraTarget);
             computerUIScreenManager.ShowHomeScreen();
         }
 
@@ -141,6 +133,13 @@ public class CashRegisterInteraction : MonoBehaviour
         playerRb.velocity = Vector3.zero;
         playerRb.angularVelocity = Vector3.zero;
 
+        if (!hasStoredTrueOriginal)
+        {
+            trueOriginalCameraPos = playerCamera.transform.position;
+            trueOriginalCameraRot = playerCamera.transform.rotation;
+            hasStoredTrueOriginal = true;
+        }
+
         originalCameraPos = playerCamera.transform.position;
         originalCameraRot = playerCamera.transform.rotation;
 
@@ -168,8 +167,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (playerCamera != null)
         {
-            playerCamera.transform.position = originalCameraPos;
-            playerCamera.transform.rotation = originalCameraRot;
+            playerCamera.transform.position = trueOriginalCameraPos;
+            playerCamera.transform.rotation = trueOriginalCameraRot;
         }
 
         playerCam.IsInCashRegister = false;
@@ -184,6 +183,8 @@ public class CashRegisterInteraction : MonoBehaviour
         cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
 
         PlayRegisterSound(registerCloseSound);
+
+        hasStoredTrueOriginal = false;
     }
 
     private void ProcessPayment(Client client)
