@@ -12,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
     private FurnitureBox furnitureBox;
+    private ProductPlaceManager productPlace;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -59,6 +60,9 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
             furnitureBox.PlaceFurniture();
+
+        if (Input.GetKeyDown(KeyCode.E) && productPlace != null && productPlace.CurrentPreview != null && productPlace.CurrentPreview.activeSelf)
+            productPlace.PlaceFurniture();
     }
     private void TrySubtractBill()
     {
@@ -154,6 +158,9 @@ public class PlayerInteraction : MonoBehaviour
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
             furnitureBox = fur;
+        
+        if(objToPickUp.TryGetComponent(out ProductPlaceManager product))
+            productPlace = product;
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
             heldObjectRb = rb;
@@ -218,6 +225,16 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             if (furnitureBox != null)
+                furnitureBox = null;
+
+            if (productPlace != null && productPlace.CurrentPreview != null && productPlace.AllZones.Length > 0)
+            {
+                productPlace.CurrentPreview.SetActive(false);
+                foreach (PlacementZoneProducts zone in productPlace.AllZones)
+                    zone.HideVisual();
+            }
+
+            if (productPlace != null)
                 furnitureBox = null;
 
             if (audioSource != null && dropSound != null)
