@@ -1,24 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacementZone : MonoBehaviour
 {
-    [SerializeField] private GameObject visual; 
+    [SerializeField] List<GameObject> visualPlacement;
 
     private void Awake()
     {
-        if (visual != null)
-            visual.SetActive(false);
+        if (visualPlacement.Count > 0)
+            foreach (GameObject visual in visualPlacement)
+                visual.SetActive(false);
     }
 
     public void ShowVisual()
     {
-        if (visual != null)
-            visual.SetActive(true);
+        if (visualPlacement.Count > 0)
+            foreach (GameObject visual in visualPlacement)
+                visual.SetActive(true);
     }
 
     public void HideVisual()
     {
-        if (visual != null)
-            visual.SetActive(false);
+        if (visualPlacement.Count > 0)
+            foreach (GameObject visual in visualPlacement)
+                visual.SetActive(false);
     }
 }
