@@ -16,6 +16,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] MoveCamera moveCamera;
     [SerializeField] Rigidbody playerRb;
     [SerializeField] ComputerUIScreenManager computerUIScreenManager;
+    [SerializeField] ExperienceManager experienceManager;
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
@@ -83,7 +84,6 @@ public class CashRegisterInteraction : MonoBehaviour
         if ((inCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
             EnterCashRegisterMode(true, lockedCameraTarget);
-            computerUIScreenManager.ShowHomeScreen();
         }
 
         // enter procesas el pago
@@ -101,6 +101,7 @@ public class CashRegisterInteraction : MonoBehaviour
             {
                 ConfirmPayment();
                 PeekClient();
+                experienceManager.AddExperience(10);
             }
             else
             {

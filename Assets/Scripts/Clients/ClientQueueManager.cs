@@ -17,7 +17,7 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private DayNightCycle dayNightCycle;
 
     [Header("Daily Clients")]
-    [SerializeField] private int maxClientsPerDay = 10;
+    [SerializeField] private int maxClientsPerDay = 20;
     private int clientsSpawnedToday = 0;
 
     [Header("Events")]

@@ -55,9 +55,9 @@ public class PlayerEconomy : MonoBehaviour
     {
         if (product == null) return false;
 
-        if (currentMoney >= product.Price)
+        if (currentMoney >= product.PackPrice)
         {
-            currentMoney -= product.Price;
+            currentMoney -= product.PackPrice;
             Debug.Log($"Compraste {product.Name}. Dinero restante: ${currentMoney}");
             moneyText.text = $"{currentMoney}";
             return true;

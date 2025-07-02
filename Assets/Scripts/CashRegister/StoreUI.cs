@@ -68,7 +68,7 @@ public class StoreUI : MonoBehaviour
             {
                 GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
                 TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
-                text.text = $"{product.Name} - ${product.Price}";
+                text.text = $"{product.Name} - ${product.PackPrice}";
 
                 Product capturedProduct = product;
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Encendedor Clipper
+  m_EditorClassIdentifier: 
+  _name: Encendedor Magic
+  _id: 4000001
+  _price: 1200
+  _packSize: 15
+  _currentAmount: 15
+  _packPrice: 18000
+  prefab: {fileID: 5320620032716248276, guid: bb04ed286c672224fb6222d9cbaeef53, type: 3}

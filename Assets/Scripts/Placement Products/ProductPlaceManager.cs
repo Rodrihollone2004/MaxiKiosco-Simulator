@@ -8,8 +8,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     [SerializeField] private Color _highlightColor = Color.red;
     [SerializeField] private float _highlightWidth = 1.03f;
     [SerializeField] private GameObject buildPrefab;
-    [SerializeField] private GameObject nodePrefab;
-    [SerializeField] private Transform nodeContainer;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -63,10 +61,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             moveObject.enabled = false;
-
-            Vector3 nodePos = finalObj.transform.position + finalObj.transform.up + finalObj.transform.forward;
-            Instantiate(nodePrefab, nodePos, finalObj.transform.rotation, nodeContainer);
-            AStarManager.instance.IsAllNodes = false;
 
             PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
             playerInteraction.DropHintUI.SetActive(false);

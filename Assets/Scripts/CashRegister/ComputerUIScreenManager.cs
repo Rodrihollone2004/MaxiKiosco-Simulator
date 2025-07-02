@@ -17,6 +17,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     {
         homeScreen.SetActive(true);
         storeScreen.SetActive(false);
+        cashRegisterScreen.SetActive(false);
     }
 
     public void ShowStoreScreen()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Client : MonoBehaviour
@@ -11,7 +12,6 @@ public class Client : MonoBehaviour
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
-
 
     private void Awake() 
     {

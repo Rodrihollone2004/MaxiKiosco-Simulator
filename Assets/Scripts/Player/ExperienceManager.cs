@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -20,14 +18,6 @@ public class ExperienceManager : MonoBehaviour
     private void Start()
     {
         UpdateLevel();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            AddExperience(5);
-        }
     }
 
     public void AddExperience(int amount)
