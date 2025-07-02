@@ -6,18 +6,18 @@ public class PreviewValidator : MonoBehaviour
 
     private Color validColor;
     private Color invalidColor;
-    private MeshRenderer meshRenderer;
+    private MeshRenderer[] meshRenderer;
     private MaterialPropertyBlock block;
 
     public bool IsValidPlacement { get; private set; }
 
     private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = gameObject.GetComponentsInChildren<MeshRenderer>();
         blockedLayers = ~(1 << LayerMask.NameToLayer("Water"));
 
         Debug.Log(LayerMask.LayerToName(LayerMask.NameToLayer("Water")));
-        Debug.Log(blockedLayers.value); 
+        Debug.Log(blockedLayers.value);
     }
 
     public void Initialize(Color valid, Color invalid)
@@ -56,7 +56,9 @@ public class PreviewValidator : MonoBehaviour
         Color targetColor = IsValidPlacement ? validColor : invalidColor;
         block = new MaterialPropertyBlock();
         block.SetColor("_BaseColor", targetColor);
-        meshRenderer.SetPropertyBlock(block);
+
+        foreach (MeshRenderer mesh in meshRenderer)
+            mesh.SetPropertyBlock(block);
     }
 
     private void OnDrawGizmosSelected()
