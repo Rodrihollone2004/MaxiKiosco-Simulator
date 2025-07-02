@@ -13,6 +13,8 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
+    [SerializeField] int currentAmountProduct;
+    [SerializeField] int currentPrice; //para ajustar el precio de cada producto
 
     public bool CanBePickedUp => false;
 
@@ -23,17 +25,25 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
     }
+
     public void Initialize(Product productData)
     {
         _productData = productData;
+        currentAmountProduct = _productData.CurrentAmount;
+        currentPrice = _productData.Price;
     }
 
     public void Interact()
     {
-        amountText.text = $"Restantes: {_productData.CurrentAmount}";
+        amountText.text = $"Restantes: {currentAmountProduct}";
         amountHintUI.SetActive(true);
         Debug.Log($"Interactuando con {_productData.Name} (${_productData.Price})");
         StartCoroutine(HideSummaryAfterDelay(3));
+    }
+
+    public void SubtractAmount()
+    {
+        currentAmountProduct--;
     }
 
     private IEnumerator HideSummaryAfterDelay(float delay)
@@ -44,18 +54,9 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     public void Highlight()
     {
-        if (!_renderer) return;
-        _renderer.GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_Color", _highlightColor);
-        _propBlock.SetFloat("_Scale", _highlightWidth);
-        _renderer.SetPropertyBlock(_propBlock);
     }
 
     public void Unhighlight()
     {
-        if (!_renderer) return;
-        _renderer.GetPropertyBlock(_propBlock);
-        _propBlock.SetFloat("_Scale", 0f);
-        _renderer.SetPropertyBlock(_propBlock);
     }
 }

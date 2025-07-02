@@ -55,6 +55,7 @@ public class Client : MonoBehaviour
             if (wallet.CanAfford(newTotal))
             {
                 cart.Add(product);
+                product.SubtractAmount();
                 total = newTotal;
                 Debug.Log($"Añadido al carrito: {product.ProductData.Name} (${product.ProductData.Price})");
             }

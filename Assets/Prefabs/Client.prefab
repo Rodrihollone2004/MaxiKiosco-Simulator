@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeb513017366584b98fb20e3cdb0338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClientPayment: 
+  totalCart: 0
 --- !u!114 &6906606861393587206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +170,4 @@ MonoBehaviour:
   isBack: 0
   nodesAmount: 1
   isInCashRegister: 0
+  isInDequeue: 0

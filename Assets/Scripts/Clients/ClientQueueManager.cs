@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ClientQueueManager : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private GameObject clientPrefab;
+    [SerializeField] private List<GameObject> clientPrefab;
     [SerializeField] private Transform payPosition;
     [SerializeField] private Transform queueStartPosition;
     [SerializeField] private float moveSpeed = 3f;
@@ -68,7 +68,7 @@ public class ClientQueueManager : MonoBehaviour
 
     private GameObject CreateNewClientInPool()
     {
-        GameObject client = Instantiate(clientPrefab, queueStartPosition.position, Quaternion.identity);
+        GameObject client = Instantiate(clientPrefab[Random.Range(0, clientPrefab.Count)], queueStartPosition.position, Quaternion.identity);
         client.SetActive(false);
         _clientPool.Add(client);
         return client;

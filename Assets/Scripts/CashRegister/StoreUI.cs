@@ -32,10 +32,9 @@ public class StoreUI : MonoBehaviour
         if (!spawned.TryGetComponent<Collider>(out _))
             spawned.AddComponent<BoxCollider>();
 
-        ProductInteractable interactable;
-        if (!spawned.TryGetComponent<ProductInteractable>(out interactable))
-            interactable = spawned.AddComponent<ProductInteractable>();
+        GameObject children = spawned.transform.GetChild(0).gameObject;
 
+        ProductInteractable interactable = children.GetComponent<ProductInteractable>();
         interactable.Initialize(capturedProduct);
     }
 
