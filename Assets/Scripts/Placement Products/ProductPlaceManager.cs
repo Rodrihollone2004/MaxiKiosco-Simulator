@@ -48,7 +48,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             zone.ShowVisual();
     }
 
-    public void PlaceFurniture()
+    public void PlaceProduct()
     {
         if (previewValidator != null && previewValidator.IsValidPlacement)
         {

@@ -62,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
             furnitureBox.PlaceFurniture();
 
         if (Input.GetKeyDown(KeyCode.E) && productPlace != null && productPlace.CurrentPreview != null && productPlace.CurrentPreview.activeSelf)
-            productPlace.PlaceFurniture();
+            productPlace.PlaceProduct();
     }
     private void TrySubtractBill()
     {

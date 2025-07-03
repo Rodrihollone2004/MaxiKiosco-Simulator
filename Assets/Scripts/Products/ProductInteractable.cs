@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProductInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private Product _productData;
-    [SerializeField] private Color _highlightColor = Color.red;
     [SerializeField] private float _highlightWidth = 1.03f;
     [SerializeField] private GameObject amountHintUI;
     [SerializeField] private TMP_Text amountText;

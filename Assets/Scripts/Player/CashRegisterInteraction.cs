@@ -80,10 +80,12 @@ public class CashRegisterInteraction : MonoBehaviour
         if ((playerCam.IsLocked) && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCashRegisterMode();
+            computerUIScreenManager.ShowHomeScreen();
         }
         if ((inCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
             EnterCashRegisterMode(true, lockedCameraTarget);
+            computerUIScreenManager.ShowHomeScreen();
         }
 
         // enter procesas el pago
