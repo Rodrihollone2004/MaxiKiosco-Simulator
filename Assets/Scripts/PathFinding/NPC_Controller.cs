@@ -16,12 +16,14 @@ public class NPC_Controller : MonoBehaviour
 
 
     public static event Action onShowScreen;
-    Client client;
+    private Client client;
+    public Animator animatorNPC { get; private set; }
 
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
         client = GetComponent<Client>();
+        animatorNPC = GetComponent<Animator>();
     }
 
     private void Update()
@@ -31,7 +33,7 @@ public class NPC_Controller : MonoBehaviour
             isInCashRegister = false;
             CreatePath();
         }
-        else if(currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
+        else if (currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
         {
             isInCashRegister = true;
 
@@ -39,6 +41,9 @@ public class NPC_Controller : MonoBehaviour
             queueManager._clientQueue.Enqueue(client);
             queueManager.UpdateQueuePositions();
             onShowScreen?.Invoke();
+
+            transform.rotation = Quaternion.identity;
+            animatorNPC.SetBool("IsWalking", path.Count > 0);
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
@@ -57,12 +62,24 @@ public class NPC_Controller : MonoBehaviour
 
     public void CreatePath()
     {
+        animatorNPC.SetBool("IsWalking", path.Count > 0);
+
         if (path.Count > 0)
         {
             int x = 0;
-            transform.position = Vector3.MoveTowards(transform.position, path[x].transform.position, 3 * Time.deltaTime);
+            Vector3 targetPos = path[x].transform.position;
 
-            if (Vector3.Distance(transform.position, path[x].transform.position) < 0.05f)
+            Vector3 direction = (targetPos - transform.position).normalized;
+            direction.y = 0f;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f * Time.deltaTime);
+            }
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 3 * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, targetPos) < 0.05f)
             {
                 currentNode = path[x];
                 path.RemoveAt(x);
