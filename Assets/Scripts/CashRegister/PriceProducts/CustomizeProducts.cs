@@ -23,6 +23,7 @@ public class CustomizeProducts : MonoBehaviour
                 GameObject inputGO = Instantiate(inputFieldPrefab, contentInputField);
 
                 TMP_InputField inputField = inputGO.GetComponent<TMP_InputField>();
+                inputField.caretWidth = 0;
                 TMP_Text nameProduct = inputGO.GetComponentInChildren<TMP_Text>();
 
                 ProductPriceInput handler = inputGO.GetComponent<ProductPriceInput>();
