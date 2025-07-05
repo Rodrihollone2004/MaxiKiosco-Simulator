@@ -56,6 +56,7 @@ public class Client : MonoBehaviour
             {
                 cart.Add(product);
                 product.SubtractAmount();
+                product.CheckDelete();
                 total = newTotal;
                 Debug.Log($"Añadido al carrito: {product.ProductData.Name} (${product.ProductData.Price})");
             }

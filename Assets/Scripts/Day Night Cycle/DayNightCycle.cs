@@ -13,7 +13,8 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     private float _timeOfDay;
-    [SerializeField] private int _dayNumber = 0;// trackea los dias pasados
+    [SerializeField] private int _dayNumber = 1;// trackea los dias pasados
+    [SerializeField] private TMP_Text daysText;
     private float _timeScale = 100f;
     public bool pause = false;
     [SerializeField] private AnimationCurve timeCurve;
@@ -48,6 +49,7 @@ public class DayNightCycle : MonoBehaviour
         _timeOfDay = 8f / 24f;
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
         pause = true;
+        daysText.text = $"Dia: {_dayNumber}";
     }
     private void Update()
     {
@@ -180,6 +182,8 @@ public class DayNightCycle : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = new Vector3(8, 1, 0);
+
+        daysText.text = $"Dia: {_dayNumber}";
 
         StartCoroutine(HideSummaryAfterDelay(5f));
     }

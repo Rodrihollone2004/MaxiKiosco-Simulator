@@ -10,20 +10,10 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     [SerializeField] private TMP_Text amountText;
     public Product ProductData => _productData;
 
-    private Renderer _renderer;
-    private MaterialPropertyBlock _propBlock;
     [SerializeField] int currentAmountProduct;
     [SerializeField] int currentPrice; //para ajustar el precio de cada producto
 
     public bool CanBePickedUp => false;
-
-    public GameObject AmountHintUI { get => amountHintUI; set => amountHintUI = value; }
-
-    private void Awake()
-    {
-        _renderer = GetComponent<Renderer>();
-        _propBlock = new MaterialPropertyBlock();
-    }
 
     public void Initialize(Product productData)
     {
@@ -43,6 +33,12 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     public void SubtractAmount()
     {
         currentAmountProduct--;
+    }
+
+    public void CheckDelete()
+    {
+        if (currentAmountProduct <= 0)
+            Destroy(gameObject);
     }
 
     private IEnumerator HideSummaryAfterDelay(float delay)
