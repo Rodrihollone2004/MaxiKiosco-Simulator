@@ -8,6 +8,7 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float _highlightWidth = 1.03f;
     [SerializeField] private GameObject amountHintUI;
     [SerializeField] private TMP_Text amountText;
+    [SerializeField] private TMP_Text priceText;
     public Product ProductData => _productData;
 
     [SerializeField] int currentAmountProduct;
@@ -25,6 +26,7 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         amountText.text = $"Restantes: {currentAmountProduct}";
+        priceText.text = $"Precio: {_productData.Price}";
         amountHintUI.SetActive(true);
         Debug.Log($"Interactuando con {_productData.Name} (${_productData.Price})");
         StartCoroutine(HideSummaryAfterDelay(3));

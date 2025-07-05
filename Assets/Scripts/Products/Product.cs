@@ -9,7 +9,7 @@ public class Product : Item
     [SerializeField] private int _packPrice;
     [SerializeField] private GameObject prefab;
 
-    public int Price => _price;
+    public int Price { get; set; }
     public int PackSize => _packSize;
     public int PackPrice => _packPrice;
 

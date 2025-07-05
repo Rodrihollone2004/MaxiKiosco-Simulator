@@ -24,12 +24,12 @@ public class ComputerUIScreenManager : MonoBehaviour
 
     public void ShowPriceProducts()
     {
-        CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
-        customizable.PopulateStore();
         priceProducts.SetActive(true);
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
+        CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
+        customizable.PopulateStore();
     }
 
     public void ShowStoreScreen()
