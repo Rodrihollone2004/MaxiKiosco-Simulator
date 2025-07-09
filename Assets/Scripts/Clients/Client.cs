@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Client : MonoBehaviour
@@ -12,6 +11,9 @@ public class Client : MonoBehaviour
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
+
+    public enum PaymentMethod { Cash, QR }
+    public PaymentMethod paymentMethod;
 
     private void Awake() 
     {
@@ -28,6 +30,9 @@ public class Client : MonoBehaviour
     {
         totalCart = CalculateCartTotal();
         ClientPayment = TryMakePayment(totalCart);
+
+        paymentMethod = (PaymentMethod)Random.Range(0, 2);
+        Debug.Log($"Este cliente paga con: {paymentMethod}");
     }
 
     public void AddRandomProductsToCart()

@@ -16,7 +16,6 @@ public class CashRegisterUI : MonoBehaviour
             int totalToPay = client.CalculateCartTotal();
             int simulatedTotal = clientPayment.Sum();
             int change = simulatedTotal - totalToPay;
-
             List<ProductInteractable> cart = client.GetCart();
             string cartInfo = "Carrito:\n";
             foreach (var product in cart)
@@ -24,12 +23,21 @@ public class CashRegisterUI : MonoBehaviour
                 cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
             }
 
-            payText.text =
+            if (client.paymentMethod == Client.PaymentMethod.QR)
+            {
+                payText.text =
                 $"Total: ${totalToPay}\n" +
-                $"Pago: ${simulatedTotal}\n" +
-                $"Vuelto esperado: ${change}\n" +
-                $"Vuelto entregado: ${playerGivenChange}\n\n" +
                 $"{cartInfo}";
+            }
+            else
+            {
+                payText.text =
+                    $"Total: ${totalToPay}\n" +
+                    $"Pago: ${simulatedTotal}\n" +
+                    $"Vuelto esperado: ${change}\n" +
+                    $"Vuelto entregado: ${playerGivenChange}\n\n" +
+                    $"{cartInfo}";
+            }
         }
     }
 

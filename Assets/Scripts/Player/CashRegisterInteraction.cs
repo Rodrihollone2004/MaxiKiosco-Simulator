@@ -20,6 +20,10 @@ public class CashRegisterInteraction : MonoBehaviour
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
+    [Header("QR Payment")]
+    [SerializeField] private QRPaymentHandler qrPaymentHandler;
+    private bool isQRPayment = false;
+
     [Header("Configurations")]
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private string cashRegisterTag = "CashRegister";
@@ -65,7 +69,7 @@ public class CashRegisterInteraction : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
-        NPC_Controller.onShowScreen += PeekClient;
+        NPC_Controller.onShowScreen += () => PeekClient();
     }
 
     private void Update()
@@ -99,15 +103,22 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (inCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
         {
-            if (playerEconomy.GetCurrentChange() == change)
+            if (isQRPayment)
             {
-                ConfirmPayment();
+                qrPaymentHandler.ConfirmQRPayment();
                 PeekClient();
-                experienceManager.AddExperience(10);
             }
             else
             {
-                Debug.Log("El vuelto aún no es correcto.");
+                if (playerEconomy.GetCurrentChange() == change)
+                {
+                    ConfirmPayment();
+                    PeekClient();
+                }
+                else
+                {
+                    Debug.Log("El vuelto aún no es correcto.");
+                }
             }
         }
     }
@@ -120,6 +131,7 @@ public class CashRegisterInteraction : MonoBehaviour
             if (hit.collider.CompareTag(cashRegisterTag))
             {
                 EnterCashRegisterMode(true, lockedCameraTarget);
+                PeekClient(false);
             }
         }
     }
@@ -155,7 +167,6 @@ public class CashRegisterInteraction : MonoBehaviour
         Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = lockCamera;
 
-        PeekClient();
         PlayRegisterSound(registerOpenSound);
     }
 
@@ -198,6 +209,19 @@ public class CashRegisterInteraction : MonoBehaviour
         change = clientPayment.Sum() - client.totalCart;
     }
 
+    public void ProcessQRPayment(Client client, int amount)
+    {
+        playerEconomy.ReceivePayment(amount);
+        PlayRegisterSound(paymentSound);
+        onFinishPath?.Invoke();
+        cashRegisterUI.ClearText();
+        change = 0;
+        StartCoroutine(queueManager.RemoveClient());
+        queueManager.UpdateQueuePositions();
+        Debug.Log("Pago QR confirmado");
+        experienceManager.AddExperience(10);
+    }
+
     private void ConfirmPayment()
     {
         playerEconomy.ReceivePayment(clientPayment.Sum());
@@ -208,6 +232,7 @@ public class CashRegisterInteraction : MonoBehaviour
         StartCoroutine(queueManager.RemoveClient());
         queueManager.UpdateQueuePositions();
         Debug.Log("Pago confirmado manualmente con ENTER.");
+        experienceManager.AddExperience(10);
     }
 
     private void PlayRegisterSound(AudioClip clip)
@@ -218,7 +243,7 @@ public class CashRegisterInteraction : MonoBehaviour
         }
     }
 
-    private void PeekClient()
+    public void PeekClient(bool moveCamera = true)
     {
         if (queueManager.ClientQueue.Count > 0)
         {
@@ -226,14 +251,32 @@ public class CashRegisterInteraction : MonoBehaviour
             nPC_Controller = currentClient.GetComponent<NPC_Controller>();
             CashRegisterContext.SetCurrentClient(nPC_Controller);
 
+            isQRPayment = currentClient.paymentMethod == Client.PaymentMethod.QR;
+
+            if (isQRPayment)
+            {
+                if (moveCamera && inCashRegister)
+                    EnterCashRegisterMode(true, lockedCameraTarget);
+
+                qrPaymentHandler.SetupQRPayment(currentClient);
+                cashRegisterUI.UpdatePaymentText(currentClient, new List<int>(), 0, nPC_Controller);
+            }
+            else
+            {
+                if(moveCamera && inCashRegister)
+                    EnterCashRegisterMode(false, limitedCameraTarget);
+
+                nPC_Controller = currentClient.GetComponent<NPC_Controller>();
+                CashRegisterContext.SetCurrentClient(nPC_Controller);
+                ProcessPayment(currentClient);
+                cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+            }
+
             if (queueManager.ClientQueue.Peek() == currentClient)
             {
                 CashRegisterInteraction.onFinishPath -= nPC_Controller.BackToStart;
                 CashRegisterInteraction.onFinishPath += nPC_Controller.BackToStart;
             }
-
-            ProcessPayment(currentClient); // Mostrar total del cliente al entrar
-            cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
         }
         else
             Debug.LogWarning("No hay clientes en la cola");

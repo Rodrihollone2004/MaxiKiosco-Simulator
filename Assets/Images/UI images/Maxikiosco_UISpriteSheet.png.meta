@@ -1,0 +1,684 @@
+fileFormatVersion: 2
+guid: a0dd89d7a9b66094e99e0fe32c171c00
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 653
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1e29f4e0423354f8562cacf3c19f85
+      internalID: 7475445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 701
+        width: 624
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25264e612b48ed648982803ef8a9f2c3
+      internalID: -915851473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 982
+        width: 342
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32b2bc2c26d075e49963d38861389037
+      internalID: 472664206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 894
+        width: 249
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b6e2c309f62b834f846c40c3e31a9de
+      internalID: -610817187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 894
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b76e1568fc64924084e744737738ac8
+      internalID: 1065557940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 894
+        width: 113
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6389619d442fe14cb0d428b6a7980f6
+      internalID: 1874573454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 894
+        width: 131
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f075d137b77414945977f47f23b220f2
+      internalID: -1455473573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 789
+        width: 342
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610354684250fda428c83171bb0e20bb
+      internalID: 1491399947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 701
+        width: 249
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f51afee86bc904ebae64809edb131e
+      internalID: 745607863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 701
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 536a99664dd598f4c961843a28e0b4e9
+      internalID: -702125669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 701
+        width: 113
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517f4e7f59cafb64ca93983b42526c47
+      internalID: 1383810716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 701
+        width: 131
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825bca76b9dbde54bb6aff1c0e842d99
+      internalID: 1451879484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 11
+        width: 624
+        height: 676
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be97f34379b0be04e99ca7d2f1149d7c
+      internalID: -374691503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 525
+        width: 158
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7475494059f5a34d9da5355845cbb0c
+      internalID: 917630965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 552
+        width: 106
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a012dedd7a7c3114f85be43687e08b33
+      internalID: -485141394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 574
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55322e99970781f4ab13f47eda5641db
+      internalID: -1375204057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 1718
+        y: 582
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3703f2ceb1116ba4a8ab176590f1309b
+      internalID: -447652777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 369
+        width: 63
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f74ba1627c0f64c9c2376e6b72cef0
+      internalID: -628337167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 383
+        width: 46
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b258843eb1f4b6840a7faefd6ba80295
+      internalID: 584649218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 396
+        width: 33
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14036bcfc5261b46b3fd31d11b0be62
+      internalID: 149228665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 411
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13dce20e914dedc409376d26b9b53ef7
+      internalID: -421573713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 179
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573eb4ccb314f654e8a8c87d14843fd9
+      internalID: -710276451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 196
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e819317c92c24314ba59d7e979bd8f65
+      internalID: 590822095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 14
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef4dc694bf6a51c4d84a001968243cb4
+      internalID: 1793729634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maxikiosco_UISpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 30
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203eece0e7772b0409b3c1bf63088981
+      internalID: -349843582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1b27f3aef941ab446a827c596686f280
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Maxikiosco_UISpriteSheet_0: 7475445
+      Maxikiosco_UISpriteSheet_1: -915851473
+      Maxikiosco_UISpriteSheet_10: 1383810716
+      Maxikiosco_UISpriteSheet_11: 1451879484
+      Maxikiosco_UISpriteSheet_12: -374691503
+      Maxikiosco_UISpriteSheet_13: 1844299165
+      Maxikiosco_UISpriteSheet_14: -751795952
+      Maxikiosco_UISpriteSheet_15: 917630965
+      Maxikiosco_UISpriteSheet_16: -506011899
+      Maxikiosco_UISpriteSheet_17: -1442333648
+      Maxikiosco_UISpriteSheet_18: -1465520067
+      Maxikiosco_UISpriteSheet_19: -485141394
+      Maxikiosco_UISpriteSheet_2: 472664206
+      Maxikiosco_UISpriteSheet_20: -1578028731
+      Maxikiosco_UISpriteSheet_21: -2024984009
+      Maxikiosco_UISpriteSheet_22: -1111870488
+      Maxikiosco_UISpriteSheet_23: 1231973601
+      Maxikiosco_UISpriteSheet_24: -339246369
+      Maxikiosco_UISpriteSheet_25: -1158593350
+      Maxikiosco_UISpriteSheet_26: 1548920446
+      Maxikiosco_UISpriteSheet_27: -1375204057
+      Maxikiosco_UISpriteSheet_28: -1846491136
+      Maxikiosco_UISpriteSheet_29: -447652777
+      Maxikiosco_UISpriteSheet_3: -610817187
+      Maxikiosco_UISpriteSheet_30: -735152522
+      Maxikiosco_UISpriteSheet_31: 1666429759
+      Maxikiosco_UISpriteSheet_32: 2081591136
+      Maxikiosco_UISpriteSheet_33: 1602905492
+      Maxikiosco_UISpriteSheet_34: 1644468709
+      Maxikiosco_UISpriteSheet_35: -652543680
+      Maxikiosco_UISpriteSheet_36: -500360232
+      Maxikiosco_UISpriteSheet_37: -628337167
+      Maxikiosco_UISpriteSheet_38: 584649218
+      Maxikiosco_UISpriteSheet_39: 149228665
+      Maxikiosco_UISpriteSheet_4: 1065557940
+      Maxikiosco_UISpriteSheet_40: -421573713
+      Maxikiosco_UISpriteSheet_41: -710276451
+      Maxikiosco_UISpriteSheet_42: 590822095
+      Maxikiosco_UISpriteSheet_43: 1793729634
+      Maxikiosco_UISpriteSheet_44: -349843582
+      Maxikiosco_UISpriteSheet_5: 1874573454
+      Maxikiosco_UISpriteSheet_6: -1455473573
+      Maxikiosco_UISpriteSheet_7: 1491399947
+      Maxikiosco_UISpriteSheet_8: 745607863
+      Maxikiosco_UISpriteSheet_9: -702125669
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
