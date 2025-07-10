@@ -6,6 +6,12 @@ using UnityEngine;
 public class CashRegisterUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text payText;
+    int totalToPay;
+    int simulatedTotal;
+    int change;
+    List<ProductInteractable> cart;
+    string cartInfo;
+
 
     public void UpdatePaymentText(Client client, List<int> clientPayment, int playerGivenChange, NPC_Controller nPC)
     {
@@ -13,15 +19,23 @@ public class CashRegisterUI : MonoBehaviour
 
         if (nPC.isInCashRegister)
         {
-            int totalToPay = client.CalculateCartTotal();
-            int simulatedTotal = clientPayment.Sum();
-            int change = simulatedTotal - totalToPay;
-            List<ProductInteractable> cart = client.GetCart();
-            string cartInfo = "Carrito:\n";
-            foreach (var product in cart)
+
+            if (!nPC.isPaying)
             {
-                cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
+                totalToPay = client.CalculateCartTotal();
+                simulatedTotal = clientPayment.Sum();
+                change = simulatedTotal - totalToPay;
+                cart = client.GetCart();
+                cartInfo = "Carrito:\n";
+                
+                foreach (ProductInteractable product in cart)
+                {
+                    if (!cartInfo.Contains(product.ProductData.Name))
+                        cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
+                }
             }
+
+
 
             if (client.paymentMethod == Client.PaymentMethod.QR)
             {

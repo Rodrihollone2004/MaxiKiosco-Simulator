@@ -13,6 +13,7 @@ public class NPC_Controller : MonoBehaviour
 
     public bool isInCashRegister;
     public bool isInDequeue;
+    public bool isPaying;
 
 
     public static event Action onShowScreen;
@@ -54,6 +55,7 @@ public class NPC_Controller : MonoBehaviour
         {
             isBack = false;
             isInDequeue = true;
+            isPaying = false;
 
             CashRegisterInteraction.onFinishPath -= BackToStart;
         }

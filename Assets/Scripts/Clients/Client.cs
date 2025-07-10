@@ -21,11 +21,6 @@ public class Client : MonoBehaviour
         wallet = new Wallet(); 
     }
 
-    private void Start()
-    {
-        PrintWallet();
-    }
-
     public void CalculateCost()
     {
         totalCart = CalculateCartTotal();

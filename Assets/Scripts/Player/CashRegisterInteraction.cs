@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -95,7 +96,17 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (inCashRegister && currentClient != null)
         {
-            if (nPC_Controller.isInCashRegister)
+            if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying)
+            {
+                currentClient.AddRandomProductsToCart();
+                currentClient.CalculateCost();
+
+                ProcessPayment(currentClient);
+                PeekClient();
+                cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+                nPC_Controller.isPaying = true;
+            }
+            else if (nPC_Controller.isInCashRegister && nPC_Controller.isPaying)
             {
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
             }
@@ -110,6 +121,8 @@ public class CashRegisterInteraction : MonoBehaviour
             }
             else
             {
+                Debug.Log($"Cambio esperado: {change} / Vuelto entregado: {playerEconomy.GetCurrentChange()}");
+
                 if (playerEconomy.GetCurrentChange() == change)
                 {
                     ConfirmPayment();
@@ -194,8 +207,6 @@ public class CashRegisterInteraction : MonoBehaviour
         if (currentClient != null)
             ProcessPayment(currentClient);
 
-        cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
-
         PlayRegisterSound(registerCloseSound);
 
         hasStoredTrueOriginal = false;
@@ -206,7 +217,7 @@ public class CashRegisterInteraction : MonoBehaviour
         if (queueManager.ClientQueue.Count == 0) return;
 
         clientPayment = client.ClientPayment;
-        change = clientPayment.Sum() - client.totalCart;
+        change = Mathf.Max(0, clientPayment.Sum() - client.totalCart);
     }
 
     public void ProcessQRPayment(Client client, int amount)
@@ -259,17 +270,15 @@ public class CashRegisterInteraction : MonoBehaviour
                     EnterCashRegisterMode(true, lockedCameraTarget);
 
                 qrPaymentHandler.SetupQRPayment(currentClient);
-                cashRegisterUI.UpdatePaymentText(currentClient, new List<int>(), 0, nPC_Controller);
             }
             else
             {
-                if(moveCamera && inCashRegister)
+                if (moveCamera && inCashRegister)
                     EnterCashRegisterMode(false, limitedCameraTarget);
 
                 nPC_Controller = currentClient.GetComponent<NPC_Controller>();
                 CashRegisterContext.SetCurrentClient(nPC_Controller);
                 ProcessPayment(currentClient);
-                cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
             }
 
             if (queueManager.ClientQueue.Peek() == currentClient)

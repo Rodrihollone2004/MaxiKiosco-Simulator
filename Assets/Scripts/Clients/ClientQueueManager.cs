@@ -165,8 +165,6 @@ public class ClientQueueManager : MonoBehaviour
             if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
             {
                 Client newClient = GetClientFromPool();
-                newClient.AddRandomProductsToCart();
-                newClient.CalculateCost();
                 newClient.NpcController.isInDequeue = false;
                 newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
 
