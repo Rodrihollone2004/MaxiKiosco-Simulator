@@ -37,7 +37,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
     public static event Action onFinishPath;
 
-    private bool inCashRegister = false;
+    public bool InCashRegister { get; set; }
     private bool canClickTheCashRegister = true;
 
     public List<int> clientPayment = new();
@@ -87,14 +87,15 @@ public class CashRegisterInteraction : MonoBehaviour
             ExitCashRegisterMode();
             computerUIScreenManager.ShowHomeScreen();
         }
-        if ((inCashRegister) && Input.GetKeyDown(KeyCode.Escape))
+        if ((InCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
+            InCashRegister = false;
             EnterCashRegisterMode(true, lockedCameraTarget);
             computerUIScreenManager.ShowHomeScreen();
         }
 
         // enter procesas el pago
-        if (inCashRegister && currentClient != null)
+        if (InCashRegister && currentClient != null)
         {
             if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying)
             {
@@ -112,7 +113,7 @@ public class CashRegisterInteraction : MonoBehaviour
             }
         }
 
-        if (inCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
+        if (InCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
         {
             if (isQRPayment)
             {
@@ -153,7 +154,6 @@ public class CashRegisterInteraction : MonoBehaviour
     public void EnterCashRegisterMode(bool lockCamera, Transform targetPosition)
     {
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
-        inCashRegister = true;
         playerMovement.enabled = false;
         moveCamera.enabled = false;
         canClickTheCashRegister = false;
@@ -187,7 +187,7 @@ public class CashRegisterInteraction : MonoBehaviour
     public void ExitCashRegisterMode()
     {
         // revierte todos los cambios anteriores, restaura la posicion de la camara y reactiva los controles
-        inCashRegister = false;
+        InCashRegister = false;
         playerMovement.enabled = true;
         moveCamera.enabled = true;
         canClickTheCashRegister = true;
@@ -266,15 +266,17 @@ public class CashRegisterInteraction : MonoBehaviour
 
             if (isQRPayment)
             {
-                if (moveCamera && inCashRegister)
+                if (moveCamera && InCashRegister)
                     EnterCashRegisterMode(true, lockedCameraTarget);
 
                 qrPaymentHandler.SetupQRPayment(currentClient);
             }
             else
             {
-                if (moveCamera && inCashRegister)
+                if (moveCamera && InCashRegister)
                     EnterCashRegisterMode(false, limitedCameraTarget);
+
+                qrPaymentHandler.CancelQRPayment();
 
                 nPC_Controller = currentClient.GetComponent<NPC_Controller>();
                 CashRegisterContext.SetCurrentClient(nPC_Controller);

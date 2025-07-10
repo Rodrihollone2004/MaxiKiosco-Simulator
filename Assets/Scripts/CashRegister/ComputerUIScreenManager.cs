@@ -47,5 +47,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         cashRegisterScreen.SetActive(true);
         cashRegisterInteraction.PeekClient();
+        cashRegisterInteraction.InCashRegister = true;
     }
 }
