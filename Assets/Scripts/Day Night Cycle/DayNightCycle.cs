@@ -49,7 +49,7 @@ public class DayNightCycle : MonoBehaviour
         _timeOfDay = 8f / 24f;
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
         pause = true;
-        daysText.text = $"Dia: {_dayNumber}";
+        daysText.text = $"{_dayNumber}";
     }
     private void Update()
     {
@@ -183,7 +183,7 @@ public class DayNightCycle : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = new Vector3(8, 1, 0);
 
-        daysText.text = $"Dia: {_dayNumber}";
+        daysText.text = $"{_dayNumber}";
 
         StartCoroutine(HideSummaryAfterDelay(5f));
     }
