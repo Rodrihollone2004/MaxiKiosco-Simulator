@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class StoreUI : MonoBehaviour
 {
+    [SerializeField] private List<Product> levelUpdate;
     [SerializeField] private ProductDataBase database;
     [SerializeField] private PlayerEconomy playerEconomy;
     [SerializeField] private Transform productButtonContainer;
@@ -81,6 +83,27 @@ public class StoreUI : MonoBehaviour
                     }
                 });
             }
+        }
+    }
+
+    public void UpdateProducts()
+    {
+        foreach (Product product in levelUpdate)
+        {
+            GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
+            TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
+            text.text = $"{product.Name} - ${product.PackPrice}";
+
+            Product capturedProduct = product;
+
+            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            {
+                bool purchased = playerEconomy.TryPurchase(capturedProduct);
+                if (purchased && capturedProduct.Prefab != null)
+                {
+                    SpawnProduct(capturedProduct);
+                }
+            });
         }
     }
 }

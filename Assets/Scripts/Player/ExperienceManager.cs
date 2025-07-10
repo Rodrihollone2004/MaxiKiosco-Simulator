@@ -14,10 +14,12 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI experienceText;
     [SerializeField] Image experienceFill;
+    StoreUI storeUI;
 
     private void Start()
     {
         UpdateLevel();
+        storeUI = FindObjectOfType<StoreUI>();
     }
 
     public void AddExperience(int amount)
@@ -32,6 +34,7 @@ public class ExperienceManager : MonoBehaviour
         if (totalExperience >= nextLevelsExperience)
         {
             currentLevel++;
+            UpdateProducts();
             UpdateLevel();
         }
     }
@@ -52,4 +55,18 @@ public class ExperienceManager : MonoBehaviour
         experienceText.text = start + " exp / " + end + " exp";
         experienceFill.fillAmount = (float)start / (float)end;
     }
+
+    void UpdateProducts()
+    {
+        switch (currentLevel)
+        {
+            case 2:
+                storeUI.UpdateProducts();
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }
