@@ -28,7 +28,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
-        CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
+        CustomizeProducts customizable = priceProducts.GetComponentInChildren<CustomizeProducts>();
         customizable.PopulateStore();
     }
 
