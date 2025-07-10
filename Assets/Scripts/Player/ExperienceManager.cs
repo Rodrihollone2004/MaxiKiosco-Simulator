@@ -14,12 +14,20 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI experienceText;
     [SerializeField] Image experienceFill;
+    [SerializeField] GameObject storeGO;
     StoreUI storeUI;
 
     private void Start()
     {
         UpdateLevel();
-        storeUI = FindObjectOfType<StoreUI>();
+        storeUI = storeGO.GetComponent<StoreUI>();
+    }
+
+    //SUBIR DE NIVEL MAS RAPIDO
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+            AddExperience(20);
     }
 
     public void AddExperience(int amount)
@@ -60,7 +68,8 @@ public class ExperienceManager : MonoBehaviour
     {
         switch (currentLevel)
         {
-            case 2:
+            case 1:
+                Debug.Log("Nuevos productos");
                 storeUI.UpdateProducts();
                 break;
             default:
