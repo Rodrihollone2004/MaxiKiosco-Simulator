@@ -202,6 +202,15 @@ public class DayNightCycle : MonoBehaviour
         pause = true;
         UpdateClock();
 
+        NPC_Controller[] currentNPCs = FindObjectsOfType<NPC_Controller>();
+        foreach (NPC_Controller npc in currentNPCs)
+        {
+            npc.currentNode = AStarManager.instance.StartNode;
+            queueManager.ReturnClientToPool(npc.client);
+            npc.isInCashRegister = false;
+            queueManager.ClientQueue.Clear();
+        }
+
         queueManager.ResetDailyStats();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

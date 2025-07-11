@@ -17,7 +17,7 @@ public class NPC_Controller : MonoBehaviour
 
 
     public static event Action onShowScreen;
-    private Client client;
+    public Client client { get; private set; }
     public Animator animatorNPC { get; private set; }
 
     private void Start()

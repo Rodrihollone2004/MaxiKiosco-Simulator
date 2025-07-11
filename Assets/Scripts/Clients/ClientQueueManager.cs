@@ -124,7 +124,7 @@ public class ClientQueueManager : MonoBehaviour
 
     private Vector3 CalculateQueuePosition(int index, Transform pos)
     {
-        return pos.position + Vector3.back * distanceBetweenClients * index;
+        return pos.position + Vector3.left * distanceBetweenClients * index;
     }
 
     private IEnumerator MoveClientToPosition(GameObject client, Vector3 targetPos)
