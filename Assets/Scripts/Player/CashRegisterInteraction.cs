@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -278,15 +277,21 @@ public class CashRegisterInteraction : MonoBehaviour
 
             if (isQRPayment)
             {
-                if (moveCamera && InCashRegister)              
-                    EnterCashRegisterMode(true, lockedCameraTarget);              
+                if (moveCamera && InCashRegister)
+                {
+                    EnterCashRegisterMode(true, lockedCameraTarget);
+                    crosshair.SetActive(false);
+                }
 
                 qrPaymentHandler.SetupQRPayment(currentClient);
             }
             else
             {
                 if (moveCamera && InCashRegister)
+                {
                     EnterCashRegisterMode(false, limitedCameraTarget);
+                    crosshair.SetActive(true);
+                }
 
                 qrPaymentHandler.CancelQRPayment();
 

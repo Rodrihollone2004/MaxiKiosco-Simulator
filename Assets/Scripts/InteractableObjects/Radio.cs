@@ -21,7 +21,7 @@ public class Radio : MonoBehaviour, IInteractable
         if (!_audioSource.isPlaying)
             _audioSource.Play();
         else
-            _audioSource.Stop();
+            _audioSource.Pause();
     }
 
     public void Highlight(){}
