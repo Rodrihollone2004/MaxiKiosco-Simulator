@@ -9,6 +9,7 @@ public class ProductUIManager : MonoBehaviour
     [SerializeField] private GameObject hintUI;
     [SerializeField] private TMP_Text amountText;
     [SerializeField] private TMP_Text priceText;
+    [SerializeField] private TMP_Text nameText;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class ProductUIManager : MonoBehaviour
     {
         HideInfo();
 
+        nameText.text = $"{name}";
         amountText.text = $"Restantes: {amount}";
         priceText.text = $"Precio: {price}";
         hintUI.SetActive(true);

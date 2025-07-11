@@ -1,5 +1,6 @@
-using Unity.Burst.CompilerServices;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Transform holdPosition;
+
     private FurnitureBox furnitureBox;
     private ProductPlaceManager productPlace;
 
@@ -18,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float throwForce = 10f;
 
     [SerializeField] private GameObject dropHintUI;
+    [SerializeField] private TMP_Text hintText;
 
     public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
 
@@ -158,9 +161,9 @@ public class PlayerInteraction : MonoBehaviour
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
             furnitureBox = fur;
-        
-        if(objToPickUp.TryGetComponent(out ProductPlaceManager product))
-            productPlace = product;
+
+        if (objToPickUp.TryGetComponent(out ProductPlaceManager productPlace))
+            this.productPlace = productPlace;
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
             heldObjectRb = rb;
@@ -179,7 +182,22 @@ public class PlayerInteraction : MonoBehaviour
         heldObject.transform.localRotation = Quaternion.identity;
 
         if (dropHintUI != null)
+        {
             dropHintUI.SetActive(true);
+
+            string productName = "Producto desconocido";
+
+            ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
+            if (interactable != null && interactable.ProductData != null)
+            {
+                productName = interactable.ProductData.Name;
+            }
+
+            hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+        }
 
         if (audioSource != null && pickupSound != null)
             audioSource.PlayOneShot(pickupSound);
@@ -209,7 +227,10 @@ public class PlayerInteraction : MonoBehaviour
                 heldObjectCollider.isTrigger = false;
 
             if (dropHintUI != null)
+            {
                 dropHintUI.SetActive(false);
+                hintText.text = "";
+            }
 
             heldObject.transform.SetParent(null);
             heldObject = null;
