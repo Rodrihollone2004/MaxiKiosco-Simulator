@@ -40,6 +40,8 @@ public class DayNightCycle : MonoBehaviour
     [Header("Configs")]
     [SerializeField] private DailySummary summaryUI;
     [SerializeField] private ClientQueueManager queueManager;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject sleepButton;
 
     public bool IsPaused => pause;
 
@@ -64,16 +66,38 @@ public class DayNightCycle : MonoBehaviour
         AdjustSunColor();
         UpdateModules();
 
-        if (pause && Input.GetKeyDown(KeyCode.P))
+        if (pause)
         {
-            if (_timeOfDay >= (22f / 24f))
+            if (pause)
             {
-                StartNewDay();
+                if (_timeOfDay >= (22f / 24f))
+                {
+                    startButton.SetActive(false);
+                    sleepButton.SetActive(true);
+                }
+                else
+                {
+                    startButton.SetActive(true);
+                    sleepButton.SetActive(false);
+                }
             }
             else
             {
-                pause = false;
+                startButton.SetActive(false);
+                sleepButton.SetActive(false);
             }
+        }
+    }
+    public void OnStartButtonPressed()
+    {
+        pause = false;
+    }
+
+    public void OnSleepButtonPressed()
+    {
+        if (_timeOfDay >= (22f / 24f))
+        {
+            StartNewDay();
         }
     }
     private void UpdateTimeScale()
