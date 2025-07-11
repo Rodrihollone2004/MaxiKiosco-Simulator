@@ -66,27 +66,26 @@ public class DayNightCycle : MonoBehaviour
         AdjustSunColor();
         UpdateModules();
 
+
         if (pause)
         {
-            if (pause)
+            if (_timeOfDay >= (22f / 24f))
             {
-                if (_timeOfDay >= (22f / 24f))
-                {
-                    startButton.SetActive(false);
-                    sleepButton.SetActive(true);
-                }
-                else
-                {
-                    startButton.SetActive(true);
-                    sleepButton.SetActive(false);
-                }
+                startButton.SetActive(false);
+                sleepButton.SetActive(true);
             }
             else
             {
-                startButton.SetActive(false);
+                startButton.SetActive(true);
                 sleepButton.SetActive(false);
             }
         }
+        else
+        {
+            startButton.SetActive(false);
+            sleepButton.SetActive(false);
+        }
+
     }
     public void OnStartButtonPressed()
     {
