@@ -3,7 +3,32 @@ guid: ebc34b02447e80d4892717693f49d6b1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Billete 10
+    second: {fileID: 2100000, guid: 8393f68b3b2cf27419371c66f3955a8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Billete menos 10
+    second: {fileID: 2100000, guid: 048be33c95b9e3e41a8a02b19a595fe2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Borde Billetes
+    second: {fileID: 2100000, guid: 2e656a5a57ab03444985b57a51a83040, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 1397f802f8e594642b1339017b6b7e19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 5320d69d39d37044683d70570b8127c1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

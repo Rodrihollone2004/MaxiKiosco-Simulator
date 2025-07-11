@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private bool wasGrounded;
 
-    [Header("Sounds")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip jumpSound, landSound, walkSound, sprintSound;
+    //[Header("Sounds")]
+    //[SerializeField] private AudioSource audioSource;
+    //[SerializeField] private AudioClip jumpSound, landSound, walkSound, sprintSound;
 
     private bool isWalking = false;
 
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!wasGrounded)
             {
-                audioSource.PlayOneShot(landSound);
+                //audioSource.PlayOneShot(landSound);
                 wasGrounded = true;
             }
         }
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
             wasGrounded = false;
         }
-        HandleFootsteps();
+        //HandleFootsteps();
     }
 
     // mueve al jugador con fisicas
@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        audioSource.PlayOneShot(jumpSound);
+        //audioSource.PlayOneShot(jumpSound);
     }
 
     // reactiva el salto
@@ -192,36 +192,36 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // para sonidos
-    private void HandleFootsteps()
-    {
-        // No reproducir pasos si estamos en el aire
-        if (!grounded) return;
+    //private void HandleFootsteps()
+    //{
+    //    // No reproducir pasos si estamos en el aire
+    //    if (!grounded) return;
 
-        if (grounded && (horizontalInput != 0 || verticalInput != 0))
-        {
-            if (state == MovementState.walking)
-            {
-                if (!audioSource.isPlaying || audioSource.clip != walkSound)
-                {
-                    audioSource.clip = walkSound;
-                    audioSource.Play();
-                }
-            }
-            else if (state == MovementState.sprinting)
-            {
-                if (!audioSource.isPlaying || audioSource.clip != sprintSound)
-                {
-                    audioSource.clip = sprintSound;
-                    audioSource.Play();
-                }
-            }
-            isWalking = true;
-        }
-        else if (isWalking)
-        {
-            audioSource.Stop();
-            isWalking = false;
-        }
-    }
+    //    if (grounded && (horizontalInput != 0 || verticalInput != 0))
+    //    {
+    //        if (state == MovementState.walking)
+    //        {
+    //            if (!audioSource.isPlaying || audioSource.clip != walkSound)
+    //            {
+    //                audioSource.clip = walkSound;
+    //                audioSource.Play();
+    //            }
+    //        }
+    //        else if (state == MovementState.sprinting)
+    //        {
+    //            if (!audioSource.isPlaying || audioSource.clip != sprintSound)
+    //            {
+    //                audioSource.clip = sprintSound;
+    //                audioSource.Play();
+    //            }
+    //        }
+    //        isWalking = true;
+    //    }
+    //    else if (isWalking)
+    //    {
+    //        audioSource.Stop();
+    //        isWalking = false;
+    //    }
+    //}
 
 }

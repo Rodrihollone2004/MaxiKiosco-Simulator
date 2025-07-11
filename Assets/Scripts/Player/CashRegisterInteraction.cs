@@ -18,6 +18,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] Rigidbody playerRb;
     [SerializeField] ComputerUIScreenManager computerUIScreenManager;
     [SerializeField] ExperienceManager experienceManager;
+    [SerializeField] GameObject crosshair;
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
@@ -29,11 +30,11 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private string cashRegisterTag = "CashRegister";
 
-    [Header("Sounds")]
-    [SerializeField] private AudioSource registerAudioSource;
-    [SerializeField] private AudioClip registerOpenSound;
-    [SerializeField] private AudioClip registerCloseSound;
-    [SerializeField] private AudioClip paymentSound;
+    //[Header("Sounds")]
+    //[SerializeField] private AudioSource registerAudioSource;
+    //[SerializeField] private AudioClip registerOpenSound;
+    //[SerializeField] private AudioClip registerCloseSound;
+    //[SerializeField] private AudioClip paymentSound;
 
     public static event Action onFinishPath;
 
@@ -58,14 +59,14 @@ public class CashRegisterInteraction : MonoBehaviour
     public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
     public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
 
-    private void Awake()
-    {
-        if (registerAudioSource == null)
-        {
-            registerAudioSource = gameObject.AddComponent<AudioSource>();
-            registerAudioSource.spatialBlend = 0.8f;
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (registerAudioSource == null)
+    //    {
+    //        registerAudioSource = gameObject.AddComponent<AudioSource>();
+    //        registerAudioSource.spatialBlend = 0.8f;
+    //    }
+    //}
 
     private void Start()
     {
@@ -172,7 +173,15 @@ public class CashRegisterInteraction : MonoBehaviour
         originalCameraRot = playerCamera.transform.rotation;
 
         playerCamera.transform.position = targetPosition.position;
-        playerCamera.transform.rotation = targetPosition.rotation;
+        if (targetPosition == limitedCameraTarget)
+        {
+            playerCamera.transform.rotation = Quaternion.Euler(0, 180, 0);
+            crosshair.SetActive(true);
+        }
+        else
+        {
+            playerCamera.transform.rotation = targetPosition.rotation;
+        }
 
         playerCam.IsInCashRegister = true;
         playerCam.IsLocked = lockCamera;
@@ -180,7 +189,9 @@ public class CashRegisterInteraction : MonoBehaviour
         Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = lockCamera;
 
-        PlayRegisterSound(registerOpenSound);
+        crosshair.SetActive(false);
+
+        //PlayRegisterSound(registerOpenSound);
     }
 
     // configuracion al salir de la caja registradora
@@ -203,11 +214,12 @@ public class CashRegisterInteraction : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        crosshair.SetActive(true);
 
         if (currentClient != null)
             ProcessPayment(currentClient);
 
-        PlayRegisterSound(registerCloseSound);
+        //PlayRegisterSound(registerCloseSound);
 
         hasStoredTrueOriginal = false;
     }
@@ -223,7 +235,7 @@ public class CashRegisterInteraction : MonoBehaviour
     public void ProcessQRPayment(Client client, int amount)
     {
         playerEconomy.ReceivePayment(amount);
-        PlayRegisterSound(paymentSound);
+        //PlayRegisterSound(paymentSound);
         onFinishPath?.Invoke();
         cashRegisterUI.ClearText();
         change = 0;
@@ -236,7 +248,7 @@ public class CashRegisterInteraction : MonoBehaviour
     private void ConfirmPayment()
     {
         playerEconomy.ReceivePayment(clientPayment.Sum());
-        PlayRegisterSound(paymentSound);
+        //PlayRegisterSound(paymentSound);
         onFinishPath?.Invoke();
         cashRegisterUI.ClearText();
         change = 0;
@@ -246,13 +258,13 @@ public class CashRegisterInteraction : MonoBehaviour
         experienceManager.AddExperience(10);
     }
 
-    private void PlayRegisterSound(AudioClip clip)
-    {
-        if (registerAudioSource != null && clip != null)
-        {
-            registerAudioSource.PlayOneShot(clip);
-        }
-    }
+    //private void PlayRegisterSound(AudioClip clip)
+    //{
+    //    if (registerAudioSource != null && clip != null)
+    //    {
+    //        registerAudioSource.PlayOneShot(clip);
+    //    }
+    //}
 
     public void PeekClient(bool moveCamera = true)
     {
@@ -266,8 +278,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
             if (isQRPayment)
             {
-                if (moveCamera && InCashRegister)
-                    EnterCashRegisterMode(true, lockedCameraTarget);
+                if (moveCamera && InCashRegister)              
+                    EnterCashRegisterMode(true, lockedCameraTarget);              
 
                 qrPaymentHandler.SetupQRPayment(currentClient);
             }

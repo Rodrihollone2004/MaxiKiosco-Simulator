@@ -309,8 +309,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.17808628, y: 0.19412774, z: 0.29966927}
-  m_Center: {x: 0.0006632805, y: 0.09955549, z: -0.0014915466}
+  m_Size: {x: 0.1607256, y: 0.19277109, z: 0.28476143}
+  m_Center: {x: 0.0013298988, y: 0.100233816, z: -0.0019741058}
 --- !u!114 &4913361402872570611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,5 +341,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _productData: {fileID: 11400000, guid: c5ea297a06dc257478943f4602673999, type: 2}
-  _highlightWidth: 1.03
   currentAmountProduct: 0
