@@ -26,6 +26,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
+        cashRegisterInteraction.InCashRegister = false;
     }
 
     public void ShowPriceProducts()
@@ -35,6 +36,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         backgrounds.SetActive(false);
+        cashRegisterInteraction.InCashRegister = false;
         CustomizeProducts customizable = priceProducts.GetComponentInChildren<CustomizeProducts>();
         customizable.PopulateStore();
     }
@@ -46,6 +48,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
+        cashRegisterInteraction.InCashRegister = false;
     }
 
     public void ShowCashRegisterScreen()
