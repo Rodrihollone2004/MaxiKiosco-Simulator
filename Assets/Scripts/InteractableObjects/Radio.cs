@@ -8,7 +8,6 @@ public class Radio : MonoBehaviour, IInteractable
     private int currentSongIndex = 0;
 
     public bool CanBePickedUp => false;
-    public bool IsHeld { get; private set; } = false;
 
     private void Awake()
     {
