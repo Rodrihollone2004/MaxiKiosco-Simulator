@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -23,13 +24,17 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     {
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
-        AllZones = FindObjectsOfType<PlacementZoneProducts>();
+        AllZones = new PlacementZoneProducts[0];
     }
 
     public void Interact()
     {
         if (currentPreview != null)
             Destroy(currentPreview);
+
+        Array.Clear(AllZones, 0, AllZones.Length);
+        AllZones = FindObjectsOfType<PlacementZoneProducts>();
+
 
         containerPrefab = gameObject;
 
