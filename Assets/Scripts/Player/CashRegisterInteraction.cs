@@ -55,6 +55,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
     public NPC_Controller nPC_Controller;
 
+    private Coroutine cameraTransitionCoroutine;
     public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
     public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
 
@@ -168,8 +169,8 @@ public class CashRegisterInteraction : MonoBehaviour
             hasStoredTrueOriginal = true;
         }
 
-        originalCameraPos = playerCamera.transform.position;
-        originalCameraRot = playerCamera.transform.rotation;
+        if (!InCashRegister)
+            MoveCameraSmooth(targetPosition, 0.5f);
 
         playerCamera.transform.position = targetPosition.position;
         if (targetPosition == limitedCameraTarget)
@@ -196,7 +197,6 @@ public class CashRegisterInteraction : MonoBehaviour
     // configuracion al salir de la caja registradora
     public void ExitCashRegisterMode()
     {
-        // revierte todos los cambios anteriores, restaura la posicion de la camara y reactiva los controles
         InCashRegister = false;
         playerMovement.enabled = true;
         moveCamera.enabled = true;
@@ -204,8 +204,12 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (playerCamera != null)
         {
-            playerCamera.transform.position = trueOriginalCameraPos;
-            playerCamera.transform.rotation = trueOriginalCameraRot;
+            Transform tempTarget = new GameObject("TempCameraTarget").transform;
+            tempTarget.position = trueOriginalCameraPos;
+            tempTarget.rotation = trueOriginalCameraRot;
+
+            MoveCameraSmooth(tempTarget, 0.5f);
+            Destroy(tempTarget.gameObject, 1f);
         }
 
         playerCam.IsInCashRegister = false;
@@ -217,8 +221,6 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (currentClient != null)
             ProcessPayment(currentClient);
-
-        //PlayRegisterSound(registerCloseSound);
 
         hasStoredTrueOriginal = false;
     }
@@ -308,5 +310,42 @@ public class CashRegisterInteraction : MonoBehaviour
         }
         else
             Debug.LogWarning("No hay clientes en la cola");
+    }
+
+    private void MoveCameraSmooth(Transform target, float duration, bool forceRotation = true)
+    {
+        if (cameraTransitionCoroutine != null)
+            StopCoroutine(cameraTransitionCoroutine);
+
+        cameraTransitionCoroutine = StartCoroutine(MoveCameraCoroutine(target, duration, forceRotation));
+    }
+
+    private IEnumerator MoveCameraCoroutine(Transform target, float duration, bool forceRotation)
+    {
+        Vector3 startPos = playerCamera.transform.position;
+        Quaternion startRot = playerCamera.transform.rotation;
+
+        Vector3 endPos = target.position;
+        Quaternion endRot;
+
+        if (forceRotation && target == limitedCameraTarget)
+            endRot = Quaternion.Euler(0, 180, 0);
+        else
+            endRot = target.rotation;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            playerCamera.transform.position = Vector3.Lerp(startPos, endPos, t);
+            playerCamera.transform.rotation = Quaternion.Slerp(startRot, endRot, t);
+
+            yield return null;
+        }
+
+        playerCamera.transform.position = endPos;
+        playerCamera.transform.rotation = endRot;
     }
 }
