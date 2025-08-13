@@ -56,7 +56,10 @@ public class FurnitureBox : MonoBehaviour, IInteractable
             SetPreviewColor(finalObj, Color.blue);
 
             Collider col = finalObj.GetComponent<Collider>();
+            Collider[] colliders = finalObj.GetComponentsInChildren<Collider>();
             if (col != null) col.enabled = true;
+            foreach (Collider collider in colliders) 
+                collider.enabled = true;
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             moveObject.enabled = false;
