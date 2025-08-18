@@ -185,7 +185,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             dropHintUI.SetActive(true);
 
-            string productName = "Heladera";
+            string productName = heldObject.name;
 
             ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
             if (interactable != null && interactable.ProductData != null)
