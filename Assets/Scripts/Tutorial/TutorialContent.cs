@@ -79,7 +79,6 @@ public class TutorialContent : MonoBehaviour
 
     public void CompleteStep(int stepIndex)
     {
-        // Solo avanza si el paso actual coincide
         if (currentIndexGuide == stepIndex)
         {
             NextTextToGuide(false);
