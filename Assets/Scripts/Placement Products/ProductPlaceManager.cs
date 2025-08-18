@@ -35,7 +35,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         Array.Clear(AllZones, 0, AllZones.Length);
         AllZones = FindObjectsOfType<PlacementZoneProducts>();
 
-
         containerPrefab = gameObject;
 
         buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
@@ -49,8 +48,11 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         Collider col = currentPreview.GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
+        ProductInteractable productInteractable = currentPreview.GetComponent<ProductInteractable>();
+        string productPlaceZone = productInteractable.ProductData.PlaceZone;
+
         foreach (PlacementZoneProducts zone in AllZones)
-            zone.ShowVisual();
+            zone.ShowVisual(productPlaceZone);
     }
 
     public void PlaceProduct()

@@ -31,6 +31,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
     {
         lightsOn = !lightsOn;
 
+        TutorialContent.Instance.CompleteStep(3);
+
         foreach (Light light in lightsToControl)
         {
             if (light != null)

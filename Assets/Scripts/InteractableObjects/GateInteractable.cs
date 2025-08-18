@@ -31,10 +31,15 @@ public class GateInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if(TutorialContent.Instance.CurrentIndexGuide == 1)
+            return;
+
         if (!isMoving)
         {
             if (!isOpen)
             {
+                TutorialContent.Instance.CompleteStep(2);
+
                 isMoving = true;
                 isClosing = false;
             }

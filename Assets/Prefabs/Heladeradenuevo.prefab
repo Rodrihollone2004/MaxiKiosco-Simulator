@@ -245,11 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69e9966c7588c74fac5b29b261c2de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualPlacement:
-  - {fileID: 6153753063935315291}
-  - {fileID: 3673935504625998938}
-  - {fileID: 8500837714683675215}
-  - {fileID: 8982624885705942223}
+  listZones:
+  - name: Heladera
+    visualPlacements:
+    - {fileID: 6153753063935315291}
+    - {fileID: 3673935504625998938}
+    - {fileID: 8500837714683675215}
+    - {fileID: 8982624885705942223}
 --- !u!1 &3232415718915978942
 GameObject:
   m_ObjectHideFlags: 0

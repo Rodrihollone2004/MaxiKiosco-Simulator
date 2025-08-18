@@ -4,12 +4,14 @@ using UnityEngine;
 public class Product : Item
 {
     [SerializeField] private int _price;
+    [SerializeField] private string _placeZone;
     [SerializeField] private int _packSize;
     [SerializeField] private int _currentAmount;
     [SerializeField] private int _packPrice;
     [SerializeField] private GameObject prefab;
 
     public int Price { get => _price; set => _price = value; }
+    public string PlaceZone { get => _placeZone; set => _placeZone = value; }
     public int PackSize => _packSize;
     public int PackPrice => _packPrice;
 
