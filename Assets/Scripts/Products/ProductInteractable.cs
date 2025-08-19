@@ -12,6 +12,8 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     [Header("Config")]
     [SerializeField] private bool showNameOnHighlight = true;
 
+    public bool IsPlaced { get; set; }
+
     public bool ShowNameOnHighlight => showNameOnHighlight;
 
     public Product ProductData => _productData;

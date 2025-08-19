@@ -62,6 +62,9 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
             finalObj.SetActive(true);
             SetPreviewColor(finalObj, Color.blue);
+            
+            ProductInteractable product = finalObj.GetComponent<ProductInteractable>();
+            product.IsPlaced = true;
 
             Collider col = finalObj.GetComponent<Collider>();
             if (col != null) col.enabled = true;

@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -112,15 +111,26 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         ProductInteractable product = hit.collider.GetComponentInChildren<ProductInteractable>(true);
 
-                        if (product != null && product.ProductData != null && product.ShowNameOnHighlight)
-                        {
-                            highlightPanel.SetActive(true);
-                            highlightNameText.text = product.ProductData.Name;
-                        }
-                        else
-                        {
-                            highlightPanel.SetActive(false);
-                        }
+                        if (product != null && product.ProductData != null)
+                            if (product.ShowNameOnHighlight && !product.IsPlaced)
+                            {
+                                highlightPanel.SetActive(true);
+                                highlightNameText.text = product.ProductData.Name;
+                            }
+                            else
+                            {
+                                highlightPanel.SetActive(false);
+                            }
+                        else if (hit.collider.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+                            if (furnitureBox != null && furnitureBox.ShowNameOnHighlight)
+                            {
+                                highlightPanel.SetActive(true);
+                                highlightNameText.text = furnitureBox.name;
+                            }
+                            else
+                            {
+                                highlightPanel.SetActive(false);
+                            }
                     }
                 }
             }
@@ -181,6 +191,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             heldBroom = broom;
             heldBroom.SetHeld(true);
+
+            hintText.text = $"{broom.name}\n" +
+                    $"LMB para limpiar\n" +
+                    $"G  para soltar\n";
         }
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
@@ -215,12 +229,21 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null && interactable.ProductData != null)
             {
                 productName = interactable.ProductData.Name;
-            }
 
-            hintText.text = $"{productName}\n" +
+                hintText.text = $"{productName}\n" +
                     $"E  para colocar\n" +
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
+            }
+            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+            {
+                productName = furnitureBox.name;
+
+                hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+            }
         }
 
         if (audioSource != null && pickupSound != null)

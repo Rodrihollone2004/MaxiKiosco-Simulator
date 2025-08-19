@@ -55,7 +55,8 @@ public class PreviewValidator : MonoBehaviour
 
         Color targetColor = IsValidPlacement ? validColor : invalidColor;
         block = new MaterialPropertyBlock();
-        block.SetColor("_BaseColor", targetColor);
+        block.SetColor("_Color", targetColor);
+        block.SetFloat("_Scale", 1.03f);
 
         foreach (MeshRenderer mesh in meshRenderer)
             mesh.SetPropertyBlock(block);
