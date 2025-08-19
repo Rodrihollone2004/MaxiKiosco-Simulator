@@ -9,6 +9,11 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     [SerializeField] private Product _productData;
     [SerializeField] int currentAmountProduct;
 
+    [Header("Config")]
+    [SerializeField] private bool showNameOnHighlight = true;
+
+    public bool ShowNameOnHighlight => showNameOnHighlight;
+
     public Product ProductData => _productData;
     public bool CanBePickedUp => false;
 

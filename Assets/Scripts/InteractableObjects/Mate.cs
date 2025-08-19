@@ -5,6 +5,8 @@ public class Mate : MonoBehaviour, IInteractable
     private AudioSource _audioSource;
 
     public bool CanBePickedUp => false;
+    public bool ShowNameOnHighlight => false;
+
 
     private void Awake()
     {

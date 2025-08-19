@@ -12,6 +12,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
     private MaterialPropertyBlock _propBlock;
 
     public bool CanBePickedUp => false;
+    public bool ShowNameOnHighlight => false;
+
 
     private void Awake()
     {

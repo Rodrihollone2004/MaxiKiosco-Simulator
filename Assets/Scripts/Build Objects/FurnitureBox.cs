@@ -15,6 +15,8 @@ public class FurnitureBox : MonoBehaviour, IInteractable
     PreviewValidator previewValidator;
 
     public bool CanBePickedUp => true;
+    public bool ShowNameOnHighlight => true;
+
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZone[] AllZones { get; private set; }
 

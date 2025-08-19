@@ -39,6 +39,10 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask trashLayer;
     private Broom heldBroom;
 
+    [Header("UI Highlight Info")]
+    [SerializeField] private GameObject highlightPanel;
+    [SerializeField] private TMP_Text highlightNameText;
+
     private void Update()
     {
         HandleHighlight();
@@ -85,6 +89,9 @@ public class PlayerInteraction : MonoBehaviour
                 currentInteractable.Unhighlight();
                 currentInteractable = null;
             }
+
+            if (highlightPanel != null)
+                highlightPanel.SetActive(false);
             return;
         }
 
@@ -100,6 +107,21 @@ public class PlayerInteraction : MonoBehaviour
 
                     currentInteractable = interactable;
                     currentInteractable.Highlight();
+
+                    if (highlightPanel != null && highlightNameText != null)
+                    {
+                        ProductInteractable product = hit.collider.GetComponentInChildren<ProductInteractable>(true);
+
+                        if (product != null && product.ProductData != null && product.ShowNameOnHighlight)
+                        {
+                            highlightPanel.SetActive(true);
+                            highlightNameText.text = product.ProductData.Name;
+                        }
+                        else
+                        {
+                            highlightPanel.SetActive(false);
+                        }
+                    }
                 }
             }
         }
@@ -110,6 +132,8 @@ public class PlayerInteraction : MonoBehaviour
                 currentInteractable.Unhighlight();
                 currentInteractable = null;
             }
+            if (highlightPanel != null)
+                highlightPanel.SetActive(false);
         }
     }
 

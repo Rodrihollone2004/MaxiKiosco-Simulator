@@ -4,6 +4,8 @@ public class Trash : MonoBehaviour
 {
     private ClientTrashSpawner spawner;
     public bool CanBeCleaned => true;
+    public bool ShowNameOnHighlight => false;
+
 
     private void Awake()
     {

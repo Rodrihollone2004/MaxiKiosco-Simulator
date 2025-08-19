@@ -9,6 +9,8 @@ public class Broom : MonoBehaviour, IInteractable
     private MaterialPropertyBlock _propBlock;
 
     public bool CanBePickedUp => true;
+    public bool ShowNameOnHighlight => false;
+
     public bool IsHeld { get; private set; } = false;
 
     private void Awake()
