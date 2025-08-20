@@ -13,7 +13,6 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] Transform lockedCameraTarget;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] PlayerCam playerCam;
-    [SerializeField] MoveCamera moveCamera;
     [SerializeField] Rigidbody playerRb;
     [SerializeField] ComputerUIScreenManager computerUIScreenManager;
     [SerializeField] ExperienceManager experienceManager;
@@ -156,7 +155,6 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
         playerMovement.enabled = false;
-        moveCamera.enabled = false;
         canClickTheCashRegister = false;
 
         playerRb.velocity = Vector3.zero;
@@ -199,7 +197,6 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         InCashRegister = false;
         playerMovement.enabled = true;
-        moveCamera.enabled = true;
         canClickTheCashRegister = true;
 
         if (playerCamera != null)

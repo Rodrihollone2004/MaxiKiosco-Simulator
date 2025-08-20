@@ -44,6 +44,7 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private GameObject sleepButton;
 
     public bool IsPaused => pause;
+    public bool IsComplete;
 
     private void Start()
     {
@@ -128,6 +129,7 @@ public class DayNightCycle : MonoBehaviour
 
         if (previousTimeOfDay < (22f / 24f) && _timeOfDay >= (22f / 24f))
         {
+            IsComplete = true;
             pause = true;
             _timeOfDay = 22f / 24f;
         }
@@ -212,8 +214,7 @@ public class DayNightCycle : MonoBehaviour
 
         queueManager.ResetDailyStats();
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(8, 1, 0);
+        IsComplete = false;
 
         daysText.text = $"{_dayNumber}";
 
