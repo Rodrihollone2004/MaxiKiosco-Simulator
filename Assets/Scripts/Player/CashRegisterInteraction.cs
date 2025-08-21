@@ -240,7 +240,9 @@ public class CashRegisterInteraction : MonoBehaviour
         StartCoroutine(queueManager.RemoveClient());
         queueManager.UpdateQueuePositions();
         Debug.Log("Pago QR confirmado");
-        experienceManager.AddExperience(10);
+
+        if (currentClient.totalCart > 0)
+            experienceManager.AddExperience(10);
     }
 
     private void ConfirmPayment()
@@ -253,7 +255,9 @@ public class CashRegisterInteraction : MonoBehaviour
         StartCoroutine(queueManager.RemoveClient());
         queueManager.UpdateQueuePositions();
         Debug.Log("Pago confirmado manualmente con ENTER.");
-        experienceManager.AddExperience(10);
+
+        if (currentClient.totalCart > 0)
+            experienceManager.AddExperience(10);
     }
 
     //private void PlayRegisterSound(AudioClip clip)

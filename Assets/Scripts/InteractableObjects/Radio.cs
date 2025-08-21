@@ -29,13 +29,16 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (_audioSource.isPlaying)
         {
-            NextSong();
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            PreviousSong();
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                NextSong();
+            }
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                PreviousSong();
+            }
         }
 
         // Verificar si la canción terminó y pasar a la siguiente
