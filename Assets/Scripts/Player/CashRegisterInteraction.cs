@@ -221,6 +221,8 @@ public class CashRegisterInteraction : MonoBehaviour
                 startTarget.position = startCameraPos;
                 startTarget.rotation = startCameraRot;
 
+                dayNightCycle.sleepPressed = false;
+
                 MoveCameraSmooth(startTarget, 0.5f);
                 Destroy(startTarget.gameObject, 1f);
             }

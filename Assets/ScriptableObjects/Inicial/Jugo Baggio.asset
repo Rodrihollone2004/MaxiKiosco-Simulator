@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Jugo Baggio
+  m_EditorClassIdentifier: 
+  _name: Jugo Baggio
+  _id: 3
+  _price: 700
+  _placeZone: Heladera
+  _packSize: 18
+  _currentAmount: 18
+  _packPrice: 12600
+  prefab: {fileID: 1804102773027477889, guid: 3256df8be3208294d94c4b0cf7e29f76, type: 3}
