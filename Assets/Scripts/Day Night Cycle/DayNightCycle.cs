@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -43,7 +44,15 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject sleepButton;
 
+    public bool sleepPressed;
+
+    [SerializeField] GameObject storeGO;
+    StoreUI storeUI;
+
     public bool IsPaused => pause;
+
+    public int DayNumber { get => _dayNumber; set => _dayNumber = value; }
+
     public bool IsComplete;
 
     private void Start()
@@ -53,6 +62,8 @@ public class DayNightCycle : MonoBehaviour
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
         pause = true;
         daysText.text = $"{_dayNumber}";
+
+        storeUI = storeGO.GetComponent<StoreUI>();
     }
     private void Update()
     {
@@ -98,6 +109,9 @@ public class DayNightCycle : MonoBehaviour
         if (_timeOfDay >= (22f / 24f))
         {
             StartNewDay();
+            sleepPressed = true;
+            CashRegisterInteraction cash = FindObjectOfType<CashRegisterInteraction>();
+            cash.ExitCashRegisterMode();
         }
     }
     private void UpdateTimeScale()
@@ -198,6 +212,8 @@ public class DayNightCycle : MonoBehaviour
         _dayNumber++;
         _timeOfDay = 8f / 24f;
 
+        UpateProducts();
+
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
 
         pause = true;
@@ -214,11 +230,27 @@ public class DayNightCycle : MonoBehaviour
 
         queueManager.ResetDailyStats();
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(8, 1.1f, 0);
+
         IsComplete = false;
 
         daysText.text = $"{_dayNumber}";
 
         StartCoroutine(HideSummaryAfterDelay(5f));
+    }
+
+    private void UpateProducts()
+    {
+        switch (_dayNumber)
+        {
+            case 2:
+                Debug.Log("Nuevos productos");
+                storeUI.UpdateProducts();
+                break;
+            default:
+                break;
+        }
     }
 
     private IEnumerator HideSummaryAfterDelay(float delay)

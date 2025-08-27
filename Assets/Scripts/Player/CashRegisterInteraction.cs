@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -55,8 +54,11 @@ public class CashRegisterInteraction : MonoBehaviour
     public NPC_Controller nPC_Controller;
 
     private Coroutine cameraTransitionCoroutine;
+    private DayNightCycle dayNightCycle;
     public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
     public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
+
+    Transform startPosCamera;
 
     //private void Awake()
     //{
@@ -70,6 +72,8 @@ public class CashRegisterInteraction : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
+        startPosCamera = playerCamera.transform; // Este es una verga
+        dayNightCycle = FindObjectOfType<DayNightCycle>();
         NPC_Controller.onShowScreen += () => PeekClient();
     }
 
@@ -184,8 +188,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = true;
         playerCam.IsLocked = lockCamera;
 
-        Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = lockCamera;
+        UnityEngine.Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = lockCamera;
 
         crosshair.SetActive(false);
 
@@ -205,15 +209,23 @@ public class CashRegisterInteraction : MonoBehaviour
             tempTarget.position = trueOriginalCameraPos;
             tempTarget.rotation = trueOriginalCameraRot;
 
-            MoveCameraSmooth(tempTarget, 0.5f);
+            if (!dayNightCycle.sleepPressed)
+            {
+                MoveCameraSmooth(tempTarget, 0.5f);
+            }
+            else
+            {
+                MoveCameraSmooth(startPosCamera, 0.5f);
+                dayNightCycle.sleepPressed = false;
+            }
             Destroy(tempTarget.gameObject, 1f);
         }
 
         playerCam.IsInCashRegister = false;
         playerCam.IsLocked = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
         crosshair.SetActive(true);
 
         if (currentClient != null)
@@ -326,7 +338,7 @@ public class CashRegisterInteraction : MonoBehaviour
         Vector3 startPos = playerCamera.transform.position;
         Quaternion startRot = playerCamera.transform.rotation;
 
-        Vector3 endPos = target.position;
+        Vector3 endPos = target.localPosition;
         Quaternion endRot;
 
         if (forceRotation && target == limitedCameraTarget)

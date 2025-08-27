@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class StoreUI : MonoBehaviour
 {
-    [SerializeField] private List<Product> levelUpdate;
+    [SerializeField] private List<LevelUpdates> levelUpdate;
     [SerializeField] private ProductDataBase database;
     [SerializeField] private PlayerEconomy playerEconomy;
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
+
+    private DayNightCycle dayNightCycle;
+
+    private void Awake()
+    {
+        dayNightCycle = FindObjectOfType<DayNightCycle>();
+    }
 
     void Start()
     {
@@ -87,22 +94,33 @@ public class StoreUI : MonoBehaviour
 
     public void UpdateProducts()
     {
-        foreach (Product product in levelUpdate)
+        foreach (LevelUpdates updateProducts in levelUpdate)
         {
-            GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
-            TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
-            text.text = $"{product.Name} - ${product.PackPrice}";
-
-            Product capturedProduct = product;
-
-            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
-            {
-                bool purchased = playerEconomy.TryPurchase(capturedProduct);
-                if (purchased && capturedProduct.Prefab != null)
+            if (updateProducts.numberUpdate == dayNightCycle.DayNumber)
+                foreach (Product product in updateProducts.products)
                 {
-                    SpawnProduct(capturedProduct);
+                    GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
+                    TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
+                    text.text = $"{product.Name} - ${product.PackPrice}";
+
+                    Product capturedProduct = product;
+
+                    buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+                    {
+                        bool purchased = playerEconomy.TryPurchase(capturedProduct);
+                        if (purchased && capturedProduct.Prefab != null)
+                        {
+                            SpawnProduct(capturedProduct);
+                        }
+                    });
                 }
-            });
         }
     }
+}
+
+[System.Serializable]
+public class LevelUpdates
+{
+    public int numberUpdate;
+    public List<Product> products;
 }

@@ -14614,6 +14614,9 @@ MonoBehaviour:
   queueManager: {fileID: 485706440}
   startButton: {fileID: 1261414424}
   sleepButton: {fileID: 1002353158}
+  sleepPressed: 0
+  storeGO: {fileID: 1270984785}
+  IsComplete: 0
 --- !u!4 &880010574
 Transform:
   m_ObjectHideFlags: 0
@@ -39199,7 +39202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1270984786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39234,19 +39237,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpdate:
-  - {fileID: 11400000, guid: 106ee514a9a41014487305b92359cacf, type: 2}
-  - {fileID: 11400000, guid: 07af51bb1c6070c4698a4e59767fe6ec, type: 2}
-  - {fileID: 11400000, guid: 80d75c6af6dab784cbf2e506f87dc9cf, type: 2}
-  - {fileID: 11400000, guid: 5c5cd1922bb8c8842bcf4324ef7aee9b, type: 2}
-  - {fileID: 11400000, guid: 514b922eecc51f042898ed9be659d50c, type: 2}
-  - {fileID: 11400000, guid: bcd282661bab26940bbc7e79eac1e167, type: 2}
-  - {fileID: 11400000, guid: 8c26a5c1a736a164c896d4903478f877, type: 2}
-  - {fileID: 11400000, guid: c9d1a233c026ee547a53c40dfe32b6e4, type: 2}
-  - {fileID: 11400000, guid: 8e983a2406f8f2b46a6c748bd6d8fb72, type: 2}
-  - {fileID: 11400000, guid: 136525892f51aaa4e9985f435d612a79, type: 2}
-  - {fileID: 11400000, guid: 9ba4d99c95cc74b48970b0552f3056de, type: 2}
-  - {fileID: 11400000, guid: 90b1d5992b4c9bb4c8bd2570efad0b96, type: 2}
-  - {fileID: 11400000, guid: 9445374c0b92d8e4b96615d0f71e182c, type: 2}
+  - numberUpdate: 2
+    products:
+    - {fileID: 11400000, guid: 106ee514a9a41014487305b92359cacf, type: 2}
+    - {fileID: 11400000, guid: 07af51bb1c6070c4698a4e59767fe6ec, type: 2}
+    - {fileID: 11400000, guid: 80d75c6af6dab784cbf2e506f87dc9cf, type: 2}
+    - {fileID: 11400000, guid: 5c5cd1922bb8c8842bcf4324ef7aee9b, type: 2}
+    - {fileID: 11400000, guid: 514b922eecc51f042898ed9be659d50c, type: 2}
+    - {fileID: 11400000, guid: bcd282661bab26940bbc7e79eac1e167, type: 2}
+    - {fileID: 11400000, guid: 8c26a5c1a736a164c896d4903478f877, type: 2}
+    - {fileID: 11400000, guid: c9d1a233c026ee547a53c40dfe32b6e4, type: 2}
+    - {fileID: 11400000, guid: 8e983a2406f8f2b46a6c748bd6d8fb72, type: 2}
+    - {fileID: 11400000, guid: 136525892f51aaa4e9985f435d612a79, type: 2}
+    - {fileID: 11400000, guid: 9ba4d99c95cc74b48970b0552f3056de, type: 2}
+    - {fileID: 11400000, guid: 90b1d5992b4c9bb4c8bd2570efad0b96, type: 2}
+    - {fileID: 11400000, guid: 9445374c0b92d8e4b96615d0f71e182c, type: 2}
+  - numberUpdate: 4
+    products: []
   database: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
   playerEconomy: {fileID: 1964649770}
   productButtonContainer: {fileID: 1152826917}
@@ -49532,7 +49539,7 @@ RectTransform:
   m_Father: {fileID: 635137956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -50255,7 +50262,6 @@ MonoBehaviour:
   lockedCameraTarget: {fileID: 1604316913}
   playerMovement: {fileID: 1964649764}
   playerCam: {fileID: 330585548}
-  moveCamera: {fileID: 0}
   playerRb: {fileID: 1964649762}
   computerUIScreenManager: {fileID: 326095226}
   experienceManager: {fileID: 1964649769}
@@ -50316,7 +50322,6 @@ MonoBehaviour:
   levelText: {fileID: 1652421481}
   experienceText: {fileID: 1393862688}
   experienceFill: {fileID: 1585421951}
-  storeGO: {fileID: 1270984785}
 --- !u!114 &1964649770
 MonoBehaviour:
   m_ObjectHideFlags: 0
