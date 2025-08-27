@@ -19,6 +19,8 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     public Product ProductData => _productData;
     public bool CanBePickedUp => false;
 
+    public int CurrentAmountProduct { get => currentAmountProduct; set => currentAmountProduct = value; }
+
     public void Initialize(Product productData)
     {
         _productData = productData;

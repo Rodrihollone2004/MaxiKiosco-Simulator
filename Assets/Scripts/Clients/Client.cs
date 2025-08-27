@@ -5,9 +5,11 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     public NPC_Controller NpcController {get; set;}
-    private List<ProductInteractable> cart = new List<ProductInteractable>();
+    private Dictionary<ProductInteractable, int> cart = new Dictionary<ProductInteractable, int>();
     private Wallet wallet;
     List<ProductInteractable> allProducts;
+
+    public List<Money> Bills { get; private set; }
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
@@ -24,7 +26,7 @@ public class Client : MonoBehaviour
     public void CalculateCost()
     {
         totalCart = CalculateCartTotal();
-        ClientPayment = TryMakePayment(totalCart);
+        ClientPayment = wallet.TryMakePayment(totalCart);
 
         paymentMethod = (PaymentMethod)Random.Range(0, 2);
         Debug.Log($"Este cliente paga con: {paymentMethod}");
@@ -45,16 +47,25 @@ public class Client : MonoBehaviour
         int newTotal = 0;
 
         cart.Clear();
-        wallet.GenerateRandomMoney();
         PrintWallet();
 
-        foreach (ProductInteractable product in availableProducts)
-        {
-            newTotal = total + product.ProductData.Price;
+        int productsToBuy = Random.Range(3, 6); // 6 porque el max es exclusivo
 
-            if (wallet.CanAfford(newTotal))
+        List<ProductInteractable> chosenProducts = availableProducts.Take(productsToBuy).ToList();
+
+        foreach (ProductInteractable product in chosenProducts)
+        {
+
+            int amountProduct = Random.Range (1, 4); //el maximo despues va a ser variable para las mejoras
+
+            if(amountProduct > product.CurrentAmountProduct)
+                amountProduct = product.CurrentAmountProduct;
+
+            newTotal = total + (product.ProductData.Price * amountProduct);
+
+            if (newTotal < wallet.TotalMoney)
             {
-                cart.Add(product);
+                cart.Add(product, amountProduct);
                 product.SubtractAmount();
                 product.CheckDelete();
                 total = newTotal;
@@ -62,82 +73,27 @@ public class Client : MonoBehaviour
             }
         }
 
-        Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.GetTotalMoney()}");
+        Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.TotalMoney}");
     }
 
     public int CalculateCartTotal()
     {
         int total = 0;
-        foreach (ProductInteractable product in cart)
+        foreach (KeyValuePair<ProductInteractable, int> item in cart)
         {
-            total += product.ProductData.Price;
+            ProductInteractable product = item.Key;
+            int amount = item.Value;
+
+            total += product.ProductData.Price * amount;
         }
         return total;
     }
 
-    public List<ProductInteractable> GetCart()
+    public Dictionary<ProductInteractable, int> GetCart()
     {
         return cart;
     }
 
-    public List<int> TryMakePayment(int cost)
-    {
-        List<int> allBills = new List<int>();
-
-        foreach (var Bill in wallet.WalletData)
-            for (int i = 0; i < Bill.Value; i++)
-                allBills.Add(Bill.Key);
-
-        if (allBills.Count == 0)
-            return null; // No tiene plata
-
-        allBills.Sort();
-
-        List<int> bestCombination = new List<int>();
-        List<int> minBills = new List<int>();
-
-        bool found = TryCalculatePayment(cost, 0, allBills, 0, new List<int>(), bestCombination, minBills);
-
-        if (found)
-            return bestCombination; // Cantidad exacta
-
-        return minBills; // Necesita vuelto
-    }
-
-    public bool TryCalculatePayment(int cost, int current, List<int> allBills, int index, List<int> currentBills, List<int> bestCombination, List<int> minBills)
-    {
-        if (current == cost)
-        {
-            bestCombination.Clear();
-            bestCombination.AddRange(currentBills);
-            return true;
-        }
-
-        if (current > cost)
-        {
-            if (minBills.Count == 0 || currentBills.Count < minBills.Count)
-            {
-                minBills.Clear();
-                minBills.AddRange(currentBills);
-            }
-
-            return false;
-        }
-
-        if (index >= allBills.Count)
-            return false;
-
-        currentBills.Add(allBills[index]);
-
-        if (TryCalculatePayment(cost, currentBills.Sum(), allBills, index + 1, currentBills, bestCombination, minBills))
-            return true;
-
-        currentBills.RemoveAt(currentBills.Count - 1);
-
-        if (TryCalculatePayment(cost, current, allBills, index + 1, currentBills, bestCombination, minBills))
-            return true;
-        return false;
-    }
     public class PaymentResult
     {
         public bool Success { get; }
@@ -155,13 +111,9 @@ public class Client : MonoBehaviour
     private void PrintWallet()
     {
         string walletInfo = $"Cliente {name} tiene: ";
-        foreach (KeyValuePair<int, int> kvp in wallet.WalletData)
-        {
-            walletInfo += $"{kvp.Value}x${kvp.Key}, ";
-        }
 
         walletInfo = walletInfo.TrimEnd(',', ' ');
-        walletInfo += $". Total: ${wallet.GetTotalMoney()}";
+        walletInfo += $". Total: ${wallet.TotalMoney}";
         Debug.Log(walletInfo);
     }
 }

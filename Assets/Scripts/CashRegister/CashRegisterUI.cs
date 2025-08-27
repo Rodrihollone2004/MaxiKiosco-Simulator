@@ -9,7 +9,7 @@ public class CashRegisterUI : MonoBehaviour
     int totalToPay;
     int simulatedTotal;
     int change;
-    List<ProductInteractable> cart;
+    Dictionary<ProductInteractable, int> cart;
     string cartInfo;
 
 
@@ -27,11 +27,13 @@ public class CashRegisterUI : MonoBehaviour
                 change = simulatedTotal - totalToPay;
                 cart = client.GetCart();
                 cartInfo = "Carrito:\n";
-                
-                foreach (ProductInteractable product in cart)
+
+                foreach (KeyValuePair<ProductInteractable, int> item in cart)
                 {
-                    if (!cartInfo.Contains(product.ProductData.Name))
-                        cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price})\n";
+                    ProductInteractable product = item.Key;
+                    int amount = item.Value;
+
+                    cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price} x{amount})\n";
                 }
             }
 
