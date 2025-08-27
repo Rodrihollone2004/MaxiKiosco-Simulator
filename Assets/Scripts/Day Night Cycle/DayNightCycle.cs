@@ -231,7 +231,7 @@ public class DayNightCycle : MonoBehaviour
         queueManager.ResetDailyStats();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(8, 1.1f, 0);
+        player.transform.position = new Vector3(8, 1.166f, 0);
 
         IsComplete = false;
 

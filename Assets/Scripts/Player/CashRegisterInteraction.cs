@@ -58,7 +58,8 @@ public class CashRegisterInteraction : MonoBehaviour
     public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
     public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
 
-    Transform startPosCamera;
+    private Vector3 startCameraPos;
+    private Quaternion startCameraRot;
 
     //private void Awake()
     //{
@@ -72,7 +73,8 @@ public class CashRegisterInteraction : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
-        startPosCamera = playerCamera.transform; // Este es una verga
+        startCameraPos = playerCamera.transform.position;
+        startCameraRot = playerCamera.transform.rotation;
         dayNightCycle = FindObjectOfType<DayNightCycle>();
         NPC_Controller.onShowScreen += () => PeekClient();
     }
@@ -215,8 +217,12 @@ public class CashRegisterInteraction : MonoBehaviour
             }
             else
             {
-                MoveCameraSmooth(startPosCamera, 0.5f);
-                dayNightCycle.sleepPressed = false;
+                Transform startTarget = new GameObject("StartCameraTarget").transform;
+                startTarget.position = startCameraPos;
+                startTarget.rotation = startCameraRot;
+
+                MoveCameraSmooth(startTarget, 0.5f);
+                Destroy(startTarget.gameObject, 1f);
             }
             Destroy(tempTarget.gameObject, 1f);
         }
@@ -338,7 +344,7 @@ public class CashRegisterInteraction : MonoBehaviour
         Vector3 startPos = playerCamera.transform.position;
         Quaternion startRot = playerCamera.transform.rotation;
 
-        Vector3 endPos = target.localPosition;
+        Vector3 endPos = target.position;
         Quaternion endRot;
 
         if (forceRotation && target == limitedCameraTarget)
