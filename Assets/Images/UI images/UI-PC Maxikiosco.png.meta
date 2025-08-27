@@ -1,0 +1,2270 @@
+fileFormatVersion: 2
+guid: c4b357e38c24cc04ca804318b6f26336
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8326
+        width: 702
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e279990c9e76dd540898e2476036d882
+      internalID: 1256382695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_1
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 8326
+        width: 709
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f2d8d15f9725a499aef98b1e55bf97
+      internalID: -1096895590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_2
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 8326
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39a3a4f524e719843880d360e346fae5
+      internalID: -652233548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_3
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 7553
+        width: 707
+        height: 643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f28b8c5abc8f4e458c85143900d6fd1
+      internalID: -925361868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_4
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 7552
+        width: 701
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc78b9c408a7bb44b9a3da20dc04e61
+      internalID: 1169670464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7555
+        width: 697
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6be05a4c804df84db1809ffdf8be0b6
+      internalID: 1089977615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6774
+        width: 697
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb53dde474ed6fa4bb864f27eee84bd4
+      internalID: 834856112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_7
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 6774
+        width: 705
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d154bbc7b37067040b968188eac86f3c
+      internalID: -863136820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_8
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 6774
+        width: 698
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716721c1b9b4f3845a2bc7de4b5f0ea7
+      internalID: -1091754523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_9
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 5941
+        width: 1169
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24ccac65811f1fb459a18dbdaa54261b
+      internalID: 511752617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_10
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 2784
+        width: 1169
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bfa30a6e6948194eb2a848c2f714a94
+      internalID: -1929836118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5160
+        width: 702
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1be70e4084a3e459a7f82bf04e696a
+      internalID: 499205379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_12
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 5162
+        width: 702
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f4c196c535f644c81113c54ba2138c
+      internalID: -1497453680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_13
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 5158
+        width: 702
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b93733d53c2ef1a43b8817d381694ba0
+      internalID: 1620620107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4398
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62926db3e75b7aa4583efcb70172d6e7
+      internalID: 596030273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_15
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 4395
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63020820c57d28c42be585d5d4da7361
+      internalID: 2099715941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_16
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 4395
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3380d4bc67f4f842a806a402360c8c6
+      internalID: 1300426629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3618
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ec3730ead1b5946a27102d786f905d
+      internalID: -1815768474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_18
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 3621
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e38213d9bf67d3440a5308997b91ed2b
+      internalID: -31694222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_19
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 3617
+        width: 707
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0278007ba805594d81d00dbb9ef667d
+      internalID: -1387974493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_20
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1561
+        width: 1562
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd88cb4897b58104bb471745db2ee8f7
+      internalID: 1195052408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_21
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 488
+        width: 1562
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329149b6a0923a74a86748c412ecaec4
+      internalID: -1504606938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_22
+      rect:
+        serializedVersion: 2
+        x: 2809
+        y: 7288
+        width: 3432
+        height: 1718
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df4840287d795b4ab5f63d0b528ef59
+      internalID: -750921544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_23
+      rect:
+        serializedVersion: 2
+        x: 2824
+        y: 6380
+        width: 3369
+        height: 657
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8cf3c9b2d72004d9cdbacf6a837662
+      internalID: 665338641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_24
+      rect:
+        serializedVersion: 2
+        x: 2814
+        y: 5448
+        width: 3378
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc9061a939016e409809ef0ddca0eec
+      internalID: -1307626464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_25
+      rect:
+        serializedVersion: 2
+        x: 3383
+        y: 2823
+        width: 2253
+        height: 2329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e33cb9516c5e047921c118ccd0cf5b
+      internalID: 1939155428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_26
+      rect:
+        serializedVersion: 2
+        x: 6428
+        y: 7295
+        width: 3468
+        height: 1728
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb8bdbd39721a745a3aa92b5dfc2c4b
+      internalID: 684687140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_27
+      rect:
+        serializedVersion: 2
+        x: 6418
+        y: 3642
+        width: 3481
+        height: 3467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09cbbc9dd26e5b84aabb7988835dd8eb
+      internalID: -89712017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_28
+      rect:
+        serializedVersion: 2
+        x: 6428
+        y: 0
+        width: 6624
+        height: 3470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3c8789ab2685d43a07c4d8f1f90990
+      internalID: 1239401118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_29
+      rect:
+        serializedVersion: 2
+        x: 10077
+        y: 7908
+        width: 1124
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3943a35796cb514ca34e7329d993d75
+      internalID: 1798803595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_30
+      rect:
+        serializedVersion: 2
+        x: 11394
+        y: 8436
+        width: 1121
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c576acaf366994088e73004c077290
+      internalID: -1916670957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_31
+      rect:
+        serializedVersion: 2
+        x: 11399
+        y: 7911
+        width: 1118
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5894ec92db132da4fbdbb1e1a214a5d0
+      internalID: -3884419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_32
+      rect:
+        serializedVersion: 2
+        x: 10081
+        y: 6512
+        width: 1121
+        height: 1123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb3ef80c462cc8441ba611fa5f539cad
+      internalID: -1342011056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_33
+      rect:
+        serializedVersion: 2
+        x: 11395
+        y: 6512
+        width: 1120
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1256358fe2e8fd4ab789390adfeb5e1
+      internalID: 639126777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_34
+      rect:
+        serializedVersion: 2
+        x: 11395
+        y: 7038
+        width: 1118
+        height: 602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145819eb49b527f419f21efd452b30a4
+      internalID: 413764304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_35
+      rect:
+        serializedVersion: 2
+        x: 10073
+        y: 5734
+        width: 627
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bbda097d7367a7478f3dafdda72e475
+      internalID: -254821839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_36
+      rect:
+        serializedVersion: 2
+        x: 10950
+        y: 5733
+        width: 624
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4587d91d24509b94da416fc7ece1c22a
+      internalID: 44455625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_37
+      rect:
+        serializedVersion: 2
+        x: 11821
+        y: 5734
+        width: 628
+        height: 621
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 3, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94075e8ace3b43c47820bbb4d439cd57
+      internalID: 1170131031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_38
+      rect:
+        serializedVersion: 2
+        x: 10075
+        y: 4943
+        width: 622
+        height: 617
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47388bc008668144c917d4faef5049a0
+      internalID: -267897578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_39
+      rect:
+        serializedVersion: 2
+        x: 10950
+        y: 4941
+        width: 624
+        height: 624
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac8903a297749724bb63adba679008f1
+      internalID: 658348930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_40
+      rect:
+        serializedVersion: 2
+        x: 11821
+        y: 4938
+        width: 628
+        height: 627
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cecb40ce37db344b854e484dfc460f5
+      internalID: 779768223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_41
+      rect:
+        serializedVersion: 2
+        x: 10011
+        y: 3895
+        width: 778
+        height: 774
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965a59aca0142724687a09e50715c3b4
+      internalID: -1921296735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_42
+      rect:
+        serializedVersion: 2
+        x: 10918
+        y: 3946
+        width: 650
+        height: 672
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fa1254dc0133be4f938bdf53016223a
+      internalID: -1165806604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_43
+      rect:
+        serializedVersion: 2
+        x: 11768
+        y: 3893
+        width: 672
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819204892fc3e1349bb4977d2d20bf25
+      internalID: 879322093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_44
+      rect:
+        serializedVersion: 2
+        x: 12744
+        y: 7912
+        width: 1129
+        height: 1128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8257a8281be561d4ea4ab7891088f1d9
+      internalID: -1205670066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_45
+      rect:
+        serializedVersion: 2
+        x: 14065
+        y: 8425
+        width: 1122
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c7ba28885825c448266824539cd6ef
+      internalID: 1563162207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_46
+      rect:
+        serializedVersion: 2
+        x: 14052
+        y: 7899
+        width: 1139
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dffed738d026ca0449085c30af5beec3
+      internalID: -2141505430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_47
+      rect:
+        serializedVersion: 2
+        x: 12744
+        y: 6513
+        width: 1135
+        height: 1120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6edd9ab7c950e64e9cc69717ceff8ba
+      internalID: 799498841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_48
+      rect:
+        serializedVersion: 2
+        x: 14062
+        y: 7030
+        width: 1129
+        height: 615
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89befedd049c76947bf7b6b71d00461f
+      internalID: -1768968142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_49
+      rect:
+        serializedVersion: 2
+        x: 14059
+        y: 6504
+        width: 1132
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546b264104405884cb2f3374322132ad
+      internalID: 428150814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_50
+      rect:
+        serializedVersion: 2
+        x: 12741
+        y: 5231
+        width: 1138
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5828764a6032447b4a8defdbbfcfbb
+      internalID: -851931019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_51
+      rect:
+        serializedVersion: 2
+        x: 14067
+        y: 5748
+        width: 1126
+        height: 602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ee16e16d6b93af4b8b887a244e145c0
+      internalID: -524718261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_52
+      rect:
+        serializedVersion: 2
+        x: 14070
+        y: 5232
+        width: 1113
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8066971f984ef934cafa7fd856625345
+      internalID: 1709943720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_53
+      rect:
+        serializedVersion: 2
+        x: 12747
+        y: 3833
+        width: 1126
+        height: 1126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6452eb9ac90f37c4daded0085742b28a
+      internalID: -367110290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_54
+      rect:
+        serializedVersion: 2
+        x: 14070
+        y: 4357
+        width: 1117
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a58d6635050b74187b6a2c7692eb9c
+      internalID: -804292443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_55
+      rect:
+        serializedVersion: 2
+        x: 14073
+        y: 3832
+        width: 1112
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627c8e0e349773540977281206cae0f8
+      internalID: -2052116507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_56
+      rect:
+        serializedVersion: 2
+        x: 15382
+        y: 7914
+        width: 1113
+        height: 1114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4dd0c78666c3264fb0cb8cd4a3405ce
+      internalID: -1768237305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_57
+      rect:
+        serializedVersion: 2
+        x: 15384
+        y: 6515
+        width: 1113
+        height: 1119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8550dd631cb1274f95c90e39b47c0df
+      internalID: 1154495583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_58
+      rect:
+        serializedVersion: 2
+        x: 15382
+        y: 5235
+        width: 1114
+        height: 1113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6ff664756787246844572dbd4aac5b
+      internalID: -488053416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_59
+      rect:
+        serializedVersion: 2
+        x: 15383
+        y: 3839
+        width: 1111
+        height: 1118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5bd9d7b7fbc05b4fab7a5e89f5742c5
+      internalID: -1920291460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_60
+      rect:
+        serializedVersion: 2
+        x: 16687
+        y: 8430
+        width: 1132
+        height: 603
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa118f014f3c404381f2c563649a445
+      internalID: -1716199045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_61
+      rect:
+        serializedVersion: 2
+        x: 16693
+        y: 7907
+        width: 1126
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a95034304805954eb24710bf4dd17d0
+      internalID: -434845074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_62
+      rect:
+        serializedVersion: 2
+        x: 16690
+        y: 7036
+        width: 1121
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4970a97f326e2164290759524986b4a6
+      internalID: -860009919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_63
+      rect:
+        serializedVersion: 2
+        x: 16696
+        y: 6513
+        width: 1120
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4753afa6b902745409e71842897a9d1a
+      internalID: 1275592735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_64
+      rect:
+        serializedVersion: 2
+        x: 16698
+        y: 5752
+        width: 1118
+        height: 594
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2da844d80c4c8c4a981bd866b21b97b
+      internalID: 964449501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_65
+      rect:
+        serializedVersion: 2
+        x: 16688
+        y: 5230
+        width: 1130
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d774c6d72eedde4ebf956d9ecdddcae
+      internalID: -1791432942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_66
+      rect:
+        serializedVersion: 2
+        x: 16696
+        y: 4354
+        width: 1120
+        height: 601
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0e4cb9a36edbd45a4fe3af2b5b1007
+      internalID: 1748616377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_67
+      rect:
+        serializedVersion: 2
+        x: 16696
+        y: 3834
+        width: 1120
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e256d7ab0eff4bf48b8a22ac47075e1e
+      internalID: -1064982342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_68
+      rect:
+        serializedVersion: 2
+        x: 18003
+        y: 7902
+        width: 1123
+        height: 1118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1a7e580f984884183901b5b38a88e4
+      internalID: 496016958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_69
+      rect:
+        serializedVersion: 2
+        x: 19323
+        y: 8415
+        width: 1126
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf381ce12b4a0854d857b1e6602e5828
+      internalID: -1928372014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_70
+      rect:
+        serializedVersion: 2
+        x: 19317
+        y: 7897
+        width: 1121
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482f3a625b2d8fd49806c068e8035456
+      internalID: 581969850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_71
+      rect:
+        serializedVersion: 2
+        x: 18003
+        y: 6504
+        width: 1125
+        height: 1115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4904569119a9c489b332bca2b2a3d9
+      internalID: -1817810634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_72
+      rect:
+        serializedVersion: 2
+        x: 19323
+        y: 7022
+        width: 1120
+        height: 594
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5a0ebc3ab2f8145952c8a97d5f317e
+      internalID: 1998091760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_73
+      rect:
+        serializedVersion: 2
+        x: 19328
+        y: 6506
+        width: 1115
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088e3c5afa66d9c468e3e71fa16a9244
+      internalID: 1667912891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_74
+      rect:
+        serializedVersion: 2
+        x: 18005
+        y: 5219
+        width: 1121
+        height: 1120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8400dd47c02369f438c2b94af164d389
+      internalID: 1626565236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_75
+      rect:
+        serializedVersion: 2
+        x: 19323
+        y: 5742
+        width: 1120
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dfa95ea880bed541807dbd20c45cc2c
+      internalID: 1835748371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_76
+      rect:
+        serializedVersion: 2
+        x: 19323
+        y: 5222
+        width: 1118
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c979321ecd8174da59bc5c0fcbd0bc
+      internalID: 1790069535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_77
+      rect:
+        serializedVersion: 2
+        x: 18005
+        y: 3819
+        width: 1129
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5baa4f1617b867249b54f5fd211ece27
+      internalID: -910777417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_78
+      rect:
+        serializedVersion: 2
+        x: 19329
+        y: 4342
+        width: 1114
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c82fb2ceda221349bdb117c59f362b6
+      internalID: 1712878794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_79
+      rect:
+        serializedVersion: 2
+        x: 19330
+        y: 3822
+        width: 1114
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4296769babbde74ea894d971a0ee55d
+      internalID: 620118341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_80
+      rect:
+        serializedVersion: 2
+        x: 19337
+        y: 2928
+        width: 1129
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048185e38684e2a489256822406f0854
+      internalID: 892709972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_81
+      rect:
+        serializedVersion: 2
+        x: 19337
+        y: 2195
+        width: 1126
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca1c1b55b626be4bae567b4b5460965
+      internalID: 2086860876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_82
+      rect:
+        serializedVersion: 2
+        x: 19340
+        y: 1433
+        width: 1129
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55354953e950480498d2ff7454175ca7
+      internalID: 966098631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_83
+      rect:
+        serializedVersion: 2
+        x: 19344
+        y: 697
+        width: 1125
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168ed0f2a1fce1347b588c95240e9ab7
+      internalID: 540855630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_84
+      rect:
+        serializedVersion: 2
+        x: 18160
+        y: 1855
+        width: 868
+        height: 1463
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a118689112f39d641b7a03e60dc04b40
+      internalID: -736602242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_85
+      rect:
+        serializedVersion: 2
+        x: 16758
+        y: 1851
+        width: 1106
+        height: 1463
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7642f1f73afc04f438a81f5b1fcd9c2f
+      internalID: 1594522638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_86
+      rect:
+        serializedVersion: 2
+        x: 13307
+        y: 2137
+        width: 1409
+        height: 1314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9473a43a7c78764f921cdccaf403186
+      internalID: -1278813491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_87
+      rect:
+        serializedVersion: 2
+        x: 14985
+        y: 2137
+        width: 1409
+        height: 1314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4260ce294e428c8439c8b6991680a2e9
+      internalID: 505354086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_88
+      rect:
+        serializedVersion: 2
+        x: 14976
+        y: 546
+        width: 1409
+        height: 1314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fdc34c07acbca44291b0a2659d58c19
+      internalID: 111359588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_89
+      rect:
+        serializedVersion: 2
+        x: 13304
+        y: 541
+        width: 1409
+        height: 1314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e2d5c993f16634fbef7ac732ca0482
+      internalID: -33362075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_90
+      rect:
+        serializedVersion: 2
+        x: 20636
+        y: 7544
+        width: 1821
+        height: 1583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6513be365e3bfd4e9e20bff274a2e36
+      internalID: 45914321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_91
+      rect:
+        serializedVersion: 2
+        x: 22927
+        y: 7424
+        width: 1644
+        height: 1652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00405c10f78c79142b85d69adc912a84
+      internalID: 1737135360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_92
+      rect:
+        serializedVersion: 2
+        x: 20798
+        y: 5778
+        width: 1616
+        height: 1639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a7360ee3e1882449e5c2d7f6947960
+      internalID: -97740096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_93
+      rect:
+        serializedVersion: 2
+        x: 22992
+        y: 5791
+        width: 1552
+        height: 1419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98b0baadca2fda84fa16fef727d4ee1f
+      internalID: -1956261808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_94
+      rect:
+        serializedVersion: 2
+        x: 20919
+        y: 4031
+        width: 1612
+        height: 1525
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab1630a5b9d65d418711f771141dad8
+      internalID: 531089306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_95
+      rect:
+        serializedVersion: 2
+        x: 23244
+        y: 4004
+        width: 1011
+        height: 1460
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82e06386fbff40d40b7e292e6b3818f6
+      internalID: 1197483017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_96
+      rect:
+        serializedVersion: 2
+        x: 20965
+        y: 2139
+        width: 1449
+        height: 1669
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eeb68ac0fd65ca4bbde007554e00563
+      internalID: 1327408170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Maxikiosco_97
+      rect:
+        serializedVersion: 2
+        x: 20863
+        y: 0
+        width: 1549
+        height: 1945
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167d841403c0cb648b0980f62af3bb67
+      internalID: 1748853423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 00841bf932918d242b58de0d9b0c4035
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI-PC Maxikiosco_0: 1256382695
+      UI-PC Maxikiosco_1: -1096895590
+      UI-PC Maxikiosco_10: -1929836118
+      UI-PC Maxikiosco_11: 499205379
+      UI-PC Maxikiosco_12: -1497453680
+      UI-PC Maxikiosco_13: 1620620107
+      UI-PC Maxikiosco_14: 596030273
+      UI-PC Maxikiosco_15: 2099715941
+      UI-PC Maxikiosco_16: 1300426629
+      UI-PC Maxikiosco_17: -1815768474
+      UI-PC Maxikiosco_18: -31694222
+      UI-PC Maxikiosco_19: -1387974493
+      UI-PC Maxikiosco_2: -652233548
+      UI-PC Maxikiosco_20: 1195052408
+      UI-PC Maxikiosco_21: -1504606938
+      UI-PC Maxikiosco_22: -750921544
+      UI-PC Maxikiosco_23: 665338641
+      UI-PC Maxikiosco_24: -1307626464
+      UI-PC Maxikiosco_25: 1939155428
+      UI-PC Maxikiosco_26: 684687140
+      UI-PC Maxikiosco_27: -89712017
+      UI-PC Maxikiosco_28: 1239401118
+      UI-PC Maxikiosco_29: 1798803595
+      UI-PC Maxikiosco_3: -925361868
+      UI-PC Maxikiosco_30: -1916670957
+      UI-PC Maxikiosco_31: -3884419
+      UI-PC Maxikiosco_32: -1342011056
+      UI-PC Maxikiosco_33: 639126777
+      UI-PC Maxikiosco_34: 413764304
+      UI-PC Maxikiosco_35: -254821839
+      UI-PC Maxikiosco_36: 44455625
+      UI-PC Maxikiosco_37: 1170131031
+      UI-PC Maxikiosco_38: -267897578
+      UI-PC Maxikiosco_39: 658348930
+      UI-PC Maxikiosco_4: 1169670464
+      UI-PC Maxikiosco_40: 779768223
+      UI-PC Maxikiosco_41: -1921296735
+      UI-PC Maxikiosco_42: -1165806604
+      UI-PC Maxikiosco_43: 879322093
+      UI-PC Maxikiosco_44: -1205670066
+      UI-PC Maxikiosco_45: 1563162207
+      UI-PC Maxikiosco_46: -2141505430
+      UI-PC Maxikiosco_47: 799498841
+      UI-PC Maxikiosco_48: -1768968142
+      UI-PC Maxikiosco_49: 428150814
+      UI-PC Maxikiosco_5: 1089977615
+      UI-PC Maxikiosco_50: -851931019
+      UI-PC Maxikiosco_51: -524718261
+      UI-PC Maxikiosco_52: 1709943720
+      UI-PC Maxikiosco_53: -367110290
+      UI-PC Maxikiosco_54: -804292443
+      UI-PC Maxikiosco_55: -2052116507
+      UI-PC Maxikiosco_56: -1768237305
+      UI-PC Maxikiosco_57: 1154495583
+      UI-PC Maxikiosco_58: -488053416
+      UI-PC Maxikiosco_59: -1920291460
+      UI-PC Maxikiosco_6: 834856112
+      UI-PC Maxikiosco_60: -1716199045
+      UI-PC Maxikiosco_61: -434845074
+      UI-PC Maxikiosco_62: -860009919
+      UI-PC Maxikiosco_63: 1275592735
+      UI-PC Maxikiosco_64: 964449501
+      UI-PC Maxikiosco_65: -1791432942
+      UI-PC Maxikiosco_66: 1748616377
+      UI-PC Maxikiosco_67: -1064982342
+      UI-PC Maxikiosco_68: 496016958
+      UI-PC Maxikiosco_69: -1928372014
+      UI-PC Maxikiosco_7: -863136820
+      UI-PC Maxikiosco_70: 581969850
+      UI-PC Maxikiosco_71: -1817810634
+      UI-PC Maxikiosco_72: 1998091760
+      UI-PC Maxikiosco_73: 1667912891
+      UI-PC Maxikiosco_74: 1626565236
+      UI-PC Maxikiosco_75: 1835748371
+      UI-PC Maxikiosco_76: 1790069535
+      UI-PC Maxikiosco_77: -910777417
+      UI-PC Maxikiosco_78: 1712878794
+      UI-PC Maxikiosco_79: 620118341
+      UI-PC Maxikiosco_8: -1091754523
+      UI-PC Maxikiosco_80: 892709972
+      UI-PC Maxikiosco_81: 2086860876
+      UI-PC Maxikiosco_82: 966098631
+      UI-PC Maxikiosco_83: 540855630
+      UI-PC Maxikiosco_84: -736602242
+      UI-PC Maxikiosco_85: 1594522638
+      UI-PC Maxikiosco_86: -1278813491
+      UI-PC Maxikiosco_87: 505354086
+      UI-PC Maxikiosco_88: 111359588
+      UI-PC Maxikiosco_89: -33362075
+      UI-PC Maxikiosco_9: 511752617
+      UI-PC Maxikiosco_90: 45914321
+      UI-PC Maxikiosco_91: 1737135360
+      UI-PC Maxikiosco_92: -97740096
+      UI-PC Maxikiosco_93: -1956261808
+      UI-PC Maxikiosco_94: 531089306
+      UI-PC Maxikiosco_95: 1197483017
+      UI-PC Maxikiosco_96: 1327408170
+      UI-PC Maxikiosco_97: 1748853423
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
