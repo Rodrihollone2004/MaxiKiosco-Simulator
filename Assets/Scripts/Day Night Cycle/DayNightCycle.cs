@@ -248,6 +248,10 @@ public class DayNightCycle : MonoBehaviour
                 Debug.Log("Nuevos productos");
                 storeUI.UpdateProducts();
                 break;
+            case 4:
+                Debug.Log("Nuevos productos");
+                storeUI.UpdateProducts();
+                break;
             default:
                 break;
         }
