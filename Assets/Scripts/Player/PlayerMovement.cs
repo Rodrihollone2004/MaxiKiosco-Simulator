@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] private MovementState state;
+
+    public MovementState State { get => state; set => state = value; }
+
     public enum MovementState
     {
         walking,

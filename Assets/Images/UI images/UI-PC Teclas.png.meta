@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 5801fc7da4ec8fa4eb8e5b6b0a23d402
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI-PC Teclas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3464
+        width: 700
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295195a9910098b4eb7ff63f7d68682a
+      internalID: -944322174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_1
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 3457
+        width: 706
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15684ebf753a92344a813a87ddd651af
+      internalID: 1265648755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_2
+      rect:
+        serializedVersion: 2
+        x: 3535
+        y: 3457
+        width: 705
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a583a1082b34d147903dcbf9ab11a9c
+      internalID: -1272407283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_3
+      rect:
+        serializedVersion: 2
+        x: 4380
+        y: 3454
+        width: 709
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fcabb8d225a9c2479e1b8b5e4497185
+      internalID: 1910099822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2689
+        width: 702
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3969ad5b44000484a9866a5acb9056ed
+      internalID: -1318199403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_5
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 2689
+        width: 706
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae6fc1c6d6c413948b97e6613c983f24
+      internalID: 492040060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_6
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 2689
+        width: 704
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f713d649c0232544fa90f1588418879c
+      internalID: 1309787492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_7
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 2689
+        width: 706
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f61833cf5063a40b85220ab8264299
+      internalID: -137768666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_8
+      rect:
+        serializedVersion: 2
+        x: 3535
+        y: 2689
+        width: 705
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f4af539e38ee14b92b8fd1375f55b7
+      internalID: 80964029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_9
+      rect:
+        serializedVersion: 2
+        x: 4380
+        y: 2687
+        width: 709
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c746dc2d7e64342936bdf2d00ca794
+      internalID: 581312512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1912
+        width: 702
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa7e6f1deaccb04cbc8aa5f6243bf27
+      internalID: 850638157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_11
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 1912
+        width: 706
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f03e9c2fd2b284081917de468b1751
+      internalID: -1234430008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_12
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 1912
+        width: 704
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702a87e3180f17346b2505998e22b0b1
+      internalID: 861844028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_13
+      rect:
+        serializedVersion: 2
+        x: 2692
+        y: 1914
+        width: 706
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ebe2ffa1bb62a4eb54d91bd6e4d7e0
+      internalID: 1884693946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_14
+      rect:
+        serializedVersion: 2
+        x: 3537
+        y: 1914
+        width: 708
+        height: 649
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46f2034a7ae68c43a59d66c403f5b63
+      internalID: -1620703634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_15
+      rect:
+        serializedVersion: 2
+        x: 4385
+        y: 1912
+        width: 704
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a4ed98293b0c34c91fadd2cdbfdaf2
+      internalID: 616494932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_16
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 1079
+        width: 1162
+        height: 703
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd720605a452db4bba4121d5d5abb78
+      internalID: 587449800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_17
+      rect:
+        serializedVersion: 2
+        x: 3314
+        y: 1087
+        width: 1157
+        height: 693
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30733a98c17b1fa4e8d485d11dbe3b8c
+      internalID: 202832108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_18
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 0
+        width: 1553
+        height: 935
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b457c69cd9d064592e59607ac5716b
+      internalID: 1952897254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_19
+      rect:
+        serializedVersion: 2
+        x: 3115
+        y: 6
+        width: 1548
+        height: 929
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c96b265bd3905d42b5077212bc2dfe4
+      internalID: -1370414234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_20
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 3464
+        width: 700
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7c8afe0e28e0e42ad850a5236d20d0
+      internalID: -2061483405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Teclas_21
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 3464
+        width: 700
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9fff6b60e6da49458db5d2f48b68758
+      internalID: 189220282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 905ce82c9c22438479063fe7cd9f0e6d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI-PC Teclas_0: -944322174
+      UI-PC Teclas_1: 1265648755
+      UI-PC Teclas_10: 850638157
+      UI-PC Teclas_11: -1234430008
+      UI-PC Teclas_12: 861844028
+      UI-PC Teclas_13: 1884693946
+      UI-PC Teclas_14: -1620703634
+      UI-PC Teclas_15: 616494932
+      UI-PC Teclas_16: 587449800
+      UI-PC Teclas_17: 202832108
+      UI-PC Teclas_18: 1952897254
+      UI-PC Teclas_19: -1370414234
+      UI-PC Teclas_2: -1272407283
+      UI-PC Teclas_20: -2061483405
+      UI-PC Teclas_21: 189220282
+      UI-PC Teclas_3: 1910099822
+      UI-PC Teclas_4: -1318199403
+      UI-PC Teclas_5: 492040060
+      UI-PC Teclas_6: 1309787492
+      UI-PC Teclas_7: -137768666
+      UI-PC Teclas_8: 80964029
+      UI-PC Teclas_9: 581312512
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

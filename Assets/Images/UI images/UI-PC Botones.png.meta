@@ -1,0 +1,1215 @@
+fileFormatVersion: 2
+guid: 1556e925bae09ae45b92b0b129f05932
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI-PC Botones_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4089
+        width: 1120
+        height: 1120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8c3794813ffe043b544dddc5fbc231
+      internalID: 1085758916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_1
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 4612
+        width: 1115
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea3cd1b5382fd446b3e2af3062104b8
+      internalID: -1547050646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_2
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 4084
+        width: 1128
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890d86bb517f49f45bf0b525c7773b10
+      internalID: 533690032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_3
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 4605
+        width: 1129
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a094419fda6b74b98c19580e25b5ee
+      internalID: -1482669702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_4
+      rect:
+        serializedVersion: 2
+        x: 5292
+        y: 4084
+        width: 1131
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3ba93d26e466d4382c90e1334bc3ca
+      internalID: -1043722973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_5
+      rect:
+        serializedVersion: 2
+        x: 6610
+        y: 4605
+        width: 1129
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a001ec124a7d73b448ac41c5e6801116
+      internalID: -2049711092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_6
+      rect:
+        serializedVersion: 2
+        x: 7921
+        y: 4069
+        width: 1133
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5cc64fa8208144da4c11c371406325
+      internalID: -267643013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_7
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 4069
+        width: 1126
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050ec29b742b9a7469de35582d6ce848
+      internalID: 1134475275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_8
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 4092
+        width: 1120
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c9d5b6ac35c63469d78905fee4f367
+      internalID: 434003383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_9
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 4084
+        width: 1129
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6950231d4308044a9876639f7148c5f
+      internalID: 961872223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_10
+      rect:
+        serializedVersion: 2
+        x: 6607
+        y: 4084
+        width: 1132
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb3c5d2fda07dad46954a2e46ac455aa
+      internalID: 1987186009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_12
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 3217
+        width: 1114
+        height: 595
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 762f475ab8f3c17498356c38f4e538bf
+      internalID: -957472918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_13
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 2688
+        width: 1128
+        height: 1128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8b2a421ce947f42986240a2bd2e9fc
+      internalID: -650492172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_14
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 3209
+        width: 1129
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a80b7e85e4ad295429b60b1ff8609524
+      internalID: -1988461447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_15
+      rect:
+        serializedVersion: 2
+        x: 5292
+        y: 2688
+        width: 1131
+        height: 1128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2efc6e00423fbc34db2828d280d730bf
+      internalID: -524280137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_16
+      rect:
+        serializedVersion: 2
+        x: 6610
+        y: 3209
+        width: 1129
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c2419a9086d644b987aeb89d738eb1
+      internalID: -686583050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_17
+      rect:
+        serializedVersion: 2
+        x: 7921
+        y: 2673
+        width: 1133
+        height: 1128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d35c053e70d067e4682f56f59aa4413f
+      internalID: -451312343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_18
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 2673
+        width: 1126
+        height: 1143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbd5a9cd861c6a49bcc4fb96f60460d
+      internalID: 1481864203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_19
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 2695
+        width: 1115
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09cb03c3ca6740a4b8a988c86eae0179
+      internalID: 1441883645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_20
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 2688
+        width: 1129
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f21d8e334cccfa44b5b96bdf8c39816
+      internalID: -204848500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_21
+      rect:
+        serializedVersion: 2
+        x: 6607
+        y: 2688
+        width: 1132
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908953c95623ba54db31802d66042919
+      internalID: 1901057263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_22
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 2026
+        width: 503
+        height: 503
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af3075e6e23a0e4f882a8b44e0fb74e
+      internalID: 5040410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_23
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 2027
+        width: 502
+        height: 503
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ab2c12bbf3cd9242b1f48e5ad6c0d90
+      internalID: 1990302971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_24
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 2027
+        width: 503
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502d8e44eea3ef548bf5c058dc6c2154
+      internalID: 1696576466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_25
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 1404
+        width: 1128
+        height: 1132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5285f011209c00c46bd867a1be93c507
+      internalID: -259232234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_26
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 1929
+        width: 1129
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18682de75528ed54faa6e8ce0059a119
+      internalID: 765750891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_27
+      rect:
+        serializedVersion: 2
+        x: 5292
+        y: 1404
+        width: 1131
+        height: 1132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 580ca6e10a0a8864dba8b97580006f0c
+      internalID: 509891608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_28
+      rect:
+        serializedVersion: 2
+        x: 6610
+        y: 1929
+        width: 1129
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bed5789ed3cc94faf74fdb20363c95
+      internalID: -1582253098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_29
+      rect:
+        serializedVersion: 2
+        x: 7921
+        y: 1393
+        width: 1133
+        height: 1128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa654906f59f7104882f10b6edc92898
+      internalID: 544464746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_30
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 1914
+        width: 1126
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5513bf0da471f49bb1a96c4671fb80
+      internalID: 1134862979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_31
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 730
+        width: 1049
+        height: 557
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d531e7fbb59bc647ab8b3cbd68722b9
+      internalID: 1587942240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_32
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 1373
+        width: 503
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf1f4673ae0f0e469386dc378c676c1
+      internalID: 869783995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_33
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 1371
+        width: 502
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5547a204e6a0041b5d82d267de2d5b
+      internalID: 787128096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_34
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 1372
+        width: 503
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19423d680bea154f96c2cc8705ff37c
+      internalID: -227301533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_35
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 1404
+        width: 1129
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bbd1ac8aafb9f4449645a42e8f2c29e
+      internalID: -1745817429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_36
+      rect:
+        serializedVersion: 2
+        x: 6607
+        y: 1404
+        width: 1132
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1cba8a0ff69be04782354c460fbd801
+      internalID: 606669500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_37
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 1393
+        width: 1126
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f06434f15da674e8a031f52effddd5
+      internalID: 619770407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_38
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 730
+        width: 1048
+        height: 555
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a4694b787ebd649bb7c75e242f23e5
+      internalID: 1360455771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_39
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 0
+        width: 1128
+        height: 1135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cdd056614125247b3b6082a23568ff
+      internalID: -1584621875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_40
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 529
+        width: 1129
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f20e26735c1e4c74ab5b76dfaf2d3fab
+      internalID: -1424734530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_41
+      rect:
+        serializedVersion: 2
+        x: 5292
+        y: 0
+        width: 1131
+        height: 1135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 834ef7906f559e14488fd43e4ad9531e
+      internalID: 1934836238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_42
+      rect:
+        serializedVersion: 2
+        x: 6610
+        y: 529
+        width: 1129
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b145e77e1230e3a45bef61b6c2b747da
+      internalID: 2134709915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_43
+      rect:
+        serializedVersion: 2
+        x: 7921
+        y: 0
+        width: 1133
+        height: 1125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2804a1c15a7ce5343809d49e9224df35
+      internalID: 1607280473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_44
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 518
+        width: 1126
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70eff5967ec38a641bfc8698313c9cea
+      internalID: 1672077322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_46
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 32
+        width: 1049
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25c74910c940ca408e58972b1a8b902
+      internalID: -997798969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_47
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 32
+        width: 1050
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046584c5d1fef3c4d9045fe7e5f8b088
+      internalID: -755113206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_48
+      rect:
+        serializedVersion: 2
+        x: 3979
+        y: 0
+        width: 1129
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef07357dfead6b4e8c61a5b1ce97309
+      internalID: -368091958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_49
+      rect:
+        serializedVersion: 2
+        x: 6607
+        y: 0
+        width: 1132
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87fed51a2e29e444ea84eabb33b21412
+      internalID: 510167647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_50
+      rect:
+        serializedVersion: 2
+        x: 9236
+        y: 0
+        width: 1126
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98537d683c68cbe4c992ee36e551ef4b
+      internalID: 1827952228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-PC Botones_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2691
+        width: 1117
+        height: 1122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ef2733fce57b834bbaf8177fcdf679e
+      internalID: -903754999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: eb3cd86a60c5da94fbb5e21df1987d33
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI-PC Botones_0: 1085758916
+      UI-PC Botones_1: -1547050646
+      UI-PC Botones_10: 1987186009
+      UI-PC Botones_11: -903754999
+      UI-PC Botones_12: -957472918
+      UI-PC Botones_13: -650492172
+      UI-PC Botones_14: -1988461447
+      UI-PC Botones_15: -524280137
+      UI-PC Botones_16: -686583050
+      UI-PC Botones_17: -451312343
+      UI-PC Botones_18: 1481864203
+      UI-PC Botones_19: 1441883645
+      UI-PC Botones_2: 533690032
+      UI-PC Botones_20: -204848500
+      UI-PC Botones_21: 1901057263
+      UI-PC Botones_22: 5040410
+      UI-PC Botones_23: 1990302971
+      UI-PC Botones_24: 1696576466
+      UI-PC Botones_25: -259232234
+      UI-PC Botones_26: 765750891
+      UI-PC Botones_27: 509891608
+      UI-PC Botones_28: -1582253098
+      UI-PC Botones_29: 544464746
+      UI-PC Botones_3: -1482669702
+      UI-PC Botones_30: 1134862979
+      UI-PC Botones_31: 1587942240
+      UI-PC Botones_32: 869783995
+      UI-PC Botones_33: 787128096
+      UI-PC Botones_34: -227301533
+      UI-PC Botones_35: -1745817429
+      UI-PC Botones_36: 606669500
+      UI-PC Botones_37: 619770407
+      UI-PC Botones_38: 1360455771
+      UI-PC Botones_39: -1584621875
+      UI-PC Botones_4: -1043722973
+      UI-PC Botones_40: -1424734530
+      UI-PC Botones_41: 1934836238
+      UI-PC Botones_42: 2134709915
+      UI-PC Botones_43: 1607280473
+      UI-PC Botones_44: 1672077322
+      UI-PC Botones_45: -1985281837
+      UI-PC Botones_46: -997798969
+      UI-PC Botones_47: -755113206
+      UI-PC Botones_48: -368091958
+      UI-PC Botones_49: 510167647
+      UI-PC Botones_5: -2049711092
+      UI-PC Botones_50: 1827952228
+      UI-PC Botones_6: -267643013
+      UI-PC Botones_7: 1134475275
+      UI-PC Botones_8: 434003383
+      UI-PC Botones_9: 961872223
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
