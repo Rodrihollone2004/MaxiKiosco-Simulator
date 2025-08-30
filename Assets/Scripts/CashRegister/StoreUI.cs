@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StoreUI : MonoBehaviour
@@ -14,14 +15,15 @@ public class StoreUI : MonoBehaviour
 
     private DayNightCycle dayNightCycle;
 
+    public List<LevelUpdates> LevelUpdate { get => levelUpdate; set => levelUpdate = value; }
+    public bool updateProducts;
+
     private void Awake()
     {
         dayNightCycle = FindObjectOfType<DayNightCycle>();
-    }
 
-    void Start()
-    {
-        PopulateStore();
+        foreach (ProductCategory category in database.categories)
+            category.products.Clear();
     }
 
     private Vector3 GetSpawnPosition()
@@ -68,37 +70,17 @@ public class StoreUI : MonoBehaviour
         return layer;
     }
 
-    void PopulateStore()
-    {
-        foreach (ProductCategory category in database.categories)
-        {
-            foreach (Product product in category.products)
-            {
-                GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
-                TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
-                text.text = $"{product.Name} - ${product.PackPrice}";
-
-                Product capturedProduct = product;
-
-                buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
-                {
-                    bool purchased = playerEconomy.TryPurchase(capturedProduct);
-                    if (purchased && capturedProduct.Prefab != null)
-                    {
-                        SpawnProduct(capturedProduct);
-                    }
-                });
-            }
-        }
-    }
-
     public void UpdateProducts()
     {
         foreach (LevelUpdates updateProducts in levelUpdate)
         {
             if (updateProducts.numberUpdate == dayNightCycle.DayNumber)
+            {
+                this.updateProducts = true;
+
                 foreach (Product product in updateProducts.products)
                 {
+                    UpdateDataBase(product);
                     GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
                     TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
                     text.text = $"{product.Name} - ${product.PackPrice}";
@@ -114,7 +96,18 @@ public class StoreUI : MonoBehaviour
                         }
                     });
                 }
+            }
         }
+    }
+
+    private void UpdateDataBase(Product product)
+    {
+        foreach (ProductCategory category in database.categories)
+            if (category.Type == product.Type)
+            {
+                if (!category.products.Contains(product))
+                    category.products.Add(product);
+            }
     }
 }
 

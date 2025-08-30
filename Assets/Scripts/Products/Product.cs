@@ -9,6 +9,8 @@ public class Product : Item
     [SerializeField] private int _currentAmount;
     [SerializeField] private int _packPrice;
     [SerializeField] private GameObject prefab;
+    [SerializeField] private productType type;
+
 
     public int Price { get => _price; set => _price = value; }
     public string PlaceZone { get => _placeZone; set => _placeZone = value; }
@@ -18,4 +20,16 @@ public class Product : Item
     public GameObject Prefab => prefab;
 
     public int CurrentAmount { get => _currentAmount; set => _currentAmount = value; }
+    public productType Type { get => type; set => type = value; }
+}
+
+public enum productType
+{
+    Chocolate,
+    Bebidas,
+    Alfajores,
+    Chicles,
+    Galletitas,
+    Encendedores,
+    Golosinas
 }

@@ -39616,6 +39616,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpdate:
+  - numberUpdate: 1
+    products:
+    - {fileID: 11400000, guid: b90ed7d9a65d00f4a89e502e5ccb0c7d, type: 2}
+    - {fileID: 11400000, guid: b8764c60b1eb4e34db20e41091d3627b, type: 2}
+    - {fileID: 11400000, guid: 4184724eb67bf794a8a6dd4df40fc233, type: 2}
+    - {fileID: 11400000, guid: 4ffc64a54eeacc84d9707ef8c86d8e77, type: 2}
+    - {fileID: 11400000, guid: f0c78d118a16a024981cd0975e3d697e, type: 2}
+    - {fileID: 11400000, guid: c5ea297a06dc257478943f4602673999, type: 2}
+    - {fileID: 11400000, guid: 0f7da775200659644a6b8917b6e85a22, type: 2}
+    - {fileID: 11400000, guid: a0f24b8d53d713349a395632202fcb4f, type: 2}
+    - {fileID: 11400000, guid: 1aa8a26681306bb45a8a32cd98b2deab, type: 2}
+    - {fileID: 11400000, guid: 3c132bae41aa47c4c998e11959849846, type: 2}
   - numberUpdate: 2
     products:
     - {fileID: 11400000, guid: 778d745dd8c49d548af83108fc0f5ff6, type: 2}
@@ -39646,6 +39658,7 @@ MonoBehaviour:
   productLayer:
     serializedVersion: 2
     m_Bits: 8
+  updateProducts: 0
 --- !u!1 &1283579826
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class ProductCategory 
 {
-    public string Name = "No category";
+    public productType Type;
     public int Id = 0;
 
     public List<Product> products;

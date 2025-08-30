@@ -38,7 +38,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         containerPrefab = gameObject;
 
         buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
-        currentPreview = Instantiate(buildPrefab, Vector3.zero, buildPrefab.transform.localRotation);
+        currentPreview = Instantiate(buildPrefab, Vector3.zero, Quaternion.identity);
         currentPreview.SetActive(true);
         SetPreviewColor(currentPreview, new Color(0f, 1f, 0f, 0.5f));
 

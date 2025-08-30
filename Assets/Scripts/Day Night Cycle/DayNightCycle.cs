@@ -64,7 +64,9 @@ public class DayNightCycle : MonoBehaviour
         daysText.text = $"{_dayNumber}";
 
         storeUI = storeGO.GetComponent<StoreUI>();
+        UpateProducts();
     }
+
     private void Update()
     {
         if (!pause)
@@ -242,19 +244,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void UpateProducts()
     {
-        switch (_dayNumber)
-        {
-            case 2:
-                Debug.Log("Nuevos productos");
-                storeUI.UpdateProducts();
-                break;
-            case 4:
-                Debug.Log("Nuevos productos");
-                storeUI.UpdateProducts();
-                break;
-            default:
-                break;
-        }
+        storeUI.UpdateProducts();
     }
 
     private IEnumerator HideSummaryAfterDelay(float delay)

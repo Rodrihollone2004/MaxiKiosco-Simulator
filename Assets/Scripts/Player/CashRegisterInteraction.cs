@@ -110,6 +110,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
                 ProcessPayment(currentClient);
                 PeekClient();
+
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
                 nPC_Controller.isPaying = true;
             }
@@ -159,7 +160,7 @@ public class CashRegisterInteraction : MonoBehaviour
     // configuracion al entrar a la caja registradora
     public void EnterCashRegisterMode(bool lockCamera, Transform targetPosition)
     {
-        if (playerMovement.State == PlayerMovement.MovementState.air) return;
+        if (playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
         playerMovement.enabled = false;
         canClickTheCashRegister = false;
