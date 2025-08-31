@@ -8,22 +8,51 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private List<LevelUpdates> levelUpdate;
     [SerializeField] private ProductDataBase database;
     [SerializeField] private PlayerEconomy playerEconomy;
+    [SerializeField] private GameObject categoriesButtonPrefab;
+    [SerializeField] private Transform categoriesButtonsContainer;
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
 
-    private DayNightCycle dayNightCycle;
+    [SerializeField] private DayNightCycle dayNightCycle;
 
-    public List<LevelUpdates> LevelUpdate { get => levelUpdate; set => levelUpdate = value; }
     public bool updateProducts;
 
-    private void Awake()
+    private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
+
+    private void Start()
     {
-        dayNightCycle = FindObjectOfType<DayNightCycle>();
+        CategoriesButtons();
+        ButtonType(productType.Chocolates);
 
         foreach (ProductCategory category in database.categories)
             category.products.Clear();
+    }
+
+    private void CategoriesButtons()
+    {
+        foreach (ProductCategory category in database.categories)
+        {
+            GameObject buttonGO = Instantiate(categoriesButtonPrefab, categoriesButtonsContainer);
+            TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
+            text.text = $"{category.Type}";
+
+            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ButtonType(category.Type));
+        }
+    }
+
+    public void ButtonType(productType buttonType)
+    {
+        foreach (KeyValuePair<Product, GameObject> buttons in productsButtons)
+        {
+            if (buttonType == buttons.Key.Type)
+            {
+                buttons.Value.SetActive(true);
+            }
+            else
+                buttons.Value.SetActive(false);
+        }
     }
 
     private Vector3 GetSpawnPosition()
@@ -86,6 +115,8 @@ public class StoreUI : MonoBehaviour
                     text.text = $"{product.Name} - ${product.PackPrice}";
 
                     Product capturedProduct = product;
+                    if (!productsButtons.ContainsKey(capturedProduct))
+                        productsButtons.Add(capturedProduct, buttonGO);
 
                     buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
                     {

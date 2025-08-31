@@ -7,8 +7,16 @@ public class CustomizeProducts : MonoBehaviour
     ProductInteractable[] productsInWorld;
     [SerializeField] GameObject inputFieldPrefab;
     [SerializeField] RectTransform contentInputField;
+    [SerializeField] private ProductDataBase database;
+    [SerializeField] private GameObject categoriesButtonPrefab;
+    [SerializeField] private Transform categoriesButtonsContainer;
+    private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
 
-    private HashSet<string> productsFields = new HashSet<string>();
+    private void Start()
+    {
+        CategoriesButtons();
+        ButtonType(productType.Chocolates);
+    }
 
     public void PopulateStore()
     {
@@ -17,7 +25,7 @@ public class CustomizeProducts : MonoBehaviour
         if (productsInWorld.Length > 0)
             foreach (ProductInteractable product in productsInWorld)
             {
-                if (productsFields.Contains(product.name))
+                if (productsButtons.ContainsKey(product.ProductData))
                     continue;
 
                 GameObject inputGO = Instantiate(inputFieldPrefab, contentInputField);
@@ -32,9 +40,34 @@ public class CustomizeProducts : MonoBehaviour
 
                 inputField.text = $"{product.ProductData.Price}";
                 nameProduct.text = $"{product.ProductData.Name}";
-                productsFields.Add(product.name);
+                productsButtons.Add(product.ProductData, inputGO);
             }
         else
             Debug.Log("No hay productos en el mostrador");
+    }
+
+    private void CategoriesButtons()
+    {
+        foreach (ProductCategory category in database.categories)
+        {
+            GameObject buttonGO = Instantiate(categoriesButtonPrefab, categoriesButtonsContainer);
+            TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
+            text.text = $"{category.Type}";
+
+            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ButtonType(category.Type));
+        }
+    }
+
+    public void ButtonType(productType buttonType)
+    {
+        foreach (KeyValuePair<Product, GameObject> buttons in productsButtons)
+        {
+            if (buttonType == buttons.Key.Type)
+            {
+                buttons.Value.SetActive(true);
+            }
+            else
+                buttons.Value.SetActive(false);
+        }
     }
 }

@@ -55,7 +55,7 @@ public class DayNightCycle : MonoBehaviour
 
     public bool IsComplete;
 
-    private void Start()
+    private void Awake()
     {
         NormalTimeCurve();
         _timeOfDay = 8f / 24f;

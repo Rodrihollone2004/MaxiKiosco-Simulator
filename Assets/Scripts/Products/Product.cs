@@ -25,7 +25,7 @@ public class Product : Item
 
 public enum productType
 {
-    Chocolate,
+    Chocolates,
     Bebidas,
     Alfajores,
     Chicles,
