@@ -7,12 +7,14 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject storeScreen;
     [SerializeField] private GameObject cashRegisterScreen;
     [SerializeField] private GameObject priceProducts;
+    [SerializeField] private GameObject stockScreen;
     [SerializeField] private GameObject backgrounds;
     [SerializeField] private GameObject bocaBackground;
     [SerializeField] private GameObject riverBackground;
     [SerializeField] private GameObject atlantaBackground;
     [SerializeField] private GameObject velezBackground;
     [SerializeField] private CashRegisterInteraction cashRegisterInteraction;
+    [SerializeField] private Stock stock;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
+        stockScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
     }
 
@@ -37,6 +40,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         backgrounds.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
+        stockScreen.SetActive(false);
         CustomizeProducts customizable = priceProducts.GetComponentInChildren<CustomizeProducts>();
         customizable.PopulateStore();
     }
@@ -48,6 +52,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
+        stockScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
     }
 
@@ -58,6 +63,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         cashRegisterScreen.SetActive(true);
         backgrounds.SetActive(false);
+        stockScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
         cashRegisterInteraction.PeekClient();
     }
@@ -69,6 +75,19 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(true);
+        stockScreen.SetActive(false);
+    }
+
+    public void ShowStockScreen()
+    {
+        homeScreen.SetActive(false);
+        storeScreen.SetActive(false);
+        cashRegisterScreen.SetActive(false);
+        priceProducts.SetActive(false);
+        backgrounds.SetActive(false);
+        stockScreen.SetActive(true);
+
+        stock.PopulateStore();
     }
 
     public void BocaBackground()
