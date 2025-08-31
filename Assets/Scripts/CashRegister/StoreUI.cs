@@ -21,13 +21,12 @@ public class StoreUI : MonoBehaviour
 
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
 
-    private void Start()
+    public ProductDataBase Database { get => database; set => database = value; }
+
+    private void Awake()
     {
         CategoriesButtons();
-        ButtonType(productType.Chocolates);
-
-        foreach (ProductCategory category in database.categories)
-            category.products.Clear();
+        ButtonType(productType.Chocolates);   
     }
 
     private void CategoriesButtons()

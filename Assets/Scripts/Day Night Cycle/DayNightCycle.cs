@@ -64,6 +64,9 @@ public class DayNightCycle : MonoBehaviour
         daysText.text = $"{_dayNumber}";
 
         storeUI = storeGO.GetComponent<StoreUI>();
+        foreach (ProductCategory category in storeUI.Database.categories)
+            category.products.Clear();
+
         UpateProducts();
     }
 

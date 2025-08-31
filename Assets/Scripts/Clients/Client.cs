@@ -8,6 +8,7 @@ public class Client : MonoBehaviour
     private Dictionary<ProductInteractable, int> cart = new Dictionary<ProductInteractable, int>();
     private Wallet wallet;
     List<ProductInteractable> allProducts;
+    List<ProductInteractable> productsInWorld;
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
@@ -20,6 +21,7 @@ public class Client : MonoBehaviour
     private void Awake()
     {
         allProducts = new List<ProductInteractable>();
+        productsInWorld = new List<ProductInteractable>();
         wallet = new Wallet();
     }
 
@@ -35,6 +37,9 @@ public class Client : MonoBehaviour
     public void AddRandomProductsToCart()
     {
         allProducts.Clear();
+        productsInWorld.Clear();
+
+        productsInWorld = FindObjectsOfType<ProductInteractable>().ToList();
 
         foreach (ProductCategory updateProduct in dataBase.categories)
             foreach (Product product in updateProduct.products)
@@ -57,22 +62,25 @@ public class Client : MonoBehaviour
 
         foreach (ProductInteractable product in chosenProducts)
         {
-            int amountProduct = Random.Range(1, 4); //el maximo despues va a ser variable para las mejoras
-
-            if (product.CurrentAmountProduct <= 0)
-                return;
-            else if (amountProduct > product.CurrentAmountProduct)
-                amountProduct = product.CurrentAmountProduct;
-
-            newTotal = total + (product.ProductData.Price * amountProduct);
-
-            if (newTotal < wallet.TotalMoney)
+            foreach (ProductInteractable productInWorld in productsInWorld)
             {
-                cart.Add(product, amountProduct);
-                product.SubtractAmount();
-                product.CheckDelete();
-                total = newTotal;
-                Debug.Log($"Añadido al carrito: {product.ProductData.Name} (${product.ProductData.Price})");
+                int amountProduct = Random.Range(1, 4); //el maximo despues va a ser variable para las mejoras
+
+                if (product.ProductData != productInWorld.ProductData)
+                    continue;
+                else if (amountProduct > productInWorld.CurrentAmountProduct)
+                    amountProduct = productInWorld.CurrentAmountProduct;
+
+                newTotal = total + (productInWorld.ProductData.Price * amountProduct);
+
+                if (newTotal < wallet.TotalMoney)
+                {
+                    cart.Add(productInWorld, amountProduct);
+                    productInWorld.SubtractAmount();
+                    productInWorld.CheckDelete();
+                    total = newTotal;
+                    Debug.Log($"Añadido al carrito: {productInWorld.ProductData.Name} (${productInWorld.ProductData.Price})");
+                }
             }
         }
         Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.TotalMoney}");
