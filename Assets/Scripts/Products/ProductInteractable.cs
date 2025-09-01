@@ -42,7 +42,10 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     public void CheckDelete()
     {
         if (currentAmountProduct <= 0)
+        {
             Destroy(gameObject);
+            ProductPlaceManager.productsPlaced.Remove(this);
+        }
     }
 
     public void Highlight()

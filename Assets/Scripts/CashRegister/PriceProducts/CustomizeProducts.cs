@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomizeProducts : MonoBehaviour
 {
-    List<ProductInteractable> productsInWorld;
+    List<ProductInteractable> productsPlaced;
     [SerializeField] GameObject inputPricePrefab;
     [SerializeField] RectTransform contentInputPrice;
     [SerializeField] private ProductDataBase database;
@@ -20,10 +20,10 @@ public class CustomizeProducts : MonoBehaviour
 
     public void PopulateStore()
     {
-        productsInWorld = StoreUI.productsInWorld;
+        productsPlaced = ProductPlaceManager.productsPlaced;
 
-        if (productsInWorld.Count > 0)
-            foreach (ProductInteractable product in productsInWorld)
+        if (productsPlaced.Count > 0)
+            foreach (ProductInteractable product in productsPlaced)
             {
                 if (productsButtons.ContainsKey(product.ProductData) || !product.IsPlaced)
                     continue;

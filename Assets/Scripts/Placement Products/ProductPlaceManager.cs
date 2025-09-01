@@ -19,6 +19,8 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     public bool CanBePickedUp => true;
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZoneProducts[] AllZones { get; private set; }
+    
+    public static List<ProductInteractable> productsPlaced = new List<ProductInteractable>();
 
     private void Awake()
     {
@@ -80,6 +82,8 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             foreach (StockController controllers in Stock.allStock)
                 controllers.PlaceProduct(product);
+
+            productsPlaced.Add(product);
 
             Destroy(currentPreview);
             Destroy(containerPrefab);

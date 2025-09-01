@@ -43,7 +43,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterInteraction.InCashRegister = false;
         stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
-        CustomizeProducts customizable = priceProducts.GetComponentInChildren<CustomizeProducts>();
+        CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
         customizable.PopulateStore();
     }
 
