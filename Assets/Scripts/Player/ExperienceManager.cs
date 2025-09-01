@@ -7,12 +7,13 @@ public class ExperienceManager : MonoBehaviour
     [Header("Experience")]
     [SerializeField] AnimationCurve experienceCurve;
 
-    int currentLevel, totalExperience;
+    int currentLevel, totalExperience, levelToPoints;
     int previousLevelsExperience, nextLevelsExperience;
 
     [Header("Interface")]
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI experienceText;
+    [SerializeField] TextMeshProUGUI levelPoints;
     [SerializeField] Image experienceFill;
 
     private void Start()
@@ -39,7 +40,24 @@ public class ExperienceManager : MonoBehaviour
         if (totalExperience >= nextLevelsExperience)
         {
             currentLevel++;
+            levelToPoints++;
             UpdateLevel();
+            levelPoints.text = $"Nivel: {levelToPoints}";
+        }
+    }
+
+    public bool PurchaseUpgrade(int upgrade)
+    {
+        if (levelToPoints >= upgrade)
+        {
+            levelToPoints -= upgrade;
+            levelPoints.text = $"Nivel: {levelToPoints}";
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("No tenes suficiente nivel para realizar la mejora.");
+            return false;
         }
     }
 

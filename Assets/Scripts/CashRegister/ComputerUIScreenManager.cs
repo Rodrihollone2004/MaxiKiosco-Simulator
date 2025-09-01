@@ -8,6 +8,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject cashRegisterScreen;
     [SerializeField] private GameObject priceProducts;
     [SerializeField] private GameObject stockScreen;
+    [SerializeField] private GameObject upgradesScreen;
     [SerializeField] private GameObject backgrounds;
     [SerializeField] private GameObject bocaBackground;
     [SerializeField] private GameObject riverBackground;
@@ -28,6 +29,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
         stockScreen.SetActive(false);
+        upgradesScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
     }
 
@@ -40,6 +42,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
         stockScreen.SetActive(false);
+        upgradesScreen.SetActive(false);
         CustomizeProducts customizable = priceProducts.GetComponentInChildren<CustomizeProducts>();
         customizable.PopulateStore();
     }
@@ -52,6 +55,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
         stockScreen.SetActive(false);
+        upgradesScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
     }
 
@@ -63,6 +67,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(true);
         backgrounds.SetActive(false);
         stockScreen.SetActive(false);
+        upgradesScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
         cashRegisterInteraction.PeekClient();
     }
@@ -75,6 +80,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         backgrounds.SetActive(true);
         stockScreen.SetActive(false);
+        upgradesScreen.SetActive(false);
     }
 
     public void ShowStockScreen()
@@ -85,6 +91,18 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
         stockScreen.SetActive(true);
+        upgradesScreen.SetActive(false);
+    }
+
+    public void ShowUpgradeScreen()
+    {
+        homeScreen.SetActive(false);
+        storeScreen.SetActive(false);
+        cashRegisterScreen.SetActive(false);
+        priceProducts.SetActive(false);
+        backgrounds.SetActive(false);
+        stockScreen.SetActive(false);
+        upgradesScreen.SetActive(true);
     }
 
     public void BocaBackground()
