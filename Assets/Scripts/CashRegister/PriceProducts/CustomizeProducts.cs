@@ -5,8 +5,8 @@ using UnityEngine;
 public class CustomizeProducts : MonoBehaviour
 {
     List<ProductInteractable> productsInWorld;
-    [SerializeField] GameObject inputFieldPrefab;
-    [SerializeField] RectTransform contentInputField;
+    [SerializeField] GameObject inputPricePrefab;
+    [SerializeField] RectTransform contentInputPrice;
     [SerializeField] private ProductDataBase database;
     [SerializeField] private GameObject categoriesButtonPrefab;
     [SerializeField] private Transform categoriesButtonsContainer;
@@ -20,15 +20,15 @@ public class CustomizeProducts : MonoBehaviour
 
     public void PopulateStore()
     {
-        productsInWorld = ProductPlaceManager.productsInWorld;
+        productsInWorld = StoreUI.productsInWorld;
 
         if (productsInWorld.Count > 0)
             foreach (ProductInteractable product in productsInWorld)
             {
-                if (productsButtons.ContainsKey(product.ProductData))
+                if (productsButtons.ContainsKey(product.ProductData) || !product.IsPlaced)
                     continue;
 
-                GameObject inputGO = Instantiate(inputFieldPrefab, contentInputField);
+                GameObject inputGO = Instantiate(inputPricePrefab, contentInputPrice);
                 TMP_Text nameProduct = inputGO.GetComponentInChildren<TMP_Text>();
                 nameProduct.text = $"{product.ProductData.Name}";
 

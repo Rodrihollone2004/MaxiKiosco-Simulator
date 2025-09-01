@@ -6,11 +6,13 @@ public class Stock : MonoBehaviour
 {
     List<ProductInteractable> productsInWorld;
     [SerializeField] private ProductDataBase database;
-    [SerializeField] private GameObject productButtonPrefab;
-    [SerializeField] private Transform productsButtonsContainer;
+    [SerializeField] private GameObject stockItemPrefab;
+    [SerializeField] private Transform itemsStockContainer;
     [SerializeField] private GameObject categoriesButtonPrefab;
     [SerializeField] private Transform categoriesButtonsContainer;
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
+
+    public static List<StockController> allStock = new List<StockController>();
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class Stock : MonoBehaviour
 
     public void PopulateStore()
     {
-        productsInWorld = ProductPlaceManager.productsInWorld;
+        productsInWorld = StoreUI.productsInWorld;
 
         if (productsInWorld.Count > 0)
         {
@@ -29,17 +31,17 @@ public class Stock : MonoBehaviour
                 if (productsButtons.ContainsKey(product.ProductData))
                     continue;
 
-                GameObject buttonGO = Instantiate(productButtonPrefab, productsButtonsContainer);
-                TMP_Text nameProduct = buttonGO.GetComponentInChildren<TMP_Text>();
+                GameObject stockGO = Instantiate(stockItemPrefab, itemsStockContainer);
+                TMP_Text nameProduct = stockGO.GetComponentInChildren<TMP_Text>();
                 nameProduct.text = $"{product.ProductData.Name}";
 
-                buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>{ });
+                StockController controller = stockGO.GetComponent<StockController>();
+                controller.Product = product.ProductData;
+                allStock.Add(controller);
 
-                productsButtons.Add(product.ProductData, buttonGO);
+                productsButtons.Add(product.ProductData, stockGO);
             }
         }
-        else
-            Debug.Log("No hay productos");
     }
 
     private void CategoriesButtons()

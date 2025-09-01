@@ -5085,7 +5085,6 @@ GameObject:
   - component: {fileID: 296581395}
   - component: {fileID: 296581394}
   - component: {fileID: 296581393}
-  - component: {fileID: 296581392}
   - component: {fileID: 296581396}
   m_Layer: 5
   m_Name: Stock
@@ -5120,25 +5119,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.1388, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &296581392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296581390}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f577536c0505ba459c2b9acda4f889a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputFieldPrefab: {fileID: 2561151656096385276, guid: 21230e6308622c54093234ed887581eb,
-    type: 3}
-  contentInputField: {fileID: 1390897649}
-  database: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
-  categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 1214e05bd4c594848a62036b23d98c21,
-    type: 3}
-  categoriesButtonsContainer: {fileID: 697270173}
 --- !u!114 &296581393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5220,9 +5200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
-  productButtonPrefab: {fileID: 6334398763645884139, guid: 9c429bb09a143c241ba1dfeaa4c1fd12,
+  stockItemPrefab: {fileID: 2561151656096385276, guid: 7814f2b46fe11a340ad96d104029b02d,
     type: 3}
-  productsButtonsContainer: {fileID: 1390897649}
+  itemsStockContainer: {fileID: 1390897649}
   categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 1b4c07f100617d4408daafa14e3d37ae,
     type: 3}
   categoriesButtonsContainer: {fileID: 697270173}
@@ -5978,7 +5958,6 @@ MonoBehaviour:
   atlantaBackground: {fileID: 842931810}
   velezBackground: {fileID: 552268101}
   cashRegisterInteraction: {fileID: 1964649766}
-  stock: {fileID: 296581396}
 --- !u!1 &326193043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2621715991313452292, guid: 3a377c4521d47a04f8304fd57a96ba84,
@@ -41604,6 +41583,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   dayNightCycle: {fileID: 880010573}
+  stock: {fileID: 296581396}
   updateProducts: 0
 --- !u!1 &1283579826
 GameObject:
@@ -43682,10 +43662,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1390897649}
-  - component: {fileID: 1390897651}
   - component: {fileID: 1390897650}
   m_Layer: 5
-  m_Name: PriceProducts
+  m_Name: Stock Products
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43719,21 +43698,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1390897648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 1
---- !u!114 &1390897651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390897648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -43742,12 +43707,14 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 0.19, y: 0.09}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 2
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1391253686
 GameObject:
   m_ObjectHideFlags: 0
@@ -54957,9 +54924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f577536c0505ba459c2b9acda4f889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputFieldPrefab: {fileID: 2561151656096385276, guid: 21230e6308622c54093234ed887581eb,
-    type: 3}
-  contentInputField: {fileID: 1518914701}
+  inputPricePrefab: {fileID: 0}
+  contentInputPrice: {fileID: 0}
   database: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
   categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 1214e05bd4c594848a62036b23d98c21,
     type: 3}

@@ -14,7 +14,6 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject atlantaBackground;
     [SerializeField] private GameObject velezBackground;
     [SerializeField] private CashRegisterInteraction cashRegisterInteraction;
-    [SerializeField] private Stock stock;
 
     void Start()
     {
@@ -86,8 +85,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
         stockScreen.SetActive(true);
-
-        stock.PopulateStore();
     }
 
     public void BocaBackground()

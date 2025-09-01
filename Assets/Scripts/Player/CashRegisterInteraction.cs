@@ -146,6 +146,9 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private void TryInteractWithRegister()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide == 3)
+            return;
+
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionDistance))
         {
@@ -153,6 +156,7 @@ public class CashRegisterInteraction : MonoBehaviour
             {
                 EnterCashRegisterMode(true, lockedCameraTarget);
                 PeekClient(false);
+                TutorialContent.Instance.CompleteStep(4);
             }
         }
     }

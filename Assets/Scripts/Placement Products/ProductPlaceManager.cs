@@ -20,8 +20,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZoneProducts[] AllZones { get; private set; }
 
-    public static List<ProductInteractable> productsInWorld = new List<ProductInteractable>();
-
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
@@ -67,7 +65,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             
             ProductInteractable product = finalObj.GetComponent<ProductInteractable>();
             product.IsPlaced = true;
-            productsInWorld.Add(product);
 
             Collider col = finalObj.GetComponent<Collider>();
             if (col != null) col.enabled = true;
@@ -80,6 +77,9 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.HideVisual();
+
+            foreach (StockController controllers in Stock.allStock)
+                controllers.PlaceProduct(product);
 
             Destroy(currentPreview);
             Destroy(containerPrefab);

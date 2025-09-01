@@ -16,12 +16,15 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private LayerMask productLayer;
 
     [SerializeField] private DayNightCycle dayNightCycle;
+    [SerializeField] private Stock stock;
 
     public bool updateProducts;
 
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
 
     public ProductDataBase Database { get => database; set => database = value; }
+
+    public static List<ProductInteractable> productsInWorld = new List<ProductInteractable>();
 
     private void Awake()
     {
@@ -75,6 +78,11 @@ public class StoreUI : MonoBehaviour
 
         ProductInteractable interactable = children.GetComponent<ProductInteractable>();
         interactable.Initialize(capturedProduct);
+        productsInWorld.Add(interactable);
+        stock.PopulateStore();
+
+        foreach (StockController controllers in Stock.allStock)
+            controllers.AddDeposit(interactable);
     }
 
     private void SetLayerRecursive(GameObject obj, int layer)

@@ -14,6 +14,8 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     public bool IsPlaced { get; set; }
 
+    public bool WasPlaced { get; set; }
+
     public bool ShowNameOnHighlight => showNameOnHighlight;
 
     public Product ProductData => _productData;

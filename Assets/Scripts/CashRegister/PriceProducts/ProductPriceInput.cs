@@ -24,7 +24,7 @@ public class ProductPriceInput : MonoBehaviour
     public void AddPrice(int amount)
     {
         _productData.Price += amount;
-        UpdatePriceText(); 
+        UpdatePriceText();   
     }
 
     public void SubtractPrice(int amount)
