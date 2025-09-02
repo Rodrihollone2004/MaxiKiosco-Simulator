@@ -34,9 +34,12 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         ProductUIManager.Instance.ShowInfo(_productData.Name, _productData.Price, currentAmountProduct);
     }
 
-    public void SubtractAmount()
+    public void SubtractAmount(int amount)
     {
-        currentAmountProduct--;
+        currentAmountProduct -= amount;
+
+        foreach (StockController controllers in Stock.allStock)
+            controllers.SubtractProduct(this);
     }
 
     public void CheckDelete()
@@ -44,6 +47,7 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         if (currentAmountProduct <= 0)
         {
             Destroy(gameObject);
+
             ProductPlaceManager.productsPlaced.Remove(this);
         }
     }

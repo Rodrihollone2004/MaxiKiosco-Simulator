@@ -43,6 +43,15 @@ public class StockController : MonoBehaviour
             }
     }
 
+    public void SubtractProduct(ProductInteractable product)
+    {
+        if (Product == product.ProductData)
+        {
+            amountPlaced = product.CurrentAmountProduct;
+            UpdateTextsStock();
+        }
+    }
+
     public void UpdateTextsStock()
     {
         placedAmount.text = $"{amountPlaced}";

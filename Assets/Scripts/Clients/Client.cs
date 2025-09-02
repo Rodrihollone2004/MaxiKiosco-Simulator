@@ -76,7 +76,7 @@ public class Client : MonoBehaviour
                 if (newTotal < wallet.TotalMoney)
                 {
                     cart.Add(productInWorld, amountProduct);
-                    productInWorld.SubtractAmount();
+                    productInWorld.SubtractAmount(amountProduct);
                     productInWorld.CheckDelete();
                     total = newTotal;
                     Debug.Log($"Añadido al carrito: {productInWorld.ProductData.Name} (${productInWorld.ProductData.Price})");
