@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor.Rendering.Universal;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -110,6 +111,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (highlightPanel != null && highlightNameText != null)
                     {
                         ProductInteractable product = hit.collider.GetComponentInChildren<ProductInteractable>(true);
+                        UpgradeInteractable upgrade = hit.collider.GetComponentInChildren<UpgradeInteractable>(true); 
 
                         if (product != null && product.ProductData != null)
                             if (product.ShowNameOnHighlight && !product.IsPlaced)
@@ -126,6 +128,16 @@ public class PlayerInteraction : MonoBehaviour
                             {
                                 highlightPanel.SetActive(true);
                                 highlightNameText.text = furnitureBox.name;
+                            }
+                            else
+                            {
+                                highlightPanel.SetActive(false);
+                            }
+                        else if (upgrade != null && upgrade.UpgradeData != null)
+                            if (upgrade.ShowNameOnHighlight && !upgrade.IsPlaced)
+                            {
+                                highlightPanel.SetActive(true);
+                                highlightNameText.text = upgrade.name;
                             }
                             else
                             {
@@ -226,6 +238,7 @@ public class PlayerInteraction : MonoBehaviour
             string productName = heldObject.name;
 
             ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
+            UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
             if (interactable != null && interactable.ProductData != null)
             {
                 productName = interactable.ProductData.Name;
@@ -238,6 +251,15 @@ public class PlayerInteraction : MonoBehaviour
             else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
             {
                 productName = furnitureBox.name;
+
+                hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+            }
+            else if (upgrade != null && upgrade.UpgradeData != null)
+            {
+                productName = upgrade.UpgradeData.Name;
 
                 hintText.text = $"{productName}\n" +
                     $"E  para colocar\n" +

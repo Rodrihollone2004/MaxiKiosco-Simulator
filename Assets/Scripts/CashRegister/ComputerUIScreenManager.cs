@@ -103,6 +103,8 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         stockScreen.SetActive(false);
         upgradesScreen.SetActive(true);
+        UpgradeManager upgradeManager = upgradesScreen.GetComponent<UpgradeManager>();
+        upgradeManager.PopulateStore();
     }
 
     public void BocaBackground()

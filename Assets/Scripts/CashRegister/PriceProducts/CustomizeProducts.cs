@@ -12,6 +12,7 @@ public class CustomizeProducts : MonoBehaviour
     [SerializeField] private GameObject categoriesButtonPrefab;
     [SerializeField] private Transform categoriesButtonsContainer;
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
+    private List<ProductInteractable> toRemove = new List<ProductInteractable>();
 
     private void Start()
     {
@@ -26,7 +27,20 @@ public class CustomizeProducts : MonoBehaviour
         if (productsPlaced.Count > 0)
             foreach (ProductInteractable product in productsPlaced)
             {
-                if (productsButtons.ContainsKey(product.ProductData) || !product.IsPlaced)
+                if (product.CurrentAmountProduct <= 0 && productsButtons.ContainsKey(product.ProductData))
+                {
+                    toRemove.Add(product);
+                    Destroy(productsButtons[product.ProductData]);
+                    productsButtons.Remove(product.ProductData);
+                    continue;
+                }
+                else if (product == null)
+                {
+                    toRemove.Add(product);
+                    continue;
+                }
+
+                if (productsButtons.ContainsKey(product.ProductData) || !product.IsPlaced || product.CurrentAmountProduct <= 0)
                     continue;
 
                 GameObject inputGO = Instantiate(inputPricePrefab, contentInputPrice);
@@ -41,6 +55,11 @@ public class CustomizeProducts : MonoBehaviour
             }
         else
             Debug.Log("No hay productos en el mostrador");
+
+        foreach (ProductInteractable product in toRemove)
+        {
+            productsPlaced.Remove(product);
+        }
     }
 
     private void CategoriesButtons()

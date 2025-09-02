@@ -19,7 +19,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     public bool CanBePickedUp => true;
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZoneProducts[] AllZones { get; private set; }
-    
+
     public static List<ProductInteractable> productsPlaced = new List<ProductInteractable>();
 
     private void Awake()
@@ -50,11 +50,23 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         Collider col = currentPreview.GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
-        ProductInteractable productInteractable = currentPreview.GetComponent<ProductInteractable>();
-        string productPlaceZone = productInteractable.ProductData.PlaceZone;
+        if (currentPreview.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
+        {
+            ProductInteractable productInteractable = interactable;
+            string productPlaceZone = productInteractable.ProductData.PlaceZone;
 
-        foreach (PlacementZoneProducts zone in AllZones)
-            zone.ShowVisual(productPlaceZone);
+            foreach (PlacementZoneProducts zone in AllZones)
+                zone.ShowVisual(productPlaceZone);
+        }
+        else if (currentPreview.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
+        {
+            UpgradeInteractable productInteractable = upgrade;
+            string upgradePlaceZone = productInteractable.UpgradeData.PlaceZone;
+
+            foreach (PlacementZoneProducts zone in AllZones)
+                zone.ShowVisual(upgradePlaceZone);
+        }
+
     }
 
     public void PlaceProduct()
@@ -64,9 +76,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
             finalObj.SetActive(true);
             SetPreviewColor(finalObj, Color.blue);
-            
-            ProductInteractable product = finalObj.GetComponent<ProductInteractable>();
-            product.IsPlaced = true;
 
             Collider col = finalObj.GetComponent<Collider>();
             if (col != null) col.enabled = true;
@@ -80,10 +89,20 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.HideVisual();
 
-            foreach (StockController controllers in Stock.allStock)
-                controllers.PlaceProduct(product);
+            if (finalObj.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
+            {
+                ProductInteractable product = interactable;
+                product.IsPlaced = true;
 
-            productsPlaced.Add(product);
+                foreach (StockController controllers in Stock.allStock)
+                    controllers.PlaceProduct(product);
+
+                productsPlaced.Add(product);
+            }
+            else if (finalObj.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
+            {
+                upgrade.IsPlaced = true;
+            }
 
             Destroy(currentPreview);
             Destroy(containerPrefab);

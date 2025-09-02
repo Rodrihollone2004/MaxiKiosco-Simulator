@@ -47,8 +47,6 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         if (currentAmountProduct <= 0)
         {
             Destroy(gameObject);
-
-            ProductPlaceManager.productsPlaced.Remove(this);
         }
     }
 

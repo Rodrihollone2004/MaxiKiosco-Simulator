@@ -16,6 +16,8 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelPoints;
     [SerializeField] Image experienceFill;
 
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
+
     private void Start()
     {
         UpdateLevel();

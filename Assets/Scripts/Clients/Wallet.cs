@@ -70,7 +70,7 @@ public class Wallet
     {
         Step++;
 
-        Debug.Log("\n\nStep: " + Step + " || Indice: " + index + " || Costo: " + cost);
+        //Debug.Log("\n\nStep: " + Step + " || Indice: " + index + " || Costo: " + cost);
 
         if (current == cost)
         {

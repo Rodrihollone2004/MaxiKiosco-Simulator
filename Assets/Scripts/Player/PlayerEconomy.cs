@@ -50,6 +50,24 @@ public class PlayerEconomy : MonoBehaviour
         currentChange = 0;
     }
 
+    public bool TryPurchaseUpgrade(Upgrade upgrade)
+    {
+        if (upgrade == null) return false;
+
+        if (currentMoney >= upgrade.Price)
+        {
+            currentMoney -= upgrade.Price;
+            Debug.Log($"Compraste {upgrade.Name}. Dinero restante: ${currentMoney}");
+            moneyText.text = $"{currentMoney}";
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("No hay suficiente dinero para realizar la compra.");
+            return false;
+        }
+    }
+
     // Restar plata al comprar
     public bool TryPurchase(Product product)
     {
