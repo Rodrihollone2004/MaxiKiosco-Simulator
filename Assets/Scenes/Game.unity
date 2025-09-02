@@ -5534,6 +5534,7 @@ MonoBehaviour:
   categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 1b4c07f100617d4408daafa14e3d37ae,
     type: 3}
   categoriesButtonsContainer: {fileID: 697270173}
+  pressButton: {fileID: 1481864203, guid: 1556e925bae09ae45b92b0b129f05932, type: 3}
 --- !u!1 &297732537
 GameObject:
   m_ObjectHideFlags: 0
@@ -42629,6 +42630,7 @@ MonoBehaviour:
   productLayer:
     serializedVersion: 2
     m_Bits: 8
+  pressButton: {fileID: -1424734530, guid: 1556e925bae09ae45b92b0b129f05932, type: 3}
   dayNightCycle: {fileID: 880010573}
   stock: {fileID: 296581396}
   updateProducts: 0
@@ -56532,6 +56534,7 @@ MonoBehaviour:
   categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 1214e05bd4c594848a62036b23d98c21,
     type: 3}
   categoriesButtonsContainer: {fileID: 1043026553}
+  pressButton: {fileID: -686583050, guid: 1556e925bae09ae45b92b0b129f05932, type: 3}
 --- !u!1 &2044041204
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreUI : MonoBehaviour
 {
@@ -14,6 +14,9 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private GameObject productButtonPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
+    [SerializeField] private Sprite pressButton;
+    private Sprite normalButton;
+    private Dictionary<productType, Button> categoriesButtons = new Dictionary<productType, Button>();
 
     [SerializeField] private DayNightCycle dayNightCycle;
     [SerializeField] private Stock stock;
@@ -37,10 +40,15 @@ public class StoreUI : MonoBehaviour
         foreach (ProductCategory category in database.categories)
         {
             GameObject buttonGO = Instantiate(categoriesButtonPrefab, categoriesButtonsContainer);
+            normalButton = buttonGO.GetComponent<Image>().sprite;
             TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
             text.text = $"{category.Type}";
 
-            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ButtonType(category.Type));
+            Button button = buttonGO.GetComponent<UnityEngine.UI.Button>();
+            button.onClick.AddListener(() => ButtonType(category.Type));
+            button.onClick.AddListener(() => CheckButtonPressed(category.Type));
+
+            categoriesButtons.Add(category.Type, button);
         }
     }
 
@@ -54,6 +62,21 @@ public class StoreUI : MonoBehaviour
             }
             else
                 buttons.Value.SetActive(false);
+        }
+    }
+
+    private void CheckButtonPressed(productType button)
+    {
+        foreach (var buttons in categoriesButtons)
+        {
+            if (button == buttons.Key)
+            {
+                buttons.Value.image.sprite = pressButton;
+            }
+            else
+            {
+                buttons.Value.image.sprite = normalButton;
+            }
         }
     }
 

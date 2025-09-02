@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stock : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Stock : MonoBehaviour
     [SerializeField] private Transform itemsStockContainer;
     [SerializeField] private GameObject categoriesButtonPrefab;
     [SerializeField] private Transform categoriesButtonsContainer;
+    [SerializeField] private Sprite pressButton;
+    private Sprite normalButton;
+    private Dictionary<productType, Button> categoriesButtons = new Dictionary<productType, Button>();
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
 
     public static List<StockController> allStock = new List<StockController>();
@@ -49,10 +53,15 @@ public class Stock : MonoBehaviour
         foreach (ProductCategory category in database.categories)
         {
             GameObject buttonGO = Instantiate(categoriesButtonPrefab, categoriesButtonsContainer);
+            normalButton = buttonGO.GetComponent<Image>().sprite;
             TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
             text.text = $"{category.Type}";
 
-            buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ButtonType(category.Type));
+            Button button = buttonGO.GetComponent<UnityEngine.UI.Button>();
+            button.onClick.AddListener(() => ButtonType(category.Type));
+            button.onClick.AddListener(() => CheckButtonPressed(category.Type));
+
+            categoriesButtons.Add(category.Type, button);
         }
     }
 
@@ -66,6 +75,21 @@ public class Stock : MonoBehaviour
             }
             else
                 buttons.Value.SetActive(false);
+        }
+    }
+
+    private void CheckButtonPressed(productType button)
+    {
+        foreach (var buttons in categoriesButtons)
+        {
+            if (button == buttons.Key)
+            {
+                buttons.Value.image.sprite = pressButton;
+            }
+            else
+            {
+                buttons.Value.image.sprite = normalButton;
+            }
         }
     }
 }
