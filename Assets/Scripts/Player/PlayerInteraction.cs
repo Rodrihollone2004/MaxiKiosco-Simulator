@@ -65,12 +65,52 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(dropKey) && heldObject != null)
             DropObject();
 
-        if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
-            furnitureBox.PlaceFurniture();
+        if (Input.GetKeyDown(KeyCode.E) && heldObject != null)
+        {
+            if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+            {
+                if (furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
+                {
+                    furnitureBox.PlaceFurniture();
+                }
+                else
+                {
+                    furnitureBox.Interact();
+                    UpdateHoldObjectUI();
+                }
+            }
+            else if (heldObject.TryGetComponent<ProductPlaceManager>(out ProductPlaceManager productPlaceManager))
+            {
+                if (productPlaceManager.CurrentPreview != null && productPlaceManager.CurrentPreview.activeSelf)
+                {
+                    productPlaceManager.PlaceProduct();
+                }
+                else
+                {
+                    productPlaceManager.Interact();
+                    UpdateHoldObjectUI();
+                }
 
-        if (Input.GetKeyDown(KeyCode.E) && productPlace != null && productPlace.CurrentPreview != null && productPlace.CurrentPreview.activeSelf)
-            productPlace.PlaceProduct();
+                if (productPlaceManager.IsEmpty)
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
+                    {
+                        if (hit.collider.CompareTag("Trash"))
+                        {
+                            Destroy(heldObject);
+                            heldObject = null;
+                            productPlace = null;
+                            dropHintUI.SetActive(false);
+                            hintText.text = "";
+                        }
+                    }
+                }
+            }
+        }
     }
+
+
     private void TrySubtractBill()
     {
         RaycastHit hit;
@@ -111,7 +151,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (highlightPanel != null && highlightNameText != null)
                     {
                         ProductInteractable product = hit.collider.GetComponentInChildren<ProductInteractable>(true);
-                        UpgradeInteractable upgrade = hit.collider.GetComponentInChildren<UpgradeInteractable>(true); 
+                        UpgradeInteractable upgrade = hit.collider.GetComponentInChildren<UpgradeInteractable>(true);
 
                         if (product != null && product.ProductData != null)
                             if (product.ShowNameOnHighlight && !product.IsPlaced)
@@ -189,6 +229,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     // hace el objeto hijo del holdposition al agarrarlo
+    // hace el objeto hijo del holdposition al agarrarlo
     private void PickUp(GameObject objToPickUp)
     {
         if (currentInteractable != null)
@@ -204,9 +245,7 @@ public class PlayerInteraction : MonoBehaviour
             heldBroom = broom;
             heldBroom.SetHeld(true);
 
-            hintText.text = $"{broom.name}\n" +
-                    $"LMB para limpiar\n" +
-                    $"G  para soltar\n";
+            hintText.text = $"{broom.name}\nLMB para limpiar\nG para soltar\n";
         }
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
@@ -234,38 +273,7 @@ public class PlayerInteraction : MonoBehaviour
         if (dropHintUI != null)
         {
             dropHintUI.SetActive(true);
-
-            string productName = heldObject.name;
-
-            ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
-            UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
-            if (interactable != null && interactable.ProductData != null)
-            {
-                productName = interactable.ProductData.Name;
-
-                hintText.text = $"{productName}\n" +
-                    $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    $"G  para soltar\n";
-            }
-            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
-            {
-                productName = furnitureBox.name;
-
-                hintText.text = $"{productName}\n" +
-                    $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    $"G  para soltar\n";
-            }
-            else if (upgrade != null && upgrade.UpgradeData != null)
-            {
-                productName = upgrade.UpgradeData.Name;
-
-                hintText.text = $"{productName}\n" +
-                    $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    $"G  para soltar\n";
-            }
+            UpdateHoldObjectUI();
         }
 
         if (audioSource != null && pickupSound != null)
@@ -283,6 +291,20 @@ public class PlayerInteraction : MonoBehaviour
             {
                 heldBroom.SetHeld(false);
                 heldBroom = null;
+            }
+
+            if (furnitureBox != null && furnitureBox.CurrentPreview != null)
+            {
+                Destroy(furnitureBox.CurrentPreview);
+                foreach (PlacementZone zone in furnitureBox.AllZones)
+                    zone.HideVisual();
+            }
+
+            if (productPlace != null && productPlace.CurrentPreview != null)
+            {
+                Destroy(productPlace.CurrentPreview);
+                foreach (PlacementZoneProducts zone in productPlace.AllZones)
+                    zone.HideVisual();
             }
 
             if (heldObjectRb != null)
@@ -307,28 +329,56 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider = null;
             currentInteractable = null;
 
-            if (furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.AllZones.Length > 0)
-            {
-                furnitureBox.CurrentPreview.SetActive(false);
-                foreach (PlacementZone zone in furnitureBox.AllZones)
-                    zone.HideVisual();
-            }
-
-            if (furnitureBox != null)
-                furnitureBox = null;
-
-            if (productPlace != null && productPlace.CurrentPreview != null && productPlace.AllZones.Length > 0)
-            {
-                productPlace.CurrentPreview.SetActive(false);
-                foreach (PlacementZoneProducts zone in productPlace.AllZones)
-                    zone.HideVisual();
-            }
-
-            if (productPlace != null)
-                furnitureBox = null;
+            furnitureBox = null;
+            productPlace = null;
 
             if (audioSource != null && dropSound != null)
                 audioSource.PlayOneShot(dropSound);
+        }
+    }
+
+    public void ForceUpdateHeldObjectReference(ProductPlaceManager updatedBox)
+    {
+        if (heldObject != null && heldObject == updatedBox.gameObject)
+        {
+            productPlace = updatedBox;
+
+            UpdateHoldObjectUI();
+        }
+    }
+
+    public void UpdateHoldObjectUI()
+    {
+        if (heldObject != null && dropHintUI != null)
+        {
+            string productName = heldObject.name;
+            string hintMessage = "";
+
+            ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
+            UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
+
+            if (interactable != null && interactable.ProductData != null)
+            {
+                productName = interactable.ProductData.Name;
+                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
+            }
+            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+            {
+                productName = furnitureBox.name;
+                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
+            }
+            else if (upgrade != null && upgrade.UpgradeData != null)
+            {
+                productName = upgrade.UpgradeData.Name;
+                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
+            }
+            else if (heldObject.TryGetComponent<ProductPlaceManager>(out ProductPlaceManager box))
+            {
+                string estado = box.IsEmpty ? "Vacía" : "Llena";
+                hintMessage = $"Caja ({estado})\nE para {"usar"}\nG para soltar\n";
+            }
+
+            hintText.text = hintMessage;
         }
     }
 }
