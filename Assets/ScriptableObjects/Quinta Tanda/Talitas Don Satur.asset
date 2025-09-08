@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Talitas Don Satur
+  m_EditorClassIdentifier: 
+  _name: Talitas Don Satur
+  _id: 4000003
+  _price: 1125
+  _placeZone: Isla
+  _packSize: 20
+  _currentAmount: 20
+  _packPrice: 22500
+  prefab: {fileID: 4499638113284579109, guid: 213a8c2a310ac6543a0fe9d3b5db7156, type: 3}
+  type: 4

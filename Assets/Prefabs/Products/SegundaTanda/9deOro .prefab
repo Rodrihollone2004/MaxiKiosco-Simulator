@@ -58,6 +58,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7640558969779515294, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -6093592463355912122, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -118,10 +128,25 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: -516098083770646512, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
         type: 3}
       propertyPath: m_Name
       value: '9deOro '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 6b7a43fe0e3e57f478e7feed9f4f225c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

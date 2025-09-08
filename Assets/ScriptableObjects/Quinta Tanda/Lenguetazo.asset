@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Lenguetazo
+  m_EditorClassIdentifier: 
+  _name: Lenguetazo
+  _id: 6000001
+  _price: 190
+  _placeZone: Isla
+  _packSize: 32
+  _currentAmount: 32
+  _packPrice: 6100
+  prefab: {fileID: 6035753757391575856, guid: f7f2679b485a4a94eb9f7bfd1d4a07e2, type: 3}
+  type: 6

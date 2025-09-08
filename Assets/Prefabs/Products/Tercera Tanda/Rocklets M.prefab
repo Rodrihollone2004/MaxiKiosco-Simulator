@@ -78,6 +78,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocklets M
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 176b84f07714a30409ad12bca8a97c2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073669174995385560, guid: 176b84f07714a30409ad12bca8a97c2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2511325575905614350, guid: 176b84f07714a30409ad12bca8a97c2d,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -93,6 +103,16 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 2760597241706799122, guid: 176b84f07714a30409ad12bca8a97c2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302709690568644713, guid: 176b84f07714a30409ad12bca8a97c2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6039141190867956575, guid: 176b84f07714a30409ad12bca8a97c2d,
         type: 3}
       propertyPath: m_Materials.Array.size
