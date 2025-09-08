@@ -8,8 +8,7 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     [SerializeField] private Product _productData;
     [SerializeField] int currentAmountProduct;
-    [SerializeField] private GameObject originalPrefab;
-
+    
     [Header("Config")]
     [SerializeField] private bool showNameOnHighlight = true;
 
@@ -23,13 +22,11 @@ public class ProductInteractable : MonoBehaviour, IInteractable
     public bool CanBePickedUp => false;
 
     public int CurrentAmountProduct { get => currentAmountProduct; set => currentAmountProduct = value; }
-    public GameObject OriginalPrefab => originalPrefab;
 
-    public void Initialize(Product productData, GameObject prefab = null)
+    public void Initialize(Product productData)
     {
         _productData = productData;
         currentAmountProduct = _productData.CurrentAmount;
-        if (prefab != null) originalPrefab = prefab;
     }
 
     public void Interact()

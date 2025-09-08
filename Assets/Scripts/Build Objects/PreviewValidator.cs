@@ -62,6 +62,15 @@ public class PreviewValidator : MonoBehaviour
             mesh.SetPropertyBlock(block);
     }
 
+    public void BackToNormal()
+    {
+        block.SetColor("_Color", Color.black);
+        block.SetFloat("_Scale", 0f);
+
+        foreach (MeshRenderer mesh in meshRenderer)
+            mesh.SetPropertyBlock(block);
+    }
+
     private void OnDrawGizmosSelected()
     {
         BoxCollider box = GetComponent<BoxCollider>();

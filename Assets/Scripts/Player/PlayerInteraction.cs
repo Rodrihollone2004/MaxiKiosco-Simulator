@@ -14,7 +14,9 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Transform holdPosition;
 
     private FurnitureBox furnitureBox;
-    private ProductPlaceManager productPlace;
+    private ProductPlaceManager boxProduct;
+    private GameObject productPlaced;
+    private PreviewValidator previewValidator;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -49,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(interactKey))
         {
-            if (heldObject == null)
+            if (heldObject == null && productPlaced == null)
             {
                 TryPickUp();
             }
@@ -65,51 +67,15 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(dropKey) && heldObject != null)
             DropObject();
 
-        if (Input.GetKeyDown(KeyCode.E) && heldObject != null)
-        {
-            if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
-            {
-                if (furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
-                {
-                    furnitureBox.PlaceFurniture();
-                }
-                else
-                {
-                    furnitureBox.Interact();
-                    UpdateHoldObjectUI();
-                }
-            }
-            else if (heldObject.TryGetComponent<ProductPlaceManager>(out ProductPlaceManager productPlaceManager))
-            {
-                if (productPlaceManager.CurrentPreview != null && productPlaceManager.CurrentPreview.activeSelf)
-                {
-                    productPlaceManager.PlaceProduct();
-                }
-                else
-                {
-                    productPlaceManager.Interact();
-                    UpdateHoldObjectUI();
-                }
+        if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
+            furnitureBox.PlaceFurniture();
 
-                if (productPlaceManager.IsEmpty)
-                {
-                    RaycastHit hit;
-                    if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
-                    {
-                        if (hit.collider.CompareTag("Trash"))
-                        {
-                            Destroy(heldObject);
-                            heldObject = null;
-                            productPlace = null;
-                            dropHintUI.SetActive(false);
-                            hintText.text = "";
-                        }
-                    }
-                }
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.E) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
+            boxProduct.PlaceProduct();
+
+        if (Input.GetKeyDown(KeyCode.E) && productPlaced != null && previewValidator != null && previewValidator.IsValidPlacement)
+            PlaceProduct();
     }
-
 
     private void TrySubtractBill()
     {
@@ -140,6 +106,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
+                ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
+                if (productPlaced != null && Input.GetKeyDown(KeyCode.F) && productPlaced.IsPlaced)
+                {
+                    CheckProduct(productPlaced.gameObject);
+                }
+
                 if (interactable != currentInteractable)
                 {
                     if (currentInteractable != null)
@@ -150,19 +122,21 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (highlightPanel != null && highlightNameText != null)
                     {
-                        ProductInteractable product = hit.collider.GetComponentInChildren<ProductInteractable>(true);
+                        ProductInteractable productInBox = hit.collider.GetComponentInChildren<ProductInteractable>(true);
                         UpgradeInteractable upgrade = hit.collider.GetComponentInChildren<UpgradeInteractable>(true);
 
-                        if (product != null && product.ProductData != null)
-                            if (product.ShowNameOnHighlight && !product.IsPlaced)
+                        if (productInBox != null && productInBox.ProductData != null)
+                        {
+                            if (productInBox.ShowNameOnHighlight && !productInBox.IsPlaced)
                             {
                                 highlightPanel.SetActive(true);
-                                highlightNameText.text = product.ProductData.Name;
+                                highlightNameText.text = productInBox.ProductData.Name;
                             }
                             else
                             {
                                 highlightPanel.SetActive(false);
                             }
+                        }
                         else if (hit.collider.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
                             if (furnitureBox != null && furnitureBox.ShowNameOnHighlight)
                             {
@@ -199,6 +173,78 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    PlacementZoneProducts[] AllZones;
+
+    public void CheckProduct(GameObject productPlaced)
+    {
+        this.productPlaced = productPlaced;
+
+        dropHintUI.SetActive(true);
+
+        if (productPlaced.TryGetComponent<PreviewObject>(out PreviewObject preview))
+            preview.enabled = true;
+
+        AllZones = FindObjectsOfType<PlacementZoneProducts>();
+
+        Collider col = productPlaced.GetComponent<Collider>();
+        col.enabled = false;
+
+        if (productPlaced.TryGetComponent<PreviewValidator>(out PreviewValidator vallidator))
+        {
+            vallidator.enabled = true;
+            previewValidator = vallidator;
+        }
+        else
+        {
+            vallidator = productPlaced.AddComponent<PreviewValidator>();
+            vallidator.Initialize(new Color(0f, 1f, 0f, 0.5f), Color.red);
+            previewValidator = vallidator;
+        }
+
+        if (productPlaced.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
+        {
+            ProductInteractable productInteractable = interactable;
+            string productPlaceZone = productInteractable.ProductData.PlaceZone;
+            productInteractable.IsPlaced = false;
+
+            hintText.text = $"{productInteractable.ProductData.Name}\n" +
+                    $"E para colocar\n";
+
+            foreach (PlacementZoneProducts zone in AllZones)
+                zone.ShowVisual(productPlaceZone);
+        }
+        else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
+        {
+            UpgradeInteractable productInteractable = upgrade;
+            string upgradePlaceZone = productInteractable.UpgradeData.PlaceZone;
+
+            foreach (PlacementZoneProducts zone in AllZones)
+                zone.ShowVisual(upgradePlaceZone);
+        }
+    }
+
+    private void PlaceProduct()
+    {
+        PreviewObject moveObject = productPlaced.GetComponent<PreviewObject>();
+        moveObject.enabled = false;
+
+        Collider col = productPlaced.GetComponent<Collider>();
+        col.enabled = true;
+
+        previewValidator.BackToNormal();
+        previewValidator.enabled = false;
+
+        ProductInteractable product = productPlaced.GetComponent<ProductInteractable>();
+        product.IsPlaced = true;
+
+        productPlaced = null;
+
+        dropHintUI.SetActive(false);
+
+        foreach (PlacementZoneProducts zone in AllZones)
+            zone.HideVisual();
+    }
+
     // intenta recoger un objeto con el raycast
     private void TryPickUp()
     {
@@ -229,7 +275,6 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     // hace el objeto hijo del holdposition al agarrarlo
-    // hace el objeto hijo del holdposition al agarrarlo
     private void PickUp(GameObject objToPickUp)
     {
         if (currentInteractable != null)
@@ -245,14 +290,16 @@ public class PlayerInteraction : MonoBehaviour
             heldBroom = broom;
             heldBroom.SetHeld(true);
 
-            hintText.text = $"{broom.name}\nLMB para limpiar\nG para soltar\n";
+            hintText.text = $"{broom.name}\n" +
+                    $"LMB para limpiar\n" +
+                    $"G  para soltar\n";
         }
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
             furnitureBox = fur;
 
         if (objToPickUp.TryGetComponent(out ProductPlaceManager productPlace))
-            this.productPlace = productPlace;
+            this.boxProduct = productPlace;
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
             heldObjectRb = rb;
@@ -273,7 +320,38 @@ public class PlayerInteraction : MonoBehaviour
         if (dropHintUI != null)
         {
             dropHintUI.SetActive(true);
-            UpdateHoldObjectUI();
+
+            string productName = heldObject.name;
+
+            ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
+            UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
+            if (interactable != null && interactable.ProductData != null)
+            {
+                productName = interactable.ProductData.Name;
+
+                hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+            }
+            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+            {
+                productName = furnitureBox.name;
+
+                hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+            }
+            else if (upgrade != null && upgrade.UpgradeData != null)
+            {
+                productName = upgrade.UpgradeData.Name;
+
+                hintText.text = $"{productName}\n" +
+                    $"E  para colocar\n" +
+                    $"R  para rotar\n" +
+                    $"G  para soltar\n";
+            }
         }
 
         if (audioSource != null && pickupSound != null)
@@ -291,20 +369,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 heldBroom.SetHeld(false);
                 heldBroom = null;
-            }
-
-            if (furnitureBox != null && furnitureBox.CurrentPreview != null)
-            {
-                Destroy(furnitureBox.CurrentPreview);
-                foreach (PlacementZone zone in furnitureBox.AllZones)
-                    zone.HideVisual();
-            }
-
-            if (productPlace != null && productPlace.CurrentPreview != null)
-            {
-                Destroy(productPlace.CurrentPreview);
-                foreach (PlacementZoneProducts zone in productPlace.AllZones)
-                    zone.HideVisual();
             }
 
             if (heldObjectRb != null)
@@ -329,56 +393,28 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider = null;
             currentInteractable = null;
 
-            furnitureBox = null;
-            productPlace = null;
+            if (furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.AllZones.Length > 0)
+            {
+                furnitureBox.CurrentPreview.SetActive(false);
+                foreach (PlacementZone zone in furnitureBox.AllZones)
+                    zone.HideVisual();
+            }
+
+            if (furnitureBox != null)
+                furnitureBox = null;
+
+            if (boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.AllZones.Length > 0)
+            {
+                boxProduct.CurrentPreview.SetActive(false);
+                foreach (PlacementZoneProducts zone in boxProduct.AllZones)
+                    zone.HideVisual();
+            }
+
+            if (boxProduct != null)
+                furnitureBox = null;
 
             if (audioSource != null && dropSound != null)
                 audioSource.PlayOneShot(dropSound);
-        }
-    }
-
-    public void ForceUpdateHeldObjectReference(ProductPlaceManager updatedBox)
-    {
-        if (heldObject != null && heldObject == updatedBox.gameObject)
-        {
-            productPlace = updatedBox;
-
-            UpdateHoldObjectUI();
-        }
-    }
-
-    public void UpdateHoldObjectUI()
-    {
-        if (heldObject != null && dropHintUI != null)
-        {
-            string productName = heldObject.name;
-            string hintMessage = "";
-
-            ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
-            UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
-
-            if (interactable != null && interactable.ProductData != null)
-            {
-                productName = interactable.ProductData.Name;
-                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
-            }
-            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
-            {
-                productName = furnitureBox.name;
-                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
-            }
-            else if (upgrade != null && upgrade.UpgradeData != null)
-            {
-                productName = upgrade.UpgradeData.Name;
-                hintMessage = $"{productName}\nE para colocar\nR para rotar\nG para soltar\n";
-            }
-            else if (heldObject.TryGetComponent<ProductPlaceManager>(out ProductPlaceManager box))
-            {
-                string estado = box.IsEmpty ? "Vacía" : "Llena";
-                hintMessage = $"Caja ({estado})\nE para {"usar"}\nG para soltar\n";
-            }
-
-            hintText.text = hintMessage;
         }
     }
 }
