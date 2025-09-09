@@ -79,6 +79,14 @@ public class GateInteractable : MonoBehaviour, IInteractable
         }
     }
 
+    public void BackToClose()
+    {
+        transform.position = closedPosition;
+        isMoving = false;
+        isOpen = false;
+        isClosing = false;
+    }
+
     public void Highlight()
     {
         if (!_renderer) return;

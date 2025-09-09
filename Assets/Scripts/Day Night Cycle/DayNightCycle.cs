@@ -233,6 +233,9 @@ public class DayNightCycle : MonoBehaviour
             queueManager.ClientQueue.Clear();
         }
 
+        GateInteractable gate = FindObjectOfType<GateInteractable>();
+        gate.BackToClose();
+
         queueManager.ResetDailyStats();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
