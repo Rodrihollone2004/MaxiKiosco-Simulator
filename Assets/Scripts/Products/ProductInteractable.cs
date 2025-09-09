@@ -8,12 +8,12 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     [SerializeField] private Product _productData;
     [SerializeField] int currentAmountProduct;
-    
+
     [Header("Config")]
     [SerializeField] private bool showNameOnHighlight = true;
 
     public bool IsPlaced { get; set; }
-
+    public bool IsSubtracting { get; set; }
     public bool WasPlaced { get; set; }
 
     public bool ShowNameOnHighlight => showNameOnHighlight;
@@ -36,10 +36,11 @@ public class ProductInteractable : MonoBehaviour, IInteractable
 
     public void SubtractAmount(int amount)
     {
+        IsSubtracting = true;
         currentAmountProduct -= amount;
 
         foreach (StockController controllers in Stock.allStock)
-            controllers.SubtractProduct(this);
+            controllers.SubtractProduct(this, amount);
     }
 
     public void CheckDelete()

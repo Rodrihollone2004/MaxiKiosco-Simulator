@@ -23,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
         if (upgradesUnlocked.Count > 0)
             foreach (Upgrade upgrade in upgradesUnlocked)
             {
-                if (upgrade.LevelUpdate == experienceManager.CurrentLevel && !upgradesButtons.ContainsKey(upgrade))
+                if (experienceManager.CurrentLevel >= upgrade.LevelUpdate && !upgradesButtons.ContainsKey(upgrade))
                 {
                     GameObject inputGO = Instantiate(productButtonPrefab, productButtonContainer);
                     TMP_Text nameProduct = inputGO.GetComponentInChildren<TMP_Text>();

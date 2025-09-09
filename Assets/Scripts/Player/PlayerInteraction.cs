@@ -17,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     private ProductPlaceManager boxProduct;
     private GameObject productPlaced;
     private PreviewValidator previewValidator;
+    private PlayerEconomy playerEconomy;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -44,6 +45,11 @@ public class PlayerInteraction : MonoBehaviour
     [Header("UI Highlight Info")]
     [SerializeField] private GameObject highlightPanel;
     [SerializeField] private TMP_Text highlightNameText;
+
+    private void Awake()
+    {
+        playerEconomy = GetComponent<PlayerEconomy>();
+    }
 
     private void Update()
     {
@@ -75,6 +81,23 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && productPlaced != null && previewValidator != null && previewValidator.IsValidPlacement)
             PlaceProduct();
+
+        if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject 
+            || furnitureBox != null && furnitureBox.IsEmpty && heldObject == furnitureBox.gameObject)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
+            {
+                if (hit.collider.CompareTag("Trash"))
+                {
+                    Destroy(heldObject);
+                    heldObject = null;
+                    dropHintUI.SetActive(false);
+                    hintText.text = "";
+                    playerEconomy.ReceivePayment(20);
+                }
+            }
+        }
     }
 
     private void TrySubtractBill()
@@ -317,6 +340,14 @@ public class PlayerInteraction : MonoBehaviour
         heldObject.transform.localPosition = Vector3.zero;
         heldObject.transform.localRotation = Quaternion.identity;
 
+        CheckUIText();
+
+        if (audioSource != null && pickupSound != null)
+            audioSource.PlayOneShot(pickupSound);
+    }
+
+    public void CheckUIText()
+    {
         if (dropHintUI != null)
         {
             dropHintUI.SetActive(true);
@@ -325,7 +356,7 @@ public class PlayerInteraction : MonoBehaviour
 
             ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
             UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
-            if (interactable != null && interactable.ProductData != null)
+            if (interactable != null && interactable.ProductData != null && !boxProduct.IsEmpty)
             {
                 productName = interactable.ProductData.Name;
 
@@ -334,7 +365,7 @@ public class PlayerInteraction : MonoBehaviour
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
             }
-            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox))
+            else if (heldObject.TryGetComponent<FurnitureBox>(out FurnitureBox furnitureBox) && !furnitureBox.IsEmpty)
             {
                 productName = furnitureBox.name;
 
@@ -352,10 +383,12 @@ public class PlayerInteraction : MonoBehaviour
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
             }
+            else if (boxProduct != null && boxProduct.IsEmpty || furnitureBox != null && this.furnitureBox.IsEmpty)
+            {
+                hintText.text = $"Caja Vacía\n" +
+                    $"Acercate al tacho para tirar\n";
+            }
         }
-
-        if (audioSource != null && pickupSound != null)
-            audioSource.PlayOneShot(pickupSound);
     }
 
     // devuelve todas las propiedades al objeto y aplica fuerza de lanzamiento

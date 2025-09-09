@@ -6,7 +6,7 @@ public class FurnitureBox : MonoBehaviour, IInteractable
     [SerializeField] private Color _highlightColor = Color.red;
     [SerializeField] private float _highlightWidth = 1.03f;
     [SerializeField] private GameObject buildPrefab;
-   
+
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -16,6 +16,7 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
     public bool CanBePickedUp => true;
     public bool ShowNameOnHighlight => true;
+    public bool IsEmpty { get; private set; } = false;
 
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZone[] AllZones { get; private set; }
@@ -25,6 +26,7 @@ public class FurnitureBox : MonoBehaviour, IInteractable
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
         AllZones = FindObjectsOfType<PlacementZone>();
+        IsEmpty = false;
     }
 
     public void Interact()
@@ -33,20 +35,22 @@ public class FurnitureBox : MonoBehaviour, IInteractable
             Destroy(currentPreview);
 
         containerPrefab = gameObject;
+        if (!IsEmpty)
+        {
+            buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
+            currentPreview = Instantiate(buildPrefab, Vector3.zero, buildPrefab.transform.localRotation);
+            currentPreview.SetActive(true);
+            SetPreviewColor(currentPreview, new Color(0f, 1f, 0f, 0.5f));
 
-        buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
-        currentPreview = Instantiate(buildPrefab, Vector3.zero, buildPrefab.transform.localRotation);
-        currentPreview.SetActive(true);
-        SetPreviewColor(currentPreview, new Color(0f, 1f, 0f, 0.5f));
+            previewValidator = currentPreview.AddComponent<PreviewValidator>();
+            previewValidator.Initialize(new Color(0f, 1f, 0f, 0.5f), Color.red);
 
-        previewValidator = currentPreview.AddComponent<PreviewValidator>();
-        previewValidator.Initialize(new Color(0f, 1f, 0f, 0.5f), Color.red);
+            Collider col = currentPreview.GetComponent<Collider>();
+            if (col != null) col.enabled = false;
 
-        Collider col = currentPreview.GetComponent<Collider>();
-        if (col != null) col.enabled = false;
-
-        foreach (PlacementZone zone in AllZones)
-            zone.ShowVisual();
+            foreach (PlacementZone zone in AllZones)
+                zone.ShowVisual();
+        }
     }
 
     public void PlaceFurniture()
@@ -60,22 +64,23 @@ public class FurnitureBox : MonoBehaviour, IInteractable
             Collider col = finalObj.GetComponent<Collider>();
             Collider[] colliders = finalObj.GetComponentsInChildren<Collider>();
             if (col != null) col.enabled = true;
-            foreach (Collider collider in colliders) 
+            foreach (Collider collider in colliders)
                 collider.enabled = true;
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             moveObject.enabled = false;
 
-           
-
-            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
-            playerInteraction.DropHintUI.SetActive(false);
-
             foreach (PlacementZone zone in AllZones)
                 zone.HideVisual();
 
             Destroy(currentPreview);
-            Destroy(containerPrefab);
+            Destroy(buildPrefab);
+
+            IsEmpty = true;
+            
+            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+            if (playerInteraction != null)
+                playerInteraction.CheckUIText();
         }
         else
         {

@@ -17,6 +17,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     PreviewValidator previewValidator;
 
     public bool CanBePickedUp => true;
+    public bool IsEmpty { get; private set; } = false;
     public GameObject CurrentPreview { get => currentPreview; set => currentPreview = value; }
     public PlacementZoneProducts[] AllZones { get; private set; }
 
@@ -27,6 +28,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
         AllZones = new PlacementZoneProducts[0];
+        IsEmpty = false;
     }
 
     public void Interact()
@@ -39,32 +41,35 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
         containerPrefab = gameObject;
 
-        buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
-        currentPreview = Instantiate(buildPrefab, Vector3.zero, Quaternion.identity);
-        currentPreview.SetActive(true);
-        SetPreviewColor(currentPreview, new Color(0f, 1f, 0f, 0.5f));
-
-        previewValidator = currentPreview.AddComponent<PreviewValidator>();
-        previewValidator.Initialize(new Color(0f, 1f, 0f, 0.5f), Color.red);
-
-        Collider col = currentPreview.GetComponent<Collider>();
-        if (col != null) col.enabled = false;
-
-        if (currentPreview.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
+        if (!IsEmpty)
         {
-            ProductInteractable productInteractable = interactable;
-            string productPlaceZone = productInteractable.ProductData.PlaceZone;
+            buildPrefab = containerPrefab.transform.GetChild(0).GameObject();
+            currentPreview = Instantiate(buildPrefab, Vector3.zero, Quaternion.identity);
+            currentPreview.SetActive(true);
+            SetPreviewColor(currentPreview, new Color(0f, 1f, 0f, 0.5f));
 
-            foreach (PlacementZoneProducts zone in AllZones)
-                zone.ShowVisual(productPlaceZone);
-        }
-        else if (currentPreview.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
-        {
-            UpgradeInteractable productInteractable = upgrade;
-            string upgradePlaceZone = productInteractable.UpgradeData.PlaceZone;
+            previewValidator = currentPreview.AddComponent<PreviewValidator>();
+            previewValidator.Initialize(new Color(0f, 1f, 0f, 0.5f), Color.red);
 
-            foreach (PlacementZoneProducts zone in AllZones)
-                zone.ShowVisual(upgradePlaceZone);
+            Collider col = currentPreview.GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+
+            if (currentPreview.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
+            {
+                ProductInteractable productInteractable = interactable;
+                string productPlaceZone = productInteractable.ProductData.PlaceZone;
+
+                foreach (PlacementZoneProducts zone in AllZones)
+                    zone.ShowVisual(productPlaceZone);
+            }
+            else if (currentPreview.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
+            {
+                UpgradeInteractable productInteractable = upgrade;
+                string upgradePlaceZone = productInteractable.UpgradeData.PlaceZone;
+
+                foreach (PlacementZoneProducts zone in AllZones)
+                    zone.ShowVisual(upgradePlaceZone);
+            }
         }
     }
 
@@ -83,16 +88,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             if (moveObject != null)
-            {
                 moveObject.enabled = false;
-            }
-
-            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
-            if (playerInteraction != null)
-            {
-                playerInteraction.DropHintUI.SetActive(false);
-            }
-
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.HideVisual();
 
@@ -112,7 +108,14 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             }
 
             Destroy(currentPreview);
-            Destroy(containerPrefab);
+            Destroy(buildPrefab);
+
+            IsEmpty = true;
+
+            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+            if (playerInteraction != null)
+                playerInteraction.CheckUIText();
+
         }
         else
         {
