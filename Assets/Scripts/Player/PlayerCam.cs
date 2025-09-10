@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
@@ -18,8 +19,19 @@ public class PlayerCam : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
+    [Header("Zoom")]
+    private Camera mainCamera;
+    private float normalFieldOfView = 60f;
+    [SerializeField] private float zoomedFieldOfView = 50f;
+    private bool isZoomed = false;
+    private Coroutine zoomCoroutine;
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
     public bool IsLocked { get => isLocked; set => isLocked = value; }
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     private void Start()
     {
@@ -50,6 +62,23 @@ public class PlayerCam : MonoBehaviour
         {
             // movimiento de camara normal
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+            if (Input.GetMouseButton(1))
+            {
+                if (!isZoomed)
+                {
+                    ToggleZoom(true);
+                }
+            }
+            else
+            {
+                if (isZoomed)
+                {
+                    ToggleZoom(false);
+                }
+            }
+
+
         }
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
@@ -63,5 +92,32 @@ public class PlayerCam : MonoBehaviour
         {
             invertY = PlayerPrefs.GetInt("masterInvertY") == 1;
         }
+
+    }
+
+    private void ToggleZoom(bool zoomIn)
+    {
+        isZoomed = zoomIn;
+        if (zoomCoroutine != null)
+        {
+            StopCoroutine(zoomCoroutine);
+        }
+        zoomCoroutine = StartCoroutine(ZoomCoroutine(zoomIn));
+    }
+
+    private IEnumerator ZoomCoroutine(bool zoomIn)
+    {
+        float targetFOV = zoomIn ? zoomedFieldOfView : normalFieldOfView;
+        float startFOV = mainCamera.fieldOfView;
+        float elapsed = 0f;
+
+        while (elapsed < 0.2f)
+        {
+            mainCamera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / 0.2f);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCamera.fieldOfView = targetFOV;
     }
 }
