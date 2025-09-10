@@ -79,7 +79,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         {
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
             finalObj.SetActive(true);
-            finalObj.transform.localScale = Vector3.one;
+            //finalObj.transform.localScale = Vector3.one;
 
             SetPreviewColor(finalObj, Color.blue);
 

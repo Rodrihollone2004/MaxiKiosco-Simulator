@@ -374,7 +374,7 @@ public class PlayerInteraction : MonoBehaviour
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
             }
-            else if (upgrade != null && upgrade.UpgradeData != null)
+            else if (upgrade != null && upgrade.UpgradeData != null && !boxProduct.IsEmpty)
             {
                 productName = upgrade.UpgradeData.Name;
 
