@@ -122,12 +122,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (InCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
         {
-            if (isQRPayment)
-            {
-                qrPaymentHandler.ConfirmQRPayment();
-                PeekClient();
-            }
-            else
+            if (!isQRPayment)
             {
                 Debug.Log($"Cambio esperado: {change} / Vuelto entregado: {playerEconomy.GetCurrentChange()}");
 

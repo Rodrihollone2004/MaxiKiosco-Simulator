@@ -39,6 +39,7 @@ public class QRPaymentHandler : MonoBehaviour
                 cashRegisterInteraction.ProcessQRPayment(currentClient, amount);
                 CancelQRPayment();
                 qrPaymentText.text = "";
+                cashRegisterInteraction.PeekClient();
             }
             else
             {
