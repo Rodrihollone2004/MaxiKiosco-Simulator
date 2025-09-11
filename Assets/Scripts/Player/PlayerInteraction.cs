@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject productPlaced;
     private PreviewValidator previewValidator;
     private PlayerEconomy playerEconomy;
+    private CashRegisterInteraction cashRegisterInteraction;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -49,6 +50,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         playerEconomy = GetComponent<PlayerEconomy>();
+        cashRegisterInteraction = GetComponent<CashRegisterInteraction>();
     }
 
     private void Update()
@@ -130,7 +132,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
-                if (productPlaced != null && Input.GetKeyDown(KeyCode.F) && productPlaced.IsPlaced)
+                if (productPlaced != null && Input.GetKeyDown(KeyCode.F) && productPlaced.IsPlaced && !cashRegisterInteraction.InCashRegister)
                 {
                     CheckProduct(productPlaced.gameObject);
                 }
