@@ -20,9 +20,9 @@ public class PlayerCam : MonoBehaviour
     private float yRotation;
 
     [Header("Zoom")]
+    [SerializeField] private float zoomedFieldOfView = 50f;
     private Camera mainCamera;
     private float normalFieldOfView = 60f;
-    [SerializeField] private float zoomedFieldOfView = 50f;
     private bool isZoomed = false;
     private Coroutine zoomCoroutine;
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
@@ -95,7 +95,7 @@ public class PlayerCam : MonoBehaviour
 
     }
 
-    private void ToggleZoom(bool zoomIn)
+    public void ToggleZoom(bool zoomIn)
     {
         isZoomed = zoomIn;
         if (zoomCoroutine != null)

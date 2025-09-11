@@ -84,6 +84,7 @@ public class CashRegisterInteraction : MonoBehaviour
         // metodo para entrar a la caja registradora
         if (Input.GetMouseButtonDown(0) && canClickTheCashRegister)
         {
+            playerCam.ToggleZoom(false);
             TryInteractWithRegister();
         }
 
