@@ -8,7 +8,8 @@ public class ProductPriceInput : MonoBehaviour
 {
     [SerializeField] private TMP_Text priceText;
     private Product _productData;
-    
+    private float _originalPrice;
+
     [SerializeField] private float holdDelay = 0.2f; // Tiempo entre cada suma/resta
     private float holdTimer = 0f;
 
@@ -22,6 +23,7 @@ public class ProductPriceInput : MonoBehaviour
     public void Initialize(Product data)
     {
         _productData = data;
+        _originalPrice = data.Price;
         UpdatePriceText();
     }
 
@@ -33,25 +35,50 @@ public class ProductPriceInput : MonoBehaviour
 
             if (holdTimer >= holdDelay)
             {
-                switch (currentAction)
-                {
-                    case ActionType.Add:
-                        _productData.Price += currentAmount;
-                        break;
-                    case ActionType.Subtract:
-                        _productData.Price -= currentAmount;
-                        break;
-                }
-
-                UpdatePriceText();
-                holdTimer = 0f; 
+                ApplyPriceChange();
+                holdTimer = 0f;
             }
         }
+    }
+
+    private void ApplyPriceChange()
+    {
+        switch (currentAction)
+        {
+            case ActionType.Add:
+                _productData.Price += currentAmount;
+                break;
+
+            case ActionType.Subtract:
+                if (_productData.Price - currentAmount >= 0)
+                {
+                    _productData.Price -= currentAmount;
+                }
+                else
+                {
+                    _productData.Price = 0;
+                    isHolding = false;
+                }
+                break;
+        }
+
+        UpdatePriceText();
     }
 
     private void UpdatePriceText()
     {
         priceText.text = $"{_productData.Price}";
+
+        float priceIncreasePercentage = ((float)_productData.Price - _originalPrice) / _originalPrice * 100f;
+
+        if (priceIncreasePercentage > 20f)
+        {
+            priceText.color = Color.red;
+        }
+        else
+        {
+            priceText.color = Color.black;
+        }
     }
 
     // Llamá estos métodos desde el EventTrigger, pasando el valor
@@ -60,6 +87,7 @@ public class ProductPriceInput : MonoBehaviour
         isHolding = true;
         currentAmount = amount;
         currentAction = ActionType.Add;
+        ApplyPriceChange();
     }
 
     public void StartSubtractingPrice(int amount)
@@ -67,12 +95,23 @@ public class ProductPriceInput : MonoBehaviour
         isHolding = true;
         currentAmount = amount;
         currentAction = ActionType.Subtract;
+
+        if (_productData.Price - amount >= 0)
+        {
+            ApplyPriceChange();
+        }
+        else
+        {
+            _productData.Price = 0;
+            UpdatePriceText();
+            isHolding = false;
+        }
     }
 
     public void StopButton()
     {
         isHolding = false;
         currentAction = ActionType.None;
-        holdTimer = 0f; 
+        holdTimer = 0f;
     }
 }

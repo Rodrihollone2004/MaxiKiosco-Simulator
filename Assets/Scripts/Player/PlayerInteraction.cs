@@ -354,6 +354,14 @@ public class PlayerInteraction : MonoBehaviour
 
             string productName = heldObject.name;
 
+            if (heldObject.TryGetComponent(out Broom broom))
+            {
+                hintText.text = $"{broom.name}\n" +
+                    $"LMB para limpiar\n" +
+                    $"G  para soltar\n";
+                return;
+            }
+
             ProductInteractable interactable = heldObject.GetComponentInChildren<ProductInteractable>(true);
             UpgradeInteractable upgrade = heldObject.GetComponentInChildren<UpgradeInteractable>(true);
             if (interactable != null && interactable.ProductData != null && !boxProduct.IsEmpty)
@@ -449,6 +457,10 @@ public class PlayerInteraction : MonoBehaviour
             if (audioSource != null && dropSound != null)
                 audioSource.PlayOneShot(dropSound);
         }
+    }
+    public bool HasBoxInHand()
+    {
+        return heldObject != null && (boxProduct != null || furnitureBox != null);
     }
 }
 

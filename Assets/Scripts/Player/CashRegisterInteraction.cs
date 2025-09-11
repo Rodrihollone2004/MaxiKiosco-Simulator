@@ -16,6 +16,7 @@ public class CashRegisterInteraction : MonoBehaviour
     [SerializeField] ComputerUIScreenManager computerUIScreenManager;
     [SerializeField] ExperienceManager experienceManager;
     [SerializeField] GameObject crosshair;
+    PlayerInteraction playerInteraction;
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
@@ -76,6 +77,7 @@ public class CashRegisterInteraction : MonoBehaviour
         startCameraPos = playerCamera.transform.position;
         startCameraRot = playerCamera.transform.rotation;
         dayNightCycle = FindObjectOfType<DayNightCycle>();
+        playerInteraction = GetComponent<PlayerInteraction>();
         NPC_Controller.onShowScreen += () => PeekClient();
     }
 
@@ -144,6 +146,12 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         if (TutorialContent.Instance.CurrentIndexGuide == 3)
             return;
+
+        if (playerInteraction != null && playerInteraction.HasBoxInHand())
+        {
+            Debug.Log("No puedes usar la caja registradora con una caja en la mano");
+            return;
+        }
 
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionDistance))
