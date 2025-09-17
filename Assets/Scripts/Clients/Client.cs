@@ -7,6 +7,8 @@ public class Client : MonoBehaviour
     public NPC_Controller NpcController { get; set; }
     private Dictionary<ProductInteractable, int> cart = new Dictionary<ProductInteractable, int>();
     private Wallet wallet;
+    private CanvasClientManager canvasClientManager;
+    private List<ProductInteractable> matchedProducts;
     List<ProductInteractable> allProducts;
     List<ProductInteractable> productsInWorld;
 
@@ -20,6 +22,7 @@ public class Client : MonoBehaviour
 
     [field: SerializeField] public bool IsThief { get; set; }
     [field: SerializeField] public bool WasHit { get; set; }
+    public CanvasClientManager CanvasClientManager { get => canvasClientManager; set => canvasClientManager = value; }
 
     [SerializeField] ProductDataBase dataBase;
 
@@ -28,6 +31,8 @@ public class Client : MonoBehaviour
         allProducts = new List<ProductInteractable>();
         productsInWorld = new List<ProductInteractable>();
         wallet = new Wallet();
+        matchedProducts = new List<ProductInteractable>();
+        canvasClientManager = GetComponentInChildren<CanvasClientManager>();
     }
 
     public bool CheckThief()
@@ -46,6 +51,7 @@ public class Client : MonoBehaviour
 
     public void AddRandomProductsToCart()
     {
+        matchedProducts.Clear();
         allProducts.Clear();
         productsInWorld.Clear();
 
@@ -79,13 +85,15 @@ public class Client : MonoBehaviour
 
                 if (product.ProductData != productInWorld.ProductData)
                     continue;
-                else if (amountProduct > productInWorld.CurrentAmountProduct)
+
+                if (amountProduct > productInWorld.CurrentAmountProduct)
                     amountProduct = productInWorld.CurrentAmountProduct;
 
                 newTotal = total + (productInWorld.ProductData.Price * amountProduct);
 
                 if (newTotal < wallet.TotalMoney)
                 {
+                    matchedProducts.Add(product);
                     cart.Add(productInWorld, amountProduct);
                     productInWorld.SubtractAmount(amountProduct);
                     productInWorld.CheckDelete();
@@ -94,6 +102,10 @@ public class Client : MonoBehaviour
                 }
             }
         }
+
+        List<ProductInteractable> notMatchedProducts = chosenProducts.Except(matchedProducts).ToList();
+        canvasClientManager.UpdateCanvasClient(notMatchedProducts, this, matchedProducts);
+
         Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.TotalMoney}");
     }
 

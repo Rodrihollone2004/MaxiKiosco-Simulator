@@ -37,18 +37,20 @@ public class Termica : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        termicaOn = !termicaOn;
-        IsTermicaOn = termicaOn;
-
-        if (animator != null)
+        if (IsTermicaOn == false)
         {
-            animator.SetBool(doorAnimationParam, termicaOn);
-            animator.SetBool(knobAnimationParam, termicaOn);
+            IsTermicaOn = true;
+
+            if (animator != null)
+            {
+                animator.SetBool(doorAnimationParam, IsTermicaOn);
+                animator.SetBool(knobAnimationParam, IsTermicaOn);
+            }
+
+            OnTermicaStateChanged?.Invoke(IsTermicaOn);
+
+            TutorialContent.Instance.CompleteStep(3);
         }
-
-        OnTermicaStateChanged?.Invoke(termicaOn);
-
-        TutorialContent.Instance.CompleteStep(3);
     }
 
     public void Highlight()

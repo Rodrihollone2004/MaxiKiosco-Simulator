@@ -37,6 +37,9 @@ public class NPC_Controller : MonoBehaviour
         else if (currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
         {
             isInCashRegister = true;
+            client.AddRandomProductsToCart();
+            client.CalculateCost();
+
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 
             if (!client.IsThief)
@@ -47,8 +50,6 @@ public class NPC_Controller : MonoBehaviour
             }
             else
             {
-                client.AddRandomProductsToCart();
-                client.CalculateCost();
                 BackToStart();
                 StartCoroutine(queueManager.RemoveThief(client));
             }
@@ -66,6 +67,7 @@ public class NPC_Controller : MonoBehaviour
             isBack = false;
             isInDequeue = true;
             isPaying = false;
+            client.CanvasClientManager.ClearText();
 
             CashRegisterInteraction.onFinishPath -= BackToStart;
         }

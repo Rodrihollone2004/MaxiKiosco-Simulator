@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -108,9 +109,6 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying && !currentClient.IsThief)
             {
-                currentClient.AddRandomProductsToCart();
-                currentClient.CalculateCost();
-
                 ProcessPayment(currentClient);
                 PeekClient();
 
@@ -144,7 +142,7 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private void TryInteractWithRegister()
     {
-        if (TutorialContent.Instance.CurrentIndexGuide == 3)
+        if (TutorialContent.Instance.CurrentIndexGuide == 3 || !Termica.IsTermicaOn)
             return;
 
         if (playerInteraction != null && playerInteraction.HasBoxInHand())
