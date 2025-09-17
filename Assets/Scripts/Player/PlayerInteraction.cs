@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEditor.Rendering.Universal;
+using Unity.Burst.CompilerServices;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private KeyCode subtractKey = KeyCode.Mouse1;
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
+    [SerializeField] private LayerMask clientLayer;
     [SerializeField] private Transform holdPosition;
 
     private FurnitureBox furnitureBox;
@@ -84,7 +86,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && productPlaced != null && previewValidator != null && previewValidator.IsValidPlacement)
             PlaceProduct();
 
-        if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject 
+        if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject
             || furnitureBox != null && furnitureBox.IsEmpty && heldObject == furnitureBox.gameObject)
         {
             RaycastHit hit;
@@ -295,6 +297,16 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out Trash trash) && trash.CanBeCleaned)
             {
                 trash.Clean();
+            }
+        }
+        else if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, clientLayer))
+        {
+            if (hit.collider.TryGetComponent(out Client currentClient) && currentClient.IsThief && currentClient.NpcController.isBack)
+            {
+                currentClient.IsThief = false;
+                currentClient.WasHit = true;
+                playerEconomy.ReceivePayment(currentClient.totalCart);
+                Debug.Log("Ladron golpeado");
             }
         }
     }

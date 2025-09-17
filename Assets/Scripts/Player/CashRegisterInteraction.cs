@@ -106,7 +106,7 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (InCashRegister && currentClient != null)
         {
-            if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying)
+            if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying && !currentClient.IsThief)
             {
                 currentClient.AddRandomProductsToCart();
                 currentClient.CalculateCost();
