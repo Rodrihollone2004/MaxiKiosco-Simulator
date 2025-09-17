@@ -37,7 +37,7 @@ public class Client : MonoBehaviour
 
     public bool CheckThief()
     {
-        return IsThief = Random.value < 0.3f ? true : false;
+        return IsThief = Random.value < 0.05f ? true : false;
     }
 
     public void CalculateCost()
