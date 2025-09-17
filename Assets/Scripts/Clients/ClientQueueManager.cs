@@ -108,6 +108,29 @@ public class ClientQueueManager : MonoBehaviour
             StartClientSpawning();
     }
 
+    public IEnumerator RemoveThief(Client client)
+    {
+        Client currentClient = client;
+        OnClientServed?.Invoke(currentClient);
+
+        clientsServedToday++;
+
+        yield return new WaitUntil(() => currentClient.NpcController.isInDequeue);
+
+        if (currentClient.WasHit)
+            moneyEarnedToday += currentClient.CalculateCartTotal();
+
+        if (Random.value < 0.25f && trashSpawner != null)
+            trashSpawner.SpawnTrash();
+
+        ReturnClientToPool(currentClient);
+        OnQueueUpdated?.Invoke();
+
+        if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
+            StartClientSpawning();
+    }
+
+
     public void UpdateQueuePositions()
     {
         int index = 0;
@@ -165,10 +188,12 @@ public class ClientQueueManager : MonoBehaviour
             if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
             {
                 Client newClient = GetClientFromPool();
+                newClient.CheckThief();
+                newClient.WasHit = false;
                 newClient.NpcController.isInDequeue = false;
                 newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
 
-                clientsSpawnedToday++; 
+                clientsSpawnedToday++;
 
                 UpdateQueuePositions();
             }

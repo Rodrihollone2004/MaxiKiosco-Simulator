@@ -12,9 +12,14 @@ public class Client : MonoBehaviour
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
+    public int MaxProductsToBuy { get; set; } = 6;
+    public int MaxAmountToBuy { get; set; } = 4;
 
     public enum PaymentMethod { Cash, QR }
     public PaymentMethod paymentMethod;
+
+    [field: SerializeField] public bool IsThief { get; set; }
+    [field: SerializeField] public bool WasHit { get; set; }
 
     [SerializeField] ProductDataBase dataBase;
 
@@ -23,6 +28,11 @@ public class Client : MonoBehaviour
         allProducts = new List<ProductInteractable>();
         productsInWorld = new List<ProductInteractable>();
         wallet = new Wallet();
+    }
+
+    public bool CheckThief()
+    {
+        return IsThief = Random.value < 0.3f ? true : false;
     }
 
     public void CalculateCost()
@@ -53,10 +63,11 @@ public class Client : MonoBehaviour
         int total = 0;
         int newTotal = 0;
 
+        wallet.RandomWallet();
         cart.Clear();
         PrintWallet();
 
-        int productsToBuy = Random.Range(3, 6); // 6 porque el max es exclusivo
+        int productsToBuy = Random.Range(3, MaxProductsToBuy); //variable que va a variar con mejoras
 
         List<ProductInteractable> chosenProducts = availableProducts.Take(productsToBuy).ToList();
 
@@ -64,7 +75,7 @@ public class Client : MonoBehaviour
         {
             foreach (ProductInteractable productInWorld in productsInWorld)
             {
-                int amountProduct = Random.Range(1, 4); //el maximo despues va a ser variable para las mejoras
+                int amountProduct = Random.Range(1, MaxAmountToBuy); //variable que va a variar con mejoras
 
                 if (product.ProductData != productInWorld.ProductData)
                     continue;

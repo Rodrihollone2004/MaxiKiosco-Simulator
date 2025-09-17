@@ -10,9 +10,13 @@ public class Wallet
     public int TotalMoney { get; private set; } = 0;
     public int Step { get; private set; } = 0;
 
-    public Wallet()
+    public void RandomWallet()
     {
-        Bills = new List<Money>();
+        if (Bills == null)
+            Bills = new List<Money>();
+        else
+            Bills.Clear();
+
         TotalMoney = 0;
         Step = 0;
 
@@ -116,7 +120,7 @@ public class Money
     public int Value;
     public int Total;
 
-    public Money (int billDenominations, int amount)
+    public Money(int billDenominations, int amount)
     {
         Amount = amount;
         Value = billDenominations;

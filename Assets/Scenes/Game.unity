@@ -59047,6 +59047,9 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 8
+  clientLayer:
+    serializedVersion: 2
+    m_Bits: 256
   holdPosition: {fileID: 255105130}
   throwForce: 10
   dropHintUI: {fileID: 272109866}

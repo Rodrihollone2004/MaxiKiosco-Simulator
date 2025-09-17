@@ -37,11 +37,21 @@ public class NPC_Controller : MonoBehaviour
         else if (currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
         {
             isInCashRegister = true;
-
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
-            queueManager._clientQueue.Enqueue(client);
-            queueManager.UpdateQueuePositions();
-            onShowScreen?.Invoke();
+
+            if (!client.IsThief)
+            {
+                queueManager._clientQueue.Enqueue(client);
+                queueManager.UpdateQueuePositions();
+                onShowScreen?.Invoke();
+            }
+            else
+            {
+                client.AddRandomProductsToCart();
+                client.CalculateCost();
+                BackToStart();
+                StartCoroutine(queueManager.RemoveThief(client));
+            }
 
             transform.rotation = Quaternion.identity;
             animatorNPC.SetBool("IsWalking", path.Count > 0);
