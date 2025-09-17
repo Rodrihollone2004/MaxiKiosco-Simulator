@@ -7,6 +7,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
     private bool lightsOn = false;
+    private bool isEnabled = false;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
@@ -19,9 +20,20 @@ public class LightSwitch : MonoBehaviour, IInteractable
     {
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
+
+        Termica.OnTermicaStateChanged += OnTermicaStateChanged;
     }
+
+    private void OnDestroy()
+    {
+        Termica.OnTermicaStateChanged -= OnTermicaStateChanged;
+    }
+
     private void Start()
     {
+        isEnabled = Termica.IsTermicaOn;
+        UpdateLights();
+
         foreach (Light light in lightsToControl)
         {
             if (light != null)
@@ -29,16 +41,33 @@ public class LightSwitch : MonoBehaviour, IInteractable
         }
     }
 
+    private void OnTermicaStateChanged(bool termicaOn)
+    {
+        isEnabled = termicaOn;
+
+        if (!termicaOn && lightsOn)
+        {
+            lightsOn = false;
+            UpdateLights();
+        }
+
+    }
+
     public void Interact()
     {
+        if (!isEnabled) return;
+
         lightsOn = !lightsOn;
 
-        TutorialContent.Instance.CompleteStep(3);
+        UpdateLights();
+    }
 
+    private void UpdateLights()
+    {
         foreach (Light light in lightsToControl)
         {
             if (light != null)
-                light.enabled = lightsOn;
+                light.enabled = lightsOn && isEnabled;
         }
     }
 
