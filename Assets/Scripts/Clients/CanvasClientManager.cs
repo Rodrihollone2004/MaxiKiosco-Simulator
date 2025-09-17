@@ -16,10 +16,10 @@ public class CanvasClientManager : MonoBehaviour
 
     public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, Client currentClient, List<ProductInteractable> productsFound)
     {
-        gameObject.SetActive(true);
-
         if (productsNotFound.Count > 0 && !currentClient.IsThief)
         {
+            gameObject.SetActive(true);
+
             foreach (ProductInteractable notProduct in productsNotFound)
             {
                 noProducts.text += $"{notProduct.ProductData.Name}\n";
@@ -27,6 +27,10 @@ public class CanvasClientManager : MonoBehaviour
         }
         else if (currentClient.IsThief)
         {
+            gameObject.SetActive(true);
+
+            noProducts.text = $"IS THIEF\n";
+
             if (productsFound.Count > 0)
             {
                 foreach (ProductInteractable productFound in productsFound)
@@ -35,7 +39,6 @@ public class CanvasClientManager : MonoBehaviour
                 }
             }
 
-            noProducts.text = $"IS THIEF\n";
             return;
         }
     }

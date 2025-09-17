@@ -86,6 +86,8 @@ public class Client : MonoBehaviour
                 if (product.ProductData != productInWorld.ProductData)
                     continue;
 
+                matchedProducts.Add(product);
+
                 if (amountProduct > productInWorld.CurrentAmountProduct)
                     amountProduct = productInWorld.CurrentAmountProduct;
 
@@ -93,7 +95,6 @@ public class Client : MonoBehaviour
 
                 if (newTotal < wallet.TotalMoney)
                 {
-                    matchedProducts.Add(product);
                     cart.Add(productInWorld, amountProduct);
                     productInWorld.SubtractAmount(amountProduct);
                     productInWorld.CheckDelete();

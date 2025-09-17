@@ -42,13 +42,13 @@ public class NPC_Controller : MonoBehaviour
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 
-            if (!client.IsThief)
+            if (!client.IsThief && client.GetCart().Count > 0)
             {
                 queueManager._clientQueue.Enqueue(client);
                 queueManager.UpdateQueuePositions();
                 onShowScreen?.Invoke();
             }
-            else
+            else if (client.IsThief || client.GetCart().Count == 0)
             {
                 BackToStart();
                 StartCoroutine(queueManager.RemoveThief(client));

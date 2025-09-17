@@ -71,7 +71,7 @@ public class ProductPriceInput : MonoBehaviour
 
         float priceIncreasePercentage = ((float)_productData.Price - _originalPrice) / _originalPrice * 100f;
 
-        if (priceIncreasePercentage > 20f)
+        if (priceIncreasePercentage > 80f) //esto capaz después cambia si tenemos mas nivel o algo
         {
             priceText.color = Color.red;
         }
