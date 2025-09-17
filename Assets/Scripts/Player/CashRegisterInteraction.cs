@@ -154,7 +154,7 @@ public class CashRegisterInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionDistance))
         {
-            if (hit.collider.CompareTag(cashRegisterTag))
+            if (hit.collider.CompareTag(cashRegisterTag) && playerMovement.State == PlayerMovement.MovementState.idle)
             {
                 EnterCashRegisterMode(true, lockedCameraTarget);
                 PeekClient(false);
@@ -166,7 +166,7 @@ public class CashRegisterInteraction : MonoBehaviour
     // configuracion al entrar a la caja registradora
     public void EnterCashRegisterMode(bool lockCamera, Transform targetPosition)
     {
-        if (playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
+        if (playerMovement.State == PlayerMovement.MovementState.sprinting || playerMovement.State == PlayerMovement.MovementState.walking || playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
         playerMovement.enabled = false;
         canClickTheCashRegister = false;

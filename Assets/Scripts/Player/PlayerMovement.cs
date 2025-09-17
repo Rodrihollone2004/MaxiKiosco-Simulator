@@ -55,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
         walking,
         sprinting,
         crouching,
-        air
+        air,
+        idle
     }
 
     private void Awake()
@@ -137,6 +138,12 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
+            return;
+        }
+        if (horizontalInput == 0 && verticalInput == 0 && grounded)
+        {
+            state = MovementState.idle;
+            moveSpeed = 0f; 
             return;
         }
         if (grounded && Input.GetKey(sprintKey))
