@@ -97,7 +97,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                 ProductInteractable product = interactable;
                 product.IsPlaced = true;
 
-                foreach (StockController controllers in Stock.allStock)
+                foreach (StockController controllers in StoreUI.allStock)
                     controllers.PlaceProduct(product);
 
                 productsPlaced.Add(product);

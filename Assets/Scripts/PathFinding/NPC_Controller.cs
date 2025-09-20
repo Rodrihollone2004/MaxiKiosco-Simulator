@@ -46,7 +46,9 @@ public class NPC_Controller : MonoBehaviour
             {
                 queueManager._clientQueue.Enqueue(client);
                 queueManager.UpdateQueuePositions();
-                onShowScreen?.Invoke();
+
+                if (client == queueManager.ClientQueue.Peek())
+                    onShowScreen?.Invoke();
             }
             else if (client.IsThief || client.GetCart().Count == 0)
             {

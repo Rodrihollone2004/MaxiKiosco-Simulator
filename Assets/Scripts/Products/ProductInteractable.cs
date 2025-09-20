@@ -39,7 +39,7 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         IsSubtracting = true;
         currentAmountProduct -= amount;
 
-        foreach (StockController controllers in Stock.allStock)
+        foreach (StockController controllers in StoreUI.allStock)
             controllers.SubtractProduct(this, amount);
     }
 

@@ -60,6 +60,10 @@ public class CashRegisterInteraction : MonoBehaviour
     private DayNightCycle dayNightCycle;
     public Transform LockedCameraTarget { get => lockedCameraTarget; set => lockedCameraTarget = value; }
     public Transform LimitedCameraTarget { get => limitedCameraTarget; set => limitedCameraTarget = value; }
+    public PlayerCam PlayerCam { get => playerCam; set => playerCam = value; }
+    public Camera PlayerCamera { get => playerCamera; set => playerCamera = value; }
+
+    private Quaternion orientationRot;
 
     private Vector3 startCameraPos;
     private Quaternion startCameraRot;
@@ -98,7 +102,6 @@ public class CashRegisterInteraction : MonoBehaviour
             computerUIScreenManager.ShowHomeScreen();
             playerCam.enabled = false;
             playerCamera.GetComponent<CinemachineBrain>().enabled = true;
-
         }
         if ((InCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -115,8 +118,11 @@ public class CashRegisterInteraction : MonoBehaviour
                 ProcessPayment(currentClient);
                 PeekClient();
 
-                cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
-                nPC_Controller.isPaying = true;
+                if (queueManager.ClientQueue.Count > 0 && currentClient == queueManager.ClientQueue.Peek())
+                {
+                    cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
+                    nPC_Controller.isPaying = true;
+                }
             }
             else if (nPC_Controller.isInCashRegister && nPC_Controller.isPaying)
             {

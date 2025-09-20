@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,6 @@ public class StoreUI : MonoBehaviour
     private Dictionary<productType, Button> categoriesButtons = new Dictionary<productType, Button>();
 
     [SerializeField] private DayNightCycle dayNightCycle;
-    [SerializeField] private Stock stock;
 
     public bool updateProducts;
 
@@ -28,11 +28,14 @@ public class StoreUI : MonoBehaviour
     public ProductDataBase Database { get => database; set => database = value; }
 
     public static List<ProductInteractable> productsInWorld = new List<ProductInteractable>();
+    public static List<StockController> allStock = new List<StockController>();
+
+    public productType CurrentType { get; private set; }
 
     private void Awake()
     {
         CategoriesButtons();
-        ButtonType(productType.Chocolates);   
+        ButtonType(productType.Chocolates);
     }
 
     private void CategoriesButtons()
@@ -54,6 +57,7 @@ public class StoreUI : MonoBehaviour
 
     public void ButtonType(productType buttonType)
     {
+        CurrentType = buttonType;
         foreach (KeyValuePair<Product, GameObject> buttons in productsButtons)
         {
             if (buttonType == buttons.Key.Type)
@@ -102,9 +106,8 @@ public class StoreUI : MonoBehaviour
         ProductInteractable interactable = children.GetComponent<ProductInteractable>();
         interactable.Initialize(capturedProduct);
         productsInWorld.Add(interactable);
-        stock.PopulateStore();
 
-        foreach (StockController controllers in Stock.allStock)
+        foreach (StockController controllers in allStock)
             controllers.AddDeposit(interactable);
     }
 
@@ -141,15 +144,29 @@ public class StoreUI : MonoBehaviour
                 {
                     UpdateDataBase(product);
                     GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
-                    TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
-                    text.text = $"{product.Name} - ${product.PackPrice}";
+
+                    //imagen Stock
+                    Image imageStock = buttonGO.GetComponentInChildren<Image>();
+                    TMP_Text textStock = imageStock.GetComponentInChildren<TMP_Text>();
+                    textStock.text = product.Name;
+
+                    //imagen boton de compra
+                    Button button = buttonGO.GetComponentInChildren<Button>();
+                    TMP_Text textButton = button.GetComponentInChildren<TMP_Text>();
+                    textButton.text = $"X {product.PackSize}\n ${product.PackPrice}";
 
                     Product capturedProduct = product;
                     if (!productsButtons.ContainsKey(capturedProduct))
                         productsButtons.Add(capturedProduct, buttonGO);
 
-                    buttonGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+                    button.onClick.AddListener(() =>
                     {
+                        StockController controller = buttonGO.GetComponentInChildren<StockController>();
+                        controller.Product = product;
+
+                        if (!allStock.Contains(controller))
+                            allStock.Add(controller);
+
                         bool purchased = playerEconomy.TryPurchase(capturedProduct);
                         if (purchased && capturedProduct.Prefab != null)
                         {

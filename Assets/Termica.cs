@@ -7,7 +7,6 @@ public class Termica : MonoBehaviour, IInteractable
 {
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
-    private bool termicaOn = false;
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;

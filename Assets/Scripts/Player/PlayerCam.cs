@@ -28,6 +28,7 @@ public class PlayerCam : MonoBehaviour
     private Coroutine zoomCoroutine;
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
     public bool IsLocked { get => isLocked; set => isLocked = value; }
+    public Transform Orientation { get => orientation; set => orientation = value; }
 
     private void Awake()
     {

@@ -35,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private AudioSource audioSource;
     //[SerializeField] private AudioClip jumpSound, landSound, walkSound, sprintSound;
 
-    private bool isWalking = false;
-
     [SerializeField] private Transform orientation;
 
     private float horizontalInput;

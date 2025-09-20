@@ -7,7 +7,6 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject storeScreen;
     [SerializeField] private GameObject cashRegisterScreen;
     [SerializeField] private GameObject priceProducts;
-    [SerializeField] private GameObject stockScreen;
     [SerializeField] private GameObject upgradesScreen;
     [SerializeField] private GameObject configScreen;
     [SerializeField] private GameObject backgrounds;
@@ -29,7 +28,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
@@ -43,7 +41,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         backgrounds.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
         CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
@@ -57,10 +54,11 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
+        StoreUI storeUI = storeScreen.GetComponent<StoreUI>();
+        storeUI.ButtonType(storeUI.CurrentType);
     }
 
     public void ShowCashRegisterScreen()
@@ -70,11 +68,9 @@ public class ComputerUIScreenManager : MonoBehaviour
         priceProducts.SetActive(false);
         cashRegisterScreen.SetActive(true);
         backgrounds.SetActive(false);
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
-        cashRegisterInteraction.PeekClient();
     }
 
     public void ShowBackgrounds()
@@ -84,19 +80,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(true);
-        stockScreen.SetActive(false);
-        upgradesScreen.SetActive(false);
-        configScreen.SetActive(false);
-    }
-
-    public void ShowStockScreen()
-    {
-        homeScreen.SetActive(false);
-        storeScreen.SetActive(false);
-        cashRegisterScreen.SetActive(false);
-        priceProducts.SetActive(false);
-        backgrounds.SetActive(false);
-        stockScreen.SetActive(true);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
     }
@@ -108,7 +91,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(true);
         configScreen.SetActive(false);
         UpgradeManager upgradeManager = upgradesScreen.GetComponent<UpgradeManager>();
@@ -122,7 +104,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
         backgrounds.SetActive(false);
-        stockScreen.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(true);
     }

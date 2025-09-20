@@ -18,6 +18,7 @@ public class CustomizeProducts : MonoBehaviour
     private List<ProductInteractable> toRemove = new List<ProductInteractable>();
     private Dictionary<productType, Button> categoriesButtons = new Dictionary<productType, Button>();
 
+    private productType currentType;
     private void Start()
     {
         CategoriesButtons();
@@ -64,6 +65,8 @@ public class CustomizeProducts : MonoBehaviour
         {
             productsPlaced.Remove(product);
         }
+        
+        ButtonType(currentType);
     }
 
     private void CategoriesButtons()
@@ -85,6 +88,7 @@ public class CustomizeProducts : MonoBehaviour
 
     public void ButtonType(productType buttonType)
     {
+        currentType = buttonType;
         foreach (KeyValuePair<Product, GameObject> buttons in productsButtons)
         {
             if (buttonType == buttons.Key.Type)

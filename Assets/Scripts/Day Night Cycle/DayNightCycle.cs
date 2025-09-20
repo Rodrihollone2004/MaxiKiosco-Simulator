@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class DayNightCycle : MonoBehaviour
 
     public bool sleepPressed;
 
+    [SerializeField] CashRegisterInteraction cashRegisterInteraction;
     [SerializeField] GameObject storeGO;
     StoreUI storeUI;
 
@@ -237,6 +239,9 @@ public class DayNightCycle : MonoBehaviour
         gate.BackToClose();
 
         queueManager.ResetDailyStats();
+
+        cashRegisterInteraction.PlayerCam.enabled = false;
+        cashRegisterInteraction.PlayerCamera.GetComponent<CinemachineBrain>().enabled = true;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = new Vector3(8, 1.166f, 0);
