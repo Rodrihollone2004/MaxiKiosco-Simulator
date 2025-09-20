@@ -96,6 +96,9 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             ExitCashRegisterMode();
             computerUIScreenManager.ShowHomeScreen();
+            playerCam.enabled = false;
+            playerCamera.GetComponent<CinemachineBrain>().enabled = true;
+
         }
         if ((InCashRegister) && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -244,7 +247,6 @@ public class CashRegisterInteraction : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
         crosshair.SetActive(true);
-        playerCamera.GetComponent<CinemachineBrain>().enabled = true;
 
         if (currentClient != null)
             ProcessPayment(currentClient);
@@ -324,7 +326,7 @@ public class CashRegisterInteraction : MonoBehaviour
                 {
                     EnterCashRegisterMode(false, limitedCameraTarget);
                     crosshair.SetActive(true);
-                    playerCamera.GetComponent<CinemachineBrain>().enabled = true;
+                    playerCam.enabled = true;
                 }
 
                 qrPaymentHandler.CancelQRPayment();

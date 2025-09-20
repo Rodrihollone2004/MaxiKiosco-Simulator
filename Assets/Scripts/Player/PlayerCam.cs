@@ -58,7 +58,6 @@ public class PlayerCam : MonoBehaviour
         {
             xRotation = Mathf.Clamp(xRotation, -25f, 50f);
             yRotation = Mathf.Clamp(yRotation, minAngle, maxAngle);
-            ToggleZoom(false);
         }
         else
         {
