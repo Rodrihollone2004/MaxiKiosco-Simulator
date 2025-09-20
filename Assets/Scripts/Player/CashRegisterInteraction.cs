@@ -324,6 +324,7 @@ public class CashRegisterInteraction : MonoBehaviour
                 {
                     EnterCashRegisterMode(false, limitedCameraTarget);
                     crosshair.SetActive(true);
+                    playerCamera.GetComponent<CinemachineBrain>().enabled = true;
                 }
 
                 qrPaymentHandler.CancelQRPayment();

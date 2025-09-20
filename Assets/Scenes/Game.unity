@@ -7075,7 +7075,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70.807526
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7187,7 +7187,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -61676,7 +61676,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1359053179}
   m_Follow: {fileID: 1854259778}
   m_Lens:
-    FieldOfView: 70.807526
+    FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1000
