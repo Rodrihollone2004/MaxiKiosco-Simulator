@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -87,7 +88,6 @@ public class CashRegisterInteraction : MonoBehaviour
         // metodo para entrar a la caja registradora
         if (Input.GetMouseButtonDown(0) && canClickTheCashRegister)
         {
-            playerCam.ToggleZoom(false);
             TryInteractWithRegister();
         }
 
@@ -168,6 +168,7 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         if (playerMovement.State == PlayerMovement.MovementState.sprinting || playerMovement.State == PlayerMovement.MovementState.walking || playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
+        playerCamera.GetComponent<CinemachineBrain>().enabled = false;
         playerMovement.enabled = false;
         canClickTheCashRegister = false;
 
@@ -243,6 +244,7 @@ public class CashRegisterInteraction : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
         crosshair.SetActive(true);
+        playerCamera.GetComponent<CinemachineBrain>().enabled = true;
 
         if (currentClient != null)
             ProcessPayment(currentClient);

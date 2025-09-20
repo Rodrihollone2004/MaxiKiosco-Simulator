@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
@@ -21,7 +22,7 @@ public class PlayerCam : MonoBehaviour
 
     [Header("Zoom")]
     [SerializeField] private float zoomedFieldOfView = 50f;
-    private Camera mainCamera;
+    private CinemachineVirtualCamera mainCamera;
     private float normalFieldOfView = 60f;
     private bool isZoomed = false;
     private Coroutine zoomCoroutine;
@@ -30,7 +31,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Awake()
     {
-        mainCamera = Camera.main;
+        mainCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Start()
@@ -57,6 +58,7 @@ public class PlayerCam : MonoBehaviour
         {
             xRotation = Mathf.Clamp(xRotation, -25f, 50f);
             yRotation = Mathf.Clamp(yRotation, minAngle, maxAngle);
+            ToggleZoom(false);
         }
         else
         {
@@ -108,16 +110,16 @@ public class PlayerCam : MonoBehaviour
     private IEnumerator ZoomCoroutine(bool zoomIn)
     {
         float targetFOV = zoomIn ? zoomedFieldOfView : normalFieldOfView;
-        float startFOV = mainCamera.fieldOfView;
+        float startFOV = mainCamera.m_Lens.FieldOfView;
         float elapsed = 0f;
 
         while (elapsed < 0.2f)
         {
-            mainCamera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / 0.2f);
+            mainCamera.m_Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / 0.2f);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        mainCamera.fieldOfView = targetFOV;
+        mainCamera.m_Lens.FieldOfView = targetFOV;
     }
 }
