@@ -71,6 +71,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
+        cashRegisterInteraction.PeekClient();
     }
 
     public void ShowBackgrounds()
