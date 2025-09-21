@@ -2,6 +2,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -26,8 +27,19 @@ public class UpgradeManager : MonoBehaviour
                 if (experienceManager.CurrentLevel >= upgrade.LevelUpdate && !upgradesButtons.ContainsKey(upgrade))
                 {
                     GameObject inputGO = Instantiate(productButtonPrefab, productButtonContainer);
-                    TMP_Text nameProduct = inputGO.GetComponentInChildren<TMP_Text>();
-                    nameProduct.text = $"{upgrade.Name}";
+                    TMP_Text[] texts = inputGO.GetComponentsInChildren<TMP_Text>();
+                    texts[0].text = $"{upgrade.Name}";
+                    texts[1].text = $"${upgrade.Price}";
+
+                    Image[] images = inputGO.GetComponentsInChildren<Image>(true);
+                    foreach (var img in images)
+                    {
+                        if (img.gameObject.name == "Icon")
+                        {
+                            img.sprite = upgrade.Icon;
+                            break;
+                        }
+                    }
 
                     upgradesButtons.Add(upgrade, inputGO);
 
@@ -76,5 +88,4 @@ public class UpgradeManager : MonoBehaviour
         }
         return layer;
     }
-
 }
