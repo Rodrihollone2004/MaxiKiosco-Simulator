@@ -22,7 +22,8 @@ public class PlayerCam : MonoBehaviour
 
     [Header("Zoom")]
     [SerializeField] private float zoomedFieldOfView = 50f;
-    private CinemachineVirtualCamera mainCamera;
+    private CinemachineVirtualCamera virtualCamera;
+    private Camera mainCamera;
     private float normalFieldOfView = 60f;
     private bool isZoomed = false;
     private Coroutine zoomCoroutine;
@@ -32,7 +33,8 @@ public class PlayerCam : MonoBehaviour
 
     private void Awake()
     {
-        mainCamera = GetComponent<CinemachineVirtualCamera>();
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        mainCamera = Camera.main;
     }
 
     private void Start()
@@ -44,6 +46,8 @@ public class PlayerCam : MonoBehaviour
     {
         if (isLocked)
         {
+            if (isZoomed)
+                ToggleZoom(false);
             return;
         }
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity;
@@ -110,16 +114,17 @@ public class PlayerCam : MonoBehaviour
     private IEnumerator ZoomCoroutine(bool zoomIn)
     {
         float targetFOV = zoomIn ? zoomedFieldOfView : normalFieldOfView;
-        float startFOV = mainCamera.m_Lens.FieldOfView;
+        float startFOV = virtualCamera.m_Lens.FieldOfView;
         float elapsed = 0f;
 
         while (elapsed < 0.2f)
         {
-            mainCamera.m_Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / 0.2f);
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, elapsed / 0.2f);
+            mainCamera.fieldOfView = virtualCamera.m_Lens.FieldOfView;
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        mainCamera.m_Lens.FieldOfView = targetFOV;
+        virtualCamera.m_Lens.FieldOfView = targetFOV;
     }
 }
