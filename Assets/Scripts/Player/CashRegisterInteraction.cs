@@ -175,6 +175,11 @@ public class CashRegisterInteraction : MonoBehaviour
     // configuracion al entrar a la caja registradora
     public void EnterCashRegisterMode(bool lockCamera, Transform targetPosition)
     {
+        if (playerCam != null)
+        {
+            playerCam.ToggleZoom(false);
+        }
+
         if (playerMovement.State == PlayerMovement.MovementState.sprinting || playerMovement.State == PlayerMovement.MovementState.walking || playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
         playerCamera.GetComponent<CinemachineBrain>().enabled = false;

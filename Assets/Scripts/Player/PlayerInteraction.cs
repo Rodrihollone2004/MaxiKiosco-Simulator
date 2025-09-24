@@ -351,8 +351,18 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider.isTrigger = true;
 
         heldObject.transform.SetParent(holdPosition);
-        heldObject.transform.localPosition = Vector3.zero;
-        heldObject.transform.localRotation = Quaternion.identity;
+
+        if (objToPickUp.TryGetComponent(out Broom broomComponent))
+        {
+            heldObject.transform.localPosition = broomComponent.holdOffset;
+            heldObject.transform.localRotation = Quaternion.Euler(broomComponent.holdRotation);
+        }
+        else
+        {
+            // Para el resto de los objetos
+            heldObject.transform.localPosition = Vector3.zero;
+            heldObject.transform.localRotation = Quaternion.identity;
+        }
 
         CheckUIText();
 

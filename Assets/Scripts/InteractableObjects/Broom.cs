@@ -5,6 +5,10 @@ public class Broom : MonoBehaviour, IInteractable
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
 
+    [Header("Pickup Offset")]
+    public Vector3 holdOffset = new Vector3(0.2f, -0.3f, 0.5f);
+    public Vector3 holdRotation = new Vector3(0f, 90f, 0f);
+
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
 

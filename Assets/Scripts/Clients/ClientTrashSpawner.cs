@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClientTrashSpawner : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class ClientTrashSpawner : MonoBehaviour
     [SerializeField] private int maxTrash = 2;
 
     private int currentTrashCount = 0;
+
+    [System.Serializable]
+    public class TrashChangedEvent : UnityEvent<float> { } 
+    public TrashChangedEvent OnTrashChanged;
 
     public void SpawnTrash()
     {
@@ -24,10 +29,25 @@ public class ClientTrashSpawner : MonoBehaviour
         GameObject trashPrefab = trashPrefabs[Random.Range(0, trashPrefabs.Length)];
         Instantiate(trashPrefab, spawnPosition, Quaternion.identity);
         currentTrashCount++;
+
+        NotifyTrashChanged();
     }
 
     public void TrashCleaned()
     {
         currentTrashCount = Mathf.Max(0, currentTrashCount - 1);
+        NotifyTrashChanged();
+    }
+
+    private void NotifyTrashChanged()
+    {
+        float percentage = GetTrashPercentage();
+        OnTrashChanged?.Invoke(percentage);
+    }
+
+    public float GetTrashPercentage()
+    {
+        if (maxTrash == 0) return 0f;
+        return (float)currentTrashCount / maxTrash * 100f;
     }
 }
