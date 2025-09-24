@@ -97,7 +97,7 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // escape salis de la caja registradora
-        if ((playerCam.IsLocked) && Input.GetKeyDown(KeyCode.Escape))
+        if (!InCashRegister && playerCam.IsLocked && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCashRegisterMode();
             computerUIScreenManager.ShowHomeScreen();
