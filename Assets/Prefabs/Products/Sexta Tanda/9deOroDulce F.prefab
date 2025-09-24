@@ -124,7 +124,9 @@ PrefabInstance:
       value: 9deOroDulce F
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: 401cbff788d597744abe596b4f6f1206, type: 3}
+    - {fileID: -8700617353114198275, guid: 401cbff788d597744abe596b4f6f1206, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 401cbff788d597744abe596b4f6f1206,
@@ -165,8 +167,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21873474, y: 0.24432832, z: 0.36612988}
-  m_Center: {x: 0.0009050369, y: 0.09422684, z: 0.0006957054}
+  m_Size: {x: 0.21873474, y: 0.2413136, z: 0.36612988}
+  m_Center: {x: 0.0009050369, y: 0.1193185, z: 0.0006957054}
 --- !u!114 &3588213432963797416
 MonoBehaviour:
   m_ObjectHideFlags: 0
