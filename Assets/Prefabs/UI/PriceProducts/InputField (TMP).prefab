@@ -480,7 +480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -957472918, guid: 1556e925bae09ae45b92b0b129f05932, type: 3}
+  m_Sprite: {fileID: 2076282938, guid: 33fdeba563cc1f249a3ca28fe2e83d7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -625,6 +625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75237fb17a580ab4e8a4ae1061fa2a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputField: {fileID: 0}
+  priceText: {fileID: 0}
+  holdDelay: 0.2
 --- !u!1 &7666103214203903526
 GameObject:
   m_ObjectHideFlags: 0
