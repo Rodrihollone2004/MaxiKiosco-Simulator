@@ -1,88 +1,77 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class NPC_Controller : MonoBehaviour
+public class BoxCollector : MonoBehaviour, IInteractable
 {
     public Node currentNode;
     public List<Node> path = new List<Node>();
-
     public bool isBack;
-
+    public bool canRemove;
     [SerializeField] int nodesAmount = 3;
+    [SerializeField] int amountBoxes = 500;
 
-    public bool isInCashRegister;
-    public bool isInDequeue;
-    public bool isPaying;
-
-    [Header("Sounds")]
-    private AudioSource audioSource;
-    [SerializeField] private AudioClip clientInCashRegister;
-
-    public static event Action onShowScreen;
-    public Client client { get; private set; }
-    public Animator animatorNPC { get; private set; }
+    private Animator animatorNPC;
+    public bool CanBePickedUp => false;
 
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
-        client = GetComponent<Client>();
         animatorNPC = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void Interact()
+    {
+        CheckBoxes();
     }
 
     private void Update()
     {
-        if (currentNode != AStarManager.instance.EndNode && !isBack)
+        if (currentNode != AStarManager.instance.BoxRemoverNode && !isBack)
         {
-            isInCashRegister = false;
             CreatePath();
         }
-        else if (currentNode == AStarManager.instance.EndNode && !isBack && isInCashRegister == false)
+        else if (currentNode == AStarManager.instance.BoxRemoverNode && !isBack)
         {
-            isInCashRegister = true;
-            client.AddRandomProductsToCart();
-            client.CalculateCost();
-
-            audioSource.PlayOneShot(clientInCashRegister);
-
-            ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
-
-            if (!client.IsThief && client.GetCart().Count > 0)
-            {
-                queueManager._clientQueue.Enqueue(client);
-                queueManager.UpdateQueuePositions();
-
-                if (client == queueManager.ClientQueue.Peek())
-                    onShowScreen?.Invoke();
-            }
-            else if (client.IsThief || client.GetCart().Count == 0)
-            {
-                BackToStart();
-                StartCoroutine(queueManager.RemoveThief(client));
-            }
-
-            transform.rotation = Quaternion.identity;
+            canRemove = true;
+            //audioSource.PlayOneShot(clientInCashRegister);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             animatorNPC.SetBool("IsWalking", path.Count > 0);
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
-            isInCashRegister = false;
             CreatePath();
         }
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
+            gameObject.SetActive(false);
             isBack = false;
-            isInDequeue = true;
-            isPaying = false;
-            client.CanvasClientManager.ClearText();
-
-            CashRegisterInteraction.onFinishPath -= BackToStart;
         }
+    }
 
+    private void CheckBoxes()
+    {
+        if (canRemove)
+        {
+            BoxStackZone boxStack = FindObjectOfType<BoxStackZone>();
+
+            if (boxStack != null && boxStack.StackedBoxes.Count > 0)
+            {
+                for (int i = 0; i < boxStack.StackedBoxes.Count; i++)
+                {
+                    PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
+                    player.ReceivePayment(amountBoxes);
+
+                    Destroy(boxStack.StackedBoxes[i]);
+                }
+
+                boxStack.StackedBoxes.Clear();
+
+                Debug.Log("Me lleve las cajas, me voy");
+                BackToStart();
+            }
+            else
+                BackToStart();
+        }
     }
 
     public void CreatePath()
@@ -125,7 +114,7 @@ public class NPC_Controller : MonoBehaviour
             while (intermediateNodes.Count < nodesAmount)
             {
                 Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
+                if (randomNode != currentNode && randomNode != AStarManager.instance.BoxRemoverNode && !intermediateNodes.Contains(randomNode))
                 {
                     intermediateNodes.Add(randomNode);
                 }
@@ -145,7 +134,7 @@ public class NPC_Controller : MonoBehaviour
                 }
             }
 
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndNode);
+            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.BoxRemoverNode);
             if (finalPath != null && finalPath.Count > 0)
             {
                 totalPath.AddRange(finalPath);
@@ -157,9 +146,8 @@ public class NPC_Controller : MonoBehaviour
 
     public void BackToStart()
     {
-        if (currentNode == AStarManager.instance.EndNode && !isBack)
+        if (currentNode == AStarManager.instance.BoxRemoverNode && !isBack)
         {
-            isInCashRegister = false;
             isBack = true;
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
@@ -167,5 +155,13 @@ public class NPC_Controller : MonoBehaviour
                 path.AddRange(backPath);
             }
         }
+    }
+
+    public void Highlight()
+    {
+    }
+
+    public void Unhighlight()
+    {
     }
 }

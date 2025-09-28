@@ -10,6 +10,8 @@ public class BoxStackZone : MonoBehaviour
 
     private List<GameObject> stackedBoxes = new List<GameObject>();
 
+    public List<GameObject> StackedBoxes { get => stackedBoxes; set => stackedBoxes = value; }
+
     private void OnTriggerEnter(Collider other)
     {
         ProductPlaceManager box = other.GetComponent<ProductPlaceManager>();
@@ -26,6 +28,10 @@ public class BoxStackZone : MonoBehaviour
             stackedBoxes.Add(newBrokenBox);
 
             Destroy(other.gameObject);
+
+            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+            if (playerInteraction != null)
+                playerInteraction.DropHintUI.SetActive(false);
         }
     }
 }
