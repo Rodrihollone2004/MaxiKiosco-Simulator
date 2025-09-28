@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class NPC_Controller : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NPC_Controller : MonoBehaviour
     public bool isInDequeue;
     public bool isPaying;
 
+    [Header("Sounds")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip clientInCashRegister;
 
     public static event Action onShowScreen;
     public Client client { get; private set; }
@@ -25,6 +29,8 @@ public class NPC_Controller : MonoBehaviour
         currentNode = AStarManager.instance.StartNode;
         client = GetComponent<Client>();
         animatorNPC = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -39,6 +45,8 @@ public class NPC_Controller : MonoBehaviour
             isInCashRegister = true;
             client.AddRandomProductsToCart();
             client.CalculateCost();
+
+            audioSource.PlayOneShot(clientInCashRegister);
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 

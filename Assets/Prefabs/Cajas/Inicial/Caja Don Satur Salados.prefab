@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 40
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 40
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 40
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
@@ -87,12 +87,18 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 73f67fc50c8f4e746943203bf1df2941, type: 2}
+      objectReference: {fileID: 2100000, guid: 6ecec692688e4884d880a9a30008a147, type: 2}
     - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4493585093827132993, guid: 7d77b69a9848b994896b97639473b2b8,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: m_Name
@@ -149,8 +155,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.019999996, z: 0.019999996}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0033566474, y: 0.0038323207, z: 0.0020304744}
+  m_Center: {x: 0.000005030632, y: 0.000032002295, z: 0.0010387603}
 --- !u!54 &91168183139717299
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
-using UnityEngine;
 using TMPro;
-using UnityEditor.Rendering.Universal;
 using Unity.Burst.CompilerServices;
+using UnityEditor.Rendering.Universal;
+using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -29,11 +30,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private TMP_Text hintText;
 
     public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
+    public AudioClip PlaceProduct_ { get => placeProduct; set => placeProduct = value; }
 
     [Header("Efects")]
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private AudioClip dropSound;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip placeProduct;
+    private AudioSource audioSource;
 
     //Esto es para el objeto a pickear, su rigidBody, Collider, etc.
     private IInteractable currentInteractable;
@@ -53,6 +56,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         playerEconomy = GetComponent<PlayerEconomy>();
         cashRegisterInteraction = GetComponent<CashRegisterInteraction>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -78,10 +82,16 @@ public class PlayerInteraction : MonoBehaviour
             DropObject();
 
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
+        {
             furnitureBox.PlaceFurniture();
+            audioSource.PlayOneShot(placeProduct);
+        }
 
         if (Input.GetKeyDown(KeyCode.E) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
+        {
             boxProduct.PlaceProduct();
+            audioSource.PlayOneShot(placeProduct);
+        }
 
         if (Input.GetKeyDown(KeyCode.E) && productPlaced != null && previewValidator != null && previewValidator.IsValidPlacement)
             PlaceProduct();
@@ -270,6 +280,8 @@ public class PlayerInteraction : MonoBehaviour
 
         foreach (PlacementZoneProducts zone in AllZones)
             zone.HideVisual();
+
+        audioSource.PlayOneShot(placeProduct);
     }
 
     // intenta recoger un objeto con el raycast

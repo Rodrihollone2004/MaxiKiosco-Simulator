@@ -16,8 +16,15 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelPoints;
     [SerializeField] Image experienceFill;
 
-    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
+    [Header("Sound")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip levelUP;
 
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Start()
     {
         UpdateLevel();
@@ -45,6 +52,7 @@ public class ExperienceManager : MonoBehaviour
             levelToPoints++;
             UpdateLevel();
             levelPoints.text = $"Nivel: {levelToPoints}";
+            audioSource.PlayOneShot(levelUP);
         }
     }
 

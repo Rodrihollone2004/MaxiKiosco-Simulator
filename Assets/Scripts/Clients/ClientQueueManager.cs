@@ -24,6 +24,7 @@ public class ClientQueueManager : MonoBehaviour
     public UnityEvent<Client> OnClientServed;
     public UnityEvent OnQueueUpdated;
 
+
     public Queue<Client> _clientQueue = new Queue<Client>();
     private List<GameObject> _clientPool = new List<GameObject>();
 
