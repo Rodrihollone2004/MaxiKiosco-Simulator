@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -22,7 +22,7 @@ public class CanvasClientManager : MonoBehaviour
 
             foreach (ProductInteractable notProduct in productsNotFound)
             {
-                noProducts.text += $"{notProduct.ProductData.Name}\n";
+                noProducts.text += $"{notProduct.ProductData.Name} <sprite name=CruzRoja>\n";
             }
         }
         else if (currentClient.IsThief)
