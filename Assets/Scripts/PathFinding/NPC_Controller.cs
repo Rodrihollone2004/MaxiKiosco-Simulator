@@ -24,13 +24,12 @@ public class NPC_Controller : MonoBehaviour
 
     public static event Action onShowScreen;
     public Client client { get; private set; }
-    public Animator animatorNPC { get; private set; }
+    [field: SerializeField]public Animator animatorNPC { get; private set; }
 
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
         client = GetComponent<Client>();
-        animatorNPC = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
 

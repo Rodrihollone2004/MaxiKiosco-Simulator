@@ -363,6 +363,7 @@ public class PlayerInteraction : MonoBehaviour
             heldObjectCollider.isTrigger = true;
 
         heldObject.transform.SetParent(holdPosition);
+        heldObject.layer = LayerMask.NameToLayer("inHand");
 
         if (objToPickUp.TryGetComponent(out Broom broomComponent))
         {
@@ -465,6 +466,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             heldObject.transform.SetParent(null);
+            heldObject.layer = LayerMask.NameToLayer("Interact");
             heldObject = null;
             heldObjectRb = null;
             heldObjectCollider = null;
