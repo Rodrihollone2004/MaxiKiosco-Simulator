@@ -184,9 +184,31 @@ public class DayNightCycle : MonoBehaviour
 
     private void SunIntensity()
     {
-        intensity = Vector3.Dot(sun.transform.forward, Vector3.down);
-        intensity = Mathf.Clamp01(intensity);
+        // Convertir _timeOfDay (0-1) a hora del día (0-24)
+        float currentHour = _timeOfDay * 24f;
 
+        // Intensidad según hora (lineal o suave)
+        if (currentHour < 6f || currentHour >= 22f)
+        {
+            intensity = 0f; // Noche
+        }
+        else if (currentHour >= 6f && currentHour < 12f)
+        {
+            // Amanecer: de 0 a 1
+            intensity = Mathf.InverseLerp(6f, 12f, currentHour);
+        }
+        else if (currentHour >= 12f && currentHour < 19f)
+        {
+            // Atardecer: de 1 a 0.5
+            intensity = Mathf.Lerp(1f, 0.5f, Mathf.InverseLerp(12f, 19f, currentHour));
+        }
+        else if (currentHour >= 19f && currentHour < 22f)
+        {
+            // Anochecer: de 0.5 a 0
+            intensity = Mathf.Lerp(0.5f, 0f, Mathf.InverseLerp(19f, 22f, currentHour));
+        }
+
+        // Aplicar la intensidad al sol
         sun.intensity = intensity * sunVariation + sunBaseIntensity;
     }
 

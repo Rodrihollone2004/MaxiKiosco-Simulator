@@ -7,7 +7,7 @@ public class SkyboxModule : DNModuleBase
 
     public override void UpdateModule(float intensity)
     {
-        RenderSettings.skybox.SetColor("_SkyTint", skyColor.Evaluate(intensity));
-        RenderSettings.skybox.SetColor("_GroundColor", horizonColor.Evaluate(intensity));
+        RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(0.01f, 1.5f, intensity));
+        RenderSettings.skybox.SetFloat("_Rotation", intensity * 360);
     }
 }
