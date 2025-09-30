@@ -45,6 +45,9 @@ public class UpgradeManager : MonoBehaviour
 
                     inputGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
                     {
+                        if (TutorialContent.Instance.CurrentIndexGuide < 12)
+                            return;
+
                         bool purchased = playerEconomy.TryPurchaseUpgrade(upgrade);
                         if (purchased && upgrade.Prefab != null)
                         {

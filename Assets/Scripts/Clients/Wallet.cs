@@ -22,10 +22,9 @@ public class Wallet
 
         for (int i = Money.billDenominations.Length - 1; i >= 0; i--)
         {
-            int amount = UnityEngine.Random.Range(1, 10);
-            int hasBill = UnityEngine.Random.Range(1, 2);
+            int amount = UnityEngine.Random.Range(3, 6);
 
-            if (amount > 0 && hasBill > 0)
+            if (amount > 0)
                 Bills.Add(new Money(Money.billDenominations[i], amount));
         }
 
@@ -114,7 +113,7 @@ public class Wallet
 }
 public class Money
 {
-    static public int[] billDenominations { get; private set; } = { 1000, 500, 100, 50, 20, 10, 1 };
+    static public int[] billDenominations { get; private set; } = { 1000, 500, 100, 50, 20 };
 
     public int Amount;
     public int Value;
