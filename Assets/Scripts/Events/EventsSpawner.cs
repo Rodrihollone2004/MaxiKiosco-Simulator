@@ -35,6 +35,7 @@ public class EventsSpawner : MonoBehaviour
                 cartonero.SetActive(true);
             }
         }
+        GameObject a = Instantiate(thiefPrefab, spawnPoint.position, Quaternion.identity);
 
 
         if (Random.value < 0.05f) // valor de si va a aparecer un ladron o no, està en 5% por ahora. Despuès podemos hacer para que se fije mas de una vez a ver si puede o no spawnear

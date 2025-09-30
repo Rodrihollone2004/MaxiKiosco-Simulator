@@ -19,6 +19,8 @@ public class ThiefController : MonoBehaviour
 
     public int newTotal { get; set; } = 0;
 
+    public bool IsInRagdoll { get; private set; } = false;
+
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
@@ -26,6 +28,8 @@ public class ThiefController : MonoBehaviour
 
     private void Update()
     {
+        if (IsInRagdoll) return;
+
         if (currentNode != AStarManager.instance.EndNode && !isBack)
         {
             IsStealing = false;
@@ -48,6 +52,31 @@ public class ThiefController : MonoBehaviour
             newTotal = 0;
             isBack = false;
             WasHit = false;
+        }
+    }
+
+    public void ResumeMovement()
+    {
+        IsInRagdoll = false;
+
+        this.enabled = true;
+    }
+
+    public void GetHit()
+    {
+        if (!WasHit)
+        {
+            WasHit = true;
+
+            Ragdoll ragdoll = GetComponent<Ragdoll>();
+            if (ragdoll != null)
+            {
+                ragdoll.ActivateTemporaryRagdoll(2.5f);
+                IsInRagdoll = true;
+
+            }
+
+            BackToStart();
         }
     }
 
