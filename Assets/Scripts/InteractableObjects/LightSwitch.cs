@@ -6,6 +6,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
     [SerializeField] private List<Light> lightsToControl;
     [SerializeField] private Color highlightColor = Color.green;
     [SerializeField] private float highlightWidth = 1.03f;
+
+    [SerializeField] private Material lightMaterial;
     private bool lightsOn = false;
     private bool isEnabled = false;
 
@@ -38,6 +40,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
         {
             if (light != null)
                 light.enabled = false;
+
+            lightMaterial.DisableKeyword("_EMISSION");
         }
     }
 
@@ -68,6 +72,15 @@ public class LightSwitch : MonoBehaviour, IInteractable
         {
             if (light != null)
                 light.enabled = lightsOn && isEnabled;
+
+            if (lightsOn && isEnabled)
+            {
+                lightMaterial.EnableKeyword("_EMISSION");
+            }
+            else
+            {
+                lightMaterial.DisableKeyword("_EMISSION");
+            }
         }
     }
 

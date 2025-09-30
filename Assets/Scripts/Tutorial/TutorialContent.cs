@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +13,7 @@ public class TutorialContent : MonoBehaviour
 
     private string[] textsToGuide;
 
+    public int markIndex;
     private int currentIndexGuide = 0;
     public int CurrentIndexGuide => currentIndexGuide;
 
@@ -18,6 +21,7 @@ public class TutorialContent : MonoBehaviour
     [SerializeField] private TMP_Text guideInPcText;
     [SerializeField] private TMP_Text guideInWorld;
     [SerializeField] private TutorialGuider guider;
+    [SerializeField] private List<GameObject> marks = new List<GameObject>();
 
     private void Awake()
     {
@@ -53,17 +57,17 @@ public class TutorialContent : MonoBehaviour
 
     public void NextTextToGuide()
     {
-        if (CurrentIndexGuide == 4)
+        if (CurrentIndexGuide >= 4 && CurrentIndexGuide < 12)
         {
             guideText = guideInPcText;
             guider.CanvasTuto.SetActive(false);
+            ChangeMarkIcon();
         }
         else if (CurrentIndexGuide == 12)
         {
             guideInPcText.gameObject.SetActive(false);
             guideText = guideInWorld;
             guider.CanvasTuto.SetActive(true);
-            //guider.BackToStart
         }
 
         guideText.gameObject.SetActive(true);
@@ -85,5 +89,19 @@ public class TutorialContent : MonoBehaviour
             guider.ChangeTutoNode();
             NextTextToGuide();
         }
+    }
+
+    private void ChangeMarkIcon()
+    {
+        for (int i = 0; i < marks.Count; i++)
+            if (markIndex == i)
+            {
+                Debug.Log("Activando marca en el índice: " + i);
+                marks[i].SetActive(true);
+            }
+            else
+                marks[i].SetActive(false);
+
+        markIndex++;
     }
 }
