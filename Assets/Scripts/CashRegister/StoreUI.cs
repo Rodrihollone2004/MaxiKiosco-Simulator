@@ -155,7 +155,7 @@ public class StoreUI : MonoBehaviour
                     //imagen boton de compra
                     Button button = buttonGO.GetComponentInChildren<Button>();
                     TMP_Text textButton = button.GetComponentInChildren<TMP_Text>();
-                    textButton.text = $"X {product.PackSize}\n ${product.PackPrice}";
+                    textButton.text = $"X{product.PackSize} - ${product.PackPrice}";
 
                     Product capturedProduct = product;
                     if (!productsButtons.ContainsKey(capturedProduct))
