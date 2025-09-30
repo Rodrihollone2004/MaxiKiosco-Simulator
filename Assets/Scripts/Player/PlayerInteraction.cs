@@ -313,12 +313,20 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, clientLayer))
         {
-            if (hit.collider.TryGetComponent(out Client currentClient) && currentClient.IsThief && currentClient.NpcController.isBack)
+            if (hit.collider.TryGetComponent(out ThiefController currentClient) && !currentClient.WasHit)
             {
-                currentClient.IsThief = false;
-                currentClient.WasHit = true;
-                playerEconomy.ReceivePayment(currentClient.totalCart);
-                Debug.Log("Ladron golpeado");
+                if (currentClient.IsStealing)
+                {
+                    currentClient.WasHit = true;
+                    playerEconomy.ReceivePayment(currentClient.newTotal);
+                    Debug.Log("Ladron golpeado");
+                }
+                else
+                {
+                    currentClient.WasHit = true;
+                    currentClient.BackToStart();
+                    Debug.Log("Ladron golpeado sin robar");
+                }
             }
         }
     }

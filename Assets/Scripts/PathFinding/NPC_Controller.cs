@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -50,7 +49,7 @@ public class NPC_Controller : MonoBehaviour
 
             ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 
-            if (!client.IsThief && client.GetCart().Count > 0)
+            if (client.GetCart().Count > 0)
             {
                 queueManager._clientQueue.Enqueue(client);
                 queueManager.UpdateQueuePositions();
@@ -58,10 +57,10 @@ public class NPC_Controller : MonoBehaviour
                 if (client == queueManager.ClientQueue.Peek())
                     onShowScreen?.Invoke();
             }
-            else if (client.IsThief || client.GetCart().Count == 0)
+            else if (client.GetCart().Count == 0)
             {
                 BackToStart();
-                StartCoroutine(queueManager.RemoveThief(client));
+                StartCoroutine(queueManager.RemoveClient0(client));
             }
 
             transform.rotation = Quaternion.identity;

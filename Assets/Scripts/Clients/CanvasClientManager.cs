@@ -16,7 +16,7 @@ public class CanvasClientManager : MonoBehaviour
 
     public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, Client currentClient, List<ProductInteractable> productsFound)
     {
-        if (productsNotFound.Count > 0 && !currentClient.IsThief)
+        if (productsNotFound.Count > 0)
         {
             gameObject.SetActive(true);
 
@@ -24,22 +24,6 @@ public class CanvasClientManager : MonoBehaviour
             {
                 noProducts.text += $"{notProduct.ProductData.Name} <sprite name=CruzRoja>\n";
             }
-        }
-        else if (currentClient.IsThief)
-        {
-            gameObject.SetActive(true);
-
-            noProducts.text = $"IS THIEF\n";
-
-            if (productsFound.Count > 0)
-            {
-                foreach (ProductInteractable productFound in productsFound)
-                {
-                    noProducts.text += $"{productFound.ProductData.Name}\n";
-                }
-            }
-
-            return;
         }
     }
 

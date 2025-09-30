@@ -114,7 +114,7 @@ public class CashRegisterInteraction : MonoBehaviour
         // enter procesas el pago
         if (InCashRegister && currentClient != null)
         {
-            if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying && !currentClient.IsThief)
+            if (nPC_Controller.isInCashRegister && !nPC_Controller.isPaying)
             {
                 ProcessPayment(currentClient);
                 PeekClient();

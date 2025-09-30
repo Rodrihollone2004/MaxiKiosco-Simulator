@@ -20,8 +20,6 @@ public class Client : MonoBehaviour
     public enum PaymentMethod { Cash, QR }
     public PaymentMethod paymentMethod;
 
-    [field: SerializeField] public bool IsThief { get; set; }
-    [field: SerializeField] public bool WasHit { get; set; }
     public CanvasClientManager CanvasClientManager { get => canvasClientManager; set => canvasClientManager = value; }
 
     [SerializeField] ProductDataBase dataBase;
@@ -33,11 +31,6 @@ public class Client : MonoBehaviour
         wallet = new Wallet();
         matchedProducts = new List<ProductInteractable>();
         canvasClientManager = GetComponentInChildren<CanvasClientManager>();
-    }
-
-    public bool CheckThief()
-    {
-        return IsThief = Random.value < 0.05f ? true : false;
     }
 
     public void CalculateCost()

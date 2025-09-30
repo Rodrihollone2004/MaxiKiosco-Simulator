@@ -1,43 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoxCollector : MonoBehaviour, IInteractable
+public class ThiefController : MonoBehaviour
 {
     public Node currentNode;
     public List<Node> path = new List<Node>();
     public bool isBack;
-    public bool canRemove;
     [SerializeField] int nodesAmount = 3;
-    [SerializeField] int amountBoxes = 500;
 
-    private Animator animatorNPC;
-    public bool CanBePickedUp => false;
+    public bool WasHit { get; set; } = false;
+    public bool IsStealing { get; set; }
+
+    List<ProductInteractable> productsInWorld;
+    public int MaxProductsToThief { get; set; } = 6;
+    public int MaxAmountToThief { get; set; } = 4;
+
+    public int newTotal { get; set; } = 0;
 
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
-        animatorNPC = GetComponent<Animator>();
-    }
-
-    public void Interact()
-    {
-        CheckBoxes();
     }
 
     private void Update()
     {
-        if (currentNode != AStarManager.instance.BoxRemoverNode && !isBack)
+        if (currentNode != AStarManager.instance.EndNode && !isBack)
         {
+            IsStealing = false;
             CreatePath();
         }
-        else if (currentNode == AStarManager.instance.BoxRemoverNode && !isBack)
+        else if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
-            canRemove = true;
+            IsStealing = true;
+            AddRandomProducts();
+            BackToStart();
             //audioSource.PlayOneShot(clientInCashRegister);
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            animatorNPC.SetBool("IsWalking", path.Count > 0);
         }
         else if (currentNode != AStarManager.instance.StartNode && isBack)
         {
@@ -46,40 +45,14 @@ public class BoxCollector : MonoBehaviour, IInteractable
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
             gameObject.SetActive(false);
+            newTotal = 0;
             isBack = false;
-        }
-    }
-
-    private void CheckBoxes()
-    {
-        if (canRemove)
-        {
-            BoxStackZone boxStack = FindObjectOfType<BoxStackZone>();
-
-            if (boxStack != null && boxStack.StackedBoxes.Count > 0)
-            {
-                for (int i = 0; i < boxStack.StackedBoxes.Count; i++)
-                {
-                    PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
-                    player.ReceivePayment(amountBoxes);
-
-                    Destroy(boxStack.StackedBoxes[i]);
-                }
-
-                boxStack.StackedBoxes.Clear();
-
-                Debug.Log("Me lleve las cajas, me voy");
-                BackToStart();
-            }
-            else
-                BackToStart();
+            WasHit = false;
         }
     }
 
     public void CreatePath()
     {
-        animatorNPC.SetBool("IsWalking", path.Count > 0);
-
         if (path.Count > 0)
         {
             int x = 0;
@@ -116,7 +89,7 @@ public class BoxCollector : MonoBehaviour, IInteractable
             while (intermediateNodes.Count < nodesAmount)
             {
                 Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.BoxRemoverNode && !intermediateNodes.Contains(randomNode))
+                if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
                 {
                     intermediateNodes.Add(randomNode);
                 }
@@ -136,7 +109,7 @@ public class BoxCollector : MonoBehaviour, IInteractable
                 }
             }
 
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.BoxRemoverNode);
+            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndNode);
             if (finalPath != null && finalPath.Count > 0)
             {
                 totalPath.AddRange(finalPath);
@@ -148,7 +121,7 @@ public class BoxCollector : MonoBehaviour, IInteractable
 
     public void BackToStart()
     {
-        if (currentNode == AStarManager.instance.BoxRemoverNode && !isBack)
+        if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
             isBack = true;
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
@@ -157,13 +130,45 @@ public class BoxCollector : MonoBehaviour, IInteractable
                 path.AddRange(backPath);
             }
         }
+        else if (!isBack && WasHit)
+        {
+            isBack = true;
+            path.Clear();
+            List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
+            if (backPath != null && backPath.Count > 0)
+            {
+                path.AddRange(backPath);
+            }
+        }
     }
 
-    public void Highlight()
+    public void AddRandomProducts()
     {
-    }
+        productsInWorld = FindObjectsOfType<ProductInteractable>().ToList();
+        productsInWorld.OrderBy(x => Random.value).ToList(); // Mezclar productos para que agarre random
 
-    public void Unhighlight()
-    {
+        int productsToBuy = Random.Range(3, MaxProductsToThief); //variable que va a variar con mejoras
+
+        int total = 0;
+        int amountThief = 0;
+
+        foreach (ProductInteractable productInWorld in productsInWorld)
+        {
+            if (amountThief > productsToBuy)
+                continue;
+
+            int amountProduct = Random.Range(1, MaxAmountToThief); //variable que va a variar con mejoras
+
+            if (amountProduct > productInWorld.CurrentAmountProduct)
+                amountProduct = productInWorld.CurrentAmountProduct;
+
+            newTotal += total + (productInWorld.ProductData.Price * amountProduct);
+
+            productInWorld.SubtractAmount(amountProduct);
+            productInWorld.CheckDelete();
+            amountThief++;
+            Debug.Log($"Añadido al carrito: {productInWorld.ProductData.Name} (${productInWorld.ProductData.Price})");
+        }
+
     }
 }
