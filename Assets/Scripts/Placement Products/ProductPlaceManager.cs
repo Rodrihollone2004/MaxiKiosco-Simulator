@@ -33,6 +33,11 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 12)
+            return;
+
+        TutorialContent.Instance.CompleteStep(12);
+
         if (currentPreview != null)
             Destroy(currentPreview);
 
@@ -116,6 +121,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             if (playerInteraction != null)
                 playerInteraction.CheckUIText();
 
+            TutorialContent.Instance.CompleteStep(13);
         }
         else
         {

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -122,6 +123,7 @@ public class ProductPriceInput : MonoBehaviour
         if (int.TryParse(value, out int result))
         {
             _productData.Price = result;
+            UpdatePriceText();
         }
         else
         {

@@ -109,6 +109,8 @@ public class StoreUI : MonoBehaviour
 
         foreach (StockController controllers in allStock)
             controllers.AddDeposit(interactable);
+
+        TutorialContent.Instance.CompleteStep(11);
     }
 
     private void SetLayerRecursive(GameObject obj, int layer)
@@ -161,6 +163,12 @@ public class StoreUI : MonoBehaviour
 
                     button.onClick.AddListener(() =>
                     {
+                        if (TutorialContent.Instance.CurrentIndexGuide < 11)
+                            return;
+
+                        if (!TutorialContent.Instance.IsComplete)
+                            TutorialContent.Instance.IsComplete = true;
+
                         StockController controller = buttonGO.GetComponentInChildren<StockController>();
                         controller.Product = product;
 

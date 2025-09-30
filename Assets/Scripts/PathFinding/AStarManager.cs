@@ -8,7 +8,8 @@ public class AStarManager : MonoBehaviour
     [field: SerializeField] public Node StartNode { get; private set; }
     [field: SerializeField] public Node EndNode { get; private set; }
     [field: SerializeField] public Node BoxRemoverNode { get; private set; }
-
+    [field: SerializeField] public Node StartTutoNode { get; private set; }
+    [field: SerializeField] public Node EndTutoNode { get; set; }
     [field: SerializeField] public bool IsAllNodes { get; set; }
 
     private void Awake()

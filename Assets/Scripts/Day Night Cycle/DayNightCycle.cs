@@ -108,6 +108,8 @@ public class DayNightCycle : MonoBehaviour
     }
     public void OnStartButtonPressed()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 15)
+            return;
         pause = false;
     }
 

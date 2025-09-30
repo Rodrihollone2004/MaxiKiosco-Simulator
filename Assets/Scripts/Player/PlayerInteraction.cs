@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private KeyCode dropKey = KeyCode.G;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private LayerMask clientLayer;
+    [SerializeField] private LayerMask tutorialLayer;
     [SerializeField] private Transform holdPosition;
 
     private FurnitureBox furnitureBox;
@@ -69,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 TryPickUp();
             }
-            else if (heldBroom != null)
+            else if (heldBroom != null && TutorialContent.Instance.CurrentIndexGuide > 11)
             {
                 TryClean();
             }
@@ -98,18 +99,40 @@ public class PlayerInteraction : MonoBehaviour
 
         if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject
             || furnitureBox != null && furnitureBox.IsEmpty && heldObject == furnitureBox.gameObject)
+            CheckTrashBoxes();
+
+        if (Input.GetKeyDown(interactKey) && TutorialContent.Instance.CurrentIndexGuide == 1
+            || Input.GetKeyDown(interactKey) && TutorialContent.Instance.CurrentIndexGuide == 14)
+            CheckTutorialStart();
+    }
+
+    private void CheckTutorialStart()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, tutorialLayer))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
+            if (!TutorialContent.Instance.IsComplete)
+                TutorialContent.Instance.CompleteStep(1);
+            else
             {
-                if (hit.collider.CompareTag("Trash"))
-                {
-                    Destroy(heldObject);
-                    heldObject = null;
-                    dropHintUI.SetActive(false);
-                    hintText.text = "";
-                    playerEconomy.ReceivePayment(20);
-                }
+                TutorialContent.Instance.CompleteStep(14);
+                TutorialContent.Instance.DesactivateText();
+            }
+        }
+    }
+
+    private void CheckTrashBoxes()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, trashLayer))
+        {
+            if (hit.collider.CompareTag("Trash"))
+            {
+                Destroy(heldObject);
+                heldObject = null;
+                dropHintUI.SetActive(false);
+                hintText.text = "";
+                playerEconomy.ReceivePayment(20);
             }
         }
     }
@@ -293,7 +316,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-                if (interactable.CanBePickedUp)
+                if (interactable.CanBePickedUp && TutorialContent.Instance.CurrentIndexGuide > 11)
                     PickUp(hit.collider.gameObject);
             }
         }
@@ -365,6 +388,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (objToPickUp.TryGetComponent(out ProductPlaceManager productPlace))
             this.boxProduct = productPlace;
+
 
         if (objToPickUp.TryGetComponent(out Rigidbody rb))
             heldObjectRb = rb;

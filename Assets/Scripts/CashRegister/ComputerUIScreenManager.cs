@@ -35,6 +35,8 @@ public class ComputerUIScreenManager : MonoBehaviour
 
     public void ShowPriceProducts()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 8)
+            return;
         priceProducts.SetActive(true);
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
@@ -45,10 +47,13 @@ public class ComputerUIScreenManager : MonoBehaviour
         configScreen.SetActive(false);
         CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
         customizable.PopulateStore();
+        TutorialContent.Instance.CompleteStep(8);
     }
 
     public void ShowStoreScreen()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 6)
+            return;
         homeScreen.SetActive(false);
         storeScreen.SetActive(true);
         cashRegisterScreen.SetActive(false);
@@ -59,6 +64,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterInteraction.InCashRegister = false;
         StoreUI storeUI = storeScreen.GetComponent<StoreUI>();
         storeUI.ButtonType(storeUI.CurrentType);
+        TutorialContent.Instance.CompleteStep(6);
     }
 
     public void ShowCashRegisterScreen()
@@ -72,10 +78,13 @@ public class ComputerUIScreenManager : MonoBehaviour
         configScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
         cashRegisterInteraction.PeekClient();
+        TutorialContent.Instance.CompleteStep(5);
     }
 
     public void ShowBackgrounds()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 9)
+            return;
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
@@ -83,10 +92,13 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(true);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        TutorialContent.Instance.CompleteStep(9);
     }
 
     public void ShowUpgradeScreen()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 7)
+            return;
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
@@ -96,10 +108,13 @@ public class ComputerUIScreenManager : MonoBehaviour
         configScreen.SetActive(false);
         UpgradeManager upgradeManager = upgradesScreen.GetComponent<UpgradeManager>();
         upgradeManager.PopulateStore();
+        TutorialContent.Instance.CompleteStep(7);
     }
 
     public void ShowConfigScreen()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 10)
+            return;
         homeScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
@@ -107,6 +122,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(true);
+        TutorialContent.Instance.CompleteStep(10);
     }
 
     public void BocaBackground()

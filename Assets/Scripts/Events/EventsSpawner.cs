@@ -19,6 +19,9 @@ public class EventsSpawner : MonoBehaviour
 
     public void CheckSpawnerEvent()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 15)
+            return;
+
         if (dayNightCycle.DayNumber % 2 != 0 && dayNightCycle.DayNumber > 2)
         {
             if (cartonerosPool.Count == 0)

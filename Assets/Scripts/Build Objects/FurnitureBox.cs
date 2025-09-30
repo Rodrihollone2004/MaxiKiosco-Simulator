@@ -31,6 +31,9 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (TutorialContent.Instance.CurrentIndexGuide < 12)
+            return;
+
         if (currentPreview != null)
             Destroy(currentPreview);
 

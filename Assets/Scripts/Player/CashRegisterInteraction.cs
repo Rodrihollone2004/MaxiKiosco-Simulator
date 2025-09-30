@@ -97,14 +97,14 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         // escape salis de la caja registradora
-        if (!InCashRegister && playerCam.IsLocked && Input.GetKeyDown(KeyCode.Escape))
+        if (!InCashRegister && playerCam.IsLocked && TutorialContent.Instance.IsComplete && Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCashRegisterMode();
             computerUIScreenManager.ShowHomeScreen();
             playerCam.enabled = false;
             playerCamera.GetComponent<CinemachineBrain>().enabled = true;
         }
-        if ((InCashRegister) && Input.GetKeyDown(KeyCode.Escape))
+        if ((InCashRegister) && TutorialContent.Instance.IsComplete && Input.GetKeyDown(KeyCode.Escape))
         {
             InCashRegister = false;
             EnterCashRegisterMode(true, lockedCameraTarget);
