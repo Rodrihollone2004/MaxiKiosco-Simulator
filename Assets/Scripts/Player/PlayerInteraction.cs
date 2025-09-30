@@ -320,12 +320,20 @@ public class PlayerInteraction : MonoBehaviour
                     currentClient.WasHit = true;
                     playerEconomy.ReceivePayment(currentClient.newTotal);
                     Debug.Log("Ladron golpeado");
+
+                    Ragdoll ragdoll = currentClient.GetComponent<Ragdoll>();
+                    if (ragdoll != null)
+                        ragdoll.SetEnabled(true);
                 }
                 else
                 {
                     currentClient.WasHit = true;
                     currentClient.BackToStart();
                     Debug.Log("Ladron golpeado sin robar");
+
+                    Ragdoll ragdoll = currentClient.GetComponent<Ragdoll>();
+                    if (ragdoll != null)
+                        ragdoll.SetEnabled(true);
                 }
             }
         }
