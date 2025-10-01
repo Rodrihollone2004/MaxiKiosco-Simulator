@@ -27,7 +27,6 @@ public class ProductUIManager : MonoBehaviour
         amountText.text = $"Restantes: {amount}";
         priceText.text = $"Precio: {price}";
         hintUI.SetActive(true);
-        Debug.Log($"Interactuando con {name} (${price})");
 
         StartCoroutine(HideInfoAfterDelay(3));
     }

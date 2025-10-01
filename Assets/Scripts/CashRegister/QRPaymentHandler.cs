@@ -41,10 +41,6 @@ public class QRPaymentHandler : MonoBehaviour
                 qrPaymentText.text = "";
                 cashRegisterInteraction.PeekClient();
             }
-            else
-            {
-                Debug.Log("El monto ingresado no coincide con el total");
-            }
         }
     }
 

@@ -12,7 +12,6 @@ public class ProductDataBase : ScriptableObject
                 if(product.name == name) 
                     return product;
 
-        Debug.LogWarning("Producto no encontrado: " + name);
         return null;
     }
     public Product GetProductById(int id)
@@ -22,7 +21,6 @@ public class ProductDataBase : ScriptableObject
                 if (product.Id == id)
                     return product;
 
-        Debug.LogWarning("Producto no encontrado: " + id);
         return null;
     }
 

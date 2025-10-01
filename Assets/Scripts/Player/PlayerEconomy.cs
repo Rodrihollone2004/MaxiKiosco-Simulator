@@ -57,13 +57,11 @@ public class PlayerEconomy : MonoBehaviour
         if (currentMoney >= upgrade.Price)
         {
             currentMoney -= upgrade.Price;
-            Debug.Log($"Compraste {upgrade.Name}. Dinero restante: ${currentMoney}");
             moneyText.text = $"{currentMoney}";
             return true;
         }
         else
         {
-            Debug.LogWarning("No hay suficiente dinero para realizar la compra.");
             return false;
         }
     }
@@ -76,13 +74,11 @@ public class PlayerEconomy : MonoBehaviour
         if (currentMoney >= product.PackPrice)
         {
             currentMoney -= product.PackPrice;
-            Debug.Log($"Compraste {product.Name}. Dinero restante: ${currentMoney}");
             moneyText.text = $"{currentMoney}";
             return true;
         }
         else
         {
-            Debug.LogWarning("No hay suficiente dinero para realizar la compra.");
             return false;
         }
     }

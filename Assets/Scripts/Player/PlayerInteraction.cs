@@ -346,15 +346,11 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     currentClient.GetHit();
                     playerEconomy.ReceivePayment(currentClient.newTotal);
-                    Debug.Log("Ladron golpeado");
-
 
                 }
                 else
                 {
                     currentClient.GetHit();
-                    Debug.Log("Ladron golpeado sin robar");
-
                 }
             }
         }

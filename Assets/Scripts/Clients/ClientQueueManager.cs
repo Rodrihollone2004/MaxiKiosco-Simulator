@@ -185,7 +185,6 @@ public class ClientQueueManager : MonoBehaviour
                !IsTrashBlockingSpawn)
         {
             float randomWaitTime = Random.Range(minTimeBetweenClients, maxTimeBetweenClients);
-            Debug.Log($"Next client in: {randomWaitTime:F1} seconds.");
             yield return new WaitForSeconds(randomWaitTime);
 
             if (_clientQueue.Count >= 3 || IsTrashBlockingSpawn)

@@ -67,7 +67,6 @@ public class BoxCollector : MonoBehaviour, IInteractable
 
                 boxStack.StackedBoxes.Clear();
 
-                Debug.Log("Me lleve las cajas, me voy");
                 BackToStart();
             }
             else

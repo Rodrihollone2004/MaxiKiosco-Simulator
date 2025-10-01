@@ -127,7 +127,6 @@ public class ProductPriceInput : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Entrada inválida para el precio.");
             _inputField.text = _productData.Price.ToString("0.00"); // Restaurar valor anterior
         }
     }

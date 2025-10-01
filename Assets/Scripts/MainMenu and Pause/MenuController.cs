@@ -109,7 +109,6 @@ public class MenuController : MonoBehaviour
     public void ExitButton()
     {
         Application.Quit();
-        Debug.Log("Se cerro el juego");
     }
 
     public void SetVolume(float volume)

@@ -58,8 +58,6 @@ public class CustomizeProducts : MonoBehaviour
 
                 productsButtons.Add(product.ProductData, inputGO);
             }
-        else
-            Debug.Log("No hay productos en el mostrador");
 
         foreach (ProductInteractable product in toRemove)
         {

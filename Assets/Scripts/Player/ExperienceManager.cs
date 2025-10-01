@@ -66,7 +66,6 @@ public class ExperienceManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No tenes suficiente nivel para realizar la mejora.");
             return false;
         }
     }

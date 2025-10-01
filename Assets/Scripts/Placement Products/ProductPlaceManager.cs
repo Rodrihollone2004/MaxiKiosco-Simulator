@@ -125,7 +125,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogWarning("Posicion invalida para colocar el objeto.");
             if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
                 src.PlayOneShot(playerInteraction.ErrorSound);
         }

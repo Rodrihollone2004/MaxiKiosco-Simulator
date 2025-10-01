@@ -89,7 +89,6 @@ public class FurnitureBox : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogWarning("Posición inválida para colocar el objeto.");
             if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
                 src.PlayOneShot(playerInteraction.ErrorSound); 
         }

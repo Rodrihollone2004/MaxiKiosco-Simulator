@@ -85,7 +85,6 @@ public class PauseManager : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            Debug.LogError("Player no encontrado.");
             return;
         }
 
@@ -101,14 +100,12 @@ public class PauseManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("PlayerPosX"))
         {
-            Debug.Log("No hay datos de posicion guardados.");
             return;
         }
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            Debug.LogError("Player no encontrado.");
             return;
         }
 
@@ -119,12 +116,10 @@ public class PauseManager : MonoBehaviour
         );
 
         player.transform.position = savedPosition;
-        Debug.Log($"Posición cargada: {savedPosition}");
     }
 
     public void Quit()
     {
         Application.Quit();
-        Debug.Log("Se salio del juego");
     }
 }

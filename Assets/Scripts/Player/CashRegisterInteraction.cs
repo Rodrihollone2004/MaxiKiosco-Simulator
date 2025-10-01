@@ -135,16 +135,10 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             if (!isQRPayment)
             {
-                Debug.Log($"Cambio esperado: {change} / Vuelto entregado: {playerEconomy.GetCurrentChange()}");
-
                 if (playerEconomy.GetCurrentChange() == change)
                 {
                     ConfirmPayment();
                     PeekClient();
-                }
-                else
-                {
-                    Debug.Log("El vuelto aún no es correcto.");
                 }
             }
         }
@@ -157,7 +151,6 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (playerInteraction != null && playerInteraction.HasBoxInHand())
         {
-            Debug.Log("No puedes usar la caja registradora con una caja en la mano");
             return;
         }
 
@@ -284,7 +277,6 @@ public class CashRegisterInteraction : MonoBehaviour
         change = 0;
         StartCoroutine(queueManager.RemoveClient());
         queueManager.UpdateQueuePositions();
-        Debug.Log("Pago QR confirmado");
 
         if (currentClient.totalCart > 0)
             experienceManager.AddExperience(10);
@@ -299,7 +291,6 @@ public class CashRegisterInteraction : MonoBehaviour
         change = 0;
         StartCoroutine(queueManager.RemoveClient());
         queueManager.UpdateQueuePositions();
-        Debug.Log("Pago confirmado manualmente con ENTER.");
 
         if (currentClient.totalCart > 0)
             experienceManager.AddExperience(10);
@@ -355,8 +346,6 @@ public class CashRegisterInteraction : MonoBehaviour
                 CashRegisterInteraction.onFinishPath += nPC_Controller.BackToStart;
             }
         }
-        else
-            Debug.LogWarning("No hay clientes en la cola");
     }
 
     private void MoveCameraSmooth(Transform target, float duration, bool forceRotation = true)

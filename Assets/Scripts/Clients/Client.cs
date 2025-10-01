@@ -39,7 +39,6 @@ public class Client : MonoBehaviour
         ClientPayment = wallet.TryMakePayment(totalCart);
 
         paymentMethod = (PaymentMethod)Random.Range(0, 2);
-        Debug.Log($"Este cliente paga con: {paymentMethod}");
     }
 
     public void AddRandomProductsToCart()
@@ -92,15 +91,12 @@ public class Client : MonoBehaviour
                     productInWorld.SubtractAmount(amountProduct);
                     productInWorld.CheckDelete();
                     total = newTotal;
-                    Debug.Log($"Añadido al carrito: {productInWorld.ProductData.Name} (${productInWorld.ProductData.Price})");
                 }
             }
         }
 
         List<ProductInteractable> notMatchedProducts = chosenProducts.Except(matchedProducts).ToList();
         canvasClientManager.UpdateCanvasClient(notMatchedProducts, this, matchedProducts);
-
-        Debug.Log($"Total del carrito: ${CalculateCartTotal()} / Disponible: ${wallet.TotalMoney}");
     }
 
     public int CalculateCartTotal()

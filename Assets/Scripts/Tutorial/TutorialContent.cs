@@ -96,7 +96,6 @@ public class TutorialContent : MonoBehaviour
         for (int i = 0; i < marks.Count; i++)
             if (markIndex == i)
             {
-                Debug.Log("Activando marca en el índice: " + i);
                 marks[i].SetActive(true);
             }
             else

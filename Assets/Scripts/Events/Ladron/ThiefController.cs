@@ -168,7 +168,6 @@ public class ThiefController : MonoBehaviour
             productInWorld.SubtractAmount(amountProduct);
             productInWorld.CheckDelete();
             amountThief++;
-            Debug.Log($"Añadido al carrito: {productInWorld.ProductData.Name} (${productInWorld.ProductData.Price})");
         }
 
     }

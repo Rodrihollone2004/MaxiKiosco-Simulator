@@ -42,7 +42,6 @@ public class EventsSpawner : MonoBehaviour
     private IEnumerator TimeForSpawnThief()
     {
         float randomTime = Random.Range(200f, 500f);
-        Debug.Log("Time Thief: " + randomTime);
         yield return new WaitForSeconds(randomTime);
 
         if (thiefPool.Count == 0)
