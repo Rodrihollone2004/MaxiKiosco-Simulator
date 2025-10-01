@@ -15,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private LayerMask clientLayer;
     [SerializeField] private LayerMask tutorialLayer;
+    [SerializeField] private LayerMask fridgeLayer;
     [SerializeField] private Transform holdPosition;
 
     private FurnitureBox furnitureBox;
@@ -162,15 +163,23 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
+
+        RaycastHit hitFridge;
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
         {
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
-                if (productPlaced != null && Input.GetKeyDown(KeyCode.F) && productPlaced.IsPlaced && !cashRegisterInteraction.InCashRegister)
+                if (Input.GetKeyDown(KeyCode.F) && !cashRegisterInteraction.InCashRegister)
                 {
-                    CheckProduct(productPlaced.gameObject);
+
+                    ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
+                    UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
+
+                    if (productPlaced != null && productPlaced.IsPlaced)
+                        CheckProduct(productPlaced.gameObject);
+                    else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
+                        CheckProduct(upgradeInteractable.gameObject);
                 }
 
                 if (interactable != currentInteractable)
@@ -222,6 +231,13 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
+        else if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hitFridge, interactRange, fridgeLayer))
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                CheckProduct(hitFridge.collider.gameObject);
+            }
+        }
         else
         {
             if (currentInteractable != null)
@@ -235,6 +251,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     PlacementZoneProducts[] AllZones;
+    PlacementZone furnitureZones;
 
     public void CheckProduct(GameObject productPlaced)
     {
@@ -244,8 +261,13 @@ public class PlayerInteraction : MonoBehaviour
 
         if (productPlaced.TryGetComponent<PreviewObject>(out PreviewObject preview))
             preview.enabled = true;
-
-        AllZones = FindObjectsOfType<PlacementZoneProducts>();
+        else if (productPlaced.transform.parent.parent != null)
+        {
+            PreviewObject parentFridge = productPlaced.transform.parent.parent.GetComponent<PreviewObject>();
+            parentFridge.enabled = true;
+            productPlaced = parentFridge.gameObject;
+            this.productPlaced = productPlaced;
+        }
 
         Collider col = productPlaced.GetComponent<Collider>();
         col.enabled = false;
@@ -264,6 +286,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (productPlaced.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
         {
+            AllZones = FindObjectsOfType<PlacementZoneProducts>();
+
             ProductInteractable productInteractable = interactable;
             string productPlaceZone = productInteractable.ProductData.PlaceZone;
             productInteractable.IsPlaced = false;
@@ -276,11 +300,29 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
         {
-            UpgradeInteractable productInteractable = upgrade;
-            string upgradePlaceZone = productInteractable.UpgradeData.PlaceZone;
+            AllZones = FindObjectsOfType<PlacementZoneProducts>();
+
+            UpgradeInteractable upgradeInteractable = upgrade;
+            string upgradePlaceZone = upgradeInteractable.UpgradeData.PlaceZone;
+            upgradeInteractable.IsPlaced = false;
+
+            hintText.text = $"{upgradeInteractable.UpgradeData.Name}\n" +
+                    $"E para colocar\n";
 
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.ShowVisual(upgradePlaceZone);
+        }
+        else
+        {
+            furnitureZones = FindObjectOfType<PlacementZone>();
+            string fridgePlaceZone = productPlaced.GetComponentInChildren<PlacementZoneProducts>().ListZones[0].name;
+            hintText.text = $"{fridgePlaceZone}\n" +
+                    $"E para colocar\n";
+            furnitureZones.ShowVisual();
+
+            Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders) collider.enabled = false;
+
         }
     }
 
@@ -295,15 +337,32 @@ public class PlayerInteraction : MonoBehaviour
         previewValidator.BackToNormal();
         previewValidator.enabled = false;
 
-        ProductInteractable product = productPlaced.GetComponent<ProductInteractable>();
-        product.IsPlaced = true;
+        if (productPlaced.TryGetComponent<ProductInteractable>(out ProductInteractable product))
+            product.IsPlaced = true;
+        else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
+            upgrade.IsPlaced = true;
+        else if (productPlaced.layer == LayerMask.NameToLayer("fridge"))
+        {
+            Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders) collider.enabled = true;
+        }
+
 
         productPlaced = null;
 
         dropHintUI.SetActive(false);
 
-        foreach (PlacementZoneProducts zone in AllZones)
-            zone.HideVisual();
+        if (AllZones != null)
+            foreach (PlacementZoneProducts zone in AllZones)
+            {
+                zone.HideVisual();
+                AllZones = null;
+            }
+        else if (furnitureZones != null)
+        {
+            furnitureZones.HideVisual();
+            furnitureZones = null;
+        }
 
         audioSource.PlayOneShot(placeProduct);
     }

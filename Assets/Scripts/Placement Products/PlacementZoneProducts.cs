@@ -5,6 +5,8 @@ public class PlacementZoneProducts : MonoBehaviour
 {
     [SerializeField] List<Zones> listZones;
 
+    public List<Zones> ListZones { get => listZones; private set => listZones = value; }
+
     private void Awake()
     {
         if (listZones.Count > 0)

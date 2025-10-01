@@ -94,8 +94,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             if (moveObject != null) moveObject.enabled = false;
 
-            foreach (PlacementZoneProducts zone in AllZones) zone.HideVisual();
-
             if (finalObj.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
             {
                 ProductInteractable product = interactable;
@@ -103,12 +101,16 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                 foreach (StockController controllers in StoreUI.allStock)
                     controllers.PlaceProduct(product);
 
+                CheckParent(finalObj, product);
+
                 productsPlaced.Add(product);
             }
             else if (finalObj.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
             {
                 upgrade.IsPlaced = true;
             }
+
+            foreach (PlacementZoneProducts zone in AllZones) zone.HideVisual();
 
             Destroy(currentPreview);
             Destroy(buildPrefab);
@@ -130,6 +132,28 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         }
     }
 
+
+    private void CheckParent(GameObject finalObj, ProductInteractable product)
+    {
+        if (product.ProductData.PlaceZone != "Heladera")
+            return;
+
+        PlacementZoneProducts zone = null;
+        Collider[] hits = Physics.OverlapBox(finalObj.transform.position, finalObj.transform.localScale / 2f);
+        foreach (Collider hit in hits)
+        {
+            if (hit.transform.parent != null && hit.transform.parent.TryGetComponent(out PlacementZoneProducts z))
+            {
+                zone = z;
+                break;
+            }
+        }
+
+        if (zone != null)
+        {
+            finalObj.transform.SetParent(zone.transform);
+        }
+    }
 
     private void SetPreviewColor(GameObject obj, Color color)
     {

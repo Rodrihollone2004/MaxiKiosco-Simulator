@@ -58,6 +58,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7718375661120493146, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7640558969779515294, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -6093592463355912122, guid: a1be44d32ff71bc43b0c48a4854645dc,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -103,6 +118,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: -1599826595754709761, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -1439730007547781893, guid: a1be44d32ff71bc43b0c48a4854645dc,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -118,11 +138,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: -466329591000292508, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a1be44d32ff71bc43b0c48a4854645dc,
         type: 3}
       propertyPath: m_Name
       value: Panchera
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3214115385460573184, guid: a1be44d32ff71bc43b0c48a4854645dc,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -168,6 +198,16 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 8513859187771203891, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940896595910170252, guid: a1be44d32ff71bc43b0c48a4854645dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

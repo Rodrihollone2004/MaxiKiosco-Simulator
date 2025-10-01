@@ -73,6 +73,16 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 37ff1ca1e5b0ba844a026349e069c091, type: 2}
+    - target: {fileID: -3215555783603854218, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2932998491564163895, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -1684107799473140416, guid: d3dc557390e6f0d43875b6b7c82270ed,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -93,10 +103,35 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: -1018664272722485354, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d3dc557390e6f0d43875b6b7c82270ed,
         type: 3}
       propertyPath: m_Name
       value: Lamparitas
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424396828587804706, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914173764048766335, guid: d3dc557390e6f0d43875b6b7c82270ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: d3dc557390e6f0d43875b6b7c82270ed,
         type: 3}

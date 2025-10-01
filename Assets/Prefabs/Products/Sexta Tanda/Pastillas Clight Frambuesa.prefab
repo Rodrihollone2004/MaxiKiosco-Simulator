@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7261484402615208835, guid: ebd68fe88b9b08c41aedf3b536a73010,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -620843693464744909, guid: ebd68fe88b9b08c41aedf3b536a73010,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -93,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pastillas Clight Frambuesa
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebd68fe88b9b08c41aedf3b536a73010,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2419067081315678952, guid: ebd68fe88b9b08c41aedf3b536a73010,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -108,6 +118,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 2739380717627310159, guid: ebd68fe88b9b08c41aedf3b536a73010,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830777970490646762, guid: ebd68fe88b9b08c41aedf3b536a73010,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719476240311194574, guid: ebd68fe88b9b08c41aedf3b536a73010,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8393019028663695541, guid: ebd68fe88b9b08c41aedf3b536a73010,
         type: 3}
       propertyPath: m_Materials.Array.size

@@ -13,7 +13,7 @@ public class PreviewObject : MonoBehaviour
 
     void Update()
     {
-        
+
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
 

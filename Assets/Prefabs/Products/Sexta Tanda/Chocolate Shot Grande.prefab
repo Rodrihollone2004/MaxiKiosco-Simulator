@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3734332388777623702, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -291249905770855513, guid: aea9d1bcb32927b409348fb9cc396726,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -78,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Shot Grande
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1040487991576229198, guid: aea9d1bcb32927b409348fb9cc396726,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -93,6 +103,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 2146854210508797854, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3463122238696191652, guid: aea9d1bcb32927b409348fb9cc396726,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -138,6 +153,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 7676499141389323529, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908637209220291447, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642196350597256062, guid: aea9d1bcb32927b409348fb9cc396726,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
