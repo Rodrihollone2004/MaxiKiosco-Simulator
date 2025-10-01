@@ -8,6 +8,10 @@ public class LightSwitch : MonoBehaviour, IInteractable
     [SerializeField] private float highlightWidth = 1.03f;
 
     [SerializeField] private Material lightMaterial;
+    [SerializeField] private Material Blueligth;
+    [SerializeField] private Material Redligth;
+    [SerializeField] private Material Greenligth;
+    [SerializeField] private Material Yellowligth;
     private bool lightsOn = false;
     private bool isEnabled = false;
 
@@ -42,6 +46,10 @@ public class LightSwitch : MonoBehaviour, IInteractable
                 light.enabled = false;
 
             lightMaterial.DisableKeyword("_EMISSION");
+            Blueligth.DisableKeyword("_EMISSION");
+            Yellowligth.DisableKeyword("_EMISSION");
+            Redligth.DisableKeyword("_EMISSION");
+            Greenligth.DisableKeyword("_EMISSION");
         }
     }
 
@@ -76,10 +84,18 @@ public class LightSwitch : MonoBehaviour, IInteractable
             if (lightsOn && isEnabled)
             {
                 lightMaterial.EnableKeyword("_EMISSION");
+                Blueligth.DisableKeyword("_EMISSION");
+                Yellowligth.DisableKeyword("_EMISSION");
+                Redligth.DisableKeyword("_EMISSION");
+                Greenligth.DisableKeyword("_EMISSION");
             }
             else
             {
                 lightMaterial.DisableKeyword("_EMISSION");
+                Blueligth.DisableKeyword("_EMISSION");
+                Yellowligth.DisableKeyword("_EMISSION");
+                Redligth.DisableKeyword("_EMISSION");
+                Greenligth.DisableKeyword("_EMISSION");
             }
         }
     }

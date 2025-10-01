@@ -49561,6 +49561,10 @@ MonoBehaviour:
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   highlightWidth: 1.03
   lightMaterial: {fileID: 2100000, guid: d9f37ba5cb3980d4bb92c8e65b0dc0e5, type: 2}
+  Blueligth: {fileID: 2100000, guid: 2342891284841664396ba9b5715558be, type: 2}
+  Redligth: {fileID: 2100000, guid: f5cde678b6b8a6c479c3c6bb0a46ea59, type: 2}
+  Greenligth: {fileID: 2100000, guid: 1b386d3c42c058e44926152b03088649, type: 2}
+  Yellowligth: {fileID: 2100000, guid: 94c54c70db46e994c990baada655e50d, type: 2}
 --- !u!65 &1300770781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63673,7 +63677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac3fcb344f3c4a469c66413ce353406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoney: 140000
+  currentMoney: 190000
   moneyText: {fileID: 5509060}
   currentChange: 0
 --- !u!82 &1964649771
