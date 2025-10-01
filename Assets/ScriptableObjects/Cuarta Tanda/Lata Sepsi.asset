@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
-  m_Name: Shot 35g
+  m_Name: Lata Sepsi
   m_EditorClassIdentifier: 
-  _name: Shot 35g
-  _id: 0
-  _price: 855
-  _placeZone: Isla
-  _packSize: 25
-  _currentAmount: 25
-  _packPrice: 21350
-  prefab: {fileID: 5314099682645389129, guid: c499f4880369d1e45b2ec9f895ff4119, type: 3}
-  type: 0
+  _name: Lata Sepsi 355ml
+  _id: 1000004
+  _price: 720
+  _placeZone: Heladera
+  _packSize: 24
+  _currentAmount: 24
+  _packPrice: 17300
+  prefab: {fileID: 70227816788611706, guid: 875b96b7fd13fc949b897eb82573dd38, type: 3}
+  type: 1

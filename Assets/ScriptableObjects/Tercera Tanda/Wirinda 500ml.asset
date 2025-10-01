@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
-  m_Name: Shot 35g
+  m_Name: Wirinda 500ml
   m_EditorClassIdentifier: 
-  _name: Shot 35g
-  _id: 0
-  _price: 855
-  _placeZone: Isla
-  _packSize: 25
-  _currentAmount: 25
-  _packPrice: 21350
-  prefab: {fileID: 5314099682645389129, guid: c499f4880369d1e45b2ec9f895ff4119, type: 3}
-  type: 0
+  _name: Wirinda 500ml
+  _id: 1000007
+  _price: 1075
+  _placeZone: Heladera
+  _packSize: 12
+  _currentAmount: 12
+  _packPrice: 12900
+  prefab: {fileID: 3569790199384628269, guid: 668097de0e5ca7040bb0f054d2c61313, type: 3}
+  type: 1
