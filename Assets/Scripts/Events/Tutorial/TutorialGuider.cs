@@ -9,7 +9,6 @@ public class TutorialGuider : MonoBehaviour
     public bool isBack;
     private Animator animatorNPC;
     [SerializeField] private int nodeIndex;
-    [SerializeField] int nodesAmount = 3;
 
     [SerializeField] List<Node> nodesTuto = new List<Node>();
     [field: SerializeField] public GameObject CanvasTuto { get; private set; }
@@ -31,7 +30,7 @@ public class TutorialGuider : MonoBehaviour
         {
             if (nodeIndex == 3)
                 transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-            else if(nodeIndex == 5)
+            else if (nodeIndex == 5)
                 transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
             animatorNPC.SetBool("IsWalking", path.Count > 0);
@@ -73,46 +72,15 @@ public class TutorialGuider : MonoBehaviour
         }
         else
         {
-            Node[] nodes = FindObjectsOfType<Node>();
 
             if (!AStarManager.instance.IsAllNodes)
             {
+                Node[] nodes = FindObjectsOfType<Node>();
                 AStarManager.instance.CreateConnections(nodes);
                 AStarManager.instance.IsAllNodes = true;
             }
 
-            List<Node> intermediateNodes = new List<Node>();
-
-            while (intermediateNodes.Count < nodesAmount)
-            {
-                Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.EndTutoNode && !intermediateNodes.Contains(randomNode))
-                {
-                    intermediateNodes.Add(randomNode);
-                }
-            }
-
-            List<Node> totalPath = new List<Node>();
-
-            Node lastNode = currentNode;
-
-            foreach (Node intermediate in intermediateNodes)
-            {
-                List<Node> partialPath = AStarManager.instance.GeneratePath(lastNode, intermediate);
-                if (partialPath != null && partialPath.Count > 0)
-                {
-                    totalPath.AddRange(partialPath);
-                    lastNode = intermediate;
-                }
-            }
-
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndTutoNode);
-            if (finalPath != null && finalPath.Count > 0)
-            {
-                totalPath.AddRange(finalPath);
-            }
-
-            path = totalPath;
+            path = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.EndTutoNode);
         }
     }
 
@@ -121,10 +89,13 @@ public class TutorialGuider : MonoBehaviour
         if (currentNode == AStarManager.instance.EndTutoNode && !isBack)
         {
             isBack = true;
+
+            path.Clear();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
-                path.AddRange(backPath);
+                path = backPath;
             }
         }
     }

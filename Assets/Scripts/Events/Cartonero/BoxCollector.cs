@@ -9,7 +9,6 @@ public class BoxCollector : MonoBehaviour, IInteractable
     public List<Node> path = new List<Node>();
     public bool isBack;
     public bool canRemove;
-    [SerializeField] int nodesAmount = 3;
     [SerializeField] int amountBoxes = 500;
 
     private Animator animatorNPC;
@@ -103,46 +102,15 @@ public class BoxCollector : MonoBehaviour, IInteractable
         }
         else
         {
-            Node[] nodes = FindObjectsOfType<Node>();
 
             if (!AStarManager.instance.IsAllNodes)
             {
+                Node[] nodes = FindObjectsOfType<Node>();
                 AStarManager.instance.CreateConnections(nodes);
                 AStarManager.instance.IsAllNodes = true;
             }
 
-            List<Node> intermediateNodes = new List<Node>();
-
-            while (intermediateNodes.Count < nodesAmount)
-            {
-                Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.BoxRemoverNode && !intermediateNodes.Contains(randomNode))
-                {
-                    intermediateNodes.Add(randomNode);
-                }
-            }
-
-            List<Node> totalPath = new List<Node>();
-
-            Node lastNode = currentNode;
-
-            foreach (Node intermediate in intermediateNodes)
-            {
-                List<Node> partialPath = AStarManager.instance.GeneratePath(lastNode, intermediate);
-                if (partialPath != null && partialPath.Count > 0)
-                {
-                    totalPath.AddRange(partialPath);
-                    lastNode = intermediate;
-                }
-            }
-
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.BoxRemoverNode);
-            if (finalPath != null && finalPath.Count > 0)
-            {
-                totalPath.AddRange(finalPath);
-            }
-
-            path = totalPath;
+            path = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.BoxRemoverNode);
         }
     }
 
@@ -151,10 +119,13 @@ public class BoxCollector : MonoBehaviour, IInteractable
         if (currentNode == AStarManager.instance.BoxRemoverNode && !isBack)
         {
             isBack = true;
+
+            path.Clear();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
-                path.AddRange(backPath);
+                path = backPath;
             }
         }
     }

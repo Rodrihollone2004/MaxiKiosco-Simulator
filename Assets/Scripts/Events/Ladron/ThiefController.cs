@@ -8,8 +8,6 @@ public class ThiefController : MonoBehaviour
     public Node currentNode;
     public List<Node> path = new List<Node>();
     public bool isBack;
-    [SerializeField] int nodesAmount = 3;
-
     public bool WasHit { get; set; } = false;
     public bool IsStealing { get; set; }
 
@@ -105,46 +103,15 @@ public class ThiefController : MonoBehaviour
         }
         else
         {
-            Node[] nodes = FindObjectsOfType<Node>();
 
             if (!AStarManager.instance.IsAllNodes)
             {
+                Node[] nodes = FindObjectsOfType<Node>();
                 AStarManager.instance.CreateConnections(nodes);
                 AStarManager.instance.IsAllNodes = true;
             }
 
-            List<Node> intermediateNodes = new List<Node>();
-
-            while (intermediateNodes.Count < nodesAmount)
-            {
-                Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
-                {
-                    intermediateNodes.Add(randomNode);
-                }
-            }
-
-            List<Node> totalPath = new List<Node>();
-
-            Node lastNode = currentNode;
-
-            foreach (Node intermediate in intermediateNodes)
-            {
-                List<Node> partialPath = AStarManager.instance.GeneratePath(lastNode, intermediate);
-                if (partialPath != null && partialPath.Count > 0)
-                {
-                    totalPath.AddRange(partialPath);
-                    lastNode = intermediate;
-                }
-            }
-
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndNode);
-            if (finalPath != null && finalPath.Count > 0)
-            {
-                totalPath.AddRange(finalPath);
-            }
-
-            path = totalPath;
+            path = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.EndNode);
         }
     }
 
@@ -153,20 +120,25 @@ public class ThiefController : MonoBehaviour
         if (currentNode == AStarManager.instance.EndNode && !isBack)
         {
             isBack = true;
+
+            path.Clear();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
-                path.AddRange(backPath);
+                path = backPath;
             }
         }
         else if (!isBack && WasHit)
         {
             isBack = true;
+
             path.Clear();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
-                path.AddRange(backPath);
+                path = backPath;
             }
         }
     }

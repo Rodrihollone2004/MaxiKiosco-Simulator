@@ -11,8 +11,6 @@ public class NPC_Controller : MonoBehaviour
 
     public bool isBack;
 
-    [SerializeField] int nodesAmount = 3;
-
     public bool isInCashRegister;
     public bool isInDequeue;
     public bool isPaying;
@@ -23,7 +21,7 @@ public class NPC_Controller : MonoBehaviour
 
     public static event Action onShowScreen;
     public Client client { get; private set; }
-    [field: SerializeField]public Animator animatorNPC { get; private set; }
+    [field: SerializeField] public Animator animatorNPC { get; private set; }
 
     private void Start()
     {
@@ -110,46 +108,15 @@ public class NPC_Controller : MonoBehaviour
         }
         else
         {
-            Node[] nodes = FindObjectsOfType<Node>();
 
             if (!AStarManager.instance.IsAllNodes)
             {
+                Node[] nodes = FindObjectsOfType<Node>();
                 AStarManager.instance.CreateConnections(nodes);
                 AStarManager.instance.IsAllNodes = true;
             }
 
-            List<Node> intermediateNodes = new List<Node>();
-
-            while (intermediateNodes.Count < nodesAmount)
-            {
-                Node randomNode = nodes[UnityEngine.Random.Range(0, nodes.Length)];
-                if (randomNode != currentNode && randomNode != AStarManager.instance.EndNode && !intermediateNodes.Contains(randomNode))
-                {
-                    intermediateNodes.Add(randomNode);
-                }
-            }
-
-            List<Node> totalPath = new List<Node>();
-
-            Node lastNode = currentNode;
-
-            foreach (Node intermediate in intermediateNodes)
-            {
-                List<Node> partialPath = AStarManager.instance.GeneratePath(lastNode, intermediate);
-                if (partialPath != null && partialPath.Count > 0)
-                {
-                    totalPath.AddRange(partialPath);
-                    lastNode = intermediate;
-                }
-            }
-
-            List<Node> finalPath = AStarManager.instance.GeneratePath(lastNode, AStarManager.instance.EndNode);
-            if (finalPath != null && finalPath.Count > 0)
-            {
-                totalPath.AddRange(finalPath);
-            }
-
-            path = totalPath;
+            path = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.EndNode);
         }
     }
 
@@ -159,10 +126,13 @@ public class NPC_Controller : MonoBehaviour
         {
             isInCashRegister = false;
             isBack = true;
+
+            path.Clear();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {
-                path.AddRange(backPath);
+                path = backPath;
             }
         }
     }
