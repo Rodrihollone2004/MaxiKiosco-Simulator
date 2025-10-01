@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class CashRegisterUI : MonoBehaviour
 {
+    [SerializeField] private TMP_Text cartText;
     [SerializeField] private TMP_Text payText;
+    [SerializeField] private TMP_Text changeText;
+    [SerializeField] private GameObject changeUI;
     int totalToPay;
     int simulatedTotal;
     int change;
@@ -42,17 +45,23 @@ public class CashRegisterUI : MonoBehaviour
             if (client.paymentMethod == Client.PaymentMethod.QR)
             {
                 payText.text =
-                $"Total: ${totalToPay}\n" +
-                $"{cartInfo}";
+                $"Total: ${totalToPay}\n";
+                cartText.text = $"{cartInfo}";
+                changeUI.SetActive(false);
+
             }
             else
             {
+                changeUI.SetActive(true);
+
                 payText.text =
                     $"Total: ${totalToPay}\n" +
-                    $"Pago: ${simulatedTotal}\n" +
+                    $"Pago con ${simulatedTotal}\n";
+                changeText.text =
                     $"Vuelto esperado: ${change}\n" +
-                    $"Vuelto entregado: ${playerGivenChange}\n\n" +
-                    $"{cartInfo}";
+                    $"Vuelto entregado: ${playerGivenChange}\n\n";
+
+                cartText.text = $"{cartInfo}";
             }
         }
     }
@@ -60,5 +69,7 @@ public class CashRegisterUI : MonoBehaviour
     public void ClearText()
     {
         payText.text = "";
+        changeText.text = "";
+        cartText.text = "";
     }
 }

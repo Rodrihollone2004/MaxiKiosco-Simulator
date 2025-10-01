@@ -137,6 +137,5 @@ public class Client : MonoBehaviour
 
         walletInfo = walletInfo.TrimEnd(',', ' ');
         walletInfo += $". Total: ${wallet.TotalMoney}";
-        Debug.Log(walletInfo);
     }
 }

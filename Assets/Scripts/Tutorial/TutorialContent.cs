@@ -21,10 +21,12 @@ public class TutorialContent : MonoBehaviour
     [SerializeField] private TMP_Text guideInPcText;
     [SerializeField] private TMP_Text guideInWorld;
     [SerializeField] private TutorialGuider guider;
+    [SerializeField] private GameObject screenUI;
     [SerializeField] private List<GameObject> marks = new List<GameObject>();
 
     private void Awake()
     {
+        screenUI.SetActive(true);
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
@@ -68,6 +70,7 @@ public class TutorialContent : MonoBehaviour
             guideInPcText.gameObject.SetActive(false);
             guideText = guideInWorld;
             guider.CanvasTuto.SetActive(true);
+            screenUI.SetActive(false);
         }
 
         guideText.gameObject.SetActive(true);
