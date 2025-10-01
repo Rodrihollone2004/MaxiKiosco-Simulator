@@ -32,11 +32,14 @@ public class PlayerInteraction : MonoBehaviour
 
     public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
     public AudioClip PlaceProduct_ { get => placeProduct; set => placeProduct = value; }
+    public AudioClip ErrorSound { get => errorSound; set => errorSound = value; }
 
     [Header("Efects")]
     [SerializeField] private AudioClip pickupSound;
     [SerializeField] private AudioClip dropSound;
     [SerializeField] private AudioClip placeProduct;
+    [SerializeField] private AudioClip cleanTrashSound;
+    [SerializeField] private AudioClip errorSound;
     private AudioSource audioSource;
 
     //Esto es para el objeto a pickear, su rigidBody, Collider, etc.
@@ -85,13 +88,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && furnitureBox != null && furnitureBox.CurrentPreview != null && furnitureBox.CurrentPreview.activeSelf)
         {
             furnitureBox.PlaceFurniture();
-            audioSource.PlayOneShot(placeProduct);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
         {
             boxProduct.PlaceProduct();
-            audioSource.PlayOneShot(placeProduct);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && productPlaced != null && previewValidator != null && previewValidator.IsValidPlacement)
@@ -332,6 +333,9 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out Trash trash) && trash.CanBeCleaned)
             {
                 trash.Clean();
+
+                if (audioSource != null && cleanTrashSound != null)
+                    audioSource.PlayOneShot(cleanTrashSound);
             }
         }
         else if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, clientLayer))

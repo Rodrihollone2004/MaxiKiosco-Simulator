@@ -80,28 +80,26 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
     public void PlaceProduct()
     {
+        PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+
         if (previewValidator != null && previewValidator.IsValidPlacement)
         {
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
             finalObj.SetActive(true);
-            //finalObj.transform.localScale = Vector3.one;
-
             SetPreviewColor(finalObj, Color.blue);
 
             Collider col = finalObj.GetComponent<Collider>();
             if (col != null) col.enabled = true;
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
-            if (moveObject != null)
-                moveObject.enabled = false;
-            foreach (PlacementZoneProducts zone in AllZones)
-                zone.HideVisual();
+            if (moveObject != null) moveObject.enabled = false;
+
+            foreach (PlacementZoneProducts zone in AllZones) zone.HideVisual();
 
             if (finalObj.TryGetComponent<ProductInteractable>(out ProductInteractable interactable))
             {
                 ProductInteractable product = interactable;
                 product.IsPlaced = true;
-
                 foreach (StockController controllers in StoreUI.allStock)
                     controllers.PlaceProduct(product);
 
@@ -114,20 +112,25 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             Destroy(currentPreview);
             Destroy(buildPrefab);
-
             IsEmpty = true;
 
-            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
             if (playerInteraction != null)
+            {
                 playerInteraction.CheckUIText();
+                if (playerInteraction.TryGetComponent(out AudioSource src) && playerInteraction.PlaceProduct_ != null)
+                    src.PlayOneShot(playerInteraction.PlaceProduct_);
+            }
 
             TutorialContent.Instance.CompleteStep(13);
         }
         else
         {
             Debug.LogWarning("Posicion invalida para colocar el objeto.");
+            if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
+                src.PlayOneShot(playerInteraction.ErrorSound);
         }
     }
+
 
     private void SetPreviewColor(GameObject obj, Color color)
     {

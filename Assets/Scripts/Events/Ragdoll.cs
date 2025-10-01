@@ -9,13 +9,18 @@ public class Ragdoll : MonoBehaviour
     private float ragdollTimer = 0f;
     private bool isRagdollActive = false;
 
+    [Header("Audio")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip hitSound;
+
     void Awake()
     {
         rigidbodies = GetComponentsInChildren<Rigidbody>();
         colliders = GetComponentsInChildren<Collider>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
-        SetEnabled(false); 
+        SetEnabled(false);
     }
 
     void Update()
@@ -63,5 +68,10 @@ public class Ragdoll : MonoBehaviour
         SetEnabled(true);
         isRagdollActive = true;
         ragdollTimer = duration;
+
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
     }
 }

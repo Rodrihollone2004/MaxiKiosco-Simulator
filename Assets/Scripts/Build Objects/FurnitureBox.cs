@@ -58,6 +58,8 @@ public class FurnitureBox : MonoBehaviour, IInteractable
 
     public void PlaceFurniture()
     {
+        PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+
         if (previewValidator != null && previewValidator.IsValidPlacement)
         {
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
@@ -67,27 +69,29 @@ public class FurnitureBox : MonoBehaviour, IInteractable
             Collider col = finalObj.GetComponent<Collider>();
             Collider[] colliders = finalObj.GetComponentsInChildren<Collider>();
             if (col != null) col.enabled = true;
-            foreach (Collider collider in colliders)
-                collider.enabled = true;
+            foreach (Collider collider in colliders) collider.enabled = true;
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             moveObject.enabled = false;
 
-            foreach (PlacementZone zone in AllZones)
-                zone.HideVisual();
+            foreach (PlacementZone zone in AllZones) zone.HideVisual();
 
             Destroy(currentPreview);
             Destroy(buildPrefab);
-
             IsEmpty = true;
-            
-            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+
             if (playerInteraction != null)
+            {
                 playerInteraction.CheckUIText();
+                if (playerInteraction.TryGetComponent(out AudioSource src) && playerInteraction.PlaceProduct_ != null)
+                    src.PlayOneShot(playerInteraction.PlaceProduct_);
+            }
         }
         else
         {
             Debug.LogWarning("Posición inválida para colocar el objeto.");
+            if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
+                src.PlayOneShot(playerInteraction.ErrorSound); 
         }
     }
 
