@@ -1514,81 +1514,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63077592}
   m_CullTransparentMesh: 1
---- !u!1 &67844232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1818681862}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &67844233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67844232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae43ae6173ecfe4589452c86a74d358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _highlightColor: {r: 0, g: 1, b: 0, a: 1}
-  _highlightWidth: 1.03
-  buildPrefab: {fileID: 0}
---- !u!54 &67844234
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67844232}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &67844235
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67844232}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0033566474, y: 0.0038323207, z: 0.0020304744}
-  m_Center: {x: 0.000005030632, y: 0.000032002295, z: 0.0010387603}
---- !u!4 &67844238 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1818681862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &84265402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 190926236283739953, guid: 490cadf2d6e181b429eb18b482df1881,
@@ -7389,6 +7314,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowUpgradeScreen
@@ -8113,12 +8051,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390006516}
   m_CullTransparentMesh: 1
---- !u!4 &391794294 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1060035341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &393065091
 GameObject:
   m_ObjectHideFlags: 0
@@ -8201,6 +8133,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -11011,6 +10956,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -14577,6 +14535,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -16226,169 +16197,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669791563}
   m_CullTransparentMesh: 1
---- !u!1001 &685901762
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 699103708}
-    m_Modifications:
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.088308
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15955225
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.8159332
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 858179092341260085, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Heladera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408774850717611991, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571833348299339919, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571833348299339919, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
-    - target: {fileID: 1967856003687840656, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707909472548378822, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813728362051091214, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032610051244752144, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: floorLayer.m_Bits
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232415718915978942, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673935504625998938, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3922122127835920941, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567762986688222927, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6153753063935315291, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6378446451365684538, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8500837714683675215, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8982624885705942223, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d, type: 3}
 --- !u!1 &690278337
 GameObject:
   m_ObjectHideFlags: 0
@@ -16633,81 +16441,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698077812}
   m_CullTransparentMesh: 1
---- !u!1 &699103702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 845401796}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &699103703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699103702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae43ae6173ecfe4589452c86a74d358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _highlightColor: {r: 0, g: 1, b: 0, a: 1}
-  _highlightWidth: 1.03
-  buildPrefab: {fileID: 0}
---- !u!54 &699103704
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699103702}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &699103705
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699103702}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0033566474, y: 0.0038323207, z: 0.0020304744}
-  m_Center: {x: 0.000005030632, y: 0.000032002295, z: 0.0010387603}
---- !u!4 &699103708 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 845401796}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &706373886
 GameObject:
   m_ObjectHideFlags: 0
@@ -17402,6 +17135,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowBackgrounds
@@ -17783,6 +17529,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -17990,6 +17749,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -19859,141 +19631,6 @@ MonoBehaviour:
   <connections>k__BackingField: []
   gScore: 0
   hScore: 0
---- !u!1001 &845401796
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.236
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0706
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.1839
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 6ecec692688e4884d880a9a30008a147, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
-    - target: {fileID: -5754084199372789682, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4493585093827132993, guid: 7d77b69a9848b994896b97639473b2b8,
-        type: 3}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Heladera
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1520550770}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 699103705}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 699103704}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 699103703}
-  m_SourcePrefab: {fileID: 100100000, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae, type: 3}
 --- !u!1 &848398802
 GameObject:
   m_ObjectHideFlags: 0
@@ -20690,6 +20327,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -22079,6 +21729,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -24982,6 +24645,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -25429,6 +25105,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowStoreScreen
@@ -26062,164 +25751,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 801527674}
   m_SourcePrefab: {fileID: 100100000, guid: ebc34b02447e80d4892717693f49d6b1, type: 3}
---- !u!1001 &1060035341
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 67844238}
-    m_Modifications:
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.088308
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15955225
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.8159332
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 858179092341260085, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Heladera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408774850717611991, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571833348299339919, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571833348299339919, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
-    - target: {fileID: 1967856003687840656, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707909472548378822, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813728362051091214, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232415718915978942, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673935504625998938, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3922122127835920941, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567762986688222927, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6153753063935315291, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6378446451365684538, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8500837714683675215, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8982624885705942223, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d, type: 3}
 --- !u!1 &1084658423
 GameObject:
   m_ObjectHideFlags: 0
@@ -48094,6 +47625,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: ConfirmQRPayment
@@ -49117,6 +48661,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -52865,6 +52422,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -53403,12 +52973,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!4 &1520550770 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 404033992889811936, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 685901762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1530639614
 GameObject:
   m_ObjectHideFlags: 0
@@ -53735,6 +53299,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowPriceProducts
@@ -53915,6 +53492,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -54239,6 +53829,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -54447,6 +54050,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowConfigScreen
@@ -55450,6 +55066,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -57551,6 +57180,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowHomeScreen
@@ -57893,6 +57535,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6ed84694b3c8ed4580900d7debe05b7, type: 2}
   - {fileID: 11400000, guid: 3dc6cc2a02908d043b3330c5c53166e1, type: 2}
   - {fileID: 11400000, guid: 22f798e78157dd64195bbaeb463be4ae, type: 2}
+  - {fileID: 11400000, guid: 996a00984054bb54fa9fc0170fe882a8, type: 2}
 --- !u!1 &1763616958
 GameObject:
   m_ObjectHideFlags: 0
@@ -57975,6 +57618,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -59326,141 +58982,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811484079}
   m_CullTransparentMesh: 1
---- !u!1001 &1818681862
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.405
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.1649895
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.183
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 6ecec692688e4884d880a9a30008a147, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
-    - target: {fileID: -5754084199372789682, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4493585093827132993, guid: 7d77b69a9848b994896b97639473b2b8,
-        type: 3}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Heladera
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 391794294}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 67844235}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 67844234}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 67844233}
-  m_SourcePrefab: {fileID: 100100000, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae, type: 3}
 --- !u!1 &1828230024
 GameObject:
   m_ObjectHideFlags: 0
@@ -60755,6 +60276,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 36578e78d06cb534a87bca79742efc13,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 326095226}
         m_TargetAssemblyTypeName: ComputerUIScreenManager, Assembly-CSharp
         m_MethodName: ShowCashRegisterScreen
@@ -62944,6 +62478,8 @@ MonoBehaviour:
   qrPaymentHandler: {fileID: 306421467}
   interactionDistance: 3
   cashRegisterTag: CashRegister
+  registerAudioSource: {fileID: 326095227}
+  paymentSound: {fileID: 8300000, guid: ae07d56df2d4af84a8bd62bec72b73f5, type: 3}
   clientPayment: 
   currentClient: {fileID: 0}
   nPC_Controller: {fileID: 0}
@@ -64546,6 +64082,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: AddNumber
@@ -65409,6 +64958,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 326095227}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2f9f8f1bcd911f349b1ec740003a6d2e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 306421467}
         m_TargetAssemblyTypeName: QRPaymentHandler, Assembly-CSharp
         m_MethodName: SubtractNumber
@@ -65810,8 +65372,6 @@ SceneRoots:
   - {fileID: 411067835}
   - {fileID: 6627336528062973455}
   - {fileID: 1834459952}
-  - {fileID: 845401796}
-  - {fileID: 1818681862}
   - {fileID: 1130458191}
   - {fileID: 669547168}
   - {fileID: 1538593391}

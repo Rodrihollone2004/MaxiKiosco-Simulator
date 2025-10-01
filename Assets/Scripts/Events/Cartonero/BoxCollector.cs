@@ -14,8 +14,12 @@ public class BoxCollector : MonoBehaviour, IInteractable
     private Animator animatorNPC;
     public bool CanBePickedUp => false;
 
+    AudioSource audioSource;
+    [SerializeField] AudioClip paymentSound;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentNode = AStarManager.instance.StartNode;
         animatorNPC = GetComponent<Animator>();
     }
@@ -61,6 +65,8 @@ public class BoxCollector : MonoBehaviour, IInteractable
                 {
                     PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
                     player.ReceivePayment(amountBoxes);
+
+                    audioSource.PlayOneShot(paymentSound);
 
                     Destroy(boxStack.StackedBoxes[i]);
                 }

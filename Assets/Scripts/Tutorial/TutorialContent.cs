@@ -36,7 +36,7 @@ public class TutorialContent : MonoBehaviour
             "Ahora hace clic izquierdo en el monitor para gestionar la compu",
             "Cuando llegue un cliente tenés que usar esta.\r\nAcá te dice qué se van a llevar, cuánto sale, cómo paga y esas cosas.",
             "En esta se hacen los pedidos y se controla el stock.\r\nTenés categorías y tenés que elegir cuántos paquetes querés de cada cosa.\r\nSimple. Elegís y te llega al depósito.",
-            "En esta te voy a dejar que gastes algo de la plata del kiosco en hacer que se vea un poco mejor.\r\nSi el kiosco se ve bien va a entrar mas gente.",
+            "En esta te voy a dejar que gastes algo de la plata del kiosco en hacer que se vea un poco mejor.\r\nSi el kiosco se ve bien va a entrar mas gente\r\nCompra una heladera como primer gasto",
             "Esta es la más importante si no querés perder plata.\r\nAcá vas a tener que ir categoría en categoría viendo los productos que tenés a la venta y poniéndoles un precio. \r\nSi es muy caro, puede que algunos clientes no lo compren.",
             "Esta sección de acá te va a permitir cambiar el fondo de la pantalla para que te sea más ameno a la vista",
             "Por último, esta te va a permitir customizar el nombre de la tienda a gusto",

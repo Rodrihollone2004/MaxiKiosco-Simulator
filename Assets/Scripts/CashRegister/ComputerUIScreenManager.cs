@@ -108,7 +108,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         configScreen.SetActive(false);
         UpgradeManager upgradeManager = upgradesScreen.GetComponent<UpgradeManager>();
         upgradeManager.PopulateStore();
-        TutorialContent.Instance.CompleteStep(7);
     }
 
     public void ShowConfigScreen()

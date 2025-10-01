@@ -45,6 +45,16 @@ public class UpgradeManager : MonoBehaviour
 
                     inputGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
                     {
+                        if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 7)
+                        {
+                            bool purchasedFridge = playerEconomy.TryPurchaseUpgrade(upgrade);
+                            if (purchasedFridge && upgrade.Prefab != null)
+                            {
+                                SpawnUpgrade(upgrade);
+                            }
+                            TutorialContent.Instance.CompleteStep(7);
+                        }
+
                         if (TutorialContent.Instance.CurrentIndexGuide < 12)
                             return;
 
@@ -61,11 +71,14 @@ public class UpgradeManager : MonoBehaviour
     private void SpawnUpgrade(Upgrade upgrade)
     {
         GameObject spawned = Instantiate(upgrade.Prefab, spawnPoint.transform.position, Quaternion.identity);
+        
+        if (upgrade.Name != "Heladera")
+            SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
+        else
+            spawned.name = upgrade.Name;
 
-        SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
-
-        if (!spawned.TryGetComponent<Rigidbody>(out _))
-            spawned.AddComponent<Rigidbody>();
+        //if (!spawned.TryGetComponent<Rigidbody>(out _))
+        //    spawned.AddComponent<Rigidbody>();
 
         if (!spawned.TryGetComponent<Collider>(out _))
             spawned.AddComponent<BoxCollider>();
