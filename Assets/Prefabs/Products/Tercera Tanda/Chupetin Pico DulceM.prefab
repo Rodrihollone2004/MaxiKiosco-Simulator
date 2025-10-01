@@ -67,7 +67,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 80f06f317194e384987c0934295975dd, type: 2}
+      objectReference: {fileID: 2100000, guid: 371f619d44eadcb45ba3ab2bb33fe6be, type: 2}
     - target: {fileID: -7511558181221131132, guid: 193eed5f7a6a60d4ea06ba8869ee8dfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -125,8 +125,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0016458988, y: 0.0013777422, z: 0.0016182467}
-  m_Center: {x: 0, y: 0.00063343026, z: -0.00000028356908}
+  m_Size: {x: 0.16131496, y: 0.13327602, z: 0.16295338}
+  m_Center: {x: -0.001727581, y: 0.0646887, z: -0.00046110153}
 --- !u!114 &8452869642531030846
 MonoBehaviour:
   m_ObjectHideFlags: 0
