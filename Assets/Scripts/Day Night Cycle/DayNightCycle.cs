@@ -44,6 +44,7 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private ClientQueueManager queueManager;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject sleepButton;
+    [SerializeField] private GameObject newProductsUI;
 
     public bool sleepPressed;
 
@@ -244,6 +245,7 @@ public class DayNightCycle : MonoBehaviour
         _timeOfDay = 8f / 24f;
 
         UpateProducts();
+        storeUI.CheckUpdate();
 
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
 
@@ -289,5 +291,15 @@ public class DayNightCycle : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         summaryUI.HideSummary();
+    }
+
+
+    public IEnumerator NewProducts()
+    {
+        newProductsUI.SetActive(true);
+
+        yield return new WaitForSeconds(10f);
+
+        newProductsUI.SetActive(false);
     }
 }

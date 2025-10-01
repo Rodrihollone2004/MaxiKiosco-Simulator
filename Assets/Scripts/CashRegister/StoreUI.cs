@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,6 +14,7 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private Transform categoriesButtonsContainer;
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
+    [SerializeField] private GameObject newProductsUI;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
     [SerializeField] private Sprite pressButton;
@@ -181,9 +183,17 @@ public class StoreUI : MonoBehaviour
                             SpawnProduct(capturedProduct);
                         }
                     });
+
                 }
             }
         }
+    }
+
+    public void CheckUpdate()
+    {
+        foreach (LevelUpdates updateProducts in levelUpdate)
+            if (updateProducts.numberUpdate == dayNightCycle.DayNumber)
+                dayNightCycle.StartCoroutine(dayNightCycle.NewProducts());
     }
 
     private void UpdateDataBase(Product product)
