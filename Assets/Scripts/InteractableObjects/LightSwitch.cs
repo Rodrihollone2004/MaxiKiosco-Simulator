@@ -84,10 +84,10 @@ public class LightSwitch : MonoBehaviour, IInteractable
             if (lightsOn && isEnabled)
             {
                 lightMaterial.EnableKeyword("_EMISSION");
-                Blueligth.DisableKeyword("_EMISSION");
-                Yellowligth.DisableKeyword("_EMISSION");
-                Redligth.DisableKeyword("_EMISSION");
-                Greenligth.DisableKeyword("_EMISSION");
+                Blueligth.EnableKeyword("_EMISSION");
+                Yellowligth.EnableKeyword("_EMISSION");
+                Redligth.EnableKeyword("_EMISSION");
+                Greenligth.EnableKeyword("_EMISSION");
             }
             else
             {
