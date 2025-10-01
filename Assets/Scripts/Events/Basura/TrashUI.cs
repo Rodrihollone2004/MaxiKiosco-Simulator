@@ -19,5 +19,15 @@ public class TrashUI : MonoBehaviour
     private void UpdateTrashText(float percentage)
     {
         trashText.text = $"Basura: {percentage:0}%";
+
+        if (percentage >= 70f)
+        {
+            trashText.color = Color.red;
+            trashText.text = $"Basura: {percentage:0}% <sprite name=Advertencia>\n";
+        }
+        else if (percentage >= 50f)
+            trashText.color = Color.yellow;
+        else
+            trashText.color = Color.black;
     }
 }

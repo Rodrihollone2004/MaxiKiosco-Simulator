@@ -10639,6 +10639,7 @@ MonoBehaviour:
   distanceBetweenClients: 1.5
   trashSpawner: {fileID: 1102810812}
   dayNightCycle: {fileID: 880010573}
+  trashThreshold: 70
   maxClientsPerDay: 35
   OnClientServed:
     m_PersistentCalls:
@@ -20730,7 +20731,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   sunSeasonalRotation: {fileID: 424566052}
-  maxSeasonalTilt: 30
+  maxSeasonalTilt: -45
   summaryUI: {fileID: 199166700}
   queueManager: {fileID: 485706440}
   startButton: {fileID: 1261414424}
@@ -26186,7 +26187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashPrefabs:
-  - {fileID: 8306756186736812857, guid: dea5a3bca4d64594493e78574d6613a4, type: 3}
+  - {fileID: 8166956588459832927, guid: 783a699dd789a424bb65728c01acd036, type: 3}
+  - {fileID: 4024020818162724674, guid: 7a1172dbdaba3834f84c03f81a96a72f, type: 3}
   spawnAreas:
   - {fileID: 131904028}
   - {fileID: 1502346630}

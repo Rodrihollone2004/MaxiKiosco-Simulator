@@ -16,6 +16,9 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private ClientTrashSpawner trashSpawner;
     [SerializeField] private DayNightCycle dayNightCycle;
 
+    [Header("Trash Threshold")]
+    [SerializeField] private float trashThreshold = 70f;
+
     [Header("Daily Clients")]
     [SerializeField] private int maxClientsPerDay = 20;
     private int clientsSpawnedToday = 0;
@@ -35,6 +38,9 @@ public class ClientQueueManager : MonoBehaviour
 
     private int clientsServedToday = 0;
     private int moneyEarnedToday = 0;
+
+    public bool IsTrashBlockingSpawn {  get; private set; } = false;
+
     public int GetClientsServedToday() => clientsServedToday;
     public int GetMoneyEarnedToday() => moneyEarnedToday;
 
@@ -47,7 +53,13 @@ public class ClientQueueManager : MonoBehaviour
 
     private void Update()
     {
-        bool shouldSpawnClients = !dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay && _clientQueue.Count < 3;
+        float currentTrashPercentage = trashSpawner != null ? trashSpawner.GetTrashPercentage() : 0f;
+        IsTrashBlockingSpawn = currentTrashPercentage >= trashThreshold;
+
+        bool shouldSpawnClients = !dayNightCycle.IsPaused &&
+                                 clientsSpawnedToday < maxClientsPerDay &&
+                                 _clientQueue.Count < 3 &&
+                                 !IsTrashBlockingSpawn;
 
         if (shouldSpawnClients && clientSpawnCoroutine == null)
         {
@@ -167,19 +179,22 @@ public class ClientQueueManager : MonoBehaviour
 
     private IEnumerator ClientSpawnRoutine()
     {
-        while (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
+        while (!dayNightCycle.IsPaused &&
+               clientsSpawnedToday < maxClientsPerDay &&
+               _clientQueue.Count < 3 &&
+               !IsTrashBlockingSpawn)
         {
             float randomWaitTime = Random.Range(minTimeBetweenClients, maxTimeBetweenClients);
             Debug.Log($"Next client in: {randomWaitTime:F1} seconds.");
             yield return new WaitForSeconds(randomWaitTime);
 
-            if (_clientQueue.Count >= 3)
+            if (_clientQueue.Count >= 3 || IsTrashBlockingSpawn)
             {
                 clientSpawnCoroutine = null;
                 yield break;
             }
 
-            if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay)
+            if (!dayNightCycle.IsPaused && clientsSpawnedToday < maxClientsPerDay && !IsTrashBlockingSpawn)
             {
                 Client newClient = GetClientFromPool();
                 newClient.NpcController.isInDequeue = false;
