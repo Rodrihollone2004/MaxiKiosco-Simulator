@@ -469,7 +469,7 @@ public class PlayerInteraction : MonoBehaviour
             else if (boxProduct != null && boxProduct.IsEmpty || furnitureBox != null && this.furnitureBox.IsEmpty)
             {
                 hintText.text = $"Caja Vacía\n" +
-                    $"Acercate al tacho para tirar\n";
+                    $"Acercate al tacho/pallete para depositarla\n";
             }
         }
     }
