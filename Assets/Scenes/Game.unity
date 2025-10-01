@@ -19067,7 +19067,7 @@ GameObject:
   - component: {fileID: 830508694}
   - component: {fileID: 830508693}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Titulo productos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21473,15 +21473,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1143533908}
-  - {fileID: 1625059030}
   - {fileID: 1518914701}
   m_Father: {fileID: 2039245542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00059999526, y: -0.0211}
-  m_SizeDelta: {x: -0.0011, y: -0.0427}
+  m_AnchoredPosition: {x: 0.00059999526, y: -0.038150005}
+  m_SizeDelta: {x: -0.0011, y: -0.094720006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927862383
 MonoBehaviour:
@@ -21679,7 +21677,7 @@ GameObject:
   - component: {fileID: 945096525}
   - component: {fileID: 945096524}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Titulo precios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45506,7 +45504,7 @@ GameObject:
   - component: {fileID: 1143533910}
   - component: {fileID: 1143533909}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Titulo productos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45525,11 +45523,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 552175014}
-  m_Father: {fileID: 927862382}
+  m_Father: {fileID: 2039245542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.12610054, y: 0.08060002}
+  m_AnchoredPosition: {x: -0.12549973, y: 0.05949998}
   m_SizeDelta: {x: 0.11731, y: 0.01841}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143533909
@@ -47832,7 +47830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1270984786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53033,7 +53031,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0084999995, y: 0}
-  m_SizeDelta: {x: -0.0171, y: -0.2209}
+  m_SizeDelta: {x: -0.0171, y: -0.17784499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518914704
 MonoBehaviour:
@@ -54976,7 +54974,7 @@ GameObject:
   - component: {fileID: 1625059032}
   - component: {fileID: 1625059031}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Titulo precios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54995,11 +54993,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 397088708}
-  m_Father: {fileID: 927862382}
+  m_Father: {fileID: 2039245542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.07499918, y: 0.08060002}
+  m_AnchoredPosition: {x: 0.0756, y: 0.05949998}
   m_SizeDelta: {x: 0.11731, y: 0.01841}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625059031
@@ -60832,7 +60830,7 @@ RectTransform:
   m_Father: {fileID: 635137956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -63796,6 +63794,8 @@ RectTransform:
   - {fileID: 1911649543}
   - {fileID: 1456576234}
   - {fileID: 1307330144}
+  - {fileID: 1143533908}
+  - {fileID: 1625059030}
   - {fileID: 927862382}
   - {fileID: 1358073942}
   - {fileID: 139786459}
