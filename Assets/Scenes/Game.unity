@@ -9082,7 +9082,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411309422}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -52689,7 +52689,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 13330f41e1ab64848859bff46d75323a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10000557
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13330f41e1ab64848859bff46d75323a,
         type: 3}
@@ -66064,6 +66064,9 @@ MonoBehaviour:
   fridgeLayer:
     serializedVersion: 2
     m_Bits: 16384
+  layersLock:
+    serializedVersion: 2
+    m_Bits: 32759
   holdPosition: {fileID: 255105130}
   throwForce: 10
   dropHintUI: {fileID: 272109866}

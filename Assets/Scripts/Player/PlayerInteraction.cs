@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask clientLayer;
     [SerializeField] private LayerMask tutorialLayer;
     [SerializeField] private LayerMask fridgeLayer;
+    [SerializeField] private LayerMask layersLock;
     [SerializeField] private Transform holdPosition;
 
     private FurnitureBox furnitureBox;
@@ -97,7 +98,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E) && productPlaced != null)
-            PlaceProduct();
+            PlaceRepick();
 
         if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject
             || furnitureBox != null && furnitureBox.IsEmpty && heldObject == furnitureBox.gameObject)
@@ -177,9 +178,9 @@ public class PlayerInteraction : MonoBehaviour
                     UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
 
                     if (productPlaced != null && productPlaced.IsPlaced)
-                        CheckProduct(productPlaced.gameObject);
+                        CheckRepick(productPlaced.gameObject);
                     else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
-                        CheckProduct(upgradeInteractable.gameObject);
+                        CheckRepick(upgradeInteractable.gameObject);
                 }
 
                 if (interactable != currentInteractable)
@@ -235,7 +236,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                CheckProduct(hitFridge.collider.gameObject);
+                CheckRepick(hitFridge.collider.gameObject);
             }
         }
         else
@@ -253,7 +254,7 @@ public class PlayerInteraction : MonoBehaviour
     PlacementZoneProducts[] AllZones;
     PlacementZone furnitureZones;
 
-    public void CheckProduct(GameObject productPlaced)
+    public void CheckRepick(GameObject productPlaced)
     {
         this.productPlaced = productPlaced;
 
@@ -334,7 +335,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void PlaceProduct()
+    private void PlaceRepick()
     {
         if (previewValidator != null && previewValidator.IsValidPlacement)
         {
@@ -547,6 +548,9 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
+            heldObjectCollider.enabled = false;
+            bool hit = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 1.5f, layersLock);
+
             heldObject.transform.position += Vector3.up * 0.2f;
 
             if (heldBroom != null)
@@ -555,15 +559,24 @@ public class PlayerInteraction : MonoBehaviour
                 heldBroom = null;
             }
 
-            if (heldObjectRb != null)
+            if (heldObjectRb != null && !hit)
             {
                 heldObjectRb.isKinematic = false;
                 heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
                 heldObjectRb.AddForce(cameraTransform.forward * throwForce, ForceMode.Impulse);
             }
+            else if (heldObjectRb != null && hit)
+            {
+                heldObjectRb.isKinematic = false;
+                heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                heldObject.transform.position = transform.position;
+            }
 
             if (heldObjectCollider != null)
+            {
+                heldObjectCollider.enabled = true;
                 heldObjectCollider.isTrigger = false;
+            }
 
             if (dropHintUI != null)
             {

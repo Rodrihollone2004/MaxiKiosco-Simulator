@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6b93ed874a5e265478766a21a948cc3a,
         type: 3}
       propertyPath: m_Name
-      value: MessiCuadro
+      value: Cuadro de Messi
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b93ed874a5e265478766a21a948cc3a,
         type: 3}
@@ -220,6 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorLayer:
     serializedVersion: 2
-    m_Bits: 80
+    m_Bits: 4294967295
   cameraTransform: {fileID: 0}
   maxDistance: 8

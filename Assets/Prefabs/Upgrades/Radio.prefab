@@ -670,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeData: {fileID: 11400000, guid: 2691f57b46c0ffb4c9552dfdac028097, type: 2}
+  IsPlaced: 0
 --- !u!114 &1149258044689421658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorLayer:
     serializedVersion: 2
-    m_Bits: 80
+    m_Bits: 4294967295
   cameraTransform: {fileID: 0}
   maxDistance: 8
