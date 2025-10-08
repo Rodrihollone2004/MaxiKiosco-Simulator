@@ -10,7 +10,6 @@ public class ProductPriceInput : MonoBehaviour
     [SerializeField] private TMP_InputField _inputField;
     [SerializeField] private TMP_Text priceText;
     private Product _productData;
-    private float _originalPrice;
 
     [SerializeField] private float holdDelay = 0.2f; // Tiempo entre cada suma/resta
     private float holdTimer = 0f;
@@ -25,7 +24,6 @@ public class ProductPriceInput : MonoBehaviour
     public void Initialize(Product data)
     {
         _productData = data;
-        _originalPrice = data.Price;
         _inputField.onEndEdit.AddListener(UpdatePriceFromInput);
         UpdatePriceText();
     }
@@ -72,7 +70,7 @@ public class ProductPriceInput : MonoBehaviour
     {
         _inputField.text = $"{_productData.Price}";
 
-        float priceIncreasePercentage = ((float)_productData.Price - _originalPrice) / _originalPrice * 100f;
+        float priceIncreasePercentage = ((float)_productData.Price - _productData.OriginalPrice) / _productData.OriginalPrice * 100f;
 
         if (priceIncreasePercentage > 80f) //esto capaz después cambia si tenemos mas nivel o algo
         {

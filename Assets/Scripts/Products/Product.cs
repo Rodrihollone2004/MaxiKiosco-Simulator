@@ -4,6 +4,7 @@ using UnityEngine;
 public class Product : Item
 {
     [SerializeField] private int _price;
+    [SerializeField] private int originalPrice;
     [SerializeField] private string _placeZone;
     [SerializeField] private int _packSize;
     [SerializeField] private int _currentAmount;
@@ -21,6 +22,7 @@ public class Product : Item
 
     public int CurrentAmount { get => _currentAmount; set => _currentAmount = value; }
     public productType Type { get => type; set => type = value; }
+    public int OriginalPrice { get => originalPrice; set => originalPrice = value; }
 }
 
 public enum productType
