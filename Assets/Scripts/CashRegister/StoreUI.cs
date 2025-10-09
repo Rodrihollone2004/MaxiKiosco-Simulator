@@ -10,11 +10,18 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private List<LevelUpdates> levelUpdate;
     [SerializeField] private ProductDataBase database;
     [SerializeField] private PlayerEconomy playerEconomy;
+
     [SerializeField] private GameObject categoriesButtonPrefab;
     [SerializeField] private Transform categoriesButtonsContainer;
+
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
+
     [SerializeField] private GameObject newProductsUI;
+
+    [SerializeField] private GameObject cartButtonPrefab;
+    [SerializeField] private Transform cartButtonContainer;
+
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
     [SerializeField] private Sprite pressButton;
@@ -26,6 +33,8 @@ public class StoreUI : MonoBehaviour
     public bool updateProducts;
 
     private Dictionary<Product, GameObject> productsButtons = new Dictionary<Product, GameObject>();
+    private List<Product> productsToBuy = new List<Product>();
+    private List<GameObject> cartPrefabs = new List<GameObject>();
 
     public ProductDataBase Database { get => database; set => database = value; }
 
@@ -91,28 +100,37 @@ public class StoreUI : MonoBehaviour
         return spawnPoint.position;
     }
 
-    private void SpawnProduct(Product capturedProduct)
+    public void SpawnProduct()
     {
-        GameObject spawned = Instantiate(capturedProduct.Prefab, GetSpawnPosition(), Quaternion.identity);
+        if (productsToBuy.Count > 0)
+        {
+            foreach (Product capturedProduct in productsToBuy)
+            {
+                GameObject spawned = Instantiate(capturedProduct.Prefab, GetSpawnPosition(), Quaternion.identity);
 
-        SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
+                SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
 
-        if (!spawned.TryGetComponent<Rigidbody>(out _))
-            spawned.AddComponent<Rigidbody>();
+                if (!spawned.TryGetComponent<Rigidbody>(out _))
+                    spawned.AddComponent<Rigidbody>();
 
-        if (!spawned.TryGetComponent<Collider>(out _))
-            spawned.AddComponent<BoxCollider>();
+                if (!spawned.TryGetComponent<Collider>(out _))
+                    spawned.AddComponent<BoxCollider>();
 
-        GameObject children = spawned.transform.GetChild(0).gameObject;
+                GameObject children = spawned.transform.GetChild(0).gameObject;
 
-        ProductInteractable interactable = children.GetComponent<ProductInteractable>();
-        interactable.Initialize(capturedProduct);
-        productsInWorld.Add(interactable);
+                ProductInteractable interactable = children.GetComponent<ProductInteractable>();
+                interactable.Initialize(capturedProduct);
+                productsInWorld.Add(interactable);
 
-        foreach (StockController controllers in allStock)
-            controllers.AddDeposit(interactable);
+                foreach (StockController controllers in allStock)
+                    controllers.AddDeposit(interactable);
 
-        TutorialContent.Instance.CompleteStep(11);
+                TutorialContent.Instance.CompleteStep(11);
+            }
+            ClearCart();
+        }
+        else
+            Debug.Log("Nada carrito");
     }
 
     private void SetLayerRecursive(GameObject obj, int layer)
@@ -180,13 +198,49 @@ public class StoreUI : MonoBehaviour
                         bool purchased = playerEconomy.TryPurchase(capturedProduct);
                         if (purchased && capturedProduct.Prefab != null)
                         {
-                            SpawnProduct(capturedProduct);
+                            productsToBuy.Add(capturedProduct);
+                            CreateCartProduct(capturedProduct, controller);
                         }
                     });
 
                 }
             }
         }
+    }
+
+    public void DeleteCart(GameObject cartProduct, Product product, StockController controller)
+    {
+        playerEconomy.ReceivePayment(product.PackPrice);
+        productsToBuy.Remove(product);
+        cartPrefabs.Remove(cartProduct);
+        Destroy(cartProduct);
+    }
+
+    private void ClearCart()
+    {
+        foreach (GameObject cart in cartPrefabs)
+            Destroy(cart);
+
+        cartPrefabs.Clear();
+        productsToBuy.Clear();
+        allStock.Clear();
+    }
+
+    private void CreateCartProduct(Product product, StockController controller)
+    {
+        GameObject buttonGO = Instantiate(cartButtonPrefab, cartButtonContainer);
+
+        TMP_Text textStock = buttonGO.GetComponentInChildren<TMP_Text>();
+        textStock.text = $"{product.Name}\n ${product.PackPrice}\n X{product.PackSize} ";
+
+        Button button = buttonGO.GetComponentInChildren<Button>();
+
+        cartPrefabs.Add(buttonGO);
+
+        button.onClick.AddListener(() =>
+        {
+            DeleteCart(buttonGO, product, controller);
+        });
     }
 
     public void CheckUpdate()
