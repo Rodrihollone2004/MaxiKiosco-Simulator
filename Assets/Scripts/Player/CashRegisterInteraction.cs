@@ -190,7 +190,6 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCamera.transform.position = targetPosition.position;
         if (targetPosition == limitedCameraTarget)
         {
-            playerCamera.transform.rotation = Quaternion.Euler(0, 180, 0);
             crosshair.SetActive(true);
         }
         else

@@ -29,7 +29,9 @@ public class PlayerCam : MonoBehaviour
     private Coroutine zoomCoroutine;
     public bool IsInCashRegister { get => isInCashRegister; set => isInCashRegister = value; }
     public bool IsLocked { get => isLocked; set => isLocked = value; }
-    public Transform Orientation { get => orientation; set => orientation = value; }
+
+    private bool initializedCashRegisterView;
+
 
     private void Awake()
     {
@@ -41,7 +43,9 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        initializedCashRegisterView = false;
     }
+
     private void Update()
     {
         if (isLocked)
@@ -63,6 +67,12 @@ public class PlayerCam : MonoBehaviour
         {
             xRotation = Mathf.Clamp(xRotation, -25f, 50f);
             yRotation = Mathf.Clamp(yRotation, minAngle, maxAngle);
+
+            if (!initializedCashRegisterView)
+            {
+                yRotation = 180;
+                initializedCashRegisterView = true;
+            }
         }
         else
         {

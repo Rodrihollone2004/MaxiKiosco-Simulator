@@ -47,6 +47,7 @@ public class StoreUI : MonoBehaviour
     {
         CategoriesButtons();
         ButtonType(productType.Chocolates);
+        CheckButtonPressed(productType.Chocolates);
     }
 
     private void CategoriesButtons()

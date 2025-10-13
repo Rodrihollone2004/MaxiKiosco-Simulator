@@ -23,6 +23,7 @@ public class CustomizeProducts : MonoBehaviour
     {
         CategoriesButtons();
         ButtonType(productType.Chocolates);
+        CheckButtonPressed(productType.Chocolates); 
     }
 
     public void PopulateStore()

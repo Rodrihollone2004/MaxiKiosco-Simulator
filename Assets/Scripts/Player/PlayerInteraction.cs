@@ -549,7 +549,7 @@ public class PlayerInteraction : MonoBehaviour
         if (heldObject != null)
         {
             heldObjectCollider.enabled = false;
-            bool hit = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 1.5f, layersLock);
+            bool hit = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 2.5f, layersLock);
 
             heldObject.transform.position += Vector3.up * 0.2f;
 
