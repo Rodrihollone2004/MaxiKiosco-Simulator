@@ -15,6 +15,7 @@ public class DailySummary : MonoBehaviour
         summaryPanel.SetActive(true);
 
         playerCam.enabled = false;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
