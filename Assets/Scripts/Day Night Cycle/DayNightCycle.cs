@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.UI;
 using Cinemachine;
 
 public class DayNightCycle : MonoBehaviour

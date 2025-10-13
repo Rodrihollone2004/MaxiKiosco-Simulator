@@ -10,6 +10,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject upgradesScreen;
     [SerializeField] private GameObject configScreen;
     [SerializeField] private GameObject backgrounds;
+    [SerializeField] private GameObject defaultBackground;
     [SerializeField] private GameObject bocaBackground;
     [SerializeField] private GameObject riverBackground;
     [SerializeField] private GameObject atlantaBackground;
@@ -130,6 +131,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         riverBackground.SetActive(false);
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
     }
 
     public void RiverBackground()
@@ -138,6 +140,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         riverBackground.SetActive(true);
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
     }
 
     public void AtlantaBackground()
@@ -146,6 +149,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         riverBackground.SetActive(false);
         atlantaBackground.SetActive(true);
         velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
     }
 
     public void VelezBackground()
@@ -154,5 +158,6 @@ public class ComputerUIScreenManager : MonoBehaviour
         riverBackground.SetActive(false);
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(true);
+        defaultBackground.SetActive(false);
     }
 }
