@@ -104,6 +104,12 @@ public class StoreUI : MonoBehaviour
     {
         if (productsToBuy.Count > 0)
         {
+            if (TutorialContent.Instance.CurrentIndexGuide < 11)
+                return;
+
+            if (!TutorialContent.Instance.IsComplete)
+                TutorialContent.Instance.IsComplete = true;
+
             foreach (Product capturedProduct in productsToBuy)
             {
                 GameObject spawned = Instantiate(capturedProduct.Prefab, GetSpawnPosition(), Quaternion.identity);
@@ -185,9 +191,6 @@ public class StoreUI : MonoBehaviour
                     {
                         if (TutorialContent.Instance.CurrentIndexGuide < 11)
                             return;
-
-                        if (!TutorialContent.Instance.IsComplete)
-                            TutorialContent.Instance.IsComplete = true;
 
                         StockController controller = buttonGO.GetComponentInChildren<StockController>();
                         controller.Product = product;

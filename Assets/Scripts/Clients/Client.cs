@@ -36,8 +36,12 @@ public class Client : MonoBehaviour
     public void CalculateCost()
     {
         totalCart = CalculateCartTotal();
+        if (wallet.TotalMoney < totalCart)
+        {
+            Debug.LogWarning("Cliente no tiene suficiente dinero.");
+            return;
+        }
         ClientPayment = wallet.TryMakePayment(totalCart);
-
         paymentMethod = (PaymentMethod)Random.Range(0, 2);
     }
 
@@ -83,7 +87,7 @@ public class Client : MonoBehaviour
                 if (amountProduct > productInWorld.CurrentAmountProduct)
                     amountProduct = productInWorld.CurrentAmountProduct;
 
-                newTotal = total + (productInWorld.ProductData.Price * amountProduct);
+                newTotal = total += (productInWorld.ProductData.Price * amountProduct);
 
                 if (newTotal < wallet.TotalMoney)
                 {

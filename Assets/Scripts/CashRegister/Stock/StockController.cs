@@ -48,6 +48,9 @@ public class StockController : MonoBehaviour
         if (Product == product.ProductData && product.IsSubtracting)
         {
             amountPlaced -= amount;
+            if (amountPlaced < 0)
+                amountPlaced = 0;
+
             UpdateTextsStock();
         }
     }

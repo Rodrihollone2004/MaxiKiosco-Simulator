@@ -66,7 +66,8 @@ public class BoxCollector : MonoBehaviour, IInteractable
                     PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
                     player.ReceivePayment(amountBoxes);
 
-                    audioSource.PlayOneShot(paymentSound);
+                    if (!audioSource.isPlaying)
+                        audioSource.PlayOneShot(paymentSound);
 
                     Destroy(boxStack.StackedBoxes[i]);
                 }
