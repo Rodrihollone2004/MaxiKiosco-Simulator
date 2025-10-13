@@ -205,8 +205,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = true;
         playerCam.IsLocked = lockCamera;
 
-        UnityEngine.Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = lockCamera;
+        Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = lockCamera;
 
         crosshair.SetActive(false);
 
@@ -250,8 +250,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = false;
         playerCam.IsLocked = false;
 
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         crosshair.SetActive(true);
 
         if (currentClient != null)

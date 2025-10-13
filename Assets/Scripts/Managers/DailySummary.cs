@@ -1,5 +1,6 @@
-using UnityEngine;
+using Cinemachine;
 using TMPro;
+using UnityEngine;
 
 public class DailySummary : MonoBehaviour
 {
@@ -19,12 +20,21 @@ public class DailySummary : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+    private void LateUpdate()
+    {
+        if (summaryPanel.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
 
     public void HideSummary()
     {
         summaryPanel.SetActive(false);
 
         playerCam.enabled = true;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
