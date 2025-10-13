@@ -55,6 +55,7 @@ public class DayNightCycle : MonoBehaviour
     public bool IsPaused => pause;
 
     public int DayNumber { get => _dayNumber; set => _dayNumber = value; }
+    public GameObject NewProductsUI { get => newProductsUI; set => newProductsUI = value; }
 
     public bool IsComplete;
 
@@ -279,20 +280,12 @@ public class DayNightCycle : MonoBehaviour
 
         daysText.text = $"{_dayNumber}";
 
-        StartCoroutine(HideSummaryAfterDelay(5f));
     }
 
     private void UpateProducts()
     {
         storeUI.UpdateProducts();
     }
-
-    private IEnumerator HideSummaryAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        summaryUI.HideSummary();
-    }
-
 
     public IEnumerator NewProducts()
     {
