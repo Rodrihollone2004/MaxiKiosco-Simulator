@@ -549,27 +549,37 @@ public class PlayerInteraction : MonoBehaviour
         if (heldObject != null)
         {
             heldObjectCollider.enabled = false;
-            bool hit = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 2.5f, layersLock);
+            bool hitForward = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 2.5f, layersLock);
 
             heldObject.transform.position += Vector3.up * 0.2f;
 
-            if (heldBroom != null)
+            if (heldObjectRb != null)
             {
-                heldBroom.SetHeld(false);
-                heldBroom = null;
-            }
+                heldObjectRb.isKinematic = false;
+                heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
-            if (heldObjectRb != null && !hit)
-            {
-                heldObjectRb.isKinematic = false;
-                heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-                heldObjectRb.AddForce(cameraTransform.forward * throwForce, ForceMode.Impulse);
-            }
-            else if (heldObjectRb != null && hit)
-            {
-                heldObjectRb.isKinematic = false;
-                heldObjectRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-                heldObject.transform.position = transform.position;
+                if (heldBroom != null)
+                {
+                    bool broomBlockedForward = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 2.5f, layersLock);
+                    bool broomBlockedRight = Physics.Raycast(cameraTransform.position, cameraTransform.right, 2.5f, layersLock);
+
+                    if (broomBlockedForward || broomBlockedRight)
+                    {
+                        heldObjectRb.transform.position = transform.position;
+                    }
+                    else
+                        heldObjectRb.AddForce(cameraTransform.forward * (throwForce * 0.5f), ForceMode.Impulse);
+
+                    heldBroom.SetHeld(false);
+                    heldBroom = null;
+                }
+                else
+                {
+                    if (!hitForward)
+                        heldObjectRb.AddForce(cameraTransform.forward * throwForce, ForceMode.Impulse);
+                    else
+                        heldObjectRb.transform.position = transform.position;
+                }
             }
 
             if (heldObjectCollider != null)
