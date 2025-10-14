@@ -7,10 +7,17 @@ public class BoxStackZone : MonoBehaviour
     [SerializeField] private GameObject brokenBoxPrefab;
     [SerializeField] private float boxHeight = 0.5f;
     [SerializeField] private float yOffset = 0f;
+    private DailySummary dailySummary;
+
 
     private List<GameObject> stackedBoxes = new List<GameObject>();
 
     public List<GameObject> StackedBoxes { get => stackedBoxes; set => stackedBoxes = value; }
+
+    private void Awake()
+    {
+        dailySummary = FindObjectOfType<DailySummary>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,6 +39,9 @@ public class BoxStackZone : MonoBehaviour
             PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
             if (playerInteraction != null)
                 playerInteraction.DropHintUI.SetActive(false);
+
+            if (dailySummary != null)
+                dailySummary.IncrementBoxesThrownAway();
         }
     }
 }

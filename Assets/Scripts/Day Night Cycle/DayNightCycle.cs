@@ -240,7 +240,8 @@ public class DayNightCycle : MonoBehaviour
 
     public void StartNewDay()
     {
-        summaryUI.ShowSummary(queueManager.GetClientsServedToday(), queueManager.GetMoneyEarnedToday());
+        int productsSold = queueManager.GetProductsSoldToday();
+        summaryUI.ShowSummary(queueManager.GetClientsServedToday(), queueManager.GetMoneyEarnedToday(), productsSold);
         _dayNumber++;
         _timeOfDay = 8f / 24f;
 

@@ -25,6 +25,7 @@ public class PlayerInteraction : MonoBehaviour
     private PreviewValidator previewValidator;
     private PlayerEconomy playerEconomy;
     private CashRegisterInteraction cashRegisterInteraction;
+    [SerializeField] private DailySummary dailySummary;
 
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
@@ -136,6 +137,9 @@ public class PlayerInteraction : MonoBehaviour
                 dropHintUI.SetActive(false);
                 hintText.text = "";
                 playerEconomy.ReceivePayment(20);
+
+                if (dailySummary != null)
+                    dailySummary.IncrementBoxesThrownAway();
             }
         }
     }
@@ -420,10 +424,16 @@ public class PlayerInteraction : MonoBehaviour
                     currentClient.GetHit();
                     playerEconomy.ReceivePayment(currentClient.newTotal);
 
+                    if (dailySummary != null)
+                        dailySummary.IncrementThievesCaught();
+
                 }
                 else
                 {
                     currentClient.GetHit();
+
+                    if (dailySummary != null)
+                        dailySummary.IncrementThievesCaught();
                 }
             }
         }

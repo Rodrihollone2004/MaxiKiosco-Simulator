@@ -38,8 +38,11 @@ public class ClientQueueManager : MonoBehaviour
 
     private int clientsServedToday = 0;
     private int moneyEarnedToday = 0;
+    private int productsSoldToday = 0;
+
 
     public bool IsTrashBlockingSpawn {  get; private set; } = false;
+    public int GetProductsSoldToday() => productsSoldToday;
 
     public int GetClientsServedToday() => clientsServedToday;
     public int GetMoneyEarnedToday() => moneyEarnedToday;
@@ -108,6 +111,8 @@ public class ClientQueueManager : MonoBehaviour
 
         clientsServedToday++;
         moneyEarnedToday += client.CalculateCartTotal();
+
+        productsSoldToday += client.GetProductsCount();
 
         yield return new WaitUntil(() => client.NpcController.isInDequeue);
 
@@ -229,5 +234,6 @@ public class ClientQueueManager : MonoBehaviour
         clientsServedToday = 0;
         moneyEarnedToday = 0;
         clientsSpawnedToday = 0;
+        productsSoldToday = 0;
     }
 }

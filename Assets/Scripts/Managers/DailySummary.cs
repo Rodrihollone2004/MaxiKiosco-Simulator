@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class DailySummary : MonoBehaviour
@@ -8,11 +8,23 @@ public class DailySummary : MonoBehaviour
     [SerializeField] private PlayerCam playerCam;
     [SerializeField] private PlayerMovement playerMov;
 
-    public void ShowSummary(int clientsServed, int moneyEarned)
+    private int trashCleanedToday = 0;
+    private int thievesCaughtToday = 0;
+    private int boxesThrownAwayToday = 0;
+    private int productsSoldToday = 0;
+
+    public void ShowSummary(int clientsServed, int moneyEarned, int productsSold = 0)
     {
-        summaryText.text = $"Resumen del D�a:\n\n" +
+        productsSoldToday = productsSold;
+
+        summaryText.text = $"Resumen del Día:\n\n" +
                            $"Clientes atendidos: {clientsServed}\n" +
-                           $"Total ganado: ${moneyEarned}";
+                           $"Total ganado: ${moneyEarned}\n" +
+                           $"Productos vendidos: {productsSoldToday}\n" +
+                           $"Basura limpiada: {trashCleanedToday}\n" +
+                           $"Ladrones atrapados: {thievesCaughtToday}\n" +
+                           $"Cajas tiradas: {boxesThrownAwayToday}\n";
+                          
         summaryPanel.SetActive(true);
 
         playerCam.enabled = false;
@@ -27,6 +39,26 @@ public class DailySummary : MonoBehaviour
         }
     }
 
+    public void IncrementTrashCleaned()
+    {
+        trashCleanedToday++;
+    }
+
+    public void IncrementThievesCaught()
+    {
+        thievesCaughtToday++;
+    }
+
+    public void IncrementBoxesThrownAway()
+    {
+        boxesThrownAwayToday++;
+    }
+
+    public void IncrementProductsSold(int amount = 1)
+    {
+        productsSoldToday += amount;
+    }
+
     public void HideSummary()
     {
         summaryPanel.SetActive(false);
@@ -36,5 +68,14 @@ public class DailySummary : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        ResetDailyStats();
+    }
+    private void ResetDailyStats()
+    {
+        trashCleanedToday = 0;
+        thievesCaughtToday = 0;
+        boxesThrownAwayToday = 0;
+        productsSoldToday = 0;
     }
 }

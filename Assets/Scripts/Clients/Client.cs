@@ -32,6 +32,15 @@ public class Client : MonoBehaviour
         matchedProducts = new List<ProductInteractable>();
         canvasClientManager = GetComponentInChildren<CanvasClientManager>();
     }
+    public int GetProductsCount()
+    {
+        int totalProducts = 0;
+        foreach (var item in cart)
+        {
+            totalProducts += item.Value;
+        }
+        return totalProducts;
+    }
 
     public void CalculateCost()
     {
