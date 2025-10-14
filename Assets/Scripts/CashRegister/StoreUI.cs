@@ -227,7 +227,6 @@ public class StoreUI : MonoBehaviour
 
         cartPrefabs.Clear();
         productsToBuy.Clear();
-        allStock.Clear();
     }
 
     private void CreateCartProduct(Product product, StockController controller)
