@@ -1,10 +1,15 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class TrashUI : MonoBehaviour
 {
     [SerializeField] private ClientTrashSpawner trashSpawner;
     [SerializeField] private TMP_Text trashText;
+    [SerializeField] private GameObject panel;
+
+    private Coroutine hidePanelCoroutine;
+    private bool isAbove50 = false;
 
     private void OnEnable()
     {
@@ -29,5 +34,37 @@ public class TrashUI : MonoBehaviour
             trashText.color = Color.yellow;
         else
             trashText.color = Color.black;
+
+        if (percentage >= 50f)
+        {
+            if (!isAbove50)
+            {
+                isAbove50 = true;
+                if (hidePanelCoroutine != null)
+                    StopCoroutine(hidePanelCoroutine);
+
+                panel.SetActive(true);
+            }
+        }
+        else
+        {
+            if (isAbove50)
+            {
+                isAbove50 = false;
+            }
+
+            if (hidePanelCoroutine != null)
+                StopCoroutine(hidePanelCoroutine);
+
+            hidePanelCoroutine = StartCoroutine(ShowPanelTemporarily());
+        }
+    }
+
+
+    private IEnumerator ShowPanelTemporarily()
+    {
+        panel.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        panel.SetActive(false);
     }
 }
