@@ -13,6 +13,20 @@ public class PlayerEconomy : MonoBehaviour
         MoneyBill.onPickBill += MoneyBill_onPickBill;
     }
 
+    public bool HasEnoughMoney(int amount)
+    {
+        return currentMoney >= amount;
+    }
+
+    public void DeductMoney(int amount)
+    {
+        if (currentMoney >= amount)
+        {
+            currentMoney -= amount;
+            moneyText.text = $"{currentMoney}";
+        }
+    }
+
     private void MoneyBill_onPickBill(int billValue, bool isAdding)
     {
         if (isAdding)

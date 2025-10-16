@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +38,9 @@ public class StoreUI : MonoBehaviour
 
     public static List<ProductInteractable> productsInWorld = new List<ProductInteractable>();
     public static List<StockController> allStock = new List<StockController>();
+
+    [SerializeField] private TMP_Text cartTotalText;
+    private int currentCartTotal = 0;
 
     public productType CurrentType { get; private set; }
 
@@ -105,6 +106,18 @@ public class StoreUI : MonoBehaviour
     {
         if (productsToBuy.Count > 0)
         {
+            int totalCost = 0;
+            foreach (Product p in productsToBuy)
+                totalCost += p.PackPrice;
+
+            if (!playerEconomy.HasEnoughMoney(totalCost))
+            {
+                Debug.Log("No tenes suficiente dinero para comprar todo.");
+                return;
+            }
+
+            playerEconomy.DeductMoney(totalCost);
+
             if (TutorialContent.Instance.CurrentIndexGuide < 11)
                 return;
 
@@ -199,12 +212,10 @@ public class StoreUI : MonoBehaviour
                         if (!allStock.Contains(controller))
                             allStock.Add(controller);
 
-                        bool purchased = playerEconomy.TryPurchase(capturedProduct);
-                        if (purchased && capturedProduct.Prefab != null)
-                        {
-                            productsToBuy.Add(capturedProduct);
-                            CreateCartProduct(capturedProduct, controller);
-                        }
+                        productsToBuy.Add(capturedProduct);
+                        CreateCartProduct(capturedProduct, controller);
+                        UpdateCartTotal();
+
                     });
 
                 }
@@ -212,12 +223,24 @@ public class StoreUI : MonoBehaviour
         }
     }
 
+    private void UpdateCartTotal()
+    {
+        currentCartTotal = 0;
+        foreach (Product p in productsToBuy)
+        {
+            currentCartTotal += p.PackPrice;
+        }
+
+        cartTotalText.text = $"Total: ${currentCartTotal}";
+    }
+
+
     public void DeleteCart(GameObject cartProduct, Product product, StockController controller)
     {
-        playerEconomy.ReceivePayment(product.PackPrice);
         productsToBuy.Remove(product);
         cartPrefabs.Remove(cartProduct);
         Destroy(cartProduct);
+        UpdateCartTotal();
     }
 
     private void ClearCart()
@@ -227,6 +250,7 @@ public class StoreUI : MonoBehaviour
 
         cartPrefabs.Clear();
         productsToBuy.Clear();
+        UpdateCartTotal();
     }
 
     private void CreateCartProduct(Product product, StockController controller)
