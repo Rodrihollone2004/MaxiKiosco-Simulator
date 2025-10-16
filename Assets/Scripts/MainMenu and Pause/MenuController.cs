@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using NUnit.Framework;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
-using Unity.VisualScripting;
 
 public class MenuController : MonoBehaviour
 {
@@ -37,7 +35,7 @@ public class MenuController : MonoBehaviour
     private int _qualityLevel;
     private bool _isFullScreen;
     private float _brightnessLevel;
-    
+
     [Header("Confirmation")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
@@ -76,10 +74,10 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-            if (postProcessingVolume.profile.TryGet(out colorAdjustments))
-            {
-                SetBrightness(defaultBrightness);
-            }
+        if (postProcessingVolume.profile.TryGet(out colorAdjustments))
+        {
+            SetBrightness(defaultBrightness);
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -92,7 +90,7 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene(_newGameLevel);
     }
-    
+
     public void LoadGameDialogYes()
     {
         if (PlayerPrefs.HasKey("SavedLevel"))
@@ -153,7 +151,7 @@ public class MenuController : MonoBehaviour
 
         if (colorAdjustments != null)
         {
-            colorAdjustments.postExposure.value = brightness * 2f - 1f; 
+            colorAdjustments.postExposure.value = brightness * 2f - 1f;
         }
     }
 
@@ -220,6 +218,6 @@ public class MenuController : MonoBehaviour
         confirmationPrompt.SetActive(true);
         yield return new WaitForSeconds(2);
         confirmationPrompt.SetActive(false);
-        
+
     }
 }

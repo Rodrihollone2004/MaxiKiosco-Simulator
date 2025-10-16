@@ -32,6 +32,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject dropHintUI;
     [SerializeField] private TMP_Text hintText;
+    [SerializeField] private TMP_Text nameText;
 
     public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
     public AudioClip PlaceProduct_ { get => placeProduct; set => placeProduct = value; }
@@ -455,9 +456,9 @@ public class PlayerInteraction : MonoBehaviour
             heldBroom = broom;
             heldBroom.SetHeld(true);
 
-            hintText.text = $"{broom.name}\n" +
-                    $"LMB para limpiar\n" +
-                    $"G  para soltar\n";
+            nameText.text = $"{broom.name}";
+            hintText.text = $"LMB para limpiar\n" +
+                            $"G  para soltar\n";
         }
 
         if (objToPickUp.TryGetComponent(out FurnitureBox fur))
@@ -510,9 +511,11 @@ public class PlayerInteraction : MonoBehaviour
 
             if (heldObject.TryGetComponent(out Broom broom))
             {
-                hintText.text = $"{broom.name}\n" +
-                    $"LMB para limpiar\n" +
-                    $"G  para soltar\n";
+
+
+                nameText.text = $"{broom.name}";
+                hintText.text = $"LMB para limpiar\n" +
+                                $"G  para soltar\n";
                 return;
             }
 
@@ -522,7 +525,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 productName = interactable.ProductData.Name;
 
-                hintText.text = $"{productName}\n" +
+                nameText.text = $"{productName}";
+                hintText.text =
                     $"E  para colocar\n" +
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
@@ -531,7 +535,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 productName = furnitureBox.name;
 
-                hintText.text = $"{productName}\n" +
+                nameText.text = $"{productName}";
+                hintText.text =
                     $"E  para colocar\n" +
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
@@ -540,15 +545,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 productName = upgrade.UpgradeData.Name;
 
-                hintText.text = $"{productName}\n" +
+                nameText.text = $"{productName}";
+                hintText.text =
                     $"E  para colocar\n" +
                     $"R  para rotar\n" +
                     $"G  para soltar\n";
             }
             else if (boxProduct != null && boxProduct.IsEmpty || furnitureBox != null && this.furnitureBox.IsEmpty)
             {
-                hintText.text = $"Caja Vacía\n" +
-                    $"Acercate al tacho/pallete para depositarla\n";
+                nameText.text = $"Caja Vacía\n";
+                hintText.text = $"Acercate al tacho/pallete para depositarla\n";
             }
         }
     }
