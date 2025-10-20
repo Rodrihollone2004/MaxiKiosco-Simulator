@@ -51,6 +51,28 @@ public class ProductInteractable : MonoBehaviour, IInteractable
         }
     }
 
+    public void CheckParent(GameObject finalObj, ProductInteractable product)
+    {
+        if (product.ProductData.PlaceZone != "Heladera")
+            return;
+
+        PlacementZoneProducts zone = null;
+        RaycastHit[] hits = Physics.RaycastAll(finalObj.transform.position, Vector3.down, 8f);
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.transform.TryGetComponent(out PlacementZoneProducts z))
+            {
+                zone = z;
+            }
+        }
+
+        if (zone != null)
+        {
+            finalObj.transform.SetParent(zone.transform);
+        }
+    }
+
     public void Highlight()
     {
     }

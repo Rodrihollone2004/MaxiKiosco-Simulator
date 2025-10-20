@@ -101,7 +101,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                 foreach (StockController controllers in StoreUI.allStock)
                     controllers.PlaceProduct(product);
 
-                CheckParent(finalObj, product);
+                product.CheckParent(finalObj, product);
 
                 productsPlaced.Add(product);
             }
@@ -129,29 +129,6 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         {
             if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
                 src.PlayOneShot(playerInteraction.ErrorSound);
-        }
-    }
-
-
-    private void CheckParent(GameObject finalObj, ProductInteractable product)
-    {
-        if (product.ProductData.PlaceZone != "Heladera")
-            return;
-
-        PlacementZoneProducts zone = null;
-        Collider[] hits = Physics.OverlapBox(finalObj.transform.position, finalObj.transform.localScale / 2f);
-        foreach (Collider hit in hits)
-        {
-            if (hit.transform.parent != null && hit.transform.parent.TryGetComponent(out PlacementZoneProducts z))
-            {
-                zone = z;
-                break;
-            }
-        }
-
-        if (zone != null)
-        {
-            finalObj.transform.SetParent(zone.transform);
         }
     }
 

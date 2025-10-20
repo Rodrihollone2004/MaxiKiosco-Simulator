@@ -207,7 +207,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7120964974163913058}
   - component: {fileID: 7325228381302880220}
-  m_Layer: 0
+  - component: {fileID: 5504509425647762876}
+  m_Layer: 3
   m_Name: Placement Zones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +253,27 @@ MonoBehaviour:
     - {fileID: 3673935504625998938}
     - {fileID: 8500837714683675215}
     - {fileID: 8982624885705942223}
+--- !u!65 &5504509425647762876
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813728362051091214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.6994438, y: 0.1572671, z: 0.742102}
+  m_Center: {x: 0.024690628, y: -0.23498201, z: 0.6618659}
 --- !u!1 &3232415718915978942
 GameObject:
   m_ObjectHideFlags: 0

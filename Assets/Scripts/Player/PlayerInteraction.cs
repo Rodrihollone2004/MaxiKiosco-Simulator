@@ -355,7 +355,10 @@ public class PlayerInteraction : MonoBehaviour
             previewValidator.enabled = false;
 
             if (productPlaced.TryGetComponent<ProductInteractable>(out ProductInteractable product))
+            {
                 product.IsPlaced = true;
+                product.CheckParent(productPlaced, product);
+            }
             else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
                 upgrade.IsPlaced = true;
             else if (productPlaced.layer == LayerMask.NameToLayer("fridge"))
