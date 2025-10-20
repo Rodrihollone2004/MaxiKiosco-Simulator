@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Botella paso de los toros
+  m_EditorClassIdentifier: 
+  _name: Paso de los toros 600ml
+  _id: 1000001
+  _price: 1075
+  originalPrice: 1075
+  _placeZone: Heladera
+  _packSize: 12
+  _currentAmount: 12
+  _packPrice: 12900
+  prefab: {fileID: 7913875220722252700, guid: 91723a0ece79f0147b340de420df50ea, type: 3}
+  type: 1

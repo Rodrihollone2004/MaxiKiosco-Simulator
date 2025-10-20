@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Shot Blanco (chico)
+  m_EditorClassIdentifier: 
+  _name: Shot Blanco chico
+  _id: 10
+  _price: 855
+  originalPrice: 855
+  _placeZone: Isla
+  _packSize: 25
+  _currentAmount: 25
+  _packPrice: 21350
+  prefab: {fileID: 7755341455082604350, guid: 3b4c2955946448a4eb2a6e6ef1dc8518, type: 3}
+  type: 0

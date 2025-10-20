@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Melbas
+  m_EditorClassIdentifier: 
+  _name: Melbas
+  _id: 4000002
+  _price: 1345
+  originalPrice: 1345
+  _placeZone: Isla
+  _packSize: 36
+  _currentAmount: 36
+  _packPrice: 48400
+  prefab: {fileID: 2824059289858301425, guid: c6a43c3561b0f0d41997000e0d4df78d, type: 3}
+  type: 4

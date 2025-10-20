@@ -302,8 +302,8 @@ public class PlayerInteraction : MonoBehaviour
             string productPlaceZone = productInteractable.ProductData.PlaceZone;
             productInteractable.IsPlaced = false;
 
-            hintText.text = $"{productInteractable.ProductData.Name}\n" +
-                    $"E  para colocar\n" +
+            nameText.text = productInteractable.ProductData.Name;
+            hintText.text = $"E  para colocar\n" +
                     $"R  para rotar\n";
 
             foreach (PlacementZoneProducts zone in AllZones)
@@ -317,8 +317,8 @@ public class PlayerInteraction : MonoBehaviour
             string upgradePlaceZone = upgradeInteractable.UpgradeData.PlaceZone;
             upgradeInteractable.IsPlaced = false;
 
-            hintText.text = $"{upgradeInteractable.UpgradeData.Name}\n" +
-                    $"E  para colocar\n" +
+            nameText.text = upgradeInteractable.UpgradeData.Name;
+            hintText.text = $"E  para colocar\n" +
                     $"R  para rotar\n";
 
             foreach (PlacementZoneProducts zone in AllZones)
@@ -328,8 +328,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             furnitureZones = FindObjectOfType<PlacementZone>();
             string fridgePlaceZone = productPlaced.GetComponentInChildren<PlacementZoneProducts>().ListZones[0].name;
-            hintText.text = $"{fridgePlaceZone}\n" +
-                    $"E  para colocar\n" +
+
+            nameText.text = fridgePlaceZone;
+            hintText.text = $"E  para colocar\n" +
                     $"R  para rotar\n";
 
             furnitureZones.ShowVisual();
