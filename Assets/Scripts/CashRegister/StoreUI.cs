@@ -51,6 +51,7 @@ public class StoreUI : MonoBehaviour
         CheckButtonPressed(productType.Chocolates);
     }
 
+
     private void CategoriesButtons()
     {
         foreach (ProductCategory category in database.categories)
@@ -117,6 +118,7 @@ public class StoreUI : MonoBehaviour
             }
 
             playerEconomy.DeductMoney(totalCost);
+            playerEconomy.ShowFeedback(-totalCost);
 
             if (TutorialContent.Instance.CurrentIndexGuide < 11)
                 return;

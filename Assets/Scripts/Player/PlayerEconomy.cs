@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerEconomy : MonoBehaviour
 {
@@ -8,9 +8,26 @@ public class PlayerEconomy : MonoBehaviour
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private int currentChange = 0;
 
+    [Header("Feedback UI")]
+    [SerializeField] private GameObject feedbackPrefab;
+    [SerializeField] private Transform feedbackParent;
+
     private void Awake()
     {
         MoneyBill.onPickBill += MoneyBill_onPickBill;
+    }
+
+    public void ShowFeedback(int amount)
+    {
+        if (feedbackPrefab == null || feedbackParent == null) return;
+
+        GameObject feedback = Instantiate(feedbackPrefab, feedbackParent);
+        feedback.transform.localPosition = Vector3.zero;
+
+        string prefix = amount >= 0 ? "+" : "";
+        Color color = amount >= 0 ? Color.green : Color.red;
+
+        feedback.GetComponent<MoneyFeedbackText>().Setup($"{prefix}{amount}", color);
     }
 
     public bool HasEnoughMoney(int amount)
@@ -61,6 +78,7 @@ public class PlayerEconomy : MonoBehaviour
     {
         currentMoney += amount;
         moneyText.text = $"{currentMoney}";
+        ShowFeedback(amount);
         currentChange = 0;
     }
 
@@ -72,6 +90,7 @@ public class PlayerEconomy : MonoBehaviour
         {
             currentMoney -= upgrade.Price;
             moneyText.text = $"{currentMoney}";
+            ShowFeedback(-upgrade.Price);
             return true;
         }
         else
@@ -89,6 +108,7 @@ public class PlayerEconomy : MonoBehaviour
         {
             currentMoney -= product.PackPrice;
             moneyText.text = $"{currentMoney}";
+            ShowFeedback(-product.PackPrice);
             return true;
         }
         else
