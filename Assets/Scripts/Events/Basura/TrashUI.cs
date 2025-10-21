@@ -33,7 +33,7 @@ public class TrashUI : MonoBehaviour
         else if (percentage >= 50f)
             trashText.color = Color.yellow;
         else
-            trashText.color = Color.black;
+            trashText.color = Color.white;
 
         if (percentage >= 50f)
         {
