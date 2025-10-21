@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Milenio 20
+  m_EditorClassIdentifier: 
+  _name: Milenio 20
+  _id: 0
+  _price: 1600
+  originalPrice: 1600
+  _placeZone: Isla
+  _packSize: 10
+  _currentAmount: 10
+  _packPrice: 16000
+  prefab: {fileID: 6074898276715071159, guid: 056b25d157583d14497cb33d30f4a353, type: 3}
+  type: 5

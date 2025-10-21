@@ -992,7 +992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 368.6, y: -45.997}
+  m_AnchoredPosition: {x: 368.6001, y: -45.99695}
   m_SizeDelta: {x: 47.3323, y: 46.2592}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &24754959 stripped
@@ -103307,6 +103307,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed4b6b0cb5d758b4387995b36d1fa515, type: 2}
     - {fileID: 11400000, guid: 1136bdc91121c234cb5ee977db580d8a, type: 2}
     - {fileID: 11400000, guid: fce548eff65434e4e9d1ae2d7502f684, type: 2}
+  - numberUpdate: 16
+    products:
+    - {fileID: 11400000, guid: dc45b1586b8760f4fbe9518c5cf4aa3d, type: 2}
+    - {fileID: 11400000, guid: efc86de9b49898049a9133b84277470c, type: 2}
+    - {fileID: 11400000, guid: bf3979449cd6a4f41ae4c63226d57920, type: 2}
+    - {fileID: 11400000, guid: 216e226059919c64ab43ddefa28a26d1, type: 2}
+    - {fileID: 11400000, guid: 9a865dd3e62f7954595394877d12398a, type: 2}
+    - {fileID: 11400000, guid: 6c92ab32a381ca34e9b45e59ffce2e71, type: 2}
+    - {fileID: 11400000, guid: 246ebaae1e61f2c4fa2c8fab02c74da5, type: 2}
+    - {fileID: 11400000, guid: 750e1909039965c4e9323626062cdab4, type: 2}
+    - {fileID: 11400000, guid: c3eabe28e041a394896f5b5a26602711, type: 2}
   database: {fileID: 11400000, guid: 0d1d2dd6d70dce2429a98c5f31ce3d12, type: 2}
   playerEconomy: {fileID: 1964649770}
   categoriesButtonPrefab: {fileID: 6334398763645884139, guid: 5030a3f6d887ee54792ca3a99d7fbd43,
