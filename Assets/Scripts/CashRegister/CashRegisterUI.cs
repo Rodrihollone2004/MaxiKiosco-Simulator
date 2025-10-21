@@ -6,6 +6,8 @@ using UnityEngine;
 public class CashRegisterUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text cartText;
+    [SerializeField] private TMP_Text priceText;
+    [SerializeField] private TMP_Text amountText;
     [SerializeField] private TMP_Text payText;
     [SerializeField] private TMP_Text changeText;
     [SerializeField] private GameObject changeUI;
@@ -14,6 +16,8 @@ public class CashRegisterUI : MonoBehaviour
     int change;
     Dictionary<ProductInteractable, int> cart;
     string cartInfo;
+    string priceInfo;
+    string amountInfo;
 
 
     public void UpdatePaymentText(Client client, List<int> clientPayment, int playerGivenChange, NPC_Controller nPC)
@@ -30,13 +34,17 @@ public class CashRegisterUI : MonoBehaviour
                 change = simulatedTotal - totalToPay;
                 cart = client.GetCart();
                 cartInfo = "Carrito:\n";
+                priceInfo = "Precio c/u:\n";
+                amountInfo = "Cantidad:\n";
 
                 foreach (KeyValuePair<ProductInteractable, int> item in cart)
                 {
                     ProductInteractable product = item.Key;
                     int amount = item.Value;
 
-                    cartInfo += $"- {product.ProductData.Name} (${product.ProductData.Price} x{amount})\n";
+                    cartInfo += $"- {product.ProductData.Name}\n";
+                    priceInfo += $"${product.ProductData.Price}\n";
+                    amountInfo += $"x{amount}\n";
                 }
             }
 
@@ -47,6 +55,8 @@ public class CashRegisterUI : MonoBehaviour
                 payText.text =
                 $"Total: ${totalToPay}\n";
                 cartText.text = $"{cartInfo}";
+                priceText.text = $"{priceInfo}";
+                amountText.text = $"{amountInfo}";
                 changeUI.SetActive(false);
 
             }
@@ -62,6 +72,8 @@ public class CashRegisterUI : MonoBehaviour
                     $"Vuelto entregado: ${playerGivenChange}\n\n";
 
                 cartText.text = $"{cartInfo}";
+                priceText.text = $"{priceInfo}";
+                amountText.text = $"{amountInfo}";
             }
         }
     }
@@ -71,5 +83,7 @@ public class CashRegisterUI : MonoBehaviour
         payText.text = "";
         changeText.text = "";
         cartText.text = "";
+        priceText.text = "";
+        amountText.text = "";
     }
 }
