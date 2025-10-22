@@ -14,7 +14,7 @@ public class Termica : MonoBehaviour, IInteractable
 
     [SerializeField] private string doorAnimationParam = "OpenDoor";
     [SerializeField] private string knobAnimationParam = "LiftKnob";
-
+    [SerializeField] private GameObject canvasPc;
     public static Action<bool> OnTermicaStateChanged;
 
     public bool CanBePickedUp => false;
@@ -31,6 +31,7 @@ public class Termica : MonoBehaviour, IInteractable
     }
     private void Start()
     {
+        canvasPc.SetActive(false);
         IsTermicaOn = false;
     }
 
@@ -39,6 +40,7 @@ public class Termica : MonoBehaviour, IInteractable
         if (IsTermicaOn == false)
         {
             IsTermicaOn = true;
+            canvasPc.SetActive(true);
 
             if (animator != null)
             {
