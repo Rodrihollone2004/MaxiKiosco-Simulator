@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEditor.Rendering.Universal;
@@ -254,23 +255,6 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
             }
-        }
-        else if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hitFridge, interactRange, fridgeLayer))
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                CheckRepick(hitFridge.collider.gameObject);
-            }
-        }
-        else
-        {
-            if (currentInteractable != null)
-            {
-                currentInteractable.Unhighlight();
-                currentInteractable = null;
-            }
-            if (highlightPanel != null)
-                highlightPanel.SetActive(false);
         }
     }
 
