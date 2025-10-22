@@ -7,6 +7,8 @@ public class BoxStackZone : MonoBehaviour
     [SerializeField] private GameObject brokenBoxPrefab;
     [SerializeField] private float boxHeight = 0.5f;
     [SerializeField] private float yOffset = 0f;
+    [SerializeField] private int limitBoxes;
+    private int currentBoxes;
     private DailySummary dailySummary;
 
 
@@ -21,27 +23,30 @@ public class BoxStackZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ProductPlaceManager box = other.GetComponent<ProductPlaceManager>();
-        FurnitureBox furnitureBox = other.GetComponent<FurnitureBox>();
-
-        if (box != null && box.IsEmpty || furnitureBox != null && furnitureBox.IsEmpty)
+        if (currentBoxes < limitBoxes)
         {
-            Vector3 spawnPos = transform.position + Vector3.up * (stackedBoxes.Count * boxHeight + yOffset);
+            ProductPlaceManager box = other.GetComponent<ProductPlaceManager>();
+            FurnitureBox furnitureBox = other.GetComponent<FurnitureBox>();
 
-            GameObject newBrokenBox = Instantiate(brokenBoxPrefab, spawnPos, brokenBoxPrefab.transform.rotation);
+            if (box != null && box.IsEmpty || furnitureBox != null && furnitureBox.IsEmpty)
+            {
+                Vector3 spawnPos = transform.position + Vector3.up * (stackedBoxes.Count * boxHeight + yOffset);
 
-            newBrokenBox.transform.SetParent(transform);
+                GameObject newBrokenBox = Instantiate(brokenBoxPrefab, spawnPos, brokenBoxPrefab.transform.rotation);
 
-            stackedBoxes.Add(newBrokenBox);
+                newBrokenBox.transform.SetParent(transform);
 
-            Destroy(other.gameObject);
+                stackedBoxes.Add(newBrokenBox);
 
-            PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
-            if (playerInteraction != null)
-                playerInteraction.DropHintUI.SetActive(false);
+                Destroy(other.gameObject);
 
-            if (dailySummary != null)
-                dailySummary.IncrementBoxesThrownAway();
+                PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
+                if (playerInteraction != null)
+                    playerInteraction.DropHintUI.SetActive(false);
+
+                if (dailySummary != null)
+                    dailySummary.IncrementBoxesThrownAway();
+            }
         }
     }
 }
