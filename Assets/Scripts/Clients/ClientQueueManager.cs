@@ -9,6 +9,7 @@ public class ClientQueueManager : MonoBehaviour
     [SerializeField] private List<GameObject> clientPrefab;
     [SerializeField] private Transform payPosition;
     [SerializeField] private Transform queueStartPosition;
+    [SerializeField] private Transform contentClients;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float minTimeBetweenClients = 60f;
     [SerializeField] private float maxTimeBetweenClients = 180f;
@@ -22,11 +23,6 @@ public class ClientQueueManager : MonoBehaviour
     [Header("Daily Clients")]
     [SerializeField] private int maxClientsPerDay = 20;
     private int clientsSpawnedToday = 0;
-
-    [Header("Events")]
-    public UnityEvent<Client> OnClientServed;
-    public UnityEvent OnQueueUpdated;
-
 
     public Queue<Client> _clientQueue = new Queue<Client>();
     private List<GameObject> _clientPool = new List<GameObject>();
@@ -84,7 +80,7 @@ public class ClientQueueManager : MonoBehaviour
 
     private GameObject CreateNewClientInPool()
     {
-        GameObject client = Instantiate(clientPrefab[Random.Range(0, clientPrefab.Count)], queueStartPosition.position, Quaternion.identity);
+        GameObject client = Instantiate(clientPrefab[Random.Range(0, clientPrefab.Count)], queueStartPosition.position, Quaternion.identity, contentClients);
         client.SetActive(false);
         _clientPool.Add(client);
         return client;
@@ -107,7 +103,6 @@ public class ClientQueueManager : MonoBehaviour
         if (_clientQueue.Count == 0) yield break;
 
         Client client = _clientQueue.Dequeue();
-        OnClientServed?.Invoke(client);
 
         clientsServedToday++;
         moneyEarnedToday += client.CalculateCartTotal();
@@ -120,7 +115,6 @@ public class ClientQueueManager : MonoBehaviour
             trashSpawner.SpawnTrash();
 
         ReturnClientToPool(client);
-        OnQueueUpdated?.Invoke();
 
         if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
             StartClientSpawning();
@@ -150,7 +144,6 @@ public class ClientQueueManager : MonoBehaviour
             trashSpawner.SpawnTrash();
 
         ReturnClientToPool(currentClient);
-        OnQueueUpdated?.Invoke();
 
         if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
             StartClientSpawning();
@@ -178,8 +171,10 @@ public class ClientQueueManager : MonoBehaviour
 
     public void ReturnClientToPool(Client client)
     {
-        client.gameObject.SetActive(false);
-        client.transform.position = queueStartPosition.position;
+        _clientPool.Remove(client.gameObject);
+        Destroy(client.gameObject);
+        //client.gameObject.SetActive(false);
+        //client.transform.position = queueStartPosition.position;
     }
 
     private IEnumerator ClientSpawnRoutine()

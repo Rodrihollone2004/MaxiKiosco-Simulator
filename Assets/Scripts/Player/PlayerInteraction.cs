@@ -60,11 +60,16 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject highlightPanel;
     [SerializeField] private TMP_Text highlightNameText;
 
+
+    private int ignorePlayer;
+
     private void Awake()
     {
         playerEconomy = GetComponent<PlayerEconomy>();
         cashRegisterInteraction = GetComponent<CashRegisterInteraction>();
         audioSource = GetComponent<AudioSource>();
+
+        ignorePlayer = ~LayerMask.GetMask("Player");
     }
 
     private void Update()
@@ -172,8 +177,21 @@ public class PlayerInteraction : MonoBehaviour
 
         RaycastHit hitFridge;
         RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
         {
+            if (hit.collider.gameObject.layer != 3)
+            {
+                if (currentInteractable != null)
+                {
+                    currentInteractable.Unhighlight();
+                    currentInteractable = null;
+                }
+
+                if (highlightPanel != null && highlightPanel.activeInHierarchy)
+                    highlightPanel.SetActive(false);
+                return;
+            }
+
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 if (Input.GetKeyDown(KeyCode.F) && !cashRegisterInteraction.InCashRegister && heldObject == null)
@@ -394,11 +412,16 @@ public class PlayerInteraction : MonoBehaviour
     private void TryPickUp()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
+
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
         {
+            if (hit.collider.gameObject.layer != 3)
+                return;
+
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
+
                 if (interactable.CanBePickedUp && TutorialContent.Instance.CurrentIndexGuide > 11)
                     PickUp(hit.collider.gameObject);
             }

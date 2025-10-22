@@ -30464,6 +30464,7 @@ MonoBehaviour:
   - {fileID: 1202647282908928212, guid: 461bd6bfa8c467a458893d18cfeea60b, type: 3}
   payPosition: {fileID: 149360558}
   queueStartPosition: {fileID: 405766296}
+  contentClients: {fileID: 1403375700}
   moveSpeed: 3
   minTimeBetweenClients: 14
   maxTimeBetweenClients: 17
@@ -30472,12 +30473,6 @@ MonoBehaviour:
   dayNightCycle: {fileID: 880010573}
   trashThreshold: 70
   maxClientsPerDay: 35
-  OnClientServed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnQueueUpdated:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &485706441
 Transform:
   m_ObjectHideFlags: 0
@@ -115690,6 +115685,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401382702}
   m_CullTransparentMesh: 1
+--- !u!1 &1403375699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403375700}
+  m_Layer: 0
+  m_Name: Content Clients
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403375700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403375699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1403799603
 GameObject:
   m_ObjectHideFlags: 0
@@ -143822,3 +143848,4 @@ SceneRoots:
   - {fileID: 1456247959}
   - {fileID: 1450194294}
   - {fileID: 82364638}
+  - {fileID: 1403375700}
