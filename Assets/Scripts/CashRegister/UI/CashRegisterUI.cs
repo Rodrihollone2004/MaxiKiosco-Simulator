@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CashRegisterUI : MonoBehaviour
 {
@@ -19,6 +21,13 @@ public class CashRegisterUI : MonoBehaviour
     string priceInfo;
     string amountInfo;
 
+    [SerializeField] private Transform contentParent;
+
+    private void Start()
+    {
+        foreach (Transform child in contentParent)
+            child.gameObject.SetActive(false);
+    }
 
     public void UpdatePaymentText(Client client, List<int> clientPayment, int playerGivenChange, NPC_Controller nPC)
     {
@@ -33,18 +42,21 @@ public class CashRegisterUI : MonoBehaviour
                 simulatedTotal = clientPayment.Sum();
                 change = simulatedTotal - totalToPay;
                 cart = client.GetCart();
-                cartInfo = "Carrito:\n";
-                priceInfo = "Precio c/u:\n";
-                amountInfo = "Cantidad:\n";
+
+                int index = 0;
 
                 foreach (KeyValuePair<ProductInteractable, int> item in cart)
                 {
                     ProductInteractable product = item.Key;
                     int amount = item.Value;
 
-                    cartInfo += $"- {product.ProductData.Name}\n";
+                    contentParent.GetChild(index).gameObject.SetActive(true);
+
+                    cartInfo += $"{product.ProductData.Name}\n";
                     priceInfo += $"${product.ProductData.Price}\n";
                     amountInfo += $"x{amount}\n";
+
+                    index++;
                 }
             }
 
@@ -85,5 +97,11 @@ public class CashRegisterUI : MonoBehaviour
         cartText.text = "";
         priceText.text = "";
         amountText.text = "";
+        cartInfo = "";
+        priceInfo = "";
+        amountInfo = "";
+
+        foreach (Transform child in contentParent)
+            child.gameObject.SetActive(false);
     }
 }

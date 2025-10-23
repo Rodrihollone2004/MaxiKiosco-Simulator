@@ -180,6 +180,13 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
         {
+            if(hit.collider.gameObject.layer == 14 && Input.GetKeyDown(KeyCode.F))
+            {
+                CheckRepick(hit.collider.gameObject);
+                return;
+            }
+
+
             if (hit.collider.gameObject.layer != 3)
             {
                 if (currentInteractable != null)
