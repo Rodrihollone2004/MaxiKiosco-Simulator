@@ -154,7 +154,7 @@ public class PlayerInteraction : MonoBehaviour
     private void TrySubtractBill()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, interactLayer))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
             if (hit.collider.TryGetComponent(out MoneyBill moneyBill))
                 moneyBill.InteractSubtract();
     }

@@ -10,6 +10,11 @@ public class QRPaymentHandler : MonoBehaviour
 
     private Client currentClient;
 
+    private void Start()
+    {
+        qrPaymentUI.SetActive(false);
+    }
+
     public void SetupQRPayment(Client client)
     {
         currentClient = client;

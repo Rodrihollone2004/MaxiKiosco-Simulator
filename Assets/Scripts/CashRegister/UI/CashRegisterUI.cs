@@ -11,9 +11,10 @@ public class CashRegisterUI : MonoBehaviour
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private TMP_Text amountText;
     [SerializeField] private TMP_Text payText;
-    [SerializeField] private TMP_Text changeText;
-    [SerializeField] private TMP_Text changeTitle;
-    [SerializeField] private GameObject changeUI;
+    [SerializeField] private TMP_Text simulatedPayText;
+    [SerializeField] private TMP_Text changeClientText;
+    [SerializeField] private TMP_Text changeGivenText;
+    [SerializeField] private List<GameObject> changeUI;
     int totalToPay;
     int simulatedTotal;
     int change;
@@ -70,24 +71,30 @@ public class CashRegisterUI : MonoBehaviour
                 cartText.text = $"{cartInfo}";
                 priceText.text = $"{priceInfo}";
                 amountText.text = $"{amountInfo}";
-                changeUI.SetActive(false);
-                changeTitle.text = "";
+
+                foreach (GameObject texts in changeUI)
+                    texts.SetActive(false);
             }
             else
             {
-                changeUI.SetActive(true);
+                foreach (GameObject texts in changeUI)
+                    texts.SetActive(true);
 
                 payText.text =
-                    $"${totalToPay}\n" +
+                    $"${totalToPay}\n";
+
+                simulatedPayText.text =
                     $"${simulatedTotal}\n";
-                changeText.text =
-                    $"${change} / " +
-                    $"${playerGivenChange}\n\n";
+
+                changeClientText.text =
+                    $"${change}";
+
+                changeGivenText.text =
+                    $"${playerGivenChange}";
 
                 cartText.text = $"{cartInfo}";
                 priceText.text = $"{priceInfo}";
                 amountText.text = $"{amountInfo}";
-                changeTitle.text = "Vuelto: ";
             }
         }
     }
@@ -95,7 +102,9 @@ public class CashRegisterUI : MonoBehaviour
     public void ClearText()
     {
         payText.text = "";
-        changeText.text = "";
+        simulatedPayText.text = "";
+        changeClientText.text = "";
+        changeGivenText.text = "";
         cartText.text = "";
         priceText.text = "";
         amountText.text = "";
