@@ -14,7 +14,8 @@ public class PreviewValidator : MonoBehaviour
     private void Awake()
     {
         meshRenderer = gameObject.GetComponentsInChildren<MeshRenderer>();
-        blockedLayers = ~(1 << LayerMask.NameToLayer("Water"));
+        int ignore = (1 << LayerMask.NameToLayer("Water")) | (1 << LayerMask.NameToLayer("Player"));
+        blockedLayers = ~ignore;
     }
 
     public void Initialize(Color valid, Color invalid)
