@@ -13,11 +13,19 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private Transform productButtonContainer;
     [SerializeField] private GameObject productButtonPrefab;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject ConfirmUpgrade;
+    [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
     [SerializeField] private LayerMask productLayer;
 
     [SerializeField] private List<Upgrade> upgradesUnlocked = new List<Upgrade>();
 
     private Dictionary<Upgrade, GameObject> upgradesButtons = new Dictionary<Upgrade, GameObject>();
+
+    private void Start()
+    {
+        ConfirmUpgrade.SetActive(false);
+    }
 
     public void PopulateStore()
     {
@@ -43,25 +51,40 @@ public class UpgradeManager : MonoBehaviour
 
                     upgradesButtons.Add(upgrade, inputGO);
 
-                    inputGO.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+                    inputGO.GetComponent<Button>().onClick.AddListener(() =>
                     {
                         if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 7)
                         {
-                            bool purchasedFridge = playerEconomy.TryPurchaseUpgrade(upgrade);
+                            bool purchasedFridge = playerEconomy.HasEnoughMoney(upgrade.Price);
                             if (purchasedFridge && upgrade.Prefab != null)
                             {
-                                SpawnUpgrade(upgrade);
+                                ConfirmUpgrade.SetActive(true);
+
+                                yesButton.onClick.RemoveAllListeners();
+
+                                yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
+                                yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
+                                yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
+                                yesButton.onClick.AddListener(() => TutorialContent.Instance.CompleteStep(7));
+
+                                noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                             }
-                            TutorialContent.Instance.CompleteStep(7);
                         }
 
                         if (TutorialContent.Instance.CurrentIndexGuide < 12)
                             return;
 
-                        bool purchased = playerEconomy.TryPurchaseUpgrade(upgrade);
+                        bool purchased = playerEconomy.HasEnoughMoney(upgrade.Price);
                         if (purchased && upgrade.Prefab != null)
                         {
-                            SpawnUpgrade(upgrade);
+                            ConfirmUpgrade.SetActive(true);
+                            yesButton.onClick.RemoveAllListeners();
+
+                            yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
+                            yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
+                            yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
+
+                            noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                         }
                     });
                 }
@@ -71,7 +94,7 @@ public class UpgradeManager : MonoBehaviour
     private void SpawnUpgrade(Upgrade upgrade)
     {
         GameObject spawned = Instantiate(upgrade.Prefab, spawnPoint.transform.position, Quaternion.identity);
-        
+
         if (upgrade.Name != "Heladera")
             SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
         else

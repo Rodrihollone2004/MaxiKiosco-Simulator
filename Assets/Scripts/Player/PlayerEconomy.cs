@@ -88,15 +88,19 @@ public class PlayerEconomy : MonoBehaviour
 
         if (currentMoney >= upgrade.Price)
         {
-            currentMoney -= upgrade.Price;
-            moneyText.text = $"{currentMoney}";
-            ShowFeedback(-upgrade.Price);
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public void SubtractMoneyUpgrade(Upgrade upgrade)
+    {
+        currentMoney -= upgrade.Price;
+        moneyText.text = $"{currentMoney}";
+        ShowFeedback(-upgrade.Price);
     }
 
     // Restar plata al comprar
