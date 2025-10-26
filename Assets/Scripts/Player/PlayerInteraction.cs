@@ -3,6 +3,7 @@ using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static Cinemachine.DocumentationSortingAttribute;
 
 public class PlayerInteraction : MonoBehaviour
@@ -61,7 +62,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject highlightPanel;
     [SerializeField] private TMP_Text highlightNameText;
 
-
+    private int timerRepick;
+    [SerializeField] private int limitTimerRepick;
     private int ignorePlayer;
 
     private void Awake()
@@ -88,6 +90,9 @@ public class PlayerInteraction : MonoBehaviour
                 TryClean();
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.F))
+            timerRepick = 0;
 
         if (Input.GetKeyDown(subtractKey))
             TrySubtractBill();
@@ -180,10 +185,15 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
         {
-            if(hit.collider.gameObject.layer == 14 && Input.GetKeyDown(KeyCode.F))
+            if (hit.collider.gameObject.layer == 14 && Input.GetKey(KeyCode.F))
             {
-                CheckRepick(hit.collider.gameObject);
-                return;
+                timerRepick += 1;
+
+                if (timerRepick >= limitTimerRepick)
+                {
+                    CheckRepick(hit.collider.gameObject);
+                    return;
+                }
             }
 
 
@@ -202,16 +212,22 @@ public class PlayerInteraction : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (Input.GetKeyDown(KeyCode.F) && !cashRegisterInteraction.InCashRegister && heldObject == null)
+                if (Input.GetKey(KeyCode.F) && !cashRegisterInteraction.InCashRegister && heldObject == null)
                 {
+                    timerRepick += 1;
 
-                    ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
-                    UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
+                    if (timerRepick >= limitTimerRepick)
+                    {
+                        ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
+                        UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
 
-                    if (productPlaced != null && productPlaced.IsPlaced)
-                        CheckRepick(productPlaced.gameObject);
-                    else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
-                        CheckRepick(upgradeInteractable.gameObject);
+                        timerRepick = 0;
+
+                        if (productPlaced != null && productPlaced.IsPlaced)
+                            CheckRepick(productPlaced.gameObject);
+                        else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
+                            CheckRepick(upgradeInteractable.gameObject);
+                    }
                 }
 
                 if (interactable != currentInteractable)
