@@ -18,7 +18,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private Button noButton;
     [SerializeField] private LayerMask productLayer;
 
-    [SerializeField] private List<Upgrade> upgradesUnlocked = new List<Upgrade>();
+    [SerializeField] private List<UpgradeUpdate> upgradesUnlocked = new List<UpgradeUpdate>();
 
     private Dictionary<Upgrade, GameObject> upgradesButtons = new Dictionary<Upgrade, GameObject>();
 
@@ -30,8 +30,9 @@ public class UpgradeManager : MonoBehaviour
     public void PopulateStore()
     {
         if (upgradesUnlocked.Count > 0)
-            foreach (Upgrade upgrade in upgradesUnlocked)
+            foreach (UpgradeUpdate upgradeUpdate in upgradesUnlocked)
             {
+                foreach(Upgrade upgrade in upgradeUpdate.upgrades)
                 if (experienceManager.CurrentLevel >= upgrade.LevelUpdate && !upgradesButtons.ContainsKey(upgrade))
                 {
                     GameObject inputGO = Instantiate(productButtonPrefab, productButtonContainer);
@@ -127,4 +128,11 @@ public class UpgradeManager : MonoBehaviour
         }
         return layer;
     }
+}
+
+[System.Serializable]
+public class UpgradeUpdate
+{
+    public string nameUpdate;
+    public List<Upgrade> upgrades;
 }
