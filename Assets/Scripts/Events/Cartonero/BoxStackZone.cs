@@ -26,9 +26,8 @@ public class BoxStackZone : MonoBehaviour
         if (currentBoxes < limitBoxes)
         {
             ProductPlaceManager box = other.GetComponent<ProductPlaceManager>();
-            FurnitureBox furnitureBox = other.GetComponent<FurnitureBox>();
 
-            if (box != null && box.IsEmpty || furnitureBox != null && furnitureBox.IsEmpty)
+            if (box != null && box.IsEmpty)
             {
                 Vector3 spawnPos = transform.position + Vector3.up * (stackedBoxes.Count * boxHeight + yOffset);
 

@@ -90,6 +90,8 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
             Collider col = finalObj.GetComponent<Collider>();
             if (col != null) col.enabled = true;
+            Collider[] colliders = finalObj.GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders) collider.enabled = true;
 
             PreviewObject moveObject = finalObj.GetComponent<PreviewObject>();
             if (moveObject != null) moveObject.enabled = false;

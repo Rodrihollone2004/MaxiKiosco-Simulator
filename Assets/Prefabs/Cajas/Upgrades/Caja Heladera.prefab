@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 858179092341260085, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1067558076213696858, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 1408774850717611991, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1571833348299339919, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -101,12 +101,12 @@ PrefabInstance:
     - target: {fileID: 1967856003687840656, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2707909472548378822, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2813728362051091214, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -116,7 +116,7 @@ PrefabInstance:
     - target: {fileID: 3232415718915978942, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3673935504625998938, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -126,12 +126,12 @@ PrefabInstance:
     - target: {fileID: 3922122127835920941, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4567762986688222927, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6153753063935315291, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 6378446451365684538, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8500837714683675215, guid: 0b6ad061d0c8e4c46b3a77d6ef7d2f6d,
         type: 3}
@@ -266,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       propertyPath: m_Name
-      value: Heladera
+      value: Caja Heladera
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
@@ -297,7 +297,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2213804065942132824}
+      addedObject: {fileID: 8415269287787837706}
   m_SourcePrefab: {fileID: 100100000, guid: 409c7ca0c37bc4d46b5ca52cfc89c4ae, type: 3}
 --- !u!4 &8316180773095516226 stripped
 Transform:
@@ -359,7 +359,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2213804065942132824
+--- !u!114 &8415269287787837706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8656713390967419640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae43ae6173ecfe4589452c86a74d358, type: 3}
+  m_Script: {fileID: 11500000, guid: d5311a71d05125b49abf8a9003af2396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _highlightColor: {r: 0, g: 1, b: 0, a: 1}
