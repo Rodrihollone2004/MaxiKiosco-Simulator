@@ -75,6 +75,10 @@ public class PlayerInteraction : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         ignorePlayer = ~LayerMask.GetMask("Player");
+
+        hintText.text = "LMB para interactuar\n" +
+                    "F para repickear\n" +
+                    "V para vender objetos";
     }
 
     private void Update()
@@ -146,7 +150,9 @@ public class PlayerInteraction : MonoBehaviour
                 Destroy(heldObject);
                 heldObject = null;
                 dropHintUI.SetActive(false);
-                hintText.text = "";
+                hintText.text = "LMB para interactuar\n" +
+                    "F para repickear\n" +
+                    "V para vender objetos";
                 playerEconomy.ReceivePayment(20);
 
                 if (dailySummary != null)
@@ -351,24 +357,6 @@ public class PlayerInteraction : MonoBehaviour
             Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders) collider.enabled = false;
         }
-        //else
-        //{
-        //    AllZones = FindObjectsOfType<PlacementZoneProducts>();
-
-        //    UpgradeInteractable upgradeInteractable = upgrade;
-        //    string upgradePlaceZone = upgradeInteractable.UpgradeData.PlaceZone;
-        //    upgradeInteractable.IsPlaced = false;
-
-        //    nameText.text = upgradeInteractable.UpgradeData.Name;
-        //    hintText.text = $"E  para colocar\n" +
-        //            $"R  para rotar\n";
-
-        //    foreach (PlacementZoneProducts zone in AllZones)
-        //        zone.ShowVisual(upgradePlaceZone);
-
-        //    Collider[] colliders = this.productPlaced.GetComponentsInChildren<Collider>();
-        //    foreach (Collider collider in colliders) collider.enabled = false;
-        //}
     }
 
     private void PlaceRepick()
@@ -400,6 +388,9 @@ public class PlayerInteraction : MonoBehaviour
             productPlaced = null;
 
             dropHintUI.SetActive(false);
+            hintText.text = "LMB para interactuar\n" +
+                    "F para repickear\n" +
+                    "V para vender objetos";
 
             if (AllZones != null)
                 foreach (PlacementZoneProducts zone in AllZones)
@@ -633,7 +624,9 @@ public class PlayerInteraction : MonoBehaviour
             if (dropHintUI != null)
             {
                 dropHintUI.SetActive(false);
-                hintText.text = "";
+                hintText.text = "LMB para interactuar\n" +
+                    "F para repickear\n" +
+                    "V para vender objetos";
             }
 
             heldObject.transform.SetParent(null);
