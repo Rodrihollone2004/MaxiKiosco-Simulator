@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using TMPro;
 using Unity.Burst.CompilerServices;
@@ -40,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject DropHintUI { get => dropHintUI; private set => dropHintUI = value; }
     public AudioClip PlaceProduct_ { get => placeProduct; set => placeProduct = value; }
     public AudioClip ErrorSound { get => errorSound; set => errorSound = value; }
+    public TMP_Text HintText { get => hintText; set => hintText = value; }
 
     [Header("Efects")]
     [SerializeField] private AudioClip pickupSound;
@@ -68,6 +71,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private int limitTimerDelay;
     private int ignorePlayer;
 
+    private bool isShowingAdvice;
+
     private void Awake()
     {
         playerEconomy = GetComponent<PlayerEconomy>();
@@ -77,8 +82,7 @@ public class PlayerInteraction : MonoBehaviour
         ignorePlayer = ~LayerMask.GetMask("Player");
 
         hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n" +
-                    "V para vender objetos";
+                    "F para repickear\n";
     }
 
     private void Update()
@@ -123,6 +127,21 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(interactKey) && TutorialContent.Instance.CurrentIndexGuide == 1
             || Input.GetKeyDown(interactKey) && TutorialContent.Instance.CurrentIndexGuide == 14)
             CheckTutorialStart();
+
+        if (Input.GetKey(KeyCode.V) && productPlaced != null)
+        {
+            timerSell += 1;
+
+            if (timerSell >= limitTimerDelay)
+            {
+                UpgradeInteractable upgradeSell = productPlaced.GetComponent<UpgradeInteractable>();
+
+                timerSell = 0;
+
+                if (upgradeSell != null && !upgradeSell.IsPlaced)
+                    CheckSell(upgradeSell);
+            }
+        }
     }
 
     private void CheckTutorialStart()
@@ -151,8 +170,7 @@ public class PlayerInteraction : MonoBehaviour
                 heldObject = null;
                 dropHintUI.SetActive(false);
                 hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n" +
-                    "V para vender objetos";
+                    "F para repickear\n";
                 playerEconomy.ReceivePayment(20);
 
                 if (dailySummary != null)
@@ -225,26 +243,6 @@ public class PlayerInteraction : MonoBehaviour
                             CheckRepick(productPlaced.gameObject);
                         else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
                             CheckRepick(upgradeInteractable.gameObject);
-                    }
-                }
-
-                if (Input.GetKey(KeyCode.V) && !cashRegisterInteraction.InCashRegister && heldObject == null)
-                {
-                    timerSell += 1;
-
-                    if (timerSell >= limitTimerDelay)
-                    {
-                        UpgradeInteractable upgradeSell = hit.collider.GetComponent<UpgradeInteractable>();
-                        if (hit.transform.parent != null && hit.transform.parent.parent != null)
-                        {
-                            Transform fridge = hit.transform.parent.parent;
-                            upgradeSell = fridge.GetComponent<UpgradeInteractable>();
-                        }
-
-                        timerSell = 0;
-
-                        if (upgradeSell != null && upgradeSell.IsPlaced)
-                            CheckSell(upgradeSell);
                     }
                 }
 
@@ -349,7 +347,8 @@ public class PlayerInteraction : MonoBehaviour
 
             nameText.text = upgradeInteractable.UpgradeData.Name;
             hintText.text = $"E  para colocar\n" +
-                    $"R  para rotar\n";
+                    $"R  para rotar\n" +
+                    "V para vender";
 
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.ShowVisual(upgradePlaceZone);
@@ -389,8 +388,7 @@ public class PlayerInteraction : MonoBehaviour
 
             dropHintUI.SetActive(false);
             hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n" +
-                    "V para vender objetos";
+                    "F para repickear\n";
 
             if (AllZones != null)
                 foreach (PlacementZoneProducts zone in AllZones)
@@ -407,8 +405,45 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckSell(UpgradeInteractable upgrade)
     {
+        if (isShowingAdvice)
+            return;
+
+        PlacementZoneProducts tempPlacement = upgrade.GetComponentInChildren<PlacementZoneProducts>();
+        ProductInteractable[] tempProducts = null;
+
+        if (tempPlacement != null)
+            tempProducts = tempPlacement.GetComponentsInChildren<ProductInteractable>();
+
+        if (tempProducts != null && tempProducts.Length > 0)
+            StartCoroutine(Advice());
+        else
+            DeleteUpgrade(upgrade);
+    }
+
+    private void DeleteUpgrade(UpgradeInteractable upgrade)
+    {
+        if (AllZones != null)
+            foreach (PlacementZoneProducts zone in AllZones)
+            {
+                zone.HideVisual();
+                AllZones = null;
+            }
+        dropHintUI.SetActive(false);
+        hintText.text = "LMB para interactuar\n" +
+            "F para repickear\n";
         playerEconomy.ReceivePayment(upgrade.UpgradeData.Price);
         Destroy(upgrade.gameObject);
+    }
+
+    private IEnumerator Advice()
+    {
+        isShowingAdvice = true;
+        dropHintUI.SetActive(true);
+        nameText.text = "Saca los productos de la heladera";
+        yield return new WaitForSeconds(3f);
+        isShowingAdvice = false;
+        dropHintUI.SetActive(false);
+        nameText.text = "";
     }
 
     // intenta recoger un objeto con el raycast
@@ -625,8 +660,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 dropHintUI.SetActive(false);
                 hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n" +
-                    "V para vender objetos";
+                    "F para repickear\n";
             }
 
             heldObject.transform.SetParent(null);

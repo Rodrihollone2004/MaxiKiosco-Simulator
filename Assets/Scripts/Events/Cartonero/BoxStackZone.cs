@@ -41,7 +41,11 @@ public class BoxStackZone : MonoBehaviour
 
                 PlayerInteraction playerInteraction = FindObjectOfType<PlayerInteraction>();
                 if (playerInteraction != null)
+                {
                     playerInteraction.DropHintUI.SetActive(false);
+                    playerInteraction.HintText.text = "LMB para interactuar\n" +
+                    "F para repickear\n";
+                }
 
                 if (dailySummary != null)
                     dailySummary.IncrementBoxesThrownAway();
