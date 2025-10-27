@@ -110,6 +110,12 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             else if (finalObj.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
             {
                 upgrade.IsPlaced = true;
+                Light light = upgrade.GetComponentInChildren<Light>();
+                if (light != null)
+                {
+                    playerInteraction.LightSwitch.totalLights.Add(light);
+                    playerInteraction.LightSwitch.UpdateLights();
+                }
             }
 
             foreach (PlacementZoneProducts zone in AllZones) zone.HideVisual();

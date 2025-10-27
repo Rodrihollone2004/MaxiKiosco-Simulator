@@ -73,8 +73,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool isShowingAdvice;
 
+    public LightSwitch LightSwitch { get; private set; }
+
     private void Awake()
     {
+        LightSwitch = FindObjectOfType<LightSwitch>();
         playerEconomy = GetComponent<PlayerEconomy>();
         cashRegisterInteraction = GetComponent<CashRegisterInteraction>();
         audioSource = GetComponent<AudioSource>();
@@ -428,6 +431,11 @@ public class PlayerInteraction : MonoBehaviour
                 zone.HideVisual();
                 AllZones = null;
             }
+
+        Light light = upgrade.GetComponentInChildren<Light>();
+        if (light != null && LightSwitch.totalLights.Contains(light))
+            LightSwitch.totalLights.Remove(light);
+
         dropHintUI.SetActive(false);
         hintText.text = "LMB para interactuar\n" +
             "F para repickear\n";

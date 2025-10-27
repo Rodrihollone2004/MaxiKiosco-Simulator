@@ -18,6 +18,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
 
+    public List<Light> totalLights { get; private set; } = new List<Light>();
+
     public bool CanBePickedUp => false;
     public bool ShowNameOnHighlight => false;
 
@@ -38,12 +40,13 @@ public class LightSwitch : MonoBehaviour, IInteractable
     private void Start()
     {
         isEnabled = Termica.IsTermicaOn;
-        UpdateLights();
 
         foreach (Light light in lightsToControl)
         {
             if (light != null)
                 light.enabled = false;
+
+            totalLights.Add(light);
 
             lightMaterial.DisableKeyword("_EMISSION");
             Blueligth.DisableKeyword("_EMISSION");
@@ -51,6 +54,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
             Redligth.DisableKeyword("_EMISSION");
             Greenligth.DisableKeyword("_EMISSION");
         }
+
+        UpdateLights();
     }
 
     private void OnTermicaStateChanged(bool termicaOn)
@@ -74,9 +79,9 @@ public class LightSwitch : MonoBehaviour, IInteractable
         UpdateLights();
     }
 
-    private void UpdateLights()
+    public void UpdateLights()
     {
-        foreach (Light light in lightsToControl)
+        foreach (Light light in totalLights)
         {
             if (light != null)
                 light.enabled = lightsOn && isEnabled;

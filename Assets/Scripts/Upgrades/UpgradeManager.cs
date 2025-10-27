@@ -32,63 +32,63 @@ public class UpgradeManager : MonoBehaviour
         if (upgradesUnlocked.Count > 0)
             foreach (UpgradeUpdate upgradeUpdate in upgradesUnlocked)
             {
-                foreach(Upgrade upgrade in upgradeUpdate.upgrades)
-                if (experienceManager.CurrentLevel >= upgrade.LevelUpdate && !upgradesButtons.ContainsKey(upgrade))
-                {
-                    GameObject inputGO = Instantiate(productButtonPrefab, productButtonContainer);
-                    TMP_Text[] texts = inputGO.GetComponentsInChildren<TMP_Text>();
-                    texts[0].text = $"{upgrade.Name}";
-                    texts[1].text = $"${upgrade.Price}";
-
-                    Image[] images = inputGO.GetComponentsInChildren<Image>(true);
-                    foreach (var img in images)
+                foreach (Upgrade upgrade in upgradeUpdate.upgrades)
+                    if (experienceManager.CurrentLevel >= upgrade.LevelUpdate && !upgradesButtons.ContainsKey(upgrade))
                     {
-                        if (img.gameObject.name == "Icon")
+                        GameObject inputGO = Instantiate(productButtonPrefab, productButtonContainer);
+                        TMP_Text[] texts = inputGO.GetComponentsInChildren<TMP_Text>();
+                        texts[0].text = $"{upgrade.Name}";
+                        texts[1].text = $"${upgrade.Price}";
+
+                        Image[] images = inputGO.GetComponentsInChildren<Image>(true);
+                        foreach (var img in images)
                         {
-                            img.sprite = upgrade.Icon;
-                            break;
+                            if (img.gameObject.name == "Icon")
+                            {
+                                img.sprite = upgrade.Icon;
+                                break;
+                            }
                         }
-                    }
 
-                    upgradesButtons.Add(upgrade, inputGO);
+                        upgradesButtons.Add(upgrade, inputGO);
 
-                    inputGO.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 7)
+                        inputGO.GetComponent<Button>().onClick.AddListener(() =>
                         {
-                            bool purchasedFridge = playerEconomy.HasEnoughMoney(upgrade.Price);
-                            if (purchasedFridge && upgrade.Prefab != null)
+                            if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 7)
+                            {
+                                bool purchasedFridge = playerEconomy.HasEnoughMoney(upgrade.Price);
+                                if (purchasedFridge && upgrade.Prefab != null)
+                                {
+                                    ConfirmUpgrade.SetActive(true);
+
+                                    yesButton.onClick.RemoveAllListeners();
+
+                                    yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
+                                    yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
+                                    yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
+                                    yesButton.onClick.AddListener(() => TutorialContent.Instance.CompleteStep(7));
+
+                                    noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
+                                }
+                            }
+
+                            if (TutorialContent.Instance.CurrentIndexGuide < 12)
+                                return;
+
+                            bool purchased = playerEconomy.HasEnoughMoney(upgrade.Price);
+                            if (purchased && upgrade.Prefab != null)
                             {
                                 ConfirmUpgrade.SetActive(true);
-
                                 yesButton.onClick.RemoveAllListeners();
 
                                 yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
                                 yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                                 yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
-                                yesButton.onClick.AddListener(() => TutorialContent.Instance.CompleteStep(7));
 
                                 noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                             }
-                        }
-
-                        if (TutorialContent.Instance.CurrentIndexGuide < 12)
-                            return;
-
-                        bool purchased = playerEconomy.HasEnoughMoney(upgrade.Price);
-                        if (purchased && upgrade.Prefab != null)
-                        {
-                            ConfirmUpgrade.SetActive(true);
-                            yesButton.onClick.RemoveAllListeners();
-
-                            yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
-                            yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
-                            yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
-
-                            noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
-                        }
-                    });
-                }
+                        });
+                    }
             }
     }
 
@@ -101,11 +101,13 @@ public class UpgradeManager : MonoBehaviour
         else
             spawned.name = upgrade.Name;
 
-        //if (!spawned.TryGetComponent<Rigidbody>(out _))
-        //    spawned.AddComponent<Rigidbody>();
-
-        if (!spawned.TryGetComponent<Collider>(out _))
-            spawned.AddComponent<BoxCollider>();
+        UpgradeInteractable upgradeInteract = spawned.GetComponentInChildren<UpgradeInteractable>(true);
+        if (upgradeInteract != null)
+        {
+            Light light = upgradeInteract.GetComponentInChildren<Light>();
+            if (light != null)
+                light.enabled = false;
+        }
     }
 
     private void SetLayerRecursive(GameObject obj, int layer)

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8239139354708721483
+--- !u!1 &6859541900683396600
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7703884389634576807}
-  - component: {fileID: 6497389820921381239}
-  - component: {fileID: 3755017944222890593}
-  - component: {fileID: 7122456010757959828}
-  - component: {fileID: 3555881810330922898}
-  - component: {fileID: 726916372914159888}
+  - component: {fileID: 673806068946246426}
+  - component: {fileID: 7746807760456754064}
+  - component: {fileID: 7378568559793141022}
+  - component: {fileID: 9198932031252875447}
+  - component: {fileID: 787659501128494434}
+  - component: {fileID: 1655613992563347903}
   m_Layer: 3
   m_Name: Caja Lampara Minimalista Negra
   m_TagString: Untagged
@@ -21,37 +21,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7703884389634576807
+--- !u!4 &673806068946246426
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 11.06689, y: 0.11999608, z: 1.1481273}
+  m_LocalPosition: {x: 12.107495, y: 0.11999561, z: -1.2414804}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2801710332434419007}
+  - {fileID: 5926004264877395161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6497389820921381239
+--- !u!33 &7746807760456754064
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   m_Mesh: {fileID: 4493585093827132993, guid: 7d77b69a9848b994896b97639473b2b8, type: 3}
---- !u!23 &3755017944222890593
+--- !u!23 &7378568559793141022
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -90,13 +90,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7122456010757959828
+--- !u!65 &9198932031252875447
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,13 +111,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0033566474, y: 0.0038323207, z: 0.0020304744}
   m_Center: {x: 0.000005030632, y: 0.000032002295, z: 0.0010387603}
---- !u!54 &3555881810330922898
+--- !u!54 &787659501128494434
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -138,13 +138,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &726916372914159888
+--- !u!114 &1655613992563347903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239139354708721483}
+  m_GameObject: {fileID: 6859541900683396600}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5311a71d05125b49abf8a9003af2396, type: 3}
@@ -153,13 +153,13 @@ MonoBehaviour:
   _highlightColor: {r: 0, g: 1, b: 0, a: 1}
   _highlightWidth: 1.03
   buildPrefab: {fileID: 0}
---- !u!1001 &9019914427115998316
+--- !u!1001 &716606353456991626
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7703884389634576807}
+    m_TransformParent: {fileID: 673806068946246426}
     m_Modifications:
     - target: {fileID: 5802695126959545321, guid: ecba617f20fbeff41b714827c4f9b4e1,
         type: 3}
@@ -226,9 +226,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecba617f20fbeff41b714827c4f9b4e1, type: 3}
---- !u!4 &2801710332434419007 stripped
+--- !u!4 &5926004264877395161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6614803608454037843, guid: ecba617f20fbeff41b714827c4f9b4e1,
     type: 3}
-  m_PrefabInstance: {fileID: 9019914427115998316}
+  m_PrefabInstance: {fileID: 716606353456991626}
   m_PrefabAsset: {fileID: 0}
