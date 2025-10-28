@@ -4,6 +4,7 @@ public class ComputerUIScreenManager : MonoBehaviour
 {
     [Header("Pantallas")]
     [SerializeField] private GameObject homeScreen;
+    [SerializeField] private GameObject changeColorScreen;
     [SerializeField] private GameObject storeScreen;
     [SerializeField] private GameObject cashRegisterScreen;
     [SerializeField] private GameObject priceProducts;
@@ -25,6 +26,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     public void ShowHomeScreen()
     {
         homeScreen.SetActive(true);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
@@ -40,6 +42,7 @@ public class ComputerUIScreenManager : MonoBehaviour
             return;
         priceProducts.SetActive(true);
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         backgrounds.SetActive(false);
@@ -56,6 +59,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide < 6)
             return;
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(true);
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
@@ -71,6 +75,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     public void ShowCashRegisterScreen()
     {
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         priceProducts.SetActive(false);
         cashRegisterScreen.SetActive(true);
@@ -87,6 +92,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide < 9)
             return;
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
@@ -101,6 +107,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide < 7)
             return;
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
@@ -116,6 +123,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide < 10)
             return;
         homeScreen.SetActive(false);
+        changeColorScreen.SetActive(false);
         storeScreen.SetActive(false);
         cashRegisterScreen.SetActive(false);
         priceProducts.SetActive(false);
@@ -123,6 +131,18 @@ public class ComputerUIScreenManager : MonoBehaviour
         upgradesScreen.SetActive(false);
         configScreen.SetActive(true);
         TutorialContent.Instance.CompleteStep(10);
+    }
+
+    public void ShowChangeColorScreen()
+    {
+        homeScreen.SetActive(false);
+        changeColorScreen.SetActive(true);
+        storeScreen.SetActive(false);
+        cashRegisterScreen.SetActive(false);
+        priceProducts.SetActive(false);
+        backgrounds.SetActive(false);
+        upgradesScreen.SetActive(false);
+        configScreen.SetActive(false);
     }
 
     public void BocaBackground()
