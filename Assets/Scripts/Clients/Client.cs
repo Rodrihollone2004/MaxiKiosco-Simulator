@@ -8,7 +8,7 @@ public class Client : MonoBehaviour
     private Dictionary<ProductInteractable, int> cart = new Dictionary<ProductInteractable, int>();
     private Wallet wallet;
     private CanvasClientManager canvasClientManager;
-    private List<ProductInteractable> matchedProducts;
+    private List<ProductInteractable> foundedProducts;
     List<ProductInteractable> allProducts;
     List<ProductInteractable> productsInWorld;
 
@@ -22,6 +22,9 @@ public class Client : MonoBehaviour
 
     public CanvasClientManager CanvasClientManager { get => canvasClientManager; set => canvasClientManager = value; }
 
+    public List<ProductInteractable> NotFoundedProducts { get; private set; }
+    public List<ProductInteractable> ExpensiveProducts { get; private set; }
+
     [SerializeField] ProductDataBase dataBase;
 
     private void Awake()
@@ -29,7 +32,9 @@ public class Client : MonoBehaviour
         allProducts = new List<ProductInteractable>();
         productsInWorld = new List<ProductInteractable>();
         wallet = new Wallet();
-        matchedProducts = new List<ProductInteractable>();
+        foundedProducts = new List<ProductInteractable>();
+        NotFoundedProducts = new List<ProductInteractable>();
+        ExpensiveProducts = new List<ProductInteractable>();
         canvasClientManager = GetComponentInChildren<CanvasClientManager>();
     }
     public int GetProductsCount()
@@ -56,7 +61,7 @@ public class Client : MonoBehaviour
 
     public void AddRandomProductsToCart()
     {
-        matchedProducts.Clear();
+        foundedProducts.Clear();
         allProducts.Clear();
         productsInWorld.Clear();
 
@@ -91,7 +96,15 @@ public class Client : MonoBehaviour
                 if (product.ProductData != productInWorld.ProductData)
                     continue;
 
-                matchedProducts.Add(product);
+                foundedProducts.Add(product);
+
+                int productPriceLimit = (int) (productInWorld.ProductData.OriginalPrice * 1.8f);
+
+                if (productInWorld.ProductData.Price > productPriceLimit)
+                {
+                    ExpensiveProducts.Add(productInWorld);
+                    continue;
+                }
 
                 if (amountProduct > productInWorld.CurrentAmountProduct)
                     amountProduct = productInWorld.CurrentAmountProduct;
@@ -108,8 +121,7 @@ public class Client : MonoBehaviour
             }
         }
 
-        List<ProductInteractable> notMatchedProducts = chosenProducts.Except(matchedProducts).ToList();
-        canvasClientManager.UpdateCanvasClient(notMatchedProducts, this, matchedProducts);
+        NotFoundedProducts = chosenProducts.Except(foundedProducts).ToList();
     }
 
     public int CalculateCartTotal()

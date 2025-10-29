@@ -19,9 +19,17 @@ public class CashRegisterUI : MonoBehaviour
     int simulatedTotal;
     int change;
     Dictionary<ProductInteractable, int> cart;
-    string cartInfo;
-    string priceInfo;
-    string amountInfo;
+
+    [Header("Founded Products")]
+    string cartFoundedInfo;
+    string priceFoundedInfo;
+    string amountFoundedInfo;
+
+    [Header("Not Founded Products")]
+    string cartNotFoundedInfo = "";
+
+    [Header("Expensive Products")]
+    string cartExpensiveInfo = "";
 
     [SerializeField] private Transform contentParent;
 
@@ -47,6 +55,7 @@ public class CashRegisterUI : MonoBehaviour
 
                 int index = 0;
 
+                //productos encontrados
                 foreach (KeyValuePair<ProductInteractable, int> item in cart)
                 {
                     ProductInteractable product = item.Key;
@@ -54,23 +63,40 @@ public class CashRegisterUI : MonoBehaviour
 
                     contentParent.GetChild(index).gameObject.SetActive(true);
 
-                    cartInfo += $"{product.ProductData.Name}\n";
-                    priceInfo += $"${product.ProductData.Price}\n";
-                    amountInfo += $"x{amount}\n";
+                    cartFoundedInfo += $"{product.ProductData.Name}\n";
+                    priceFoundedInfo += $"${product.ProductData.Price}\n";
+                    amountFoundedInfo += $"x{amount}\n";
 
                     index++;
                 }
+
+                //productos no encontrados
+                if (client.NotFoundedProducts.Count > 0)
+                    foreach (ProductInteractable notFoundProduct in client.NotFoundedProducts)
+                    {
+                        cartNotFoundedInfo += $"{notFoundProduct.ProductData.Name}\n";
+                    }
+
+                //productos mayores al 80%
+                if (client.ExpensiveProducts.Count > 0)
+                    foreach (ProductInteractable notFoundProduct in client.ExpensiveProducts)
+                    {
+                        cartExpensiveInfo += $"{notFoundProduct.ProductData.Name}\n";
+                    }
             }
 
 
 
             if (client.paymentMethod == Client.PaymentMethod.QR)
             {
-                payText.text =
-                $"${totalToPay}\n";
-                cartText.text = $"{cartInfo}";
-                priceText.text = $"{priceInfo}";
-                amountText.text = $"{amountInfo}";
+                payText.text = $"${totalToPay}\n";
+
+                cartText.text = cartFoundedInfo;
+                priceText.text = priceFoundedInfo;
+                amountText.text = amountFoundedInfo;
+
+                CheckNotFoundProducts();
+                CheckExpensiveProducts();
 
                 foreach (GameObject texts in changeUI)
                     texts.SetActive(false);
@@ -92,10 +118,29 @@ public class CashRegisterUI : MonoBehaviour
                 changeGivenText.text =
                     $"${playerGivenChange}";
 
-                cartText.text = $"{cartInfo}";
-                priceText.text = $"{priceInfo}";
-                amountText.text = $"{amountInfo}";
+                cartText.text = $"{cartFoundedInfo}";
+                priceText.text = $"{priceFoundedInfo}";
+                amountText.text = $"{amountFoundedInfo}";
+
+                CheckNotFoundProducts();
+                CheckExpensiveProducts();
             }
+        }
+    }
+
+    private void CheckNotFoundProducts()
+    {
+        if (!string.IsNullOrEmpty(cartNotFoundedInfo))
+        {
+            cartText.text += $"<color=#808080><s>{cartNotFoundedInfo}</s></color>";
+        }
+    }
+
+    private void CheckExpensiveProducts()
+    {
+        if (!string.IsNullOrEmpty(cartExpensiveInfo))
+        {
+            cartText.text += $"<color=#FF0000>{cartExpensiveInfo}</color>";
         }
     }
 
@@ -108,9 +153,11 @@ public class CashRegisterUI : MonoBehaviour
         cartText.text = "";
         priceText.text = "";
         amountText.text = "";
-        cartInfo = "";
-        priceInfo = "";
-        amountInfo = "";
+        cartFoundedInfo = "";
+        cartNotFoundedInfo = "";
+        priceFoundedInfo = "";
+        amountFoundedInfo = "";
+        cartExpensiveInfo = "";
 
         foreach (Transform child in contentParent)
             child.gameObject.SetActive(false);
