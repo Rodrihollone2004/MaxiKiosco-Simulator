@@ -280,6 +280,8 @@ public class DayNightCycle : MonoBehaviour
 
         daysText.text = $"{_dayNumber}";
 
+        if (_dayNumber == 5)
+            AnalyticsManager.Instance.DayFive();
     }
 
     private void UpateProducts()

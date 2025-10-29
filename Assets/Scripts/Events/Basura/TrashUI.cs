@@ -28,6 +28,7 @@ public class TrashUI : MonoBehaviour
         if (percentage >= 70f)
         {
             trashText.color = Color.red;
+            AnalyticsManager.Instance.Trash70();
             trashText.text = $"Basura: {percentage:0}% <sprite name=Advertencia>\n";
         }
         else if (percentage >= 50f)
@@ -40,6 +41,7 @@ public class TrashUI : MonoBehaviour
             if (!isAbove50)
             {
                 isAbove50 = true;
+
                 if (hidePanelCoroutine != null)
                     StopCoroutine(hidePanelCoroutine);
 

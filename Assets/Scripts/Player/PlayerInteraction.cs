@@ -498,13 +498,16 @@ public class PlayerInteraction : MonoBehaviour
                     currentClient.GetHit();
                     playerEconomy.ReceivePayment(currentClient.newTotal);
 
+                    AnalyticsManager.Instance.TheftPrevented();
+
                     if (dailySummary != null)
                         dailySummary.IncrementThievesCaught();
-
                 }
                 else
                 {
                     currentClient.GetHit();
+
+                    AnalyticsManager.Instance.TheftPrevented();
 
                     if (dailySummary != null)
                         dailySummary.IncrementThievesCaught();

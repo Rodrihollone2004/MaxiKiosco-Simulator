@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class ThiefController : MonoBehaviour
@@ -46,6 +47,9 @@ public class ThiefController : MonoBehaviour
         }
         else if (currentNode == AStarManager.instance.StartNode && isBack)
         {
+            if (!WasHit)
+                AnalyticsManager.Instance.CompletedRobbery();
+
             gameObject.SetActive(false);
             newTotal = 0;
             isBack = false;

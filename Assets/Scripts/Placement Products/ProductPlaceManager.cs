@@ -15,6 +15,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
     GameObject currentPreview;
     GameObject containerPrefab;
     PreviewValidator previewValidator;
+    private int productsPlacedAmount;
 
     public bool CanBePickedUp => true;
     public bool IsEmpty { get; private set; } = false;
@@ -25,6 +26,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+        productsPlacedAmount = 0;
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
         AllZones = new PlacementZoneProducts[0];
@@ -66,6 +68,9 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
                 foreach (PlacementZoneProducts zone in AllZones)
                     zone.ShowVisual(productPlaceZone);
+
+                productsPlacedAmount++;
+                AnalyticsManager.Instance.ProductsPlaced(productsPlacedAmount);
             }
             else if (currentPreview.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
             {

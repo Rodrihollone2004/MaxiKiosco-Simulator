@@ -37,7 +37,7 @@ public class ClientQueueManager : MonoBehaviour
     private int productsSoldToday = 0;
 
 
-    public bool IsTrashBlockingSpawn {  get; private set; } = false;
+    public bool IsTrashBlockingSpawn { get; private set; } = false;
     public int GetProductsSoldToday() => productsSoldToday;
 
     public int GetClientsServedToday() => clientsServedToday;
@@ -105,6 +105,7 @@ public class ClientQueueManager : MonoBehaviour
         Client client = _clientQueue.Dequeue();
 
         clientsServedToday++;
+        AnalyticsManager.Instance.ClientsServed(clientsServedToday);
         moneyEarnedToday += client.CalculateCartTotal();
 
         productsSoldToday += client.GetProductsCount();
@@ -118,6 +119,8 @@ public class ClientQueueManager : MonoBehaviour
 
         if (_clientQueue.Count < 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
             StartClientSpawning();
+        else if (_clientQueue.Count >= 3 && clientSpawnCoroutine == null && clientsSpawnedToday < maxClientsPerDay)
+            AnalyticsManager.Instance.LimitQueueClient();
     }
 
     public void UpdateQueuePositions()

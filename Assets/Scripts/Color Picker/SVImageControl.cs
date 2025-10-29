@@ -14,11 +14,14 @@ public class SVImageControl : MonoBehaviour, IDragHandler, IPointerClickHandler
 
     private RectTransform rectTransform, pickerTransform;
 
+    private bool isUsed;
+
     private void Awake()
     {
         SVimage = GetComponent<RawImage>();
         CC = FindObjectOfType<ColourPickerControl>();
         rectTransform = GetComponent<RectTransform>();
+        isUsed = true;
 
         pickerTransform = pickerImage.GetComponent<RectTransform>();
         pickerTransform.localPosition = new Vector2(-(rectTransform.sizeDelta.x * 0.5f), -(rectTransform.sizeDelta.y * 0.5f));
@@ -49,11 +52,21 @@ public class SVImageControl : MonoBehaviour, IDragHandler, IPointerClickHandler
     public void OnDrag(PointerEventData eventData)
     {
         UpdateColor(eventData);
+        if (!isUsed)
+        {
+            AnalyticsManager.Instance.ChangeColor();
+            isUsed = true;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         UpdateColor(eventData);
+        if (!isUsed)
+        {
+            AnalyticsManager.Instance.ChangeColor();
+            isUsed = true;
+        }
     }
 
 }
