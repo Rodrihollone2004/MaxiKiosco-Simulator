@@ -14,7 +14,7 @@ public class CanvasClientManager : MonoBehaviour
         noProducts.text = "";
     }
 
-    public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, Client currentClient, List<ProductInteractable> productsFound)
+    public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, List<ProductInteractable> productsFound)
     {
         if (productsNotFound.Count > 0)
         {
