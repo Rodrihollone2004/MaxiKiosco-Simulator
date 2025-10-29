@@ -1,13 +1,7 @@
 using System.Collections;
-using System.Linq;
-using NUnit.Framework;
 using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static Cinemachine.DocumentationSortingAttribute;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -65,6 +59,9 @@ public class PlayerInteraction : MonoBehaviour
     [Header("UI Highlight Info")]
     [SerializeField] private GameObject highlightPanel;
     [SerializeField] private TMP_Text highlightNameText;
+
+    [Header("UI Progress")]
+    [SerializeField] private Image progressCircle;
 
     private int timerRepick;
     private int timerSell;
@@ -134,16 +131,23 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKey(KeyCode.V) && productPlaced != null)
         {
             timerSell += 1;
+            ShowProgressCircle((float)timerSell / limitTimerDelay);
 
             if (timerSell >= limitTimerDelay)
             {
                 UpgradeInteractable upgradeSell = productPlaced.GetComponent<UpgradeInteractable>();
 
                 timerSell = 0;
+                HideProgressCircle();
 
                 if (upgradeSell != null && !upgradeSell.IsPlaced)
                     CheckSell(upgradeSell);
             }
+        }
+        else if (Input.GetKeyUp(KeyCode.V))
+        {
+            timerSell = 0;
+            HideProgressCircle();
         }
     }
 
@@ -221,6 +225,8 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (highlightPanel != null && highlightPanel.activeInHierarchy)
                     highlightPanel.SetActive(false);
+
+                HideProgressCircle();
                 return;
             }
 
@@ -229,6 +235,8 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetKey(KeyCode.F) && !cashRegisterInteraction.InCashRegister && heldObject == null)
                 {
                     timerRepick += 1;
+
+                    ShowProgressCircle((float)timerRepick / limitTimerDelay);
 
                     if (timerRepick >= limitTimerDelay)
                     {
@@ -241,12 +249,18 @@ public class PlayerInteraction : MonoBehaviour
                         }
 
                         timerRepick = 0;
+                        HideProgressCircle();
 
                         if (productPlaced != null && productPlaced.IsPlaced)
                             CheckRepick(productPlaced.gameObject);
                         else if (upgradeInteractable != null && upgradeInteractable.IsPlaced)
                             CheckRepick(upgradeInteractable.gameObject);
                     }
+                }
+                else if (Input.GetKeyUp(KeyCode.F))
+                {
+                    timerRepick = 0;
+                    HideProgressCircle();
                 }
 
                 if (interactable != currentInteractable)
@@ -293,7 +307,28 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            HideProgressCircle();
+        }
     }
+
+    private void ShowProgressCircle(float progress)
+    {
+        if (progressCircle == null) return;
+        if (!progressCircle.gameObject.activeSelf)
+            progressCircle.gameObject.SetActive(true);
+
+        progressCircle.fillAmount = Mathf.Clamp01(progress);
+    }
+
+    private void HideProgressCircle()
+    {
+        if (progressCircle == null) return;
+        progressCircle.fillAmount = 0;
+        progressCircle.gameObject.SetActive(false);
+    }
+
 
     PlacementZoneProducts[] AllZones;
 
