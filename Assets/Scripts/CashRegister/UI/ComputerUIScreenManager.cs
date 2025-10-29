@@ -16,6 +16,7 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject riverBackground;
     [SerializeField] private GameObject atlantaBackground;
     [SerializeField] private GameObject velezBackground;
+    [SerializeField] private GameObject customBackground;
     [SerializeField] private CashRegisterInteraction cashRegisterInteraction;
 
     void Start()
@@ -179,5 +180,16 @@ public class ComputerUIScreenManager : MonoBehaviour
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(true);
         defaultBackground.SetActive(false);
+        customBackground.SetActive(true);
+    }
+
+    public void CustomBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        customBackground.SetActive(true);
     }
 }
