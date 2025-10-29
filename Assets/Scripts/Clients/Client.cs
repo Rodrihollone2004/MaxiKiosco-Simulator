@@ -5,7 +5,7 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     public NPC_Controller NpcController { get; set; }
-    private Dictionary<ProductInteractable, int> cart = new Dictionary<ProductInteractable, int>();
+    private List<CartItem> cart = new List<CartItem>();
     private Wallet wallet;
     private CanvasClientManager canvasClientManager;
     private List<ProductInteractable> foundedProducts;
@@ -42,7 +42,7 @@ public class Client : MonoBehaviour
         int totalProducts = 0;
         foreach (var item in cart)
         {
-            totalProducts += item.Value;
+            totalProducts += item.Amount;
         }
         return totalProducts;
     }
@@ -98,7 +98,7 @@ public class Client : MonoBehaviour
 
                 foundedProducts.Add(product);
 
-                int productPriceLimit = (int) (productInWorld.ProductData.OriginalPrice * 1.8f);
+                int productPriceLimit = (int) (productInWorld.ProductData.OriginalPrice * 1.8f) + 1;
 
                 if (productInWorld.ProductData.Price > productPriceLimit)
                 {
@@ -113,7 +113,7 @@ public class Client : MonoBehaviour
 
                 if (newTotal < wallet.TotalMoney)
                 {
-                    cart.Add(productInWorld, amountProduct);
+                    cart.Add(new CartItem(productInWorld, amountProduct, productInWorld.ProductData.Price));
                     productInWorld.SubtractAmount(amountProduct);
                     productInWorld.CheckDelete();
                     total = newTotal;
@@ -127,17 +127,17 @@ public class Client : MonoBehaviour
     public int CalculateCartTotal()
     {
         int total = 0;
-        foreach (KeyValuePair<ProductInteractable, int> item in cart)
+        foreach (var item in cart)
         {
-            ProductInteractable product = item.Key;
-            int amount = item.Value;
+            ProductInteractable product = item.Product;
+            int amount = item.Amount;
 
             total += product.ProductData.Price * amount;
         }
         return total;
     }
 
-    public Dictionary<ProductInteractable, int> GetCart()
+    public List<CartItem> GetCart()
     {
         return cart;
     }
@@ -162,5 +162,20 @@ public class Client : MonoBehaviour
 
         walletInfo = walletInfo.TrimEnd(',', ' ');
         walletInfo += $". Total: ${wallet.TotalMoney}";
+    }
+}
+
+[System.Serializable]
+public class CartItem
+{
+    public ProductInteractable Product;
+    public int Amount;
+    public int PurchasePrice;
+
+    public CartItem(ProductInteractable product, int amount, int purchasePrice)
+    {
+        Product = product;
+        Amount = amount;
+        PurchasePrice = purchasePrice;
     }
 }

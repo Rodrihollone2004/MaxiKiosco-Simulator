@@ -18,7 +18,7 @@ public class CashRegisterUI : MonoBehaviour
     int totalToPay;
     int simulatedTotal;
     int change;
-    Dictionary<ProductInteractable, int> cart;
+    List<CartItem> cart;
 
     [Header("Founded Products")]
     string cartFoundedInfo;
@@ -48,7 +48,7 @@ public class CashRegisterUI : MonoBehaviour
 
             if (!nPC.isPaying)
             {
-                totalToPay = client.CalculateCartTotal();
+                totalToPay = client.totalCart;
                 simulatedTotal = clientPayment.Sum();
                 change = simulatedTotal - totalToPay;
                 cart = client.GetCart();
@@ -56,15 +56,15 @@ public class CashRegisterUI : MonoBehaviour
                 int index = 0;
 
                 //productos encontrados
-                foreach (KeyValuePair<ProductInteractable, int> item in cart)
+                foreach (var item in cart)
                 {
-                    ProductInteractable product = item.Key;
-                    int amount = item.Value;
+                    ProductInteractable product = item.Product;
+                    int amount = item.Amount;
 
                     contentParent.GetChild(index).gameObject.SetActive(true);
 
                     cartFoundedInfo += $"{product.ProductData.Name}\n";
-                    priceFoundedInfo += $"${product.ProductData.Price}\n";
+                    priceFoundedInfo += $"${item.PurchasePrice}\n";
                     amountFoundedInfo += $"x{amount}\n";
 
                     index++;

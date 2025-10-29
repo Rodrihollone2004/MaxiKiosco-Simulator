@@ -14,17 +14,24 @@ public class CanvasClientManager : MonoBehaviour
         noProducts.text = "";
     }
 
-    public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, List<ProductInteractable> productsFound)
+    public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, float percentage)
     {
-        if (productsNotFound.Count > 0)
+        if (productsNotFound.Count == 0 && productsExpensive.Count == 0 && percentage <= 40f)
         {
             gameObject.SetActive(true);
 
-            foreach (ProductInteractable notProduct in productsNotFound)
-            {
-                noProducts.text += $"{notProduct.ProductData.Name} <sprite name=CruzRoja>\n";
-            }
+            noProducts.text += $"<sprite name=Client_1>\n";
         }
+    }
+
+    public void UpdateTrashIcon(float trashPercentage)
+    {
+        if (trashPercentage <= 40)
+            noProducts.text += $"<sprite name=Basura_1>\n";
+        else if (trashPercentage >= 50)
+            noProducts.text += $"<sprite name=Basura_2>\n";
+        else if (trashPercentage >= 70)
+            noProducts.text += $"<sprite name=Basura_3>\n";
     }
 
     public void ClearText()

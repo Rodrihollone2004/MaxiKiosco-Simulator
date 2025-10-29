@@ -101,12 +101,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
-            timerRepick = 0;
-
-        if (Input.GetKeyUp(KeyCode.V))
-            timerSell = 0;
-
         if (Input.GetKeyDown(subtractKey))
             TrySubtractBill();
 
