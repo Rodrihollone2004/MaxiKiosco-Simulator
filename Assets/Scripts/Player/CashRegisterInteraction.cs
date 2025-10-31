@@ -210,6 +210,8 @@ public class CashRegisterInteraction : MonoBehaviour
         playerCam.IsInCashRegister = true;
         playerCam.IsLocked = lockCamera;
 
+        playerCam.SyncRotationWithCamera();
+
         Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = lockCamera;
     }
@@ -396,11 +398,31 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private IEnumerator SafeExitCashRegisterMode()
     {
+        CinemachineBrain brain = playerCamera.GetComponent<CinemachineBrain>();
+        GameObject virtualCamera = brain.ActiveVirtualCamera.VirtualCameraGameObject;
+        PlayerCam machineCam = virtualCamera.GetComponent<PlayerCam>();
+
+        machineCam.enabled = false;
+
         isTransitioning = true;
         ExitCashRegisterMode();
+
         yield return new WaitForSeconds(0.6f);
+
         playerCam.enabled = false;
-        playerCamera.GetComponent<CinemachineBrain>().enabled = true;
+
+        if (brain != null)
+            brain.enabled = true;
+
+        while (brain.ActiveVirtualCamera == null)
+            yield return null;
+
+        if (machineCam != null)
+        {
+            machineCam.SyncRotationWithCamera();
+            machineCam.enabled = true;
+        }
+
         isTransitioning = false;
     }
 }

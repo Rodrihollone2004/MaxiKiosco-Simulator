@@ -137,4 +137,11 @@ public class PlayerCam : MonoBehaviour
 
         virtualCamera.m_Lens.FieldOfView = targetFOV;
     }
+
+    public void SyncRotationWithCamera()
+    {
+        Vector3 euler = transform.rotation.eulerAngles;
+        xRotation = euler.x;
+        yRotation = euler.y;
+    }
 }
