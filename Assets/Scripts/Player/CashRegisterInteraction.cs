@@ -399,15 +399,21 @@ public class CashRegisterInteraction : MonoBehaviour
     private IEnumerator SafeExitCashRegisterMode()
     {
         CinemachineBrain brain = playerCamera.GetComponent<CinemachineBrain>();
-        GameObject virtualCamera = brain.ActiveVirtualCamera.VirtualCameraGameObject;
-        PlayerCam machineCam = virtualCamera.GetComponent<PlayerCam>();
+        GameObject virtualCamera = null;
+        PlayerCam machineCam = null;
 
-        machineCam.enabled = false;
+        if (brain != null && brain.ActiveVirtualCamera != null)
+        {
+            virtualCamera = brain.ActiveVirtualCamera.VirtualCameraGameObject;
+            machineCam = virtualCamera.GetComponent<PlayerCam>();
+            if (machineCam != null)
+                machineCam.enabled = false;
+        }
 
         isTransitioning = true;
         ExitCashRegisterMode();
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.7f);
 
         playerCam.enabled = false;
 
@@ -416,6 +422,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
         while (brain.ActiveVirtualCamera == null)
             yield return null;
+
+        yield return new WaitForEndOfFrame();
 
         if (machineCam != null)
         {
