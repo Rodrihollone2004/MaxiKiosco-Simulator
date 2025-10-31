@@ -38,6 +38,8 @@ public class ClientQueueManager : MonoBehaviour
 
 
     public bool IsTrashBlockingSpawn { get; private set; } = false;
+    public ClientTrashSpawner TrashSpawner { get => trashSpawner; set => trashSpawner = value; }
+
     public int GetProductsSoldToday() => productsSoldToday;
 
     public int GetClientsServedToday() => clientsServedToday;
@@ -201,6 +203,7 @@ public class ClientQueueManager : MonoBehaviour
                 Client newClient = GetClientFromPool();
                 newClient.NpcController.isInDequeue = false;
                 newClient.transform.position = CalculateQueuePosition(_clientQueue.Count - 1, queueStartPosition);
+                newClient.CanvasClientManager.UpdateTrashIcon(trashSpawner.TrashPercentage);
 
                 clientsSpawnedToday++;
 

@@ -17,13 +17,13 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         // Suscribirse al evento de carga de escena
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
         // Desuscribirse para evitar memory leaks
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -36,7 +36,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if(!playerCam.IsInCashRegister)
+        if (!playerCam.IsInCashRegister)
         {
             if (Input.GetKeyDown(pauseKey))
             {

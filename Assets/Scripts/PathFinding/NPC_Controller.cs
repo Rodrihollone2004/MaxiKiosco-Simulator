@@ -23,11 +23,14 @@ public class NPC_Controller : MonoBehaviour
     public Client client { get; private set; }
     [field: SerializeField] public Animator animatorNPC { get; private set; }
 
+    private ClientQueueManager queueManager;
+
     private void Start()
     {
         currentNode = AStarManager.instance.StartNode;
         client = GetComponent<Client>();
         audioSource = GetComponent<AudioSource>();
+        queueManager = FindObjectOfType<ClientQueueManager>();
     }
 
     private void Update()
@@ -44,8 +47,6 @@ public class NPC_Controller : MonoBehaviour
             client.CalculateCost();
 
             audioSource.PlayOneShot(clientInCashRegister);
-
-            ClientQueueManager queueManager = FindObjectOfType<ClientQueueManager>();
 
             if (client.GetCart().Count > 0)
             {
@@ -134,6 +135,8 @@ public class NPC_Controller : MonoBehaviour
             {
                 path = backPath;
             }
+
+            client.CanvasClientManager.UpdateClientEmoji(client.NotFoundedProducts, client.ExpensiveProducts, queueManager.TrashSpawner.TrashPercentage);
         }
     }
 }

@@ -6,37 +6,36 @@ using UnityEngine;
 
 public class CanvasClientManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text noProducts;
+    [SerializeField] private TMP_Text emojiClient;
 
-    private void Start()
+    public void UpdateClientEmoji(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, float trashPercentage)
     {
-        gameObject.SetActive(false);
-        noProducts.text = "";
-    }
-
-    public void UpdateCanvasClient(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, float percentage)
-    {
-        if (productsNotFound.Count == 0 && productsExpensive.Count == 0 && percentage <= 40f)
-        {
-            gameObject.SetActive(true);
-
-            noProducts.text += $"<sprite name=Client_1>\n";
-        }
+        if (productsNotFound.Count == 0 && productsExpensive.Count == 0 && trashPercentage <= 40f)
+            emojiClient.text = $"<sprite name=Client_1>\n";
+        else if (productsNotFound.Count > 1 && productsExpensive.Count > 1 && trashPercentage >= 70)
+            emojiClient.text = $"<sprite name=Client_3>\n";
+        else
+            emojiClient.text = $"<sprite name=Client_2>\n";
     }
 
     public void UpdateTrashIcon(float trashPercentage)
     {
+        gameObject.SetActive(true);
+
+        if (emojiClient == null)
+            emojiClient = GetComponentInChildren<TMP_Text>(true);
+
         if (trashPercentage <= 40)
-            noProducts.text += $"<sprite name=Basura_1>\n";
+            emojiClient.text = $"<sprite name=Basura_1>\n";
         else if (trashPercentage >= 50)
-            noProducts.text += $"<sprite name=Basura_2>\n";
+            emojiClient.text = $"<sprite name=Basura_2>\n";
         else if (trashPercentage >= 70)
-            noProducts.text += $"<sprite name=Basura_3>\n";
+            emojiClient.text = $"<sprite name=Basura_3>\n";
     }
 
     public void ClearText()
     {
         gameObject.SetActive(false);
-        noProducts.text = "";
+        emojiClient.text = "";
     }
 }

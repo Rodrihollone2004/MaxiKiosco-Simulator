@@ -11,8 +11,10 @@ public class ClientTrashSpawner : MonoBehaviour
     private int currentTrashCount = 0;
 
     [System.Serializable]
-    public class TrashChangedEvent : UnityEvent<float> { } 
+    public class TrashChangedEvent : UnityEvent<float> { }
     public TrashChangedEvent OnTrashChanged;
+
+    [field: SerializeField] public float TrashPercentage { get; private set; } = 0;
 
     public void SpawnTrash()
     {
@@ -41,8 +43,8 @@ public class ClientTrashSpawner : MonoBehaviour
 
     private void NotifyTrashChanged()
     {
-        float percentage = GetTrashPercentage();
-        OnTrashChanged?.Invoke(percentage);
+        TrashPercentage = GetTrashPercentage();
+        OnTrashChanged?.Invoke(TrashPercentage);
     }
 
     public float GetTrashPercentage()
