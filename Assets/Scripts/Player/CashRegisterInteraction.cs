@@ -68,6 +68,8 @@ public class CashRegisterInteraction : MonoBehaviour
     private Vector3 startCameraPos;
     private Quaternion startCameraRot;
 
+    private bool isTransitioning = false;
+
     //private void Awake()
     //{
     //    if (registerAudioSource == null)
@@ -89,25 +91,27 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private void Update()
     {
+        if (isTransitioning)
+            return;
+
         // metodo para entrar a la caja registradora
         if (Input.GetMouseButtonDown(0) && canClickTheCashRegister)
         {
             TryInteractWithRegister();
         }
 
-        // escape salis de la caja registradora
-        if (!InCashRegister && playerCam.IsLocked && TutorialContent.Instance.IsComplete && Input.GetKeyDown(KeyCode.Escape))
+        if (TutorialContent.Instance.IsComplete && Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitCashRegisterMode();
-            computerUIScreenManager.ShowHomeScreen();
-            playerCam.enabled = false;
-            playerCamera.GetComponent<CinemachineBrain>().enabled = true;
-        }
-        if ((InCashRegister) && TutorialContent.Instance.IsComplete && Input.GetKeyDown(KeyCode.Escape))
-        {
-            InCashRegister = false;
-            EnterCashRegisterMode(true, lockedCameraTarget);
-            computerUIScreenManager.ShowHomeScreen();
+            if (InCashRegister)
+            {
+                InCashRegister = false;
+                StartCoroutine(SafeEnterCashRegisterMode(true, lockedCameraTarget));
+                computerUIScreenManager.ShowHomeScreen();
+            }
+            else if (playerCam.IsLocked)
+            {
+                StartCoroutine(SafeExitCashRegisterMode());
+            }
         }
 
         // enter procesas el pago
@@ -380,5 +384,23 @@ public class CashRegisterInteraction : MonoBehaviour
 
         playerCamera.transform.position = endPos;
         playerCamera.transform.rotation = endRot;
+    }
+
+    private IEnumerator SafeEnterCashRegisterMode(bool lockCamera, Transform target)
+    {
+        isTransitioning = true;
+        EnterCashRegisterMode(lockCamera, target);
+        yield return new WaitForSeconds(0.6f); // Espera a que termine la corrutina interna de cámara
+        isTransitioning = false;
+    }
+
+    private IEnumerator SafeExitCashRegisterMode()
+    {
+        isTransitioning = true;
+        ExitCashRegisterMode();
+        yield return new WaitForSeconds(0.6f);
+        playerCam.enabled = false;
+        playerCamera.GetComponent<CinemachineBrain>().enabled = true;
+        isTransitioning = false;
     }
 }
