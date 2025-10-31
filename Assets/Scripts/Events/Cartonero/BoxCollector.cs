@@ -10,6 +10,7 @@ public class BoxCollector : MonoBehaviour, IInteractable
     public bool isBack;
     public bool canRemove;
     [SerializeField] int amountBoxes = 500;
+    private int totalAmount = 0;
 
     private Animator animatorNPC;
     public bool CanBePickedUp => false;
@@ -63,16 +64,18 @@ public class BoxCollector : MonoBehaviour, IInteractable
             {
                 for (int i = 0; i < boxStack.StackedBoxes.Count; i++)
                 {
-                    PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
-                    player.ReceivePayment(amountBoxes);
-
                     if (!audioSource.isPlaying)
                         audioSource.PlayOneShot(paymentSound);
 
+                    totalAmount += amountBoxes;
                     Destroy(boxStack.StackedBoxes[i]);
                 }
 
+                PlayerEconomy player = FindObjectOfType<PlayerEconomy>();
+                player.ReceivePayment(totalAmount);
+
                 boxStack.StackedBoxes.Clear();
+                totalAmount = 0;
 
                 BackToStart();
             }

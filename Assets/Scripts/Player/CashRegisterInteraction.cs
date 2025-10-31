@@ -195,7 +195,10 @@ public class CashRegisterInteraction : MonoBehaviour
         if (targetPosition == limitedCameraTarget)
             crosshair.SetActive(true);
         else
+        {
             playerCamera.transform.rotation = targetPosition.rotation;
+            crosshair.SetActive(false);
+        }
 
         virtualPlayerCam.IsInCashRegister = true;
         virtualPlayerCam.IsLocked = true;
@@ -205,8 +208,6 @@ public class CashRegisterInteraction : MonoBehaviour
 
         Cursor.lockState = lockCamera ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = lockCamera;
-
-        crosshair.SetActive(false);
     }
 
     // configuracion al salir de la caja registradora

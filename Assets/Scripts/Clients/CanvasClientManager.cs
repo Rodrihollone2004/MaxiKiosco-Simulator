@@ -23,11 +23,12 @@ public class CanvasClientManager : MonoBehaviour
         gameObject.SetActive(true);
 
         if (emojiClient == null)
+        {
             emojiClient = GetComponentInChildren<TMP_Text>(true);
+            emojiClient.text = ""; 
+        }
 
-        if (trashPercentage <= 40)
-            emojiClient.text = $"<sprite name=Basura_1>\n";
-        else if (trashPercentage >= 50)
+        if (trashPercentage >= 50)
             emojiClient.text = $"<sprite name=Basura_2>\n";
         else if (trashPercentage >= 70)
             emojiClient.text = $"<sprite name=Basura_3>\n";
