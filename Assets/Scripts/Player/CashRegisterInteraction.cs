@@ -170,7 +170,6 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         if (playerMovement.State == PlayerMovement.MovementState.sprinting || playerMovement.State == PlayerMovement.MovementState.walking || playerMovement.State == PlayerMovement.MovementState.air || playerMovement.State == PlayerMovement.MovementState.crouching) return;
         // desactiva movimiento de jugador, de la camara y mueve la camara a la posicion de la caja, activa la ui y notifica al sistema de camara
-        playerCamera.GetComponent<CinemachineBrain>().enabled = false;
         playerMovement.enabled = false;
         canClickTheCashRegister = false;
 
@@ -184,18 +183,19 @@ public class CashRegisterInteraction : MonoBehaviour
             hasStoredTrueOriginal = true;
         }
 
-        if (!InCashRegister)
-            MoveCameraSmooth(targetPosition, 0.5f);
+        StartCoroutine(EnterCashRegisterSequence(targetPosition, lockCamera));
+    }
 
-        playerCamera.transform.position = targetPosition.position;
+    private IEnumerator EnterCashRegisterSequence(Transform targetPosition, bool lockCamera)
+    {
+        yield return MoveCameraCoroutine(targetPosition, 0.5f, true);
+
+        playerCamera.GetComponent<CinemachineBrain>().enabled = false;
+
         if (targetPosition == limitedCameraTarget)
-        {
             crosshair.SetActive(true);
-        }
         else
-        {
             playerCamera.transform.rotation = targetPosition.rotation;
-        }
 
         virtualPlayerCam.IsInCashRegister = true;
         virtualPlayerCam.IsLocked = true;
@@ -207,8 +207,6 @@ public class CashRegisterInteraction : MonoBehaviour
         Cursor.visible = lockCamera;
 
         crosshair.SetActive(false);
-
-        //PlayRegisterSound(registerOpenSound);
     }
 
     // configuracion al salir de la caja registradora
