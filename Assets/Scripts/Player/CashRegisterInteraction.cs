@@ -70,6 +70,8 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private bool isTransitioning = false;
 
+    CinemachineBrain brain;
+
     //private void Awake()
     //{
     //    if (registerAudioSource == null)
@@ -162,6 +164,7 @@ public class CashRegisterInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag(cashRegisterTag) && playerMovement.State == PlayerMovement.MovementState.idle)
             {
+                virtualPlayerCam.IsLocked = true;
                 EnterCashRegisterMode(true, lockedCameraTarget);
                 PeekClient(false);
                 TutorialContent.Instance.CompleteStep(4);
@@ -194,7 +197,9 @@ public class CashRegisterInteraction : MonoBehaviour
     {
         yield return MoveCameraCoroutine(targetPosition, 0.5f, true);
 
-        playerCamera.GetComponent<CinemachineBrain>().enabled = false;
+        brain = playerCamera.GetComponent<CinemachineBrain>();
+        brain.enabled = false;
+        virtualPlayerCam.enabled = false;
 
         if (targetPosition == limitedCameraTarget)
             crosshair.SetActive(true);
@@ -205,7 +210,6 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         virtualPlayerCam.IsInCashRegister = true;
-        virtualPlayerCam.IsLocked = true;
 
         playerCam.IsInCashRegister = true;
         playerCam.IsLocked = lockCamera;
@@ -248,10 +252,7 @@ public class CashRegisterInteraction : MonoBehaviour
         }
 
         virtualPlayerCam.IsInCashRegister = false;
-        virtualPlayerCam.IsLocked = false;
-
         playerCam.IsInCashRegister = false;
-        playerCam.IsLocked = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -398,22 +399,10 @@ public class CashRegisterInteraction : MonoBehaviour
 
     private IEnumerator SafeExitCashRegisterMode()
     {
-        CinemachineBrain brain = playerCamera.GetComponent<CinemachineBrain>();
-        GameObject virtualCamera = null;
-        PlayerCam machineCam = null;
-
-        if (brain != null && brain.ActiveVirtualCamera != null)
-        {
-            virtualCamera = brain.ActiveVirtualCamera.VirtualCameraGameObject;
-            machineCam = virtualCamera.GetComponent<PlayerCam>();
-            if (machineCam != null)
-                machineCam.enabled = false;
-        }
-
         isTransitioning = true;
         ExitCashRegisterMode();
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.6f);
 
         playerCam.enabled = false;
 
@@ -423,14 +412,16 @@ public class CashRegisterInteraction : MonoBehaviour
         while (brain.ActiveVirtualCamera == null)
             yield return null;
 
-        yield return new WaitForEndOfFrame();
-
-        if (machineCam != null)
+        if (virtualPlayerCam != null)
         {
-            machineCam.SyncRotationWithCamera();
-            machineCam.enabled = true;
+            virtualPlayerCam.SyncRotationWithCamera();
+            virtualPlayerCam.IsLocked = false;
+            playerCam.IsLocked = false;
         }
 
+        yield return new WaitForEndOfFrame();
+
+        virtualPlayerCam.enabled = true;
         isTransitioning = false;
     }
 }
