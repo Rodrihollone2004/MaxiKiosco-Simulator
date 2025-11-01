@@ -22,6 +22,8 @@ public class CashRegisterInteraction : MonoBehaviour
     public PlayerEconomy playerEconomy;
     public CashRegisterUI cashRegisterUI;
 
+    [SerializeField] private Transform spawnTransform;
+
     [Header("QR Payment")]
     [SerializeField] private QRPaymentHandler qrPaymentHandler;
     private bool isQRPayment = false;
@@ -84,11 +86,32 @@ public class CashRegisterInteraction : MonoBehaviour
     private void Start()
     {
         playerCamera = Camera.main;
-        startCameraPos = playerCamera.transform.position;
-        startCameraRot = playerCamera.transform.rotation;
+
+        // Establecemos la posición inicial fija de la cámara
+        playerCamera.transform.position = spawnTransform.position;
+        playerCamera.transform.rotation = spawnTransform.rotation;
+
+        virtualPlayerCam.transform.position = spawnTransform.position;
+        virtualPlayerCam.transform.rotation = spawnTransform.rotation;
+
+        startCameraPos = spawnTransform.position;
+        startCameraRot = spawnTransform.rotation;
+
         dayNightCycle = FindObjectOfType<DayNightCycle>();
         playerInteraction = GetComponent<PlayerInteraction>();
         NPC_Controller.onShowScreen += () => PeekClient();
+
+        StartCoroutine(EnableMouseInputNextFrame());
+    }
+
+    private IEnumerator EnableMouseInputNextFrame()
+    {
+        virtualPlayerCam.IsLocked = true;
+
+        yield return new WaitForSeconds(0.4f);
+
+        virtualPlayerCam.SyncRotationWithCamera();
+        virtualPlayerCam.IsLocked = false;
     }
 
     private void Update()
