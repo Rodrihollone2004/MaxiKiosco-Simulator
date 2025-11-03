@@ -114,14 +114,21 @@ public class DayNightCycle : MonoBehaviour
         pause = false;
     }
 
-    public void OnSleepButtonPressed()
+    public void OnCloseDay()
     {
+        StartCoroutine(OnSleepButtonPressed());
+    }
+
+    public IEnumerator OnSleepButtonPressed()
+    {
+        StartCoroutine(TransitionManager.Instance.EndDay());
         if (_timeOfDay >= (22f / 24f))
         {
+            yield return new WaitForSeconds(1);
+            CashRegisterInteraction cash = FindObjectOfType<CashRegisterInteraction>();
+            StartCoroutine(cash.SafeExitCashRegisterMode());
             StartNewDay();
             sleepPressed = true;
-            CashRegisterInteraction cash = FindObjectOfType<CashRegisterInteraction>();
-            cash.ExitCashRegisterMode();
         }
     }
     private void UpdateTimeScale()
@@ -270,6 +277,8 @@ public class DayNightCycle : MonoBehaviour
 
         queueManager.ResetDailyStats();
 
+        cashRegisterInteraction.ExitCashRegisterMode();
+        cashRegisterInteraction.RestartCameraPos();
         cashRegisterInteraction.PlayerCam.enabled = false;
         cashRegisterInteraction.PlayerCamera.GetComponent<CinemachineBrain>().enabled = true;
 

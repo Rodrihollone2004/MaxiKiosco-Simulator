@@ -104,6 +104,12 @@ public class CashRegisterInteraction : MonoBehaviour
         StartCoroutine(EnableMouseInputNextFrame());
     }
 
+    public void RestartCameraPos()
+    {
+        virtualPlayerCam.transform.position = spawnTransform.position;
+        virtualPlayerCam.transform.rotation = spawnTransform.rotation;
+    }
+
     private IEnumerator EnableMouseInputNextFrame()
     {
         virtualPlayerCam.IsLocked = true;
@@ -420,7 +426,7 @@ public class CashRegisterInteraction : MonoBehaviour
         isTransitioning = false;
     }
 
-    private IEnumerator SafeExitCashRegisterMode()
+    public IEnumerator SafeExitCashRegisterMode()
     {
         isTransitioning = true;
         ExitCashRegisterMode();
