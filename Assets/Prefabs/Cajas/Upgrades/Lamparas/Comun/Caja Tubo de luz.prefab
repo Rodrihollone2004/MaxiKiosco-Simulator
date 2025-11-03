@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1392679868829456281}
   - component: {fileID: 3435300650227931836}
   m_Layer: 3
-  m_Name: Caja Tubo de Luz
+  m_Name: Caja Tubo de luz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4101453415636071101}
+  - {fileID: 4219501498335491653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7705102616205970252
@@ -153,7 +153,7 @@ MonoBehaviour:
   _highlightColor: {r: 0, g: 1, b: 0, a: 1}
   _highlightWidth: 1.03
   buildPrefab: {fileID: 0}
---- !u!1001 &5228696827315773652
+--- !u!1001 &5401492058467820588
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -226,9 +226,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58525588c60ab5a438913315ff19932b, type: 3}
---- !u!4 &4101453415636071101 stripped
+--- !u!4 &4219501498335491653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8105171088328266345, guid: 58525588c60ab5a438913315ff19932b,
     type: 3}
-  m_PrefabInstance: {fileID: 5228696827315773652}
+  m_PrefabInstance: {fileID: 5401492058467820588}
   m_PrefabAsset: {fileID: 0}
