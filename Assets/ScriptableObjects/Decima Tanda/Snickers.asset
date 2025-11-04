@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Snickers
+  m_EditorClassIdentifier: 
+  _name: Snickers
+  _id: 0
+  _price: 1035
+  originalPrice: 1035
+  _placeZone: Isla
+  _packSize: 24
+  _currentAmount: 24
+  _packPrice: 24800
+  prefab: {fileID: 5377346453728469148, guid: 6e7f63dd56524894e8b9bf19ce51524f, type: 3}
+  type: 0

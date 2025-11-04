@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
+  m_Name: Eveready AAA
+  m_EditorClassIdentifier: 
+  _name: Eveready AAA
+  _id: 0
+  _price: 600
+  originalPrice: 600
+  _placeZone: Pared
+  _packSize: 24
+  _currentAmount: 24
+  _packPrice: 28800
+  prefab: {fileID: 6712115253238755447, guid: c48732f41cc86d349a223f985d52b6e6, type: 3}
+  type: 5
