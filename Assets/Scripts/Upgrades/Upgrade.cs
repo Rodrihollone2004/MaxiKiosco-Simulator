@@ -26,10 +26,10 @@ public class Upgrade : ScriptableObject
     public string PlaceZone { get => placeZone; set => placeZone = value; }
     public Sprite Icon => icon;
 
-    public int AmountMin1000 { get => AmountMin1000; set => AmountMin1000 = value; }
-    public int AmountMax1000 { get => AmountMax1000; set => AmountMax1000 = value; }
-    public int AmountMinOthers { get => AmountMinOthers; set => AmountMinOthers = value; }
-    public int AmountMaxOthers { get => AmountMaxOthers; set => AmountMaxOthers = value; }
+    public int AmountMin1000 { get => amountMin1000; set => amountMin1000 = value; }
+    public int AmountMax1000 { get => amountMax1000; set => amountMax1000 = value; }
+    public int AmountMinOthers { get => amountMinOthers; set => amountMinOthers = value; }
+    public int AmountMaxOthers { get => amountMaxOthers; set => amountMaxOthers = value; }
     public int MaxProductsToBuy { get => maxProductsToBuy; set => maxProductsToBuy = value; }
     public int MaxAmountOfProductToBuy { get => maxAmountOfProductToBuy; set => maxAmountOfProductToBuy = value; }
 }
