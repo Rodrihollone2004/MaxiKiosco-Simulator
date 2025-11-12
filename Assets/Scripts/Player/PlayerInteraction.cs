@@ -64,9 +64,9 @@ public class PlayerInteraction : MonoBehaviour
     [Header("UI Progress")]
     [SerializeField] private Image progressCircle;
 
-    private int timerRepick;
-    private int timerSell;
-    [SerializeField] private int limitTimerDelay;
+    private float timerRepick;
+    private float timerSell;
+    [SerializeField] private float limitTimerDelay = 2f;
     private int ignorePlayer;
 
     private bool isShowingAdvice;
@@ -125,8 +125,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKey(KeyCode.V) && productPlaced != null)
         {
-            timerSell += 1;
-            ShowProgressCircle((float)timerSell / limitTimerDelay);
+            timerSell += Time.deltaTime;
+            ShowProgressCircle(timerSell / limitTimerDelay);
 
             if (timerSell >= limitTimerDelay)
             {
@@ -229,9 +229,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.F) && !cashRegisterInteraction.InCashRegister && heldObject == null)
                 {
-                    timerRepick += 1;
-
-                    ShowProgressCircle((float)timerRepick / limitTimerDelay);
+                    timerRepick += Time.deltaTime;
+                    ShowProgressCircle(timerRepick / limitTimerDelay);
 
                     if (timerRepick >= limitTimerDelay)
                     {

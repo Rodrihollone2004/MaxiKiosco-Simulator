@@ -54,8 +54,8 @@ public class PlayerCam : MonoBehaviour
                 ToggleZoom(false);
             return;
         }
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivity;
+        float mouseX = Input.GetAxisRaw("Mouse X") * (sensitivity * 0.1f);
+        float mouseY = Input.GetAxisRaw("Mouse Y") * (sensitivity * 0.1f);
 
         mouseY = invertY ? -mouseY : mouseY;
 
