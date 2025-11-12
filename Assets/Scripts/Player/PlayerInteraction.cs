@@ -489,12 +489,21 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (upgrade.AmountMin1000 > 0)
             Wallet.AmountMin1000 -= upgrade.AmountMin1000;
-        else if (upgrade.AmountMax1000 > 0)
+        
+        if (upgrade.AmountMax1000 > 0)
             Wallet.AmountMax1000 -= upgrade.AmountMax1000;
-        else if (upgrade.AmountMinOthers > 0)
+        
+        if (upgrade.AmountMinOthers > 0)
             Wallet.AmountMinOthers -= upgrade.AmountMinOthers;
-        else if (upgrade.AmountMaxOthers > 0)
+        
+        if (upgrade.AmountMaxOthers > 0)
             Wallet.AmountMaxOthers -= upgrade.AmountMaxOthers;
+
+        if (upgrade.MaxProductsToBuy > 0)
+            Client.MaxProductsToBuy -= upgrade.MaxProductsToBuy;
+
+        if (upgrade.MaxAmountOfProductToBuy > 0)
+            Client.MaxAmountToBuy -= upgrade.MaxAmountOfProductToBuy;
     }
 
     // intenta recoger un objeto con el raycast

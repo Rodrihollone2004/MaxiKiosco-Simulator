@@ -14,8 +14,8 @@ public class Client : MonoBehaviour
 
     public List<int> ClientPayment = new List<int>();
     public int totalCart;
-    [field: SerializeField] public int MaxProductsToBuy { get; set; } = 6;
-    [field: SerializeField] public int MaxAmountToBuy { get; set; } = 4;
+    public static int MaxProductsToBuy { get; set; } = 6;
+    public static int MaxAmountToBuy { get; set; } = 4;
 
     public enum PaymentMethod { Cash, QR }
     public PaymentMethod paymentMethod;

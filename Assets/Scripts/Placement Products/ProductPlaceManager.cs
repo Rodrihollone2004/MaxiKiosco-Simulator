@@ -121,6 +121,8 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                     playerInteraction.LightSwitch.totalLights.Add(light);
                     playerInteraction.LightSwitch.UpdateLights();
                 }
+
+                UpdateBills(upgrade.UpgradeData);
             }
 
             foreach (PlacementZoneProducts zone in AllZones) zone.HideVisual();
@@ -143,6 +145,27 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
                 src.PlayOneShot(playerInteraction.ErrorSound);
         }
+    }
+
+    void UpdateBills(Upgrade upgrade)
+    {
+        if (upgrade.AmountMin1000 > 0)
+            Wallet.AmountMin1000 += upgrade.AmountMin1000;
+
+        if (upgrade.AmountMax1000 > 0)
+            Wallet.AmountMax1000 += upgrade.AmountMax1000;
+
+        if (upgrade.AmountMinOthers > 0)
+            Wallet.AmountMinOthers += upgrade.AmountMinOthers;
+
+        if (upgrade.AmountMaxOthers > 0)
+            Wallet.AmountMaxOthers += upgrade.AmountMaxOthers;
+
+        if (upgrade.MaxProductsToBuy > 0)
+            Client.MaxProductsToBuy += upgrade.MaxProductsToBuy;
+
+        if(upgrade.MaxAmountOfProductToBuy > 0)
+            Client.MaxAmountToBuy += upgrade.MaxAmountOfProductToBuy;
     }
 
     private void SetPreviewColor(GameObject obj, Color color)

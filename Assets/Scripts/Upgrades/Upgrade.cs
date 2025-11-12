@@ -16,6 +16,9 @@ public class Upgrade : ScriptableObject
     [SerializeField] private int amountMinOthers = 0;
     [SerializeField] private int amountMaxOthers = 0;
 
+    [SerializeField] private int maxProductsToBuy = 0;
+    [SerializeField] private int maxAmountOfProductToBuy = 0;
+
     public int LevelUpdate { get => levelUpdate; set => levelUpdate = value; }
     public GameObject Prefab { get => prefab; set => prefab = value; }
     public int Price { get => price; set => price = value; }
@@ -27,4 +30,6 @@ public class Upgrade : ScriptableObject
     public int AmountMax1000 { get => AmountMax1000; set => AmountMax1000 = value; }
     public int AmountMinOthers { get => AmountMinOthers; set => AmountMinOthers = value; }
     public int AmountMaxOthers { get => AmountMaxOthers; set => AmountMaxOthers = value; }
+    public int MaxProductsToBuy { get => maxProductsToBuy; set => maxProductsToBuy = value; }
+    public int MaxAmountOfProductToBuy { get => maxAmountOfProductToBuy; set => maxAmountOfProductToBuy = value; }
 }
