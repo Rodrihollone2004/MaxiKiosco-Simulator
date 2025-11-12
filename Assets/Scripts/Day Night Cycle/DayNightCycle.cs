@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 using Cinemachine;
 
-public class DayNightCycle : MonoBehaviour
+public class DayNightCycle : MonoBehaviour, IDataPersistance
 {
     [Header("Time")]
     [Tooltip("Day Length in Minutes")]
@@ -112,6 +112,17 @@ public class DayNightCycle : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide < 15)
             return;
         pause = false;
+    }
+
+    public void LoadData(GameData data)
+    {
+        _dayNumber = data.currentDay;
+        daysText.text = $"{_dayNumber}";
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentDay = _dayNumber;
     }
 
     public void OnCloseDay()

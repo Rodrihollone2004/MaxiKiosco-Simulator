@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ExperienceManager : MonoBehaviour
+public class ExperienceManager : MonoBehaviour, IDataPersistance
 {
     [Header("Experience")]
     [SerializeField] AnimationCurve experienceCurve;
@@ -37,6 +37,24 @@ public class ExperienceManager : MonoBehaviour
             AddExperience(20);
     }
 
+    public void LoadData(GameData data)
+    {
+        totalExperience = data.currentExperience;
+        currentLevel = data.currentLevel;
+        previousLevelsExperience = data.previousLevelsExperience;
+        nextLevelsExperience = data.nextLevelsExperience;
+
+        UpdateInterface();
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentExperience = totalExperience;
+        data.currentLevel = currentLevel;
+        data.previousLevelsExperience = previousLevelsExperience;
+        data.nextLevelsExperience = nextLevelsExperience;
+    }
+
     public void AddExperience(int amount)
     {
         totalExperience += amount;
@@ -49,26 +67,26 @@ public class ExperienceManager : MonoBehaviour
         if (totalExperience >= nextLevelsExperience)
         {
             currentLevel++;
-            levelToPoints++;
+            //levelToPoints++;
             UpdateLevel();
             levelPoints.text = $"Nivel: {levelToPoints}";
             audioSource.PlayOneShot(levelUP);
         }
     }
 
-    public bool PurchaseUpgrade(int upgrade)
-    {
-        if (levelToPoints >= upgrade)
-        {
-            levelToPoints -= upgrade;
-            levelPoints.text = $"Nivel: {levelToPoints}";
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //public bool PurchaseUpgrade(int upgrade)
+    //{
+    //    if (levelToPoints >= upgrade)
+    //    {
+    //        levelToPoints -= upgrade;
+    //        levelPoints.text = $"Nivel: {levelToPoints}";
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     void UpdateLevel()
     {

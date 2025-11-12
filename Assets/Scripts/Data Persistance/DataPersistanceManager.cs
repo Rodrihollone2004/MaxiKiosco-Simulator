@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class DataPersistanceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
-    
-    private GameData gameData; 
+
+    private GameData gameData;
     private List<IDataPersistance> dataPersistancesObjects;
     private FileDataHandler dataHandler;
 
@@ -68,7 +69,7 @@ public class DataPersistanceManager : MonoBehaviour
             dataPersistanceObject.LoadData(gameData);
         }
     }
-    
+
     public void SaveGame()
     {
         dataPersistancesObjects = FindAllDataPersistanceObjects();
@@ -85,7 +86,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
-        IEnumerable<IDataPersistance> dataPersistancesObjects = FindObjectsOfType<MonoBehaviour>()
+        IEnumerable<IDataPersistance> dataPersistancesObjects = FindObjectsOfType<MonoBehaviour>(true)
             .OfType<IDataPersistance>();
 
         return new List<IDataPersistance>(dataPersistancesObjects);
