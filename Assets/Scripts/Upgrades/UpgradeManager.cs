@@ -96,6 +96,8 @@ public class UpgradeManager : MonoBehaviour
     {
         GameObject spawned = Instantiate(upgrade.Prefab, spawnPoint.transform.position, Quaternion.identity);
 
+        UpdateBills(upgrade);
+
         if (upgrade.Name != "Heladera")
             SetLayerRecursive(spawned, LayerMaskToLayer(productLayer));
         else
@@ -108,6 +110,18 @@ public class UpgradeManager : MonoBehaviour
             if (light != null)
                 light.enabled = false;
         }
+    }
+
+    void UpdateBills(Upgrade upgrade)
+    {
+        if (upgrade.AmountMin1000 > 0)
+            Wallet.AmountMin1000 += upgrade.AmountMin1000;
+        else if (upgrade.AmountMax1000 > 0)
+            Wallet.AmountMax1000 += upgrade.AmountMax1000;
+        else if (upgrade.AmountMinOthers > 0)
+            Wallet.AmountMinOthers += upgrade.AmountMinOthers;
+        else if (upgrade.AmountMaxOthers > 0)
+            Wallet.AmountMaxOthers += upgrade.AmountMaxOthers;
     }
 
     private void SetLayerRecursive(GameObject obj, int layer)

@@ -10,6 +10,12 @@ public class Wallet
     public int TotalMoney { get; private set; } = 0;
     public int Step { get; private set; } = 0;
 
+    public static int AmountMin1000 = 3;
+    public static int AmountMax1000 = 6;
+
+    public static int AmountMinOthers = 3;
+    public static int AmountMaxOthers = 6;
+
     public void RandomWallet()
     {
         if (Bills == null)
@@ -22,14 +28,31 @@ public class Wallet
 
         for (int i = Money.billDenominations.Length - 1; i >= 0; i--)
         {
-            int amount = UnityEngine.Random.Range(3, 6);
+            if (Money.billDenominations[i] == 1000)
+            {
+                int amount1000 = UnityEngine.Random.Range(AmountMin1000, AmountMax1000);
 
-            if (amount > 0)
-                Bills.Add(new Money(Money.billDenominations[i], amount));
+                if (amount1000 > 0)
+                    Bills.Add(new Money(Money.billDenominations[i], amount1000));
+            }
+            else
+            {
+                int amount = UnityEngine.Random.Range(AmountMinOthers, AmountMaxOthers);
+                if (amount > 0)
+                    Bills.Add(new Money(Money.billDenominations[i], amount));
+            }
         }
 
         foreach (Money bill in Bills)
             TotalMoney += bill.Total;
+    }
+
+    public void SetAmountBills(int minAmount1000, int maxAmount1000, int minAmountOtherBills, int maxAmountOtherBills)
+    {
+        AmountMin1000 = minAmount1000;
+        AmountMax1000 = maxAmount1000;
+        AmountMinOthers = minAmountOtherBills;
+        AmountMaxOthers = maxAmountOtherBills;
     }
 
     public override string ToString()

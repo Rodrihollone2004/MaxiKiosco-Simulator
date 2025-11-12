@@ -194,10 +194,18 @@ public class StoreUI : MonoBehaviour
                     TMP_Text textStock = imageStock.GetComponentInChildren<TMP_Text>();
                     textStock.text = product.Name;
 
+                    Image imageAmount = buttonGO.transform.Find("AmountPack").GetComponent<Image>();
+                    TMP_Text textAmount = imageAmount.GetComponentInChildren<TMP_Text>();
+                    textAmount.text = $"{product.CurrentAmount}";
+
+                    Image imagePricePack = buttonGO.transform.Find("PricePack").GetComponent<Image>();
+                    TMP_Text textPricePack = imagePricePack.GetComponentInChildren<TMP_Text>();
+                    textPricePack.text = $"${product.PackPrice}";
+
                     //imagen boton de compra
                     Button button = buttonGO.GetComponentInChildren<Button>();
                     TMP_Text textButton = button.GetComponentInChildren<TMP_Text>();
-                    textButton.text = $"X{product.PackSize} - ${product.PackPrice}";
+                    textButton.text = $"BUY";
 
                     Product capturedProduct = product;
                     if (!productsButtons.ContainsKey(capturedProduct))

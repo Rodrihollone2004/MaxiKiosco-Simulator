@@ -470,6 +470,7 @@ public class PlayerInteraction : MonoBehaviour
         hintText.text = "[LMB] para interactuar\n" +
             "[F] para repickear\n";
         playerEconomy.ReceivePayment(upgrade.UpgradeData.Price);
+        UpdateBills(upgrade.UpgradeData);
         Destroy(upgrade.gameObject);
     }
 
@@ -482,6 +483,18 @@ public class PlayerInteraction : MonoBehaviour
         isShowingAdvice = false;
         dropHintUI.SetActive(false);
         nameText.text = "";
+    }
+
+    private void UpdateBills(Upgrade upgrade)
+    {
+        if (upgrade.AmountMin1000 > 0)
+            Wallet.AmountMin1000 -= upgrade.AmountMin1000;
+        else if (upgrade.AmountMax1000 > 0)
+            Wallet.AmountMax1000 -= upgrade.AmountMax1000;
+        else if (upgrade.AmountMinOthers > 0)
+            Wallet.AmountMinOthers -= upgrade.AmountMinOthers;
+        else if (upgrade.AmountMaxOthers > 0)
+            Wallet.AmountMaxOthers -= upgrade.AmountMaxOthers;
     }
 
     // intenta recoger un objeto con el raycast
