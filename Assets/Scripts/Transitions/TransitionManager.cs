@@ -6,22 +6,31 @@ using UnityEngine.SceneManagement;
 public class TransitionManager : MonoBehaviour
 {
     public static TransitionManager Instance;
-    [SerializeField] Animator transitionAnim;
+    Animator transitionAnim;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (transitionAnim == null)
+            transitionAnim = GetComponent<Animator>();
+
+        if (Instance != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-            Destroy(Instance);
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void NextLevel()
     {
         StartCoroutine(LoadLevel());
+    }
+
+    public void BackMenu()
+    {
+        StartCoroutine(LoadMenu());
     }
 
     private IEnumerator LoadLevel()
@@ -30,6 +39,17 @@ public class TransitionManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene("Game");
+
+        yield return new WaitForEndOfFrame();
+        transitionAnim.SetTrigger("Start");
+    }
+
+    private IEnumerator LoadMenu()
+    {
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene("MainMenu");
 
         yield return new WaitForEndOfFrame();
         transitionAnim.SetTrigger("Start");

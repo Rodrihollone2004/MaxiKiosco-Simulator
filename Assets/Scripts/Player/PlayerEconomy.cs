@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerEconomy : MonoBehaviour
+public class PlayerEconomy : MonoBehaviour, IDataPersistance
 {
     [Header("Player Money")]
     [SerializeField] private int currentMoney = 100;
@@ -15,6 +15,19 @@ public class PlayerEconomy : MonoBehaviour
     private void Awake()
     {
         MoneyBill.onPickBill += MoneyBill_onPickBill;
+    }
+
+    public void LoadData(GameData data)
+    {
+        currentMoney = data.currentPlayerMoney;
+        transform.position = data.playerPosition;
+        moneyText.text = $"{currentMoney}";
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentPlayerMoney = currentMoney;
+        data.playerPosition = transform.position;
     }
 
     public void ShowFeedback(int amount)
@@ -66,11 +79,6 @@ public class PlayerEconomy : MonoBehaviour
     public int GetCurrentChange()
     {
         return currentChange;
-    }
-
-    private void Start()
-    {
-        moneyText.text = $"{currentMoney}";
     }
 
     // Sumar plata del cliente

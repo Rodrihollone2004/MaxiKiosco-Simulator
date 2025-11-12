@@ -26,13 +26,13 @@ public class PauseManager : MonoBehaviour
         //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name != "MainMenu")
-        {
-            LoadGame();
-        }
-    }
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    if (scene.name != "MainMenu")
+    //    {
+    //        LoadGame();
+    //    }
+    //}
 
     void Update()
     {
@@ -80,17 +80,11 @@ public class PauseManager : MonoBehaviour
 
     public void SaveGame()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-        {
-            return;
-        }
-
-        PlayerPrefs.SetFloat("PlayerPosX", player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerPosY", player.transform.position.y);
-        PlayerPrefs.SetFloat("PlayerPosZ", player.transform.position.z);
-        PlayerPrefs.SetString("SavedLevel", SceneManager.GetActiveScene().name);
-        PlayerPrefs.Save();
+        DataPersistanceManager dataPersistanceManager = FindObjectOfType<DataPersistanceManager>();
+        dataPersistanceManager.SaveGame();
+        Time.timeScale = 1f;
+        TransitionManager.Instance.BackMenu();
+        Debug.Log("Partida guardad");
     }
 
 
