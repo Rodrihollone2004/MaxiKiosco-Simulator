@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 0b846be1b116429409a7669cacf2a62e, type: 2}
+  m_SubtractiveShadowColor: {r: 0.41960785, g: 0.47843137, b: 0.627451, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5a37f01b315093143a15417f452582cb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -12377,6 +12377,7 @@ MonoBehaviour:
   elapsedTime: 0
   _timeOfDay: 0
   _dayNumber: 1
+  pause: 0
   timeCurve:
     serializedVersion: 2
     m_Curve:
@@ -12455,6 +12456,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   sunSeasonalRotation: {fileID: 982041825}
   maxSeasonalTilt: -45
+  IsComplete: 0
 --- !u!4 &619099614
 Transform:
   m_ObjectHideFlags: 0
@@ -24138,7 +24140,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0

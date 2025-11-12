@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class MenuDayNightCycle : MonoBehaviour
 {
     [Header("Time")]
     [Tooltip("Day Length in Minutes")]
-    [SerializeField] private float _targetDayLength = 13f; // largo del dia en minutos
+    [SerializeField] private float _targetDayLength = .2f; // largo del dia en minutos
     [SerializeField] private float elapsedTime;
     [SerializeField]
     [Range(0f, 1f)]
@@ -31,21 +32,20 @@ public class MenuDayNightCycle : MonoBehaviour
     private float maxSeasonalTilt;
 
     [Header("Modules")]
-    private List<DNModuleBase> moduleList = new List<DNModuleBase>();
+    private List<DNModuleBaseMenu> moduleList = new List<DNModuleBaseMenu>();
+
 
     private void Awake()
     {
         NormalTimeCurve();
-        _timeOfDay = 0f / 24f;
-        elapsedTime = (_targetDayLength * 60) * _timeOfDay;
     }
 
     private void Update()
     {
         UpdateTimeScale();
         UpdateTime();
-        UpdateClock();
         AdjustSunRotation();
+        SunIntensity();
         AdjustSunColor();
         UpdateModules();
     }
@@ -53,7 +53,7 @@ public class MenuDayNightCycle : MonoBehaviour
     private void UpdateTimeScale()
     {
         _timeScale = 24 / (_targetDayLength / 60);
-        _timeScale *= timeCurve.Evaluate(elapsedTime / (_targetDayLength * 60));
+        _timeScale *= timeCurve.Evaluate(_timeOfDay);
         _timeScale /= timeCurveNormalization;
     }
 
@@ -73,25 +73,7 @@ public class MenuDayNightCycle : MonoBehaviour
 
     private void UpdateTime()
     {
-        float previousTimeOfDay = _timeOfDay;
-
         _timeOfDay += Time.deltaTime * _timeScale / 86400f;
-
-        if (previousTimeOfDay < (24f / 24f) && _timeOfDay >= (22f / 24f))
-        {
-            _timeOfDay = 24f / 24f;
-        }
-
-        elapsedTime = _timeOfDay * (_targetDayLength * 60);
-    }
-
-    private void UpdateClock()
-    {
-        float time = elapsedTime / (_targetDayLength * 60);
-        int hour = Mathf.FloorToInt(time * 24);
-        int minute = Mathf.FloorToInt(((time * 24) - hour) * 60);
-
-        minute = Mathf.Clamp(minute, 0, 59);
     }
 
     // rotar el sol del dia
@@ -103,28 +85,35 @@ public class MenuDayNightCycle : MonoBehaviour
         float seasonalAngle = -maxSeasonalTilt * Mathf.Cos(_dayNumber * 2f * Mathf.PI);
         sunSeasonalRotation.localRotation = Quaternion.Euler(new Vector3(seasonalAngle, 0f, 0f));
     }
-   
+
+    private void SunIntensity()
+    {
+        intensity = Vector3.Dot(sun.transform.forward, Vector3.down);
+        intensity = Mathf.Clamp01(intensity);
+
+        sun.intensity = intensity;
+    }
 
     private void AdjustSunColor()
     {
         sun.color = sunColor.Evaluate(intensity);
     }
 
-    public void AddModule(DNModuleBase module)
+    public void AddModuleMenu(DNModuleBaseMenu module)
     {
         moduleList.Add(module);
     }
 
-    public void RemoveModule(DNModuleBase module)
+    public void RemoveModuleMenu(DNModuleBaseMenu module)
     {
         moduleList.Remove(module);
     }
 
     private void UpdateModules()
     {
-        foreach (DNModuleBase module in moduleList)
+        foreach (DNModuleBaseMenu module in moduleList)
         {
-            module.UpdateModule(intensity);
+            module.UpdateModuleMenu(intensity);
         }
     }
 }
