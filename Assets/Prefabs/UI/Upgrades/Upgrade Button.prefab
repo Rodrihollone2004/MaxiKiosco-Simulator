@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cafetera
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e71abb63ec53e546a4d2e75d1c3bb3a, type: 2}
-  m_sharedMaterial: {fileID: 1527158441676869361, guid: 9e71abb63ec53e546a4d2e75d1c3bb3a,
+  m_fontAsset: {fileID: 11400000, guid: 5c2771d2104a90145889cc3c1f5d901d, type: 2}
+  m_sharedMaterial: {fileID: 1007114875004690621, guid: 5c2771d2104a90145889cc3c1f5d901d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.008
-  m_fontSizeBase: 0.008
+  m_fontSize: 0.015
+  m_fontSizeBase: 0.015
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -20
+  m_characterSpacing: -3.64
   m_wordSpacing: -20
   m_lineSpacing: 20
   m_lineSpacingMax: 0
@@ -436,17 +436,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: $ 50000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e71abb63ec53e546a4d2e75d1c3bb3a, type: 2}
-  m_sharedMaterial: {fileID: 1527158441676869361, guid: 9e71abb63ec53e546a4d2e75d1c3bb3a,
+  m_fontAsset: {fileID: 11400000, guid: 5c2771d2104a90145889cc3c1f5d901d, type: 2}
+  m_sharedMaterial: {fileID: 1007114875004690621, guid: 5c2771d2104a90145889cc3c1f5d901d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -464,8 +464,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.007
-  m_fontSizeBase: 0.007
+  m_fontSize: 0.017
+  m_fontSizeBase: 0.017
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -20
+  m_characterSpacing: -0.5
   m_wordSpacing: -20
   m_lineSpacing: 20
   m_lineSpacingMax: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Config")]
+   
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private KeyCode interactKey = KeyCode.Mouse0;
@@ -81,8 +82,8 @@ public class PlayerInteraction : MonoBehaviour
 
         ignorePlayer = ~LayerMask.GetMask("Player");
 
-        hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n";
+        hintText.text = "[LMB] para interactuar\n" +
+                    "[F] para repickear\n";
     }
 
     private void Update()
@@ -170,8 +171,8 @@ public class PlayerInteraction : MonoBehaviour
                 Destroy(heldObject);
                 heldObject = null;
                 dropHintUI.SetActive(false);
-                hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n";
+                hintText.text = "[LMB] para interactuar\n" +
+                    "[F] para repickear\n";
                 playerEconomy.ReceivePayment(20);
 
                 if (dailySummary != null)
@@ -363,8 +364,8 @@ public class PlayerInteraction : MonoBehaviour
             productInteractable.IsPlaced = false;
 
             nameText.text = productInteractable.ProductData.Name;
-            hintText.text = $"E  para colocar\n" +
-                    $"R  para rotar\n";
+            hintText.text = $"[E] para colocar\n" +
+                    $"[R] para rotar\n";
 
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.ShowVisual(productPlaceZone);
@@ -378,9 +379,9 @@ public class PlayerInteraction : MonoBehaviour
             upgradeInteractable.IsPlaced = false;
 
             nameText.text = upgradeInteractable.UpgradeData.Name;
-            hintText.text = $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    "V para vender";
+            hintText.text = $"[E] para colocar\n" +
+                    $"[R] para rotar\n" +
+                    "[V] para vender";
 
             foreach (PlacementZoneProducts zone in AllZones)
                 zone.ShowVisual(upgradePlaceZone);
@@ -419,8 +420,8 @@ public class PlayerInteraction : MonoBehaviour
             productPlaced = null;
 
             dropHintUI.SetActive(false);
-            hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n";
+            hintText.text = "[LMB] para interactuar\n" +
+                    "[F] para repickear\n";
 
             if (AllZones != null)
                 foreach (PlacementZoneProducts zone in AllZones)
@@ -466,8 +467,8 @@ public class PlayerInteraction : MonoBehaviour
             LightSwitch.totalLights.Remove(light);
 
         dropHintUI.SetActive(false);
-        hintText.text = "LMB para interactuar\n" +
-            "F para repickear\n";
+        hintText.text = "[LMB] para interactuar\n" +
+            "[F] para repickear\n";
         playerEconomy.ReceivePayment(upgrade.UpgradeData.Price);
         Destroy(upgrade.gameObject);
     }
@@ -562,8 +563,8 @@ public class PlayerInteraction : MonoBehaviour
             heldBroom.SetHeld(true);
 
             nameText.text = $"{broom.name}";
-            hintText.text = $"LMB para limpiar\n" +
-                            $"G  para soltar\n";
+            hintText.text = $"[LMB] para limpiar\n" +
+                            $"[G]  para soltar\n";
         }
 
         if (objToPickUp.TryGetComponent(out ProductPlaceManager productPlace))
@@ -616,8 +617,8 @@ public class PlayerInteraction : MonoBehaviour
 
 
                 nameText.text = $"{broom.name}";
-                hintText.text = $"LMB para limpiar\n" +
-                                $"G  para soltar\n";
+                hintText.text = $"[LMB] para limpiar\n" +
+                                $"[G]  para soltar\n";
                 return;
             }
 
@@ -629,9 +630,9 @@ public class PlayerInteraction : MonoBehaviour
 
                 nameText.text = $"{productName}";
                 hintText.text =
-                    $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    $"G  para soltar\n";
+                    $"[E]  para colocar\n" +
+                    $"[R]  para rotar\n" +
+                    $"[G]  para soltar\n";
             }
             else if (upgrade != null && upgrade.UpgradeData != null && !boxProduct.IsEmpty)
             {
@@ -639,14 +640,14 @@ public class PlayerInteraction : MonoBehaviour
 
                 nameText.text = $"{productName}";
                 hintText.text =
-                    $"E  para colocar\n" +
-                    $"R  para rotar\n" +
-                    $"G  para soltar\n";
+                    $"[E]  para colocar\n" +
+                    $"[R]  para rotar\n" +
+                    $"[G]  para soltar\n";
             }
             else if (boxProduct != null && boxProduct.IsEmpty)
             {
                 nameText.text = $"Caja Vacía\n";
-                hintText.text = $"Acercate al tacho/pallete para depositarla\n";
+                hintText.text = $"Acercate al tacho/pallete\npara depositarla\n";
             }
         }
     }
@@ -699,8 +700,8 @@ public class PlayerInteraction : MonoBehaviour
             if (dropHintUI != null)
             {
                 dropHintUI.SetActive(false);
-                hintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n";
+                hintText.text = "[LMB] para interactuar\n" +
+                    "[F] para repickear\n";
             }
 
             heldObject.transform.SetParent(null);
