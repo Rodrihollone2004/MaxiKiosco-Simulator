@@ -9,6 +9,9 @@ public class MoneyBill : MonoBehaviour, IInteractable
     [SerializeField] private float highlightWidth = 1.03f;
     [SerializeField] private PlayerCam playerCam;
 
+    [SerializeField] private AudioClip pickSound;
+    private AudioSource audioSource;
+
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
 
@@ -20,12 +23,18 @@ public class MoneyBill : MonoBehaviour, IInteractable
     {
         _renderer = GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Interact()
     {
         if (playerCam.IsInCashRegister && CashRegisterContext.IsClientInCashRegister())
+        {
+            if (audioSource != null && pickSound != null)
+                audioSource.PlayOneShot(pickSound);
+
             onPickBill?.Invoke(billValue, true);
+        }
     }
 
     public void InteractSubtract()
