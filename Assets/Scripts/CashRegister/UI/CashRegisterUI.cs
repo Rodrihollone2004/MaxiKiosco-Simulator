@@ -31,6 +31,9 @@ public class CashRegisterUI : MonoBehaviour
     [Header("Expensive Products")]
     string cartExpensiveInfo = "";
 
+    [Header("Upgrades Earned")]
+    string cartUpgradeText = "";
+
     [SerializeField] private Transform contentParent;
 
     private void Start()
@@ -83,6 +86,12 @@ public class CashRegisterUI : MonoBehaviour
                     {
                         cartExpensiveInfo += $"{notFoundProduct.ProductData.Name}\n";
                     }
+
+                if(client.UpgradesEarned.Count > 0)
+                    foreach (Upgrade upgradeEarned in client.UpgradesEarned)
+                    {
+                        cartUpgradeText += $"{upgradeEarned.Name} - ${upgradeEarned.ValueForUpgrade}\n";
+                    }
             }
 
 
@@ -97,6 +106,7 @@ public class CashRegisterUI : MonoBehaviour
 
                 CheckNotFoundProducts();
                 CheckExpensiveProducts();
+                CheckUpgradeEarnedMoney();
 
                 foreach (GameObject texts in changeUI)
                     texts.SetActive(false);
@@ -124,6 +134,7 @@ public class CashRegisterUI : MonoBehaviour
 
                 CheckNotFoundProducts();
                 CheckExpensiveProducts();
+                CheckUpgradeEarnedMoney();
             }
         }
     }
@@ -144,6 +155,14 @@ public class CashRegisterUI : MonoBehaviour
         }
     }
 
+    private void CheckUpgradeEarnedMoney()
+    {
+        if (!string.IsNullOrEmpty(cartUpgradeText))
+        {
+            cartText.text += $"<color=#00FF00>{cartUpgradeText}</color>";
+        }
+    }
+
     public void ClearText()
     {
         payText.text = "";
@@ -158,6 +177,7 @@ public class CashRegisterUI : MonoBehaviour
         priceFoundedInfo = "";
         amountFoundedInfo = "";
         cartExpensiveInfo = "";
+        cartUpgradeText = "";
 
         foreach (Transform child in contentParent)
             child.gameObject.SetActive(false);

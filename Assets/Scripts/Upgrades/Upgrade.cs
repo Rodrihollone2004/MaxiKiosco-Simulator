@@ -11,6 +11,7 @@ public class Upgrade : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField] private string infoUpgrade;
     [SerializeField] private bool isUpgradeChange;
+    [SerializeField] private int valueForUpgrade;
 
     [SerializeField] private int amountMin1000 = 0;
     [SerializeField] private int amountMax1000 = 0;
@@ -36,4 +37,5 @@ public class Upgrade : ScriptableObject
     public int MaxAmountOfProductToBuy { get => maxAmountOfProductToBuy; set => maxAmountOfProductToBuy = value; }
     public string InfoUpgrade { get => infoUpgrade; set => infoUpgrade = value; }
     public bool IsUpgradeChange { get => isUpgradeChange; set => isUpgradeChange = value; }
+    public int ValueForUpgrade { get => valueForUpgrade; set => valueForUpgrade = value; }
 }

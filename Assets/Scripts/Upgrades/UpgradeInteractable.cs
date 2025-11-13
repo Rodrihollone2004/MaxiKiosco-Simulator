@@ -15,6 +15,12 @@ public class UpgradeInteractable : MonoBehaviour, IInteractable
             ProductUIManager.Instance.ShowInfoUpgrade(UpgradeData.Name, UpgradeData.InfoUpgrade);
     }
 
+    public void UpgradeMoneyEarned(int earnUpgrade)
+    {
+        PlayerEconomy playerEconomy = FindObjectOfType<PlayerEconomy>();
+        playerEconomy.ReceivePayment(earnUpgrade);
+    }
+
     public void Highlight()
     {
     }

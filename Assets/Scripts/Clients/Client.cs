@@ -24,6 +24,7 @@ public class Client : MonoBehaviour
 
     public List<ProductInteractable> NotFoundedProducts { get; private set; }
     public List<ProductInteractable> ExpensiveProducts { get; private set; }
+    public List<Upgrade> UpgradesEarned { get; private set; }
 
     [SerializeField] ProductDataBase dataBase;
 
@@ -35,6 +36,7 @@ public class Client : MonoBehaviour
         foundedProducts = new List<ProductInteractable>();
         NotFoundedProducts = new List<ProductInteractable>();
         ExpensiveProducts = new List<ProductInteractable>();
+        UpgradesEarned = new List<Upgrade>();
         canvasClientManager = GetComponentInChildren<CanvasClientManager>();
     }
     public int GetProductsCount()
@@ -57,6 +59,26 @@ public class Client : MonoBehaviour
         }
         ClientPayment = wallet.TryMakePayment(totalCart);
         paymentMethod = (PaymentMethod)Random.Range(0, 2);
+    }
+
+    public void CheckUpgradesEarn()
+    {
+        UpgradesEarned.Clear();
+
+        UpgradeInteractable[] upgradeInWorld = FindObjectsOfType<UpgradeInteractable>();
+
+        foreach (UpgradeInteractable upgrade in upgradeInWorld)
+        {
+            if (upgrade.IsPlaced && upgrade.UpgradeData.IsUpgradeChange)
+            {
+                float random = Random.value;
+                if (random > 0.6f)
+                {
+                    upgrade.UpgradeMoneyEarned(upgrade.UpgradeData.ValueForUpgrade);
+                    UpgradesEarned.Add(upgrade.UpgradeData);
+                }
+            }
+        }
     }
 
     public void AddRandomProductsToCart()

@@ -50,6 +50,7 @@ public class NPC_Controller : MonoBehaviour
 
             if (client.GetCart().Count > 0)
             {
+                client.CheckUpgradesEarn();
                 queueManager._clientQueue.Enqueue(client);
                 queueManager.UpdateQueuePositions();
 
