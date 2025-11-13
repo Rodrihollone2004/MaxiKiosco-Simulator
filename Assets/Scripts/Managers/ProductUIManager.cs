@@ -1,5 +1,4 @@
 using System.Collections;
-using AmplifyShaderEditor;
 using System.Diagnostics;
 using TMPro;
 using UnityEngine;
