@@ -11,6 +11,8 @@ public class UpgradeInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (UpgradeData.IsUpgradeChange)
+            ProductUIManager.Instance.ShowInfoUpgrade(UpgradeData.Name, UpgradeData.InfoUpgrade);
     }
 
     public void Highlight()

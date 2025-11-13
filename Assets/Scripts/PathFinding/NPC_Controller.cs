@@ -136,7 +136,7 @@ public class NPC_Controller : MonoBehaviour
                 path = backPath;
             }
 
-            client.CanvasClientManager.UpdateClientEmoji(client.NotFoundedProducts, client.ExpensiveProducts, queueManager.TrashSpawner.TrashPercentage);
+            client.CanvasClientManager.UpdateClientEmoji(client.NotFoundedProducts, client.ExpensiveProducts, queueManager.TrashSpawner.TrashPercentage, queueManager);
         }
     }
 }

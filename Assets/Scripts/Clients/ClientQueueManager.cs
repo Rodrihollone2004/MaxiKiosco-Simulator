@@ -35,15 +35,25 @@ public class ClientQueueManager : MonoBehaviour
     private int clientsServedToday = 0;
     private int moneyEarnedToday = 0;
     private int productsSoldToday = 0;
+    private int countOfBadFaces = 0;
+    private int countOfIntermediateFaces = 0;
+    private int countOfGoodFaces = 0;
 
-
+    public int TotalFaces { get; set; }
     public bool IsTrashBlockingSpawn { get; private set; } = false;
     public ClientTrashSpawner TrashSpawner { get => trashSpawner; set => trashSpawner = value; }
+    public int MaxClientsPerDay { get => maxClientsPerDay; set => maxClientsPerDay = value; }
+    public int CountOfBadFaces { get => countOfBadFaces; set => countOfBadFaces = value; }
+    public int CountOfIntermediateFaces { get => countOfIntermediateFaces; set => countOfIntermediateFaces = value; }
+    public int CountOfGoodFaces { get => countOfGoodFaces; set => countOfGoodFaces = value; }
 
     public int GetProductsSoldToday() => productsSoldToday;
 
     public int GetClientsServedToday() => clientsServedToday;
     public int GetMoneyEarnedToday() => moneyEarnedToday;
+    public int GetBadFacesToday() => countOfBadFaces;
+    public int GetIntermediateFacesToday() => countOfIntermediateFaces;
+    public int GetGoodFacesToday() => countOfGoodFaces;
 
     private void Start()
     {
@@ -236,5 +246,9 @@ public class ClientQueueManager : MonoBehaviour
         moneyEarnedToday = 0;
         clientsSpawnedToday = 0;
         productsSoldToday = 0;
+        countOfBadFaces = 0;
+        countOfIntermediateFaces = 0;
+        countOfGoodFaces = 0;
+        TotalFaces = 0;
     }
 }

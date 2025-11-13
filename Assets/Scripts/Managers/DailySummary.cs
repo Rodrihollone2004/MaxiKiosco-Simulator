@@ -13,7 +13,7 @@ public class DailySummary : MonoBehaviour
     private int boxesThrownAwayToday = 0;
     private int productsSoldToday = 0;
 
-    public void ShowSummary(int clientsServed, int moneyEarned, int productsSold = 0)
+    public void ShowSummary(int clientsServed, int moneyEarned, int badFaces, int intermediateFaces, int goodFaces, int productsSold = 0)
     {
         productsSoldToday = productsSold;
 
@@ -23,8 +23,12 @@ public class DailySummary : MonoBehaviour
                            $"Productos vendidos: {productsSoldToday}\n" +
                            $"Basura limpiada: {trashCleanedToday}\n" +
                            $"Ladrones atrapados: {thievesCaughtToday}\n" +
-                           $"Cajas tiradas: {boxesThrownAwayToday}\n";
-                          
+                           $"Cajas tiradas: {boxesThrownAwayToday}\n" +
+                           $"<sprite name=Client_3>: {badFaces}\n" +
+                           $"<sprite name=Client_2>: {intermediateFaces}\n" +
+                           $"<sprite name=Client_1>: {goodFaces}\n";
+
+
         summaryPanel.SetActive(true);
 
         playerCam.enabled = false;

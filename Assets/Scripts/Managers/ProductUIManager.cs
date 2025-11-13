@@ -1,4 +1,6 @@
 using System.Collections;
+using AmplifyShaderEditor;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -26,6 +28,18 @@ public class ProductUIManager : MonoBehaviour
         nameText.text = $"{name}";
         amountText.text = $"Restantes: {amount}";
         priceText.text = $"Precio: {price}";
+        hintUI.SetActive(true);
+
+        StartCoroutine(HideInfoAfterDelay(3));
+    }
+
+    public void ShowInfoUpgrade(string name, string infoUpgrade)
+    {
+        HideInfo();
+
+        nameText.text = $"{name}";
+        amountText.text = $"{infoUpgrade}";
+        priceText.text = $"";
         hintUI.SetActive(true);
 
         StartCoroutine(HideInfoAfterDelay(3));

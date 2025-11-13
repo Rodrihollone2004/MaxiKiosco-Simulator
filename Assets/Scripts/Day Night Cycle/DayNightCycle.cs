@@ -259,12 +259,18 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
     public void StartNewDay()
     {
         int productsSold = queueManager.GetProductsSoldToday();
-        summaryUI.ShowSummary(queueManager.GetClientsServedToday(), queueManager.GetMoneyEarnedToday(), productsSold);
+        int clientsServed = queueManager.GetClientsServedToday();
+        int moneyEarned = queueManager.GetMoneyEarnedToday();
+        int badFaces = queueManager.GetBadFacesToday();
+        int intermediateFaces = queueManager.GetIntermediateFacesToday();
+        int goodFaces = queueManager.GetGoodFacesToday();
+        summaryUI.ShowSummary(clientsServed, moneyEarned, badFaces, intermediateFaces, goodFaces, productsSold);
         _dayNumber++;
         _timeOfDay = 8f / 24f;
 
         UpateProducts();
         storeUI.CheckUpdate();
+        CheckClientPerDay(badFaces, goodFaces);
 
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
 
@@ -302,6 +308,21 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
 
         if (_dayNumber == 5)
             AnalyticsManager.Instance.DayFive();
+    }
+
+    private void CheckClientPerDay(int badFaces, int goodFaces)
+    {
+        float total = queueManager.TotalFaces;
+
+        if (total <= 0) return; // evitar división por cero
+
+        float badRatio = badFaces / total;
+        float goodRatio = goodFaces / total;
+
+        if (badRatio > 0.7f)
+            queueManager.MaxClientsPerDay--;
+        else if (goodRatio > 0.7f)
+            queueManager.MaxClientsPerDay++;
     }
 
     private void UpateProducts()

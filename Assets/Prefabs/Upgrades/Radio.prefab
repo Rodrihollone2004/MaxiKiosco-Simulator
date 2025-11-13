@@ -480,6 +480,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16740c912023b4f489bd6bc5af869fdb,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2625797202691077820}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16740c912023b4f489bd6bc5af869fdb,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4382463202015400003}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16740c912023b4f489bd6bc5af869fdb,
         type: 3}
@@ -492,10 +496,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16740c912023b4f489bd6bc5af869fdb,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2625797202691077820}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16740c912023b4f489bd6bc5af869fdb,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1149258044689421658}
   m_SourcePrefab: {fileID: 100100000, guid: 16740c912023b4f489bd6bc5af869fdb, type: 3}
 --- !u!1 &8006397418492060250 stripped
@@ -504,6 +504,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7195936202357202699}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2625797202691077820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006397418492060250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3141a43231c56b54986ae11577f185ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeData: {fileID: 11400000, guid: 2691f57b46c0ffb4c9552dfdac028097, type: 2}
+  IsPlaced: 0
 --- !u!114 &4382463202015400003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,20 +671,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5647068, y: 0.19164002, z: 0.13}
   m_Center: {x: 0.004637718, y: 0.091622174, z: 0}
---- !u!114 &2625797202691077820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8006397418492060250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3141a43231c56b54986ae11577f185ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeData: {fileID: 11400000, guid: 2691f57b46c0ffb4c9552dfdac028097, type: 2}
-  IsPlaced: 0
 --- !u!114 &1149258044689421658
 MonoBehaviour:
   m_ObjectHideFlags: 0

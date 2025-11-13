@@ -8,14 +8,25 @@ public class CanvasClientManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text emojiClient;
 
-    public void UpdateClientEmoji(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, float trashPercentage)
+    public void UpdateClientEmoji(List<ProductInteractable> productsNotFound, List<ProductInteractable> productsExpensive, float trashPercentage, ClientQueueManager queueManager)
     {
+        queueManager.TotalFaces++;
+
         if (productsNotFound.Count == 0 && productsExpensive.Count == 0 && trashPercentage <= 40f)
+        {
             emojiClient.text = $"<sprite name=Client_1>\n";
+            queueManager.CountOfGoodFaces++;
+        }
         else if (productsNotFound.Count > 1 && productsExpensive.Count > 1 && trashPercentage >= 70)
+        {
             emojiClient.text = $"<sprite name=Client_3>\n";
+            queueManager.CountOfBadFaces++;
+        }
         else
+        {
             emojiClient.text = $"<sprite name=Client_2>\n";
+            queueManager.CountOfIntermediateFaces++;
+        }
     }
 
     public void UpdateTrashIcon(float trashPercentage)
