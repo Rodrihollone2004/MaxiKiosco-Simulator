@@ -122,6 +122,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                     playerInteraction.LightSwitch.UpdateLights();
                 }
 
+                playerInteraction.CheckNodeFridge(upgrade);
                 UpdateBills(upgrade.UpgradeData);
             }
 

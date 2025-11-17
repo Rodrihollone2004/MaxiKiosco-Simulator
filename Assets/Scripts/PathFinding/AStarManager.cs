@@ -12,8 +12,11 @@ public class AStarManager : MonoBehaviour
     [field: SerializeField] public Node EndTutoNode { get; set; }
     [field: SerializeField] public bool IsAllNodes { get; set; }
 
+    private Node[] allNodes;
+
     private void Awake()
     {
+        allNodes = null;
         instance = this;
     }
 
@@ -84,6 +87,8 @@ public class AStarManager : MonoBehaviour
 
     public void CreateConnections(Node[] nodeList)
     {
+        allNodes = nodeList;
+
         for (int i = 0; i < nodeList.Length; i++)
         {
             for (int j = i + 1; j < nodeList.Length; j++)
@@ -95,6 +100,14 @@ public class AStarManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void CleanNodes()
+    {
+        foreach (Node node in allNodes)
+            node.connections.Clear();
+
+        IsAllNodes = false;
     }
 
     private void ConnectNodes(Node from, Node to)

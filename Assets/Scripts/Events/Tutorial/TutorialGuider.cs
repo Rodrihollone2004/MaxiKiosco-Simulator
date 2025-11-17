@@ -92,6 +92,8 @@ public class TutorialGuider : MonoBehaviour
 
             path.Clear();
 
+            CreatePath();
+
             List<Node> backPath = AStarManager.instance.GeneratePath(currentNode, AStarManager.instance.StartNode);
             if (backPath != null && backPath.Count > 0)
             {

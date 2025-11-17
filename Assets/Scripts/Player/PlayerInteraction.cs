@@ -74,6 +74,9 @@ public class PlayerInteraction : MonoBehaviour
     private bool isInfoClients;
     private bool isProductInHand;
 
+    private Transform upgradeToDebug;
+
+
     public LightSwitch LightSwitch { get; private set; }
     public bool IsProductInHand { get => isProductInHand; set => isProductInHand = value; }
 
@@ -440,6 +443,7 @@ public class PlayerInteraction : MonoBehaviour
             else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
             {
                 upgrade.IsPlaced = true;
+                CheckNodeFridge(upgrade);
                 Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
                 foreach (Collider collider in colliders) collider.enabled = true;
             }
@@ -776,6 +780,72 @@ public class PlayerInteraction : MonoBehaviour
                 audioSource.PlayOneShot(dropSound);
         }
     }
+
+    public void CheckNodeFridge(UpgradeInteractable upgrade)
+    {
+        int nodeActive;
+        upgradeToDebug = upgrade.transform;
+        if (upgrade.UpgradeData.Name == "Heladera")
+        {
+            GameObject oldfridge = upgrade.transform.Find("Nodes").gameObject;
+            Node[] allNodes = oldfridge.GetComponentsInChildren<Node>();
+            foreach (Node nodes in allNodes)
+                nodes.gameObject.SetActive(false);
+
+            nodeActive = CheckRayCasts(upgrade.transform);
+
+            GameObject fridge = oldfridge.transform.Find($"Node{nodeActive}").gameObject;
+            fridge.SetActive(true);
+
+            AStarManager.instance.CleanNodes();
+        }
+    }
+
+    private int CheckRayCasts(Transform gameObject)
+    {
+        if (!Physics.Raycast(gameObject.position + Vector3.up * 0.5f, gameObject.forward, 1.5f, ~LayerMask.GetMask("fridge", "Player")))
+            return 0;
+        else if (!Physics.Raycast(gameObject.position + Vector3.up * 0.5f, -gameObject.forward, 1.5f, ~LayerMask.GetMask("fridge", "Player")))
+            return 1;
+        else if (!Physics.Raycast(gameObject.position + Vector3.up * 0.5f, gameObject.right, 1.5f, ~LayerMask.GetMask("fridge", "Player")))
+            return 2;
+        else if (!Physics.Raycast(gameObject.position + Vector3.up * 0.5f, -gameObject.right, 1.5f, ~LayerMask.GetMask("fridge", "Player")))
+            return 3;
+
+        return 6;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (upgradeToDebug == null) return;
+
+        float rayLength = 1.5f;
+        Transform u = upgradeToDebug;
+
+        int mask = ~LayerMask.GetMask("fridge", "Player");
+        RaycastHit hit;
+
+        // FORWARD
+        bool forwardHit = Physics.Raycast(u.position + Vector3.up, u.forward, out hit, rayLength, mask);
+        Gizmos.color = forwardHit ? Color.red : Color.green;
+        Gizmos.DrawLine(u.position + Vector3.up * 0.5f, (u.position + Vector3.up * 0.5f) + u.forward * rayLength);
+
+        // BACK
+        bool backHit = Physics.Raycast(u.position + Vector3.up, -u.forward, out hit, rayLength, mask);
+        Gizmos.color = backHit ? Color.red : Color.green;
+        Gizmos.DrawLine(u.position + Vector3.up * 0.5f, (u.position + Vector3.up * 0.5f) - u.forward * rayLength);
+
+        // RIGHT
+        bool rightHit = Physics.Raycast(u.position + Vector3.up, u.right, out hit, rayLength, mask);
+        Gizmos.color = rightHit ? Color.red : Color.green;
+        Gizmos.DrawLine(u.position + Vector3.up * 0.5f, (u.position + Vector3.up * 0.5f) + u.right * rayLength);
+
+        // LEFT
+        bool leftHit = Physics.Raycast(u.position + Vector3.up, -u.right, out hit, rayLength, mask);
+        Gizmos.color = leftHit ? Color.red : Color.green;
+        Gizmos.DrawLine(u.position + Vector3.up * 0.5f, (u.position + Vector3.up * 0.5f) - u.right * rayLength);
+    }
+
     public bool HasBoxInHand()
     {
         return heldObject != null && (boxProduct != null);
