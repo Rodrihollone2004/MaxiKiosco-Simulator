@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Config")]
-   
+
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private KeyCode interactKey = KeyCode.Mouse0;
@@ -30,6 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Throw")]
     [SerializeField] private float throwForce = 10f;
 
+    [SerializeField] private GameObject clientsData;
     [SerializeField] private GameObject dropHintUI;
     [SerializeField] private TMP_Text hintText;
     [SerializeField] private TMP_Text nameText;
@@ -70,6 +71,7 @@ public class PlayerInteraction : MonoBehaviour
     private int ignorePlayer;
 
     private bool isShowingAdvice;
+    private bool isInfoClients;
 
     public LightSwitch LightSwitch { get; private set; }
 
@@ -83,12 +85,19 @@ public class PlayerInteraction : MonoBehaviour
         ignorePlayer = ~LayerMask.GetMask("Player");
 
         hintText.text = "[LMB] para interactuar\n" +
-                    "[F] para repickear\n";
+                    "[F] para repickear\n" +
+                    "[F3] para Info\n";
     }
 
     private void Update()
     {
         HandleHighlight();
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            isInfoClients = !isInfoClients;
+            clientsData.SetActive(isInfoClients);
+        }
 
         if (Input.GetKeyDown(interactKey))
         {
@@ -172,7 +181,8 @@ public class PlayerInteraction : MonoBehaviour
                 heldObject = null;
                 dropHintUI.SetActive(false);
                 hintText.text = "[LMB] para interactuar\n" +
-                    "[F] para repickear\n";
+                    "[F] para repickear\n" +
+                    "[F3] para Info\n";
                 playerEconomy.ReceivePayment(20);
 
                 if (dailySummary != null)
@@ -420,7 +430,8 @@ public class PlayerInteraction : MonoBehaviour
 
             dropHintUI.SetActive(false);
             hintText.text = "[LMB] para interactuar\n" +
-                    "[F] para repickear\n";
+                    "[F] para repickear\n" +
+                    "[F3] para Info\n";
 
             if (AllZones != null)
                 foreach (PlacementZoneProducts zone in AllZones)
@@ -467,7 +478,8 @@ public class PlayerInteraction : MonoBehaviour
 
         dropHintUI.SetActive(false);
         hintText.text = "[LMB] para interactuar\n" +
-            "[F] para repickear\n";
+            "[F] para repickear\n" +
+                    "[F3] para Info\n";
         playerEconomy.ReceivePayment(upgrade.UpgradeData.Price);
         UpdateBills(upgrade.UpgradeData);
         Destroy(upgrade.gameObject);
@@ -488,13 +500,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (upgrade.AmountMin1000 > 0)
             Wallet.AmountMin1000 -= upgrade.AmountMin1000;
-        
+
         if (upgrade.AmountMax1000 > 0)
             Wallet.AmountMax1000 -= upgrade.AmountMax1000;
-        
+
         if (upgrade.AmountMinOthers > 0)
             Wallet.AmountMinOthers -= upgrade.AmountMinOthers;
-        
+
         if (upgrade.AmountMaxOthers > 0)
             Wallet.AmountMaxOthers -= upgrade.AmountMaxOthers;
 
@@ -722,7 +734,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 dropHintUI.SetActive(false);
                 hintText.text = "[LMB] para interactuar\n" +
-                    "[F] para repickear\n";
+                    "[F] para repickear\n" +
+                    "[F3] para Info\n";
             }
 
             heldObject.transform.SetParent(null);

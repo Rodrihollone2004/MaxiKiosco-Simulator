@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6828316153954731930}
   - component: {fileID: 4049620997812232207}
+  - component: {fileID: 1709881958256799340}
   m_Layer: 3
   m_Name: Placement Zones
   m_TagString: Untagged
@@ -55,6 +56,27 @@ MonoBehaviour:
     - {fileID: 7849201156264280713}
     - {fileID: 5074605704272309411}
     - {fileID: 7654146051881444825}
+--- !u!65 &1709881958256799340
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877467974663840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.6994438, y: 0.13732842, z: 0.742102}
+  m_Center: {x: 0.024690628, y: -0.22501267, z: 0.6618659}
 --- !u!1 &676523493877328991
 GameObject:
   m_ObjectHideFlags: 0
@@ -5618,7 +5640,7 @@ Transform:
   m_GameObject: {fileID: 7849201156264280713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0264, y: 0.734, z: 0.6046}
+  m_LocalPosition: {x: 0.0264, y: 0.738, z: 0.6046}
   m_LocalScale: {x: 0.07002643, y: 0.098437, z: 0.050521582}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5915,7 +5937,7 @@ PrefabInstance:
     - target: {fileID: -4683669308469848369, guid: 9340c2ccd7f5e134e9e1b99875257b35,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 9340c2ccd7f5e134e9e1b99875257b35,
         type: 3}
