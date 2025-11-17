@@ -72,11 +72,14 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool isShowingAdvice;
     private bool isInfoClients;
+    private bool isProductInHand;
 
     public LightSwitch LightSwitch { get; private set; }
+    public bool IsProductInHand { get => isProductInHand; set => isProductInHand = value; }
 
     private void Awake()
     {
+        isProductInHand = false;
         LightSwitch = FindObjectOfType<LightSwitch>();
         playerEconomy = GetComponent<PlayerEconomy>();
         cashRegisterInteraction = GetComponent<CashRegisterInteraction>();
@@ -114,16 +117,23 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(subtractKey))
             TrySubtractBill();
 
+        if (heldObject != null && Input.GetKeyUp(KeyCode.Mouse0))
+            isProductInHand = true;
+
         if (Input.GetKeyDown(dropKey) && heldObject != null)
             DropObject();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
         {
             boxProduct.PlaceProduct();
+            isProductInHand = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && productPlaced != null)
+        {
             PlaceRepick();
+            isProductInHand = false;
+        }
 
         if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject)
             CheckTrashBoxes();
@@ -216,10 +226,17 @@ public class PlayerInteraction : MonoBehaviour
         }
 
 
-        RaycastHit hitFridge;
         RaycastHit hit;
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactRange, ignorePlayer))
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hit.collider.TryGetComponent(out Button buttonConfirm))
+                {
+                    buttonConfirm.onClick.Invoke();
+                }
+            }
+
             if (hit.collider.gameObject.layer != 3 && hit.collider.gameObject.layer != 14)
             {
                 if (currentInteractable != null)
@@ -398,6 +415,8 @@ public class PlayerInteraction : MonoBehaviour
             Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders) collider.enabled = false;
         }
+
+        isProductInHand = true;
     }
 
     private void PlaceRepick()
@@ -690,6 +709,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
+            isProductInHand = false;
             heldObjectCollider.enabled = false;
             bool hitForward = Physics.Raycast(cameraTransform.position, cameraTransform.forward, 2.5f, layersLock);
 

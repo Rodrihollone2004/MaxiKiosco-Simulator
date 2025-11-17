@@ -164,18 +164,6 @@ public class CashRegisterInteraction : MonoBehaviour
                 cashRegisterUI.UpdatePaymentText(currentClient, clientPayment, playerEconomy.GetCurrentChange(), nPC_Controller);
             }
         }
-
-        if (InCashRegister && currentClient != null && Input.GetKeyDown(KeyCode.Return) && nPC_Controller.isInCashRegister)
-        {
-            if (!isQRPayment)
-            {
-                if (playerEconomy.GetCurrentChange() == change)
-                {
-                    ConfirmPayment();
-                    PeekClient();
-                }
-            }
-        }
     }
 
     private void TryInteractWithRegister()
@@ -313,6 +301,21 @@ public class CashRegisterInteraction : MonoBehaviour
 
         if (currentClient.totalCart > 0)
             experienceManager.AddExperience(10);
+    }
+
+    public void ConfirmButton()
+    {
+        if (InCashRegister && currentClient != null && nPC_Controller.isInCashRegister)
+        {
+            if (!isQRPayment)
+            {
+                if (playerEconomy.GetCurrentChange() == change)
+                {
+                    ConfirmPayment();
+                    PeekClient();
+                }
+            }
+        }
     }
 
     private void ConfirmPayment()

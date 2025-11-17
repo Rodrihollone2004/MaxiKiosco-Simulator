@@ -142,7 +142,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         }
         else
         {
-            if (playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
+            if (playerInteraction.IsProductInHand && playerInteraction != null && playerInteraction.TryGetComponent(out AudioSource src))
                 src.PlayOneShot(playerInteraction.ErrorSound);
         }
     }
