@@ -108,12 +108,12 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(dropKey) && heldObject != null)
             DropObject();
 
-        if (Input.GetKeyDown(KeyCode.E) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && boxProduct != null && boxProduct.CurrentPreview != null && boxProduct.CurrentPreview.activeSelf)
         {
             boxProduct.PlaceProduct();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && productPlaced != null)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && productPlaced != null)
             PlaceRepick();
 
         if (boxProduct != null && boxProduct.IsEmpty && heldObject == boxProduct.gameObject)
@@ -363,7 +363,7 @@ public class PlayerInteraction : MonoBehaviour
             productInteractable.IsPlaced = false;
 
             nameText.text = productInteractable.ProductData.Name;
-            hintText.text = $"[E] para colocar\n" +
+            hintText.text = $"[LMB] para colocar\n" +
                     $"[R] para rotar\n";
 
             foreach (PlacementZoneProducts zone in AllZones)
@@ -378,7 +378,7 @@ public class PlayerInteraction : MonoBehaviour
             upgradeInteractable.IsPlaced = false;
 
             nameText.text = upgradeInteractable.UpgradeData.Name;
-            hintText.text = $"[E] para colocar\n" +
+            hintText.text = $"[LMB] para colocar\n" +
                     $"[R] para rotar\n" +
                     "[V] para vender";
 
@@ -651,7 +651,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 nameText.text = $"{productName}";
                 hintText.text =
-                    $"[E]  para colocar\n" +
+                    $"[LMB]  para colocar\n" +
                     $"[R]  para rotar\n" +
                     $"[G]  para soltar\n";
             }
@@ -661,7 +661,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 nameText.text = $"{productName}";
                 hintText.text =
-                    $"[E]  para colocar\n" +
+                    $"[LMB]  para colocar\n" +
                     $"[R]  para rotar\n" +
                     $"[G]  para soltar\n";
             }

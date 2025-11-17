@@ -52,5 +52,9 @@ public class CarMovement : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % offsetWaypoints.Length;
         }
+
+        if (currentPath == 1 && transform.position.z == target.z
+            || currentPath == 2 && transform.position.z == target.z)
+            transform.position = createCars.GetSpawnPoint(currentPath);
     }
 }

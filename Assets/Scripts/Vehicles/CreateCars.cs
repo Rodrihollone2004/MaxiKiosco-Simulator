@@ -19,6 +19,17 @@ public class CreateCars : MonoBehaviour
         }
     }
 
+    public Vector3 GetSpawnPoint(int path)
+    {
+        foreach (WayPoints waypoint in waypoints)
+        {
+            if (waypoint.pathNumber == path)
+                return waypoint.spawnPoint.position;
+        }
+
+        return Vector3.zero;
+    }
+
     public WayPoints[] GetWayPoints()
     {
         return waypoints;
@@ -26,7 +37,7 @@ public class CreateCars : MonoBehaviour
 }
 
 [System.Serializable]
-public class WayPoints 
+public class WayPoints
 {
     public int pathNumber;
     public Transform[] waypoints;
