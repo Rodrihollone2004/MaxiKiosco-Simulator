@@ -11,7 +11,7 @@ public class Product : Item
     [SerializeField] private int _packPrice;
     [SerializeField] private GameObject prefab;
     [SerializeField] private productType type;
-
+    public bool IsNewProduct = true;
 
     public int Price { get => _price; set => _price = value; }
     public string PlaceZone { get => _placeZone; set => _placeZone = value; }

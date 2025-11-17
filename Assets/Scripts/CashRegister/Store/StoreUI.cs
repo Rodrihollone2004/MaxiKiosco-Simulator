@@ -23,6 +23,7 @@ public class StoreUI : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private LayerMask productLayer;
     [SerializeField] private Sprite pressButton;
+
     private Sprite normalButton;
     private Dictionary<productType, Button> categoriesButtons = new Dictionary<productType, Button>();
 
@@ -188,6 +189,9 @@ public class StoreUI : MonoBehaviour
                 {
                     UpdateDataBase(product);
                     GameObject buttonGO = Instantiate(productButtonPrefab, productButtonContainer);
+                    Transform star = buttonGO.transform.Find("Image/StarIcon");
+                    if (star != null)
+                        star.gameObject.SetActive(product.IsNewProduct);
 
                     //imagen Stock
                     Image imageStock = buttonGO.GetComponentInChildren<Image>();
@@ -221,6 +225,15 @@ public class StoreUI : MonoBehaviour
 
                         if (!allStock.Contains(controller))
                             allStock.Add(controller);
+
+                        if (product.IsNewProduct)
+                        {
+                            product.IsNewProduct = false;
+
+                            Transform star = buttonGO.transform.Find("Image/StarIcon");
+                            if (star != null)
+                                star.gameObject.SetActive(false);
+                        }
 
                         productsToBuy.Add(capturedProduct);
                         CreateCartProduct(capturedProduct, controller);

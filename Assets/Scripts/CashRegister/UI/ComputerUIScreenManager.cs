@@ -17,6 +17,24 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject atlantaBackground;
     [SerializeField] private GameObject velezBackground;
     [SerializeField] private GameObject customBackground;
+    [SerializeField] private GameObject atardecerNubesRosasBackground;
+    [SerializeField] private GameObject bonsaiPaisajeRosaBackground;
+    [SerializeField] private GameObject ciudadCyberpunkBackground;
+    [SerializeField] private GameObject carreteraAnimeBackground;
+    [SerializeField] private GameObject islaTropicalBackground;
+    [SerializeField] private GameObject paisajeAnimeBackground;
+    [SerializeField] private GameObject manchasBlancasCafeBackground;
+    [SerializeField] private GameObject manchasVerdesBackground;
+    [SerializeField] private GameObject messiSeleccionBackground;
+    [SerializeField] private GameObject montañasNevadasBackground;
+    [SerializeField] private GameObject olasBackground;
+    [SerializeField] private GameObject pinosEnBosqueBackground;
+    [SerializeField] private GameObject pinturaEnOleoBackground;
+    [SerializeField] private GameObject pinturaEnVidrioBackground;
+    [SerializeField] private GameObject pinturaNeonBackground;
+    [SerializeField] private GameObject pulpoBackground;
+    [SerializeField] private GameObject montañasNeonBackground;
+    [SerializeField] private GameObject argentinaMundialBackground;
     [SerializeField] private CashRegisterInteraction cashRegisterInteraction;
 
     void Start()
@@ -153,6 +171,24 @@ public class ComputerUIScreenManager : MonoBehaviour
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(false);
         defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
     }
 
     public void RiverBackground()
@@ -162,6 +198,24 @@ public class ComputerUIScreenManager : MonoBehaviour
         atlantaBackground.SetActive(false);
         velezBackground.SetActive(false);
         defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
     }
 
     public void AtlantaBackground()
@@ -171,6 +225,24 @@ public class ComputerUIScreenManager : MonoBehaviour
         atlantaBackground.SetActive(true);
         velezBackground.SetActive(false);
         defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
     }
 
     public void VelezBackground()
@@ -181,6 +253,24 @@ public class ComputerUIScreenManager : MonoBehaviour
         velezBackground.SetActive(true);
         defaultBackground.SetActive(false);
         customBackground.SetActive(true);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
     }
 
     public void CustomBackground()
@@ -191,5 +281,509 @@ public class ComputerUIScreenManager : MonoBehaviour
         velezBackground.SetActive(false);
         defaultBackground.SetActive(false);
         customBackground.SetActive(true);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void AtardecerNubesRosasBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(true);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void BonsaiPaisajeRosaBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(true);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void CiudadCyberpunkBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(true);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void CarreteraAnimeBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(true);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void IslaTropicalBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(true);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PaisajeAnimeBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(true);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void ManchasBlancasCafeBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(true);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void ManchasVerdesBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(true);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void MessiSeleccionBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(true);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void MontañasNevadasBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(true);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void OlasBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(true);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PinosEnBosqueBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(true);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PinturaEnOleoBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(true);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PinturaEnVidrioBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(true);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PinturaNeonBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(true);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void PulpoBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(true);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void MontañasNeonBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(true);
+        argentinaMundialBackground.SetActive(false);
+    }
+
+    public void ArgentinaMundialBackground()
+    {
+        bocaBackground.SetActive(false);
+        riverBackground.SetActive(false);
+        atlantaBackground.SetActive(false);
+        velezBackground.SetActive(false);
+        defaultBackground.SetActive(false);
+        atardecerNubesRosasBackground.SetActive(false);
+        bonsaiPaisajeRosaBackground.SetActive(false);
+        ciudadCyberpunkBackground.SetActive(false);
+        carreteraAnimeBackground.SetActive(false);
+        islaTropicalBackground.SetActive(false);
+        paisajeAnimeBackground.SetActive(false);
+        manchasBlancasCafeBackground.SetActive(false);
+        manchasVerdesBackground.SetActive(false);
+        messiSeleccionBackground.SetActive(false);
+        montañasNevadasBackground.SetActive(false);
+        olasBackground.SetActive(false);
+        pinosEnBosqueBackground.SetActive(false);
+        pinturaEnOleoBackground.SetActive(false);
+        pinturaEnVidrioBackground.SetActive(false);
+        pinturaNeonBackground.SetActive(false);
+        pulpoBackground.SetActive(false);
+        montañasNeonBackground.SetActive(false);
+        argentinaMundialBackground.SetActive(true);
     }
 }
