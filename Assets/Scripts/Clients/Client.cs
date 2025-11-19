@@ -69,7 +69,7 @@ public class Client : MonoBehaviour
 
         foreach (UpgradeInteractable upgrade in upgradeInWorld)
         {
-            if (upgrade.IsPlaced && upgrade.UpgradeData.IsUpgradeChange)
+            if (upgrade.IsPlaced && upgrade.UpgradeData.IsUpgradeChange && upgrade.UpgradeData.ValueForUpgrade > 0)
             {
                 float random = Random.value;
                 if (random > 0.6f)

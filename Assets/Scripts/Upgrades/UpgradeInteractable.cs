@@ -13,6 +13,9 @@ public class UpgradeInteractable : MonoBehaviour, IInteractable
     {
         if (UpgradeData.IsUpgradeChange)
             ProductUIManager.Instance.ShowInfoUpgrade(UpgradeData.Name, UpgradeData.InfoUpgrade);
+
+        if(TryGetComponent<Radio>(out Radio radio))
+            radio.StartRadio();
     }
 
     public void UpgradeMoneyEarned(int earnUpgrade)

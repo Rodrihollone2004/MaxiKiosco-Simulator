@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Radio : MonoBehaviour, IInteractable
+public class Radio : MonoBehaviour
 {
     private AudioSource _audioSource;
     private bool wasPlaying = false;
@@ -56,21 +56,25 @@ public class Radio : MonoBehaviour, IInteractable
     }
 
 
-    public void Interact()
+    public void StartRadio()
     {
         if (_audioSource.clip == null) return;
+
+        AudioSource backgroundMusic = GameObject.Find("MusicBackground").GetComponent<AudioSource>();
 
         if (_audioSource.isPlaying)
         {
             _audioSource.Pause();
             manuallyPaused = true;
             wasPlaying = false; // evitamos trigger de siguiente canción
+            backgroundMusic.Play();
         }
         else
         {
             _audioSource.Play();
             manuallyPaused = false;
             wasPlaying = true;
+            backgroundMusic.Pause();
         }
     }
 

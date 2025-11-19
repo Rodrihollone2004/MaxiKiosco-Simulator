@@ -32,13 +32,13 @@ public class ClientTrashSpawner : MonoBehaviour
         Instantiate(trashPrefab, spawnPosition, Quaternion.identity);
         currentTrashCount++;
 
-        NotifyTrashChanged();
+        //NotifyTrashChanged();
     }
 
     public void TrashCleaned()
     {
         currentTrashCount = Mathf.Max(0, currentTrashCount - 1);
-        NotifyTrashChanged();
+        //NotifyTrashChanged();
     }
 
     private void NotifyTrashChanged()

@@ -39,7 +39,7 @@ public class CanvasClientManager : MonoBehaviour
             emojiClient.text = ""; 
         }
 
-        if (trashPercentage >= 50)
+        if (trashPercentage >= 40)
             emojiClient.text = $"<sprite name=Basura_2>\n";
         else if (trashPercentage >= 70)
             emojiClient.text = $"<sprite name=Basura_3>\n";

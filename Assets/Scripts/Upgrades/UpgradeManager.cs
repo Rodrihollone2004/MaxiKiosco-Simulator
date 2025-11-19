@@ -113,10 +113,6 @@ public class UpgradeManager : MonoBehaviour
     private void SetLayerRecursive(GameObject obj, int layer)
     {
         obj.layer = layer;
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursive(child.gameObject, layer);
-        }
     }
 
     private int LayerMaskToLayer(LayerMask layerMask)

@@ -70,16 +70,16 @@ public class ProductPriceInput : MonoBehaviour
     {
         _inputField.text = $"{_productData.Price}";
 
-        float priceIncreasePercentage = ((float)_productData.Price - _productData.OriginalPrice) / _productData.OriginalPrice * 100f;
+        //float priceIncreasePercentage = ((float)_productData.Price - _productData.OriginalPrice) / _productData.OriginalPrice * 100f;
 
-        if (priceIncreasePercentage > 80f) //esto capaz después cambia si tenemos mas nivel o algo
-        {
-            priceText.color = Color.red;
-        }
-        else
-        {
-            priceText.color = Color.black;
-        }
+        //if (priceIncreasePercentage > 80f) //esto capaz después cambia si tenemos mas nivel o algo
+        //{
+        //    priceText.color = Color.red;
+        //}
+        //else
+        //{
+        //    priceText.color = Color.black;
+        //}
     }
 
     // Llamá estos métodos desde el EventTrigger, pasando el valor
