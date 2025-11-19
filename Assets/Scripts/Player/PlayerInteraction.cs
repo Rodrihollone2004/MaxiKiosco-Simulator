@@ -266,7 +266,7 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
                         UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
-                        if (hit.transform.parent != null && hit.transform.parent.parent != null)
+                        if (upgradeInteractable.UpgradeData.PlaceZone == "Heladera" && hit.transform.parent != null && hit.transform.parent.parent != null)
                         {
                             Transform fridge = hit.transform.parent.parent;
                             upgradeInteractable = fridge.GetComponent<UpgradeInteractable>();
@@ -443,6 +443,7 @@ public class PlayerInteraction : MonoBehaviour
             else if (productPlaced.TryGetComponent<UpgradeInteractable>(out UpgradeInteractable upgrade))
             {
                 upgrade.IsPlaced = true;
+                upgrade.CheckParent(productPlaced, upgrade);
                 CheckNodeFridge(upgrade);
                 Collider[] colliders = productPlaced.GetComponentsInChildren<Collider>();
                 foreach (Collider collider in colliders) collider.enabled = true;

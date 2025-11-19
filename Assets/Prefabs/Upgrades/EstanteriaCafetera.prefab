@@ -119,7 +119,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7878627255105250651}
   - component: {fileID: 3037577027637856838}
-  m_Layer: 0
+  - component: {fileID: 4225025005779601044}
+  m_Layer: 3
   m_Name: PlacementZones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +159,27 @@ MonoBehaviour:
   - name: Cafetera
     visualPlacements:
     - {fileID: 2508715184460550895}
+--- !u!65 &4225025005779601044
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148412689288331469}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8382931, y: 0.020143509, z: 1.2817218}
+  m_Center: {x: -0.036273003, y: -0.46585262, z: 0.03196013}
 --- !u!1 &6266001014760224359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5143,7 +5165,38 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2259152008555119325}
+    - targetCorrespondingSourceObject: {fileID: -1599826595754709761, guid: 1ef288a079c3f1a468c916506b6e2bc1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4740580816177687507}
   m_SourcePrefab: {fileID: 100100000, guid: 1ef288a079c3f1a468c916506b6e2bc1, type: 3}
+--- !u!1 &3025005482799129848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1599826595754709761, guid: 1ef288a079c3f1a468c916506b6e2bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4627092763581122567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4740580816177687507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3025005482799129848}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.014488924, y: 0.008980306, z: 0.014142732}
+  m_Center: {x: -0.000016412734, y: 0.0003979093, z: 0.00016026523}
 --- !u!4 &5169012137824481260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ef288a079c3f1a468c916506b6e2bc1,
@@ -5171,12 +5224,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4528008, y: 1.4543759, z: 0.89994216}
-  m_Center: {x: -0.0002593994, y: 0.7230471, z: -0.00909245}
+  m_Size: {x: 1.4639034, y: 1.4232603, z: 0.90877795}
+  m_Center: {x: -0.0038232803, y: 0.73860335, z: -0.004674554}
 --- !u!114 &3325744516893864340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,7 +5243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeData: {fileID: 11400000, guid: a99691025d46c884c8b9e487fdf3dc24, type: 2}
-  IsPlaced: 0
+  IsPlaced: 1
 --- !u!114 &2259152008555119325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,7 +5251,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5546136261255083350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f3848c6791dcf047a48ac3ad0d14595, type: 3}
   m_Name: 

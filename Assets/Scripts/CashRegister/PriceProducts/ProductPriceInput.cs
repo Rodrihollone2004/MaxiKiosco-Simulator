@@ -82,6 +82,12 @@ public class ProductPriceInput : MonoBehaviour
         //}
     }
 
+    public void OriginalPrice()
+    {
+        _productData.Price = _productData.OriginalPrice;
+        _inputField.text = $"{_productData.Price}";
+    }
+
     // Llamá estos métodos desde el EventTrigger, pasando el valor
     public void StartAddingPrice(int amount)
     {

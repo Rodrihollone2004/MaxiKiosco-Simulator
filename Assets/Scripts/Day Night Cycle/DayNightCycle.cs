@@ -139,7 +139,7 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
             CashRegisterInteraction cash = FindObjectOfType<CashRegisterInteraction>();
             StartCoroutine(cash.SafeExitCashRegisterMode());
             StartNewDay();
-            sleepPressed = true;
+            //sleepPressed = true;
         }
     }
     private void UpdateTimeScale()
