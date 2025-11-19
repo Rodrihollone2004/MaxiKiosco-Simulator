@@ -55,6 +55,9 @@ public class CarMovement : MonoBehaviour
 
         if (currentPath == 1 && transform.position.z == target.z
             || currentPath == 2 && transform.position.z == target.z)
+            transform.position = createCars.GetSpawnPoint(currentPath) + offset;
+        else if (currentPath == 3 && transform.position.z == target.z
+             || currentPath == 4 && transform.position.z == target.z)
             transform.position = createCars.GetSpawnPoint(currentPath);
     }
 }
