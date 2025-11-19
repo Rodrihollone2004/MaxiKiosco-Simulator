@@ -1,9 +1,5 @@
-﻿using System;
-using TMPro;
-using Unity.VisualScripting;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ProductPriceInput : MonoBehaviour
 {
@@ -26,7 +22,16 @@ public class ProductPriceInput : MonoBehaviour
         _productData = data;
         _inputField.onEndEdit.AddListener(UpdatePriceFromInput);
         UpdatePriceText();
+        UpdateWarning();
     }
+    private void UpdateWarning()
+    {
+        Transform warning = transform.Find("WarningIcon");
+
+        if (warning != null)
+            warning.gameObject.SetActive(!_productData.IsPriceCustomized);
+    }
+
 
     private void Update()
     {
@@ -91,6 +96,11 @@ public class ProductPriceInput : MonoBehaviour
     // Llamá estos métodos desde el EventTrigger, pasando el valor
     public void StartAddingPrice(int amount)
     {
+        if (!_productData.IsPriceCustomized)
+        {
+            _productData.IsPriceCustomized = true;
+            UpdateWarning();
+        }
         isHolding = true;
         currentAmount = amount;
         currentAction = ActionType.Add;
@@ -99,6 +109,12 @@ public class ProductPriceInput : MonoBehaviour
 
     public void StartSubtractingPrice(int amount)
     {
+        if (!_productData.IsPriceCustomized)
+        {
+            _productData.IsPriceCustomized = true;
+            UpdateWarning();
+        }
+
         isHolding = true;
         currentAmount = amount;
         currentAction = ActionType.Subtract;
@@ -124,6 +140,12 @@ public class ProductPriceInput : MonoBehaviour
 
     public void UpdatePriceFromInput(string value)
     {
+        if (!_productData.IsPriceCustomized)
+        {
+            _productData.IsPriceCustomized = true;
+            UpdateWarning();
+        }
+
         if (int.TryParse(value, out int result))
         {
             _productData.Price = result;
