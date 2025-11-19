@@ -15,7 +15,17 @@ public class CreateCars : MonoBehaviour
     {
         foreach (GameObject car in carsPrefabs)
         {
-            Instantiate(car, spawnPoint.position, spawnPoint.rotation, transform);
+            GameObject entorno = Instantiate(car, spawnPoint.position, spawnPoint.rotation, transform);
+
+            if (entorno.TryGetComponent<Animator>(out Animator animator))
+                animator.SetBool("IsWalking", true);
+            else
+            {
+                Animator childrenAnim = entorno.GetComponentInChildren<Animator>();
+                if (childrenAnim != null)
+                    childrenAnim.SetBool("IsWalking", true);
+            }
+
         }
     }
 
