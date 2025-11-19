@@ -266,7 +266,7 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         ProductInteractable productPlaced = hit.collider.GetComponent<ProductInteractable>();
                         UpgradeInteractable upgradeInteractable = hit.collider.GetComponent<UpgradeInteractable>();
-                        if (upgradeInteractable.UpgradeData.PlaceZone == "Heladera" && hit.transform.parent != null && hit.transform.parent.parent != null)
+                        if (hit.transform.parent != null && hit.transform.parent.parent != null && upgradeInteractable != null && upgradeInteractable.UpgradeData.Name == "Heladera")
                         {
                             Transform fridge = hit.transform.parent.parent;
                             upgradeInteractable = fridge.GetComponent<UpgradeInteractable>();
