@@ -235,6 +235,15 @@ public class StoreUI : MonoBehaviour
                                 star.gameObject.SetActive(false);
                         }
 
+                        if (product.IsNotStock)
+                        {
+                            product.IsNotStock = false;
+
+                            Transform StockOff = buttonGO.transform.Find("Image/StockWarning");
+                            if (StockOff != null)
+                                StockOff.gameObject.SetActive(false);
+                        }
+
                         productsToBuy.Add(capturedProduct);
                         CreateCartProduct(capturedProduct, controller);
                         UpdateCartTotal();

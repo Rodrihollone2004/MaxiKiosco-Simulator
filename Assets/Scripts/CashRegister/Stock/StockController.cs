@@ -51,6 +51,15 @@ public class StockController : MonoBehaviour
             if (amountPlaced < 0)
                 amountPlaced = 0;
 
+            if (amountPlaced == 0)
+            {
+                product.ProductData.IsNotStock = true;
+
+                Transform star = transform.Find("StockWarning");
+                star.gameObject.SetActive(true);
+            }
+
+
             UpdateTextsStock();
         }
     }
