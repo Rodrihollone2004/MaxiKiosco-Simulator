@@ -704,7 +704,8 @@ public class PlayerInteraction : MonoBehaviour
             else if (boxProduct != null && boxProduct.IsEmpty)
             {
                 nameText.text = $"Caja Vacía\n";
-                hintText.text = $"Acercate al tacho/pallete\npara depositarla\n";
+                hintText.text = $"Acercate al tacho/pallete\npara depositarla\n" +
+                    "[G]  para soltar\n";
             }
         }
     }

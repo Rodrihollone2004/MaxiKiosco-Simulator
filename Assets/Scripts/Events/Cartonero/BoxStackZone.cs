@@ -43,8 +43,9 @@ public class BoxStackZone : MonoBehaviour
                 if (playerInteraction != null)
                 {
                     playerInteraction.DropHintUI.SetActive(false);
-                    playerInteraction.HintText.text = "LMB para interactuar\n" +
-                    "F para repickear\n";
+                    playerInteraction.HintText.text = "[LMB] para interactuar\n" +
+                    "[F] para repickear\n" +
+                    "[F3] para Info\n";
                 }
 
                 if (dailySummary != null)
