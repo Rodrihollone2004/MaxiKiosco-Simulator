@@ -38,7 +38,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
         if (TutorialContent.Instance.CurrentIndexGuide < 12)
             return;
 
-        TutorialContent.Instance.CompleteStep(12);
+        TutorialContent.Instance.CompleteStep(13);
 
         if (currentPreview != null)
             Destroy(currentPreview);
@@ -141,7 +141,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
                     src.PlayOneShot(playerInteraction.PlaceProduct_);
             }
 
-            TutorialContent.Instance.CompleteStep(13);
+            TutorialContent.Instance.CompleteStep(14);
         }
         else
         {

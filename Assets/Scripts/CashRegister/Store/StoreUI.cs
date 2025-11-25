@@ -148,7 +148,7 @@ public class StoreUI : MonoBehaviour
                 foreach (StockController controllers in allStock)
                     controllers.AddDeposit(interactable);
 
-                TutorialContent.Instance.CompleteStep(11);
+                TutorialContent.Instance.CompleteStep(12);
             }
             ClearCart();
         }

@@ -40,6 +40,7 @@ public class GateInteractable : MonoBehaviour, IInteractable
             if (!isOpen)
             {
                 TutorialContent.Instance.CompleteStep(2);
+                TutorialContent.Instance.DesactivateText();
 
                 isMoving = true;
                 isClosing = false;

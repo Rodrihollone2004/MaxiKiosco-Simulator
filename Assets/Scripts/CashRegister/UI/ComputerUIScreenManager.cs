@@ -11,6 +11,9 @@ public class ComputerUIScreenManager : MonoBehaviour
     [SerializeField] private GameObject upgradesScreen;
     [SerializeField] private GameObject configScreen;
     [SerializeField] private GameObject backgrounds;
+    [SerializeField] private GameObject infoScreen;
+
+
     [SerializeField] private GameObject defaultBackground;
     [SerializeField] private GameObject bocaBackground;
     [SerializeField] private GameObject riverBackground;
@@ -52,6 +55,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
     }
 
@@ -68,9 +72,25 @@ public class ComputerUIScreenManager : MonoBehaviour
         cashRegisterInteraction.InCashRegister = false;
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
         CustomizeProducts customizable = priceProducts.GetComponent<CustomizeProducts>();
         customizable.PopulateStore();
-        TutorialContent.Instance.CompleteStep(8);
+    }
+
+    public void ShowInfoScreen()
+    {
+        infoScreen.SetActive(true);
+        priceProducts.SetActive(false);
+        changeColorScreen.SetActive(false);
+        storeScreen.SetActive(false);
+        cashRegisterScreen.SetActive(false);
+        backgrounds.SetActive(false);
+        upgradesScreen.SetActive(false);
+        configScreen.SetActive(false);
+        cashRegisterInteraction.InCashRegister = false;
+        TutorialContent.Instance.isInInfo = true;
+        TutorialContent.Instance.InfoScreen();
+        TutorialContent.Instance.CompleteStep(5);
     }
 
     public void ShowStoreScreen()
@@ -85,10 +105,10 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = false;
         StoreUI storeUI = storeScreen.GetComponent<StoreUI>();
         storeUI.ButtonType(storeUI.CurrentType);
-        TutorialContent.Instance.CompleteStep(6);
     }
 
     public void ShowCashRegisterScreen()
@@ -101,9 +121,9 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
         cashRegisterInteraction.InCashRegister = true;
         cashRegisterInteraction.PeekClient();
-        TutorialContent.Instance.CompleteStep(5);
     }
 
     public void ShowBackgrounds()
@@ -118,7 +138,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(true);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
-        TutorialContent.Instance.CompleteStep(9);
+        infoScreen.SetActive(false);
     }
 
     public void ShowUpgradeScreen()
@@ -133,6 +153,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(true);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
         UpgradeManager upgradeManager = upgradesScreen.GetComponent<UpgradeManager>();
         upgradeManager.PopulateStore();
     }
@@ -149,7 +170,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(true);
-        TutorialContent.Instance.CompleteStep(10);
+        infoScreen.SetActive(false);
     }
 
     public void ShowChangeColorScreen()
@@ -162,6 +183,7 @@ public class ComputerUIScreenManager : MonoBehaviour
         backgrounds.SetActive(false);
         upgradesScreen.SetActive(false);
         configScreen.SetActive(false);
+        infoScreen.SetActive(false);
     }
 
     public void BocaBackground()

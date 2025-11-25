@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CashRegisterInteraction : MonoBehaviour
@@ -171,7 +172,7 @@ public class CashRegisterInteraction : MonoBehaviour
         if (TutorialContent.Instance.CurrentIndexGuide == 3 || !Termica.IsTermicaOn)
             return;
 
-        if (playerInteraction != null && playerInteraction.HasBoxInHand())
+        if (playerInteraction != null && playerInteraction.HasBoxInHand() || playerInteraction != null && playerInteraction.HeldBroom != null)
         {
             return;
         }
@@ -184,6 +185,7 @@ public class CashRegisterInteraction : MonoBehaviour
                 virtualPlayerCam.IsLocked = true;
                 EnterCashRegisterMode(true, lockedCameraTarget);
                 PeekClient(false);
+                TutorialContent.Instance.ChangeMarkIcon();
                 TutorialContent.Instance.CompleteStep(4);
             }
         }

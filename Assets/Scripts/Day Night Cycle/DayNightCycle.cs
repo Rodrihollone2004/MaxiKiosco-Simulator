@@ -60,6 +60,7 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
 
     private void Awake()
     {
+        startButton.SetActive(false);
         NormalTimeCurve();
         _timeOfDay = 8f / 24f;
         elapsedTime = (_targetDayLength * 60) * _timeOfDay;
@@ -71,6 +72,11 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
             category.products.Clear();
 
         UpateProducts();
+    }
+
+    private void Start()
+    {
+        TutorialContent.Instance.onStartButton += ShowButtonStart;
     }
 
     private void Update()
@@ -87,7 +93,7 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
         UpdateModules();
 
 
-        if (pause)
+        if (pause && TutorialContent.Instance.IsStart)
         {
             if (_timeOfDay >= (22f / 24f))
             {
@@ -107,10 +113,18 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
         }
 
     }
+
+    public void ShowButtonStart()
+    {
+        startButton.SetActive(true);
+    }
+
     public void OnStartButtonPressed()
     {
-        if (TutorialContent.Instance.CurrentIndexGuide < 15)
+        if (TutorialContent.Instance.CurrentIndexGuide < 14)
             return;
+
+        TutorialContent.Instance.CompleteStep(15);
         pause = false;
     }
 

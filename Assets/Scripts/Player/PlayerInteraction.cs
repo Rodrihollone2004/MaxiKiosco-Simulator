@@ -79,6 +79,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public LightSwitch LightSwitch { get; private set; }
     public bool IsProductInHand { get => isProductInHand; set => isProductInHand = value; }
+    public Broom HeldBroom { get => heldBroom; set => heldBroom = value; }
 
     private void Awake()
     {
@@ -175,11 +176,6 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!TutorialContent.Instance.IsComplete)
                 TutorialContent.Instance.CompleteStep(1);
-            else
-            {
-                TutorialContent.Instance.CompleteStep(14);
-                TutorialContent.Instance.DesactivateText();
-            }
         }
     }
 
@@ -606,6 +602,9 @@ public class PlayerInteraction : MonoBehaviour
     // hace el objeto hijo del holdposition al agarrarlo
     private void PickUp(GameObject objToPickUp)
     {
+        if (cashRegisterInteraction.InCashRegister)
+            return;
+
         if (currentInteractable != null)
         {
             currentInteractable.Unhighlight();
