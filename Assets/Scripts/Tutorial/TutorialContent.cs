@@ -18,7 +18,7 @@ public class TutorialContent : MonoBehaviour
     private string[] textsToTitles;
 
     public int markIndex;
-    private int currentIndexGuide = 0;
+    [SerializeField] private int currentIndexGuide = 0;
     public int CurrentIndexGuide => currentIndexGuide;
 
     private int indexTitles = 0;
@@ -157,8 +157,11 @@ public class TutorialContent : MonoBehaviour
 
     public void DesactivateText()
     {
-        guider.CanvasTuto.SetActive(false);
-        guider.BackToStart();
+        if (guider != null)
+        {
+            guider.CanvasTuto.SetActive(false);
+            guider.BackToStart();
+        }
     }
 
     public void CompleteStep(int stepIndex)
