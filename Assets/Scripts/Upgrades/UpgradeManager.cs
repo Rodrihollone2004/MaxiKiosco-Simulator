@@ -54,7 +54,7 @@ public class UpgradeManager : MonoBehaviour
 
                         inputGO.GetComponent<Button>().onClick.AddListener(() =>
                         {
-                            if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 7)
+                            if (texts[0].text == "Heladera" && TutorialContent.Instance.CurrentIndexGuide == 12)
                             {
                                 bool purchasedFridge = playerEconomy.HasEnoughMoney(upgrade.Price);
                                 if (purchasedFridge && upgrade.Prefab != null)
@@ -66,13 +66,13 @@ public class UpgradeManager : MonoBehaviour
                                     yesButton.onClick.AddListener(() => SpawnUpgrade(upgrade));
                                     yesButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                                     yesButton.onClick.AddListener(() => playerEconomy.SubtractMoneyUpgrade(upgrade));
-                                    yesButton.onClick.AddListener(() => TutorialContent.Instance.CompleteStep(7));
+                                    yesButton.onClick.AddListener(() => TutorialContent.Instance.CompleteStep(12));
 
                                     noButton.onClick.AddListener(() => ConfirmUpgrade.SetActive(false));
                                 }
                             }
 
-                            if (TutorialContent.Instance.CurrentIndexGuide < 12)
+                            if (TutorialContent.Instance.CurrentIndexGuide < 14)
                                 return;
 
                             bool purchased = playerEconomy.HasEnoughMoney(upgrade.Price);

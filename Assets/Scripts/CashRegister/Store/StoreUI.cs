@@ -121,7 +121,7 @@ public class StoreUI : MonoBehaviour
             playerEconomy.DeductMoney(totalCost);
             playerEconomy.ShowFeedback(-totalCost);
 
-            if (TutorialContent.Instance.CurrentIndexGuide < 11)
+            if (TutorialContent.Instance.CurrentIndexGuide < 12)
                 return;
 
             if (!TutorialContent.Instance.IsComplete)
@@ -148,7 +148,7 @@ public class StoreUI : MonoBehaviour
                 foreach (StockController controllers in allStock)
                     controllers.AddDeposit(interactable);
 
-                TutorialContent.Instance.CompleteStep(12);
+                TutorialContent.Instance.CompleteStep(13);
             }
             ClearCart();
         }

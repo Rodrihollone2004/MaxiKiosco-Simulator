@@ -121,10 +121,10 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
 
     public void OnStartButtonPressed()
     {
-        if (TutorialContent.Instance.CurrentIndexGuide < 14)
+        if (TutorialContent.Instance.CurrentIndexGuide < 15)
             return;
 
-        TutorialContent.Instance.CompleteStep(15);
+        TutorialContent.Instance.CompleteStep(16);
         pause = false;
     }
 

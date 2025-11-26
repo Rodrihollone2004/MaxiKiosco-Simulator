@@ -80,6 +80,7 @@ public class TutorialContent : MonoBehaviour
             "Acá vas a poder comprar objetos decorativos para adornar el maxikiosco y mejoras que te van a ayudar en la progresión.",
             "Acá vas a poder cambiar los fondos de pantalla. Podes usar los predeterminados o subir la imagen que vos quieras.",
             "Por último, esta te va a permitir customizar el nombre de la tienda y el color interior del maxikiosco.",
+            "Compra una heladera",
             "Hagamos un pedido",
             "Busca los pedidos",
             "Coloca el producto/heladera",
@@ -102,18 +103,18 @@ public class TutorialContent : MonoBehaviour
         {
             guideText = tasksGuide;
         }
-        else if (CurrentIndexGuide >= 5 && CurrentIndexGuide < 13)
+        else if (CurrentIndexGuide >= 5 && CurrentIndexGuide < 14)
         {
             if (isInInfo)
                 tasksUI.SetActive(false);
             ChangeMarkIcon();
         }
-        else if (currentIndexGuide == 14)
+        else if (currentIndexGuide == 15)
         {
             IsStart = true;
             onStartButton.Invoke();
         }
-        else if (currentIndexGuide == 15)
+        else if (currentIndexGuide == 16)
             tasksUI.SetActive(false);
 
         if (currentIndexGuide < 16 && !isInInfo)
