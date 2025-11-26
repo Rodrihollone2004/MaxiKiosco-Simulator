@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cursor = UnityEngine.Cursor;
 
 public class ProductPlaceManager : MonoBehaviour, IInteractable
 {
@@ -89,6 +91,16 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
 
         if (previewValidator != null && previewValidator.IsValidPlacement)
         {
+            if (!TutorialContent.Instance.IsFirstPlced)
+            {
+                TutorialContent tutorial = TutorialContent.Instance;
+                tutorial.repickImage.SetActive(true);
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                TutorialContent.Instance.IsFirstPlced = true;
+            }
+
             GameObject finalObj = Instantiate(buildPrefab, currentPreview.transform.position, currentPreview.transform.rotation);
             finalObj.SetActive(true);
             SetPreviewColor(finalObj, Color.blue);

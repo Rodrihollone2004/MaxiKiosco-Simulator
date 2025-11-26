@@ -32,6 +32,7 @@ public class TutorialContent : MonoBehaviour
     [SerializeField] private TMP_Text tasksGuide;
     [SerializeField] private GameObject tasksUI;
     [SerializeField] private GameObject buttonQuitInfo;
+    [SerializeField] private GameObject buttonNext;
     [SerializeField] private Toggle toggleTasks;
     [SerializeField] private TutorialGuider guider;
     [SerializeField] private List<GameObject> marks = new List<GameObject>();
@@ -41,14 +42,21 @@ public class TutorialContent : MonoBehaviour
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private List<VideoClip> videosTuto;
 
+    [Header("Tuto First Actions")]
+    [field: SerializeField] public GameObject repickImage { get; private set; }
+
     private Animator animatorText;
     private bool lockedClick = false;
     public bool isInInfo = false;
+    public bool IsFirstPlced { get; set; }
+
 
     public Action onStartButton;
 
     private void Awake()
     {
+        IsFirstPlced = false;
+        buttonNext.SetActive(true);
         animatorText = tasksGuide.GetComponent<Animator>();
         toggleTasks.isOn = false;
         buttonQuitInfo.SetActive(false);
@@ -134,6 +142,13 @@ public class TutorialContent : MonoBehaviour
             tasksUI.SetActive(true);
     }
 
+    public void CloseInfo()
+    {
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void InfoScreen()
     {
         if (indexTitles < textsToTitles.Length && isInInfo)
@@ -152,7 +167,10 @@ public class TutorialContent : MonoBehaviour
         }
 
         if (indexTitles >= textsToTitles.Length)
+        {
             buttonQuitInfo.SetActive(true);
+            buttonNext.SetActive(false);
+        }
 
     }
 
