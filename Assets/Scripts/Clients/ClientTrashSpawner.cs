@@ -33,6 +33,16 @@ public class ClientTrashSpawner : MonoBehaviour
         currentTrashCount++;
 
         NotifyTrashChanged();
+
+        if (!TutorialContent.Instance.IsFirstTrash)
+        {
+            TutorialContent tutorial = TutorialContent.Instance;
+            tutorial.TrashImage.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            TutorialContent.Instance.IsFirstTrash = true;
+        }
     }
 
     public void TrashCleaned()

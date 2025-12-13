@@ -94,7 +94,7 @@ public class ProductPlaceManager : MonoBehaviour, IInteractable
             if (!TutorialContent.Instance.IsFirstPlced)
             {
                 TutorialContent tutorial = TutorialContent.Instance;
-                tutorial.repickImage.SetActive(true);
+                tutorial.RepickImage.SetActive(true);
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

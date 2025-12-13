@@ -41,7 +41,7 @@ public class EventsSpawner : MonoBehaviour
 
     private IEnumerator TimeForSpawnThief()
     {
-        float randomTime = Random.Range(200f, 500f);
+        float randomTime = Random.Range(200f, 400f);
         yield return new WaitForSeconds(randomTime);
 
         if (thiefPool.Count == 0)
@@ -53,6 +53,16 @@ public class EventsSpawner : MonoBehaviour
         {
             GameObject thief = thiefPool.Find(inactive => !inactive.activeInHierarchy);
             thief.SetActive(true);
+        }
+
+        if (!TutorialContent.Instance.IsFirstThief)
+        {
+            TutorialContent tutorial = TutorialContent.Instance;
+            tutorial.ThiefImage.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            TutorialContent.Instance.IsFirstThief = true;
         }
     }
 }

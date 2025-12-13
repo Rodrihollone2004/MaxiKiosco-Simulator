@@ -124,6 +124,16 @@ public class DayNightCycle : MonoBehaviour, IDataPersistance
         if (TutorialContent.Instance.CurrentIndexGuide < 15)
             return;
 
+        if (!TutorialContent.Instance.IsStartDay)
+        {
+            TutorialContent tutorial = TutorialContent.Instance;
+            tutorial.F3StartDay.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            TutorialContent.Instance.IsStartDay = true;
+        }
+
         TutorialContent.Instance.CompleteStep(16);
         pause = false;
     }

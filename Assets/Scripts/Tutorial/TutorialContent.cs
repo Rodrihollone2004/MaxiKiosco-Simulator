@@ -43,12 +43,18 @@ public class TutorialContent : MonoBehaviour
     [SerializeField] private List<VideoClip> videosTuto;
 
     [Header("Tuto First Actions")]
-    [field: SerializeField] public GameObject repickImage { get; private set; }
+    [field: SerializeField] public GameObject RepickImage { get; private set; }
+    [field: SerializeField] public GameObject F3StartDay { get; private set; }
+    [field: SerializeField] public GameObject ThiefImage { get; private set; }
+    [field: SerializeField] public GameObject TrashImage { get; private set; }
 
     private Animator animatorText;
     private bool lockedClick = false;
     public bool isInInfo = false;
     public bool IsFirstPlced { get; set; }
+    public bool IsStartDay { get; set; }
+    public bool IsFirstThief { get; set; }
+    public bool IsFirstTrash { get; set; }
 
 
     public Action onStartButton;
@@ -56,6 +62,10 @@ public class TutorialContent : MonoBehaviour
     private void Awake()
     {
         IsFirstPlced = false;
+        IsStartDay = false;
+        IsFirstThief = false;
+        IsFirstTrash = false;
+
         buttonNext.SetActive(true);
         animatorText = tasksGuide.GetComponent<Animator>();
         toggleTasks.isOn = false;
