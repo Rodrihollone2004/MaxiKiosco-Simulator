@@ -87,7 +87,7 @@ public class TutorialContent : MonoBehaviour
 
         textsToGuide = new string[]
             {
-            "¡Hola! ¡Te doy la bienvenida a tu primer trabajo!\r\nQuizás no sea mucho, pero antes que nada. ¡Todo suma!\r\nPor el momento necesito que cubras algunos días de la semana mientras termino de hacer unos trámites.\r\n¡Vamos! Te explico lo que tenés que hacer.\r\n Hacme click para seguir",
+            "¡Hola! ¡Te doy la bienvenida a tu primer trabajo!\r\nQuizás no sea mucho, pero antes que nada. ¡Todo suma!\r\nPor el momento necesito que cubras algunos días de la semana mientras termino de hacer unos trámites.\r\n¡Vamos! Te explico lo que tenés que hacer.\r\n Haceme click para seguir",
             "Todos los días vas a empezar acá.\r\nEse es el Kiosco.\r\nHacé clic sobre la persiana para subirla.",
             "Subir la térmica",
             "Revisar la PC",
