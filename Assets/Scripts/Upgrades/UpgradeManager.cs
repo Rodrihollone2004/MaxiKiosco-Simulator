@@ -20,11 +20,78 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private List<UpgradeUpdate> upgradesUnlocked = new List<UpgradeUpdate>();
 
+    [Header("Categories Variables")]
+    [SerializeField] private GameObject categoriesButtonPrefab;
+    [SerializeField] private Transform categoriesButtonsContainer;
+    [SerializeField] private Sprite pressButton;
+
+    private Sprite normalButton;
+    private Dictionary<UpgradesType, Button> categoriesButtons = new Dictionary<UpgradesType, Button>();
+
     private Dictionary<Upgrade, GameObject> upgradesButtons = new Dictionary<Upgrade, GameObject>();
+
+    public UpgradesType CurrentType { get; private set; }
+
+    private void Awake()
+    {
+        CategoriesButtons();
+    }
 
     private void Start()
     {
+        ButtonType(UpgradesType.Upgrades);
+        CheckButtonPressed(UpgradesType.Upgrades);
         ConfirmUpgrade.SetActive(false);
+    }
+
+    private void CategoriesButtons()
+    {
+        foreach (UpgradeUpdate upgrades in upgradesUnlocked)
+            foreach (Upgrade category in upgrades.upgrades)
+            {
+                if (categoriesButtons.ContainsKey(category.Type))
+                    continue;
+
+                GameObject buttonGO = Instantiate(categoriesButtonPrefab, categoriesButtonsContainer);
+                normalButton = buttonGO.GetComponent<Image>().sprite;
+                TMP_Text text = buttonGO.GetComponentInChildren<TMP_Text>();
+                text.text = $"{category.Type}";
+
+                Button button = buttonGO.GetComponent<UnityEngine.UI.Button>();
+                button.onClick.AddListener(() => ButtonType(category.Type));
+                button.onClick.AddListener(() => CheckButtonPressed(category.Type));
+
+                categoriesButtons.Add(category.Type, button);
+            }
+    }
+
+    public void ButtonType(UpgradesType buttonType)
+    {
+        CurrentType = buttonType;
+        foreach (KeyValuePair<Upgrade, GameObject> buttons in upgradesButtons)
+        {
+            if (buttonType == buttons.Key.Type)
+            {
+                buttons.Value.SetActive(true);
+            }
+            else
+                buttons.Value.SetActive(false);
+        }
+    }
+
+    private void CheckButtonPressed(UpgradesType button)
+    {
+        foreach (KeyValuePair<UpgradesType, Button> buttons in categoriesButtons)
+        {
+            if (button == buttons.Key)
+            {
+                buttons.Value.image.sprite = pressButton;
+            }
+            else
+            {
+                buttons.Value.image.sprite = normalButton;
+            }
+        }
     }
 
     public void PopulateStore()
@@ -49,8 +116,8 @@ public class UpgradeManager : MonoBehaviour
                                 break;
                             }
                         }
-
-                        upgradesButtons.Add(upgrade, inputGO);
+                        if (!upgradesButtons.ContainsKey(upgrade))
+                            upgradesButtons.Add(upgrade, inputGO);
 
                         inputGO.GetComponent<Button>().onClick.AddListener(() =>
                         {
@@ -133,4 +200,10 @@ public class UpgradeUpdate
 {
     public string nameUpdate;
     public List<Upgrade> upgrades;
+}
+
+public enum UpgradesType
+{
+    Upgrades,
+    Decoration
 }

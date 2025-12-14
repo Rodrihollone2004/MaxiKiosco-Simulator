@@ -9,9 +9,11 @@ public class Upgrade : ScriptableObject
     [SerializeField] private int price;
     [SerializeField] private string placeZone;
     [SerializeField] private Sprite icon;
+    [SerializeField] private UpgradesType type;
+
     [SerializeField] private string infoUpgrade;
     [SerializeField] private bool isUpgradeChange;
-    [SerializeField] private int valueForUpgrade;
+    [SerializeField] private int valueForUpgrade; 
 
     [SerializeField] private int amountMin1000 = 0;
     [SerializeField] private int amountMax1000 = 0;
@@ -38,4 +40,5 @@ public class Upgrade : ScriptableObject
     public string InfoUpgrade { get => infoUpgrade; set => infoUpgrade = value; }
     public bool IsUpgradeChange { get => isUpgradeChange; set => isUpgradeChange = value; }
     public int ValueForUpgrade { get => valueForUpgrade; set => valueForUpgrade = value; }
+    public UpgradesType Type { get => type; set => type = value; }
 }
