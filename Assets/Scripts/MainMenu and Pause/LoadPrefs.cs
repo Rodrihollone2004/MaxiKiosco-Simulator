@@ -83,9 +83,9 @@ public class LoadPrefs : MonoBehaviour
             {
                 float localSensitivity = PlayerPrefs.GetFloat("masterSen");
 
-                controllerSenTextValue.text = localSensitivity.ToString("0");
+                controllerSenTextValue.text = localSensitivity.ToString("0.00");
                 controllerSenSlider.value = localSensitivity;
-                menuController.mainControllerSens = Mathf.RoundToInt(localSensitivity);
+                menuController.mainControllerSens = localSensitivity;
             }
 
             if (PlayerPrefs.HasKey("masterInvertY"))
