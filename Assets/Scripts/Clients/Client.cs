@@ -72,7 +72,7 @@ public class Client : MonoBehaviour
             if (upgrade.IsPlaced && upgrade.UpgradeData.IsUpgradeChange && upgrade.UpgradeData.ValueForUpgrade > 0)
             {
                 float random = Random.value;
-                if (random > 0.4f)
+                if (random > 0.5f)
                 {
                     upgrade.UpgradeMoneyEarned(upgrade.UpgradeData.ValueForUpgrade);
                     UpgradesEarned.Add(upgrade.UpgradeData);
