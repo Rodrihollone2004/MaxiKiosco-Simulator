@@ -205,5 +205,7 @@ public class UpgradeUpdate
 public enum UpgradesType
 {
     Upgrades,
-    Decoration
+    Decoración,
+    Muebles,
+    Iluminación,
 }
