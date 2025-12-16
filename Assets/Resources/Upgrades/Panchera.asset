@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Panchera
   m_EditorClassIdentifier: 
   nameUpgrade: Panchera
-  levelUpdate: 6
+  levelUpdate: 0
   prefab: {fileID: 6702762726747432608, guid: 37bc6402a9fcfd845a018457942e1dcd, type: 3}
   price: 75000
   placeZone: Cafetera
   icon: {fileID: 21300000, guid: 61f7f48f98290e5439fc13fd36428ad5, type: 3}
+  type: 0
   infoUpgrade: Panchera Info
   isUpgradeChange: 1
   valueForUpgrade: 5000

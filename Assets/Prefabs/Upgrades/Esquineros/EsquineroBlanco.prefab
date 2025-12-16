@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.68633556, y: 0.6932681, z: 0.7208042}
-  m_Center: {x: -0.0012545586, y: 0.3781639, z: 0.01703167}
+  m_Size: {x: 0.7084398, y: 0.7054489, z: 0.7142391}
+  m_Center: {x: -0.015323162, y: 0.37494293, z: 0.0059804916}
 --- !u!1 &3675688534617028285
 GameObject:
   m_ObjectHideFlags: 0
@@ -4913,8 +4913,8 @@ Transform:
   m_GameObject: {fileID: 7127513454404275813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00094, y: 0.4671162, z: 0.0136}
-  m_LocalScale: {x: 0.06971706, y: 0.00075556, z: 0.07311979}
+  m_LocalPosition: {x: -0.0183, y: 0.4671162, z: 0.0048}
+  m_LocalScale: {x: 0.0727244, y: 0.00075556, z: 0.072782315}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 970331549676876365}
@@ -5063,8 +5063,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.0462818, y: 0.019404292, z: 0.9356698}
-  m_Center: {x: 0.0040483475, y: -0.26680958, z: 0.00087982416}
+  m_Size: {x: 0.733181, y: 0.019404292, z: 0.7333579}
+  m_Center: {x: -0.017663956, y: -0.26680958, z: 0.0048291683}
 --- !u!1001 &7089101537340857787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5123,6 +5123,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6775338753947271977, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6775338753947271977, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80f06f317194e384987c0934295975dd, type: 2}
+    - target: {fileID: -6775338753947271977, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
     - target: {fileID: -6763858364670572316, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
         type: 3}
       propertyPath: m_Layer
@@ -5173,6 +5188,36 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1060481912991654923, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060481912991654923, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80f06f317194e384987c0934295975dd, type: 2}
+    - target: {fileID: 1060481912991654923, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
+    - target: {fileID: 7725258897302460643, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725258897302460643, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80f06f317194e384987c0934295975dd, type: 2}
+    - target: {fileID: 7725258897302460643, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4c71c9b4407b7d41bc40502f0e6d863, type: 2}
     - target: {fileID: 8567717000986892130, guid: 871ad7ad5d4d2ef48bd334494dac0d9f,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -5249,8 +5294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7011461, y: 0.73122954, z: 0.73693275}
-  m_Center: {x: 0.0012936592, y: 0.36545372, z: 0.0119867325}
+  m_Size: {x: 0.7178755, y: 0.73122954, z: 0.7206893}
+  m_Center: {x: -0.016973019, y: 0.36545372, z: 0.0045239925}
 --- !u!114 &7639937380210786631
 MonoBehaviour:
   m_ObjectHideFlags: 0
