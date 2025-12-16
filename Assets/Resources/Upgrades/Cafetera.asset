@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Cafetera
   m_EditorClassIdentifier: 
   nameUpgrade: Cafetera
-  levelUpdate: 0
+  levelUpdate: 1
   prefab: {fileID: 46124505371803133, guid: 414dd49bc8dd7ae4a9421fbe3f842d54, type: 3}
-  price: 50000
+  price: 35000
   placeZone: Cafetera
   icon: {fileID: 21300000, guid: 1d980e87505fdc645b4d77d3b0c9fed0, type: 3}
   type: 0
   infoUpgrade: Cafetera info
   isUpgradeChange: 1
-  valueForUpgrade: 2000
+  valueForUpgrade: 3000
   amountMin1000: 1
-  amountMax1000: 0
+  amountMax1000: 1
   amountMinOthers: 1
   amountMaxOthers: 0
   maxProductsToBuy: 0

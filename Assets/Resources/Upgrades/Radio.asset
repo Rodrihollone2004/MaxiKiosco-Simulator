@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Radio
   m_EditorClassIdentifier: 
   nameUpgrade: Radio
-  levelUpdate: 1
+  levelUpdate: 0
   prefab: {fileID: 46124505371803133, guid: dd3f686738f4a0347a0e2080a25ff593, type: 3}
   price: 10000
   placeZone: Upgrades
   icon: {fileID: 21300000, guid: 7f094dad326f66740bfccf0d7967aa49, type: 3}
+  type: 1
   infoUpgrade: '"N" para pasar cancion\r\n "B" para volver a la anterior.'
   isUpgradeChange: 1
   valueForUpgrade: 0

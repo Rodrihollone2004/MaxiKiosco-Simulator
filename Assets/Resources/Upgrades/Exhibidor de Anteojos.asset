@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Exhibidor de Anteojos
   m_EditorClassIdentifier: 
   nameUpgrade: Exhibidor de Anteojos
-  levelUpdate: 0
+  levelUpdate: 2
   prefab: {fileID: 4026635273316616423, guid: e7b7321acce83f0438ac608c5f5f373e, type: 3}
-  price: 50000
+  price: 45000
   placeZone: Anteojos
   icon: {fileID: 21300000, guid: 29511e4c30fc59d4ca0a184c6f2b4891, type: 3}
   type: 0
   infoUpgrade: Exhibidor Info
   isUpgradeChange: 1
-  valueForUpgrade: 2000
+  valueForUpgrade: 5000
   amountMin1000: 1
   amountMax1000: 0
-  amountMinOthers: 1
+  amountMinOthers: 0
   amountMaxOthers: 0
   maxProductsToBuy: 0
   maxAmountOfProductToBuy: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Maquina de peluches
   m_EditorClassIdentifier: 
   nameUpgrade: Maquina de peluches
-  levelUpdate: 0
+  levelUpdate: 3
   prefab: {fileID: 5640627849612152896, guid: 2f198c5a64c93ed408b41f6e7619974f, type: 3}
   price: 50000
   placeZone: Afuera
@@ -22,9 +22,9 @@ MonoBehaviour:
   infoUpgrade: Maquina de peluches info
   isUpgradeChange: 1
   valueForUpgrade: 2000
-  amountMin1000: 1
-  amountMax1000: 0
+  amountMin1000: 2
+  amountMax1000: 1
   amountMinOthers: 1
   amountMaxOthers: 0
   maxProductsToBuy: 0
-  maxAmountOfProductToBuy: 1
+  maxAmountOfProductToBuy: 2
