@@ -24,6 +24,16 @@ public class EventsSpawner : MonoBehaviour
 
         if (dayNightCycle.DayNumber % 2 != 0 && dayNightCycle.DayNumber > 2)
         {
+            if (!TutorialContent.Instance.IsFirstCartonero)
+            {
+                TutorialContent tutorial = TutorialContent.Instance;
+                tutorial.CartoneroImage.SetActive(true);
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                TutorialContent.Instance.IsFirstCartonero = true;
+            }
+
             if (cartonerosPool.Count == 0)
             {
                 GameObject instance = Instantiate(cartoneroPrefab, spawnPoint.position, Quaternion.identity);

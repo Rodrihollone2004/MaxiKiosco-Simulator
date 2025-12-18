@@ -47,6 +47,7 @@ public class TutorialContent : MonoBehaviour
     [field: SerializeField] public GameObject F3StartDay { get; private set; }
     [field: SerializeField] public GameObject ThiefImage { get; private set; }
     [field: SerializeField] public GameObject TrashImage { get; private set; }
+    [field: SerializeField] public GameObject CartoneroImage { get; private set; }
 
     private Animator animatorText;
     private bool lockedClick = false;
@@ -55,6 +56,7 @@ public class TutorialContent : MonoBehaviour
     public bool IsStartDay { get; set; }
     public bool IsFirstThief { get; set; }
     public bool IsFirstTrash { get; set; }
+    public bool IsFirstCartonero { get; set; }
 
 
     public Action onStartButton;
@@ -65,6 +67,7 @@ public class TutorialContent : MonoBehaviour
         IsStartDay = false;
         IsFirstThief = false;
         IsFirstTrash = false;
+        IsFirstCartonero = false;
 
         buttonNext.SetActive(true);
         animatorText = tasksGuide.GetComponent<Animator>();
@@ -87,7 +90,7 @@ public class TutorialContent : MonoBehaviour
 
         textsToGuide = new string[]
             {
-            "¡Hola! ¡Te doy la bienvenida a tu primer trabajo!\r\nQuizás no sea mucho, pero antes que nada. ¡Todo suma!\r\nPor el momento necesito que cubras algunos días de la semana mientras termino de hacer unos trámites.\r\n¡Vamos! Te explico lo que tenés que hacer.\r\n Haceme click para seguir",
+            "¡Hola! ¡Te doy la bienvenida a tu primer trabajo!\r\nPor el momento necesito que cubras algunos días de la semana mientras termino de hacer unos trámites.\r\n¡Vamos! Te explico lo que tenés que hacer.\r\n Haceme click para seguir",
             "Todos los días vas a empezar acá.\r\nEse es el Kiosco.\r\nHacé clic sobre la persiana para subirla.",
             "Subir la térmica",
             "Revisar la PC",
