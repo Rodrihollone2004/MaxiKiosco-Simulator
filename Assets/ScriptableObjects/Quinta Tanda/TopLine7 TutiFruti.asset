@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: TopLine7 TutiFruti
   m_EditorClassIdentifier: 
-  _name: TopLine7 TutiFruti
+  _name: TopeGama TutiFruti
   _id: 3000003
   _price: 700
   originalPrice: 700
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 11250
   prefab: {fileID: 2868049589432561975, guid: 198cb222b384ca94cb44de402ef997c8, type: 3}
   type: 3
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

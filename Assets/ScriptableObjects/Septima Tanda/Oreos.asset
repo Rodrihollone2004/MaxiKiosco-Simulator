@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Oreos
   m_EditorClassIdentifier: 
-  _name: Oreos
+  _name: Orcos
   _id: 4000003
   _price: 1245
   originalPrice: 1245
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 44800
   prefab: {fileID: 7766768097776291626, guid: 652bdbccfcee96442a4d4cda3ecf054b, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

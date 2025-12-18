@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Alfajor Milka Mouse
   m_EditorClassIdentifier: 
-  _name: Alfajor Milka Mouse
+  _name: Alfajor Milky Mousse
   _id: 8
   _price: 865
   originalPrice: 865
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 23350
   prefab: {fileID: 3071535783499071457, guid: 20faaae66d40c8f4fa2a374192c57ce7, type: 3}
   type: 2
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

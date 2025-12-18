@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: CerealFort Frutos Rojos
   m_EditorClassIdentifier: 
-  _name: CerealFort Frutos Rojos
+  _name: NutriFort Frutos Rojos
   _id: 0
   _price: 545
   originalPrice: 545
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 13100
   prefab: {fileID: 5335756640094305309, guid: d200a5e9e713c3d41b2f284e90eda653, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

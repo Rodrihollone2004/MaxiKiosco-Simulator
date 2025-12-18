@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Biznikke
   m_EditorClassIdentifier: 
-  _name: Biznikke
+  _name: Viznike
   _id: 0
   _price: 945
   originalPrice: 945
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 14200
   prefab: {fileID: 4253358839206702185, guid: 21f36523cd37f3a4aa97fabb97964553, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

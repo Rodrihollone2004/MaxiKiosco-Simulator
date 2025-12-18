@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: 9 de Oro Dulce
   m_EditorClassIdentifier: 
-  _name: 9 de Oro Dulce
+  _name: 6 de Oro Dulce
   _id: 0
   _price: 780
   originalPrice: 780
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 15600
   prefab: {fileID: 3088324944691425760, guid: 7861447716e8ce0488ed2107c58e6137, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

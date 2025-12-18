@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Duracel AAA
   m_EditorClassIdentifier: 
-  _name: Duracel AAA
+  _name: Durocel AAA
   _id: 0
   _price: 600
   originalPrice: 600
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 28800
   prefab: {fileID: 3503216125256268024, guid: 9e207c84119b0704fbd694eceb5e8e4e, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

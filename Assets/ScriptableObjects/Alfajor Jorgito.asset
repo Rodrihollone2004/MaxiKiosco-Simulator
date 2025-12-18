@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Alfajor Jorgito
   m_EditorClassIdentifier: 
-  _name: Alfajor Jorgito
+  _name: Alfajor Gordito
   _id: 1000001
   _price: 680
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 24
   _currentAmount: 24
   _packPrice: 16300
   prefab: {fileID: 8360423222101383432, guid: 07e58523f0f46444d9813ef2d0807490, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

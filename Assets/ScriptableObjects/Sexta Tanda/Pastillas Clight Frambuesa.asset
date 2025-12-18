@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Pastillas Clight Frambuesa
   m_EditorClassIdentifier: 
-  _name: Pastillas Clight Frambuesa
+  _name: Pastillas Clait Frambuesa
   _id: 0
   _price: 800
   originalPrice: 800
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 9600
   prefab: {fileID: 3139467348017788205, guid: 103dadf792b3c8048adf43694a56b10f, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

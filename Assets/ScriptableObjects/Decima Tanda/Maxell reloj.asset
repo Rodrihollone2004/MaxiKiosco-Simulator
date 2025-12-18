@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Maxell reloj
   m_EditorClassIdentifier: 
-  _name: Maxell reloj
+  _name: Pilas reloj
   _id: 0
   _price: 1160
   originalPrice: 1160
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 29000
   prefab: {fileID: 5400780054447844415, guid: 2fa705483c1c62f47bd2a9ffc8407815, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Eveready AA
   m_EditorClassIdentifier: 
-  _name: Eveready AA
+  _name: Neveready AA
   _id: 0
   _price: 1095
   originalPrice: 1095
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 26280
   prefab: {fileID: 1343586225577796119, guid: 7b84b52ba46aa0b4e9f396b8b753f58d, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

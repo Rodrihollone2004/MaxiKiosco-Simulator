@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Shot Blanco (chico)
   m_EditorClassIdentifier: 
-  _name: Shot Blanco chico
+  _name: Short Blanco chico
   _id: 10
   _price: 855
   originalPrice: 855
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 21350
   prefab: {fileID: 7755341455082604350, guid: 3b4c2955946448a4eb2a6e6ef1dc8518, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

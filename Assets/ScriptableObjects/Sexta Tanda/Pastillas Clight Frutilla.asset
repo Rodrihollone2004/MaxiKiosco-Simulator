@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Pastillas Clight Frutilla
   m_EditorClassIdentifier: 
-  _name: Pastillas Clight Frutilla
+  _name: Pastillas Clait Frutilla
   _id: 0
   _price: 800
   originalPrice: 800
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 9600
   prefab: {fileID: 4569702419716554336, guid: 73ae46471f86de9499e2d000b03ca27b, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

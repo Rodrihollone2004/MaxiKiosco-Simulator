@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Botella paso de los toros
   m_EditorClassIdentifier: 
-  _name: Paso de los toros 600ml
+  _name: Topo te lo paso 600ml
   _id: 1000001
   _price: 1075
   originalPrice: 1075
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 12900
   prefab: {fileID: 7913875220722252700, guid: 91723a0ece79f0147b340de420df50ea, type: 3}
   type: 1
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

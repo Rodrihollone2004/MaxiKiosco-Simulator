@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Camel 20
   m_EditorClassIdentifier: 
-  _name: Camel 20
+  _name: Camello 20
   _id: 0
   _price: 3200
   originalPrice: 3200
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 32000
   prefab: {fileID: 3191525117318314448, guid: c9823c41fe3d8b14c98f54d0c3e42ef8, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

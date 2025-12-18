@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Galletitas Amor Vainilla
   m_EditorClassIdentifier: 
-  _name: Galletitas Amor Vainilla
+  _name: Galletitas Desamor Vainilla
   _id: 0
   _price: 1025
   originalPrice: 1025
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 36900
   prefab: {fileID: 7712250176827396428, guid: b51da419d1d37a34c96d3d4783db2453, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

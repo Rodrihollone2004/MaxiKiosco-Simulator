@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Pepsi 1.5L
   m_EditorClassIdentifier: 
-  _name: Pepsi 1.5L
+  _name: Sepsi 1.5L
   _id: 17
   _price: 1925
+  originalPrice: 0
   _placeZone: Heladera
   _packSize: 6
   _currentAmount: 6
   _packPrice: 11550
   prefab: {fileID: 7059654392166939455, guid: b4810c6af20de34488cb716b5cf59d23, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Encendedores Clipper
   m_EditorClassIdentifier: 
-  _name: Encendedores Clipper
+  _name: Encendedores Klepper
   _id: 5000001
   _price: 1270
   originalPrice: 1270
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 30500
   prefab: {fileID: 5945461364230713655, guid: 5e7b6b2107d9bfc439d54a62d8e6e2d2, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Energizer AAA
   m_EditorClassIdentifier: 
-  _name: Energizer AAA
+  _name: Enerzhy AAA
   _id: 0
   _price: 690
   originalPrice: 690
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 33000
   prefab: {fileID: 5987127223750721143, guid: a647117742ff9cf429fcc3ea6d8b177b, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

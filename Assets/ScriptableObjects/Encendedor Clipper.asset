@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Encendedor Clipper
   m_EditorClassIdentifier: 
-  _name: Encendedor Magic
+  _name: Encendedor Magispark
   _id: 4000001
   _price: 1200
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 15
   _currentAmount: 15
   _packPrice: 18000
   prefab: {fileID: 5320620032716248276, guid: bb04ed286c672224fb6222d9cbaeef53, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

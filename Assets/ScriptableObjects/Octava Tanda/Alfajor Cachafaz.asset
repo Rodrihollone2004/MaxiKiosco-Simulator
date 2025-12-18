@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Alfajor Cachafaz
   m_EditorClassIdentifier: 
-  _name: Alfajor Cachafaz
+  _name: Alfajor El Fachaz
   _id: 6
   _price: 675
   originalPrice: 675
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 18250
   prefab: {fileID: 8893858219617453692, guid: e0ffb1a7f9ac2204f8e2ae6443d08ad1, type: 3}
   type: 2
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: CerealFort Chocolate
   m_EditorClassIdentifier: 
-  _name: CerealFort Chocolate
+  _name: NutriFort Chocolate
   _id: 0
   _price: 545
   originalPrice: 545
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 13100
   prefab: {fileID: 1946343343747314263, guid: d4362535b92d08c4589d244b67d70be2, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

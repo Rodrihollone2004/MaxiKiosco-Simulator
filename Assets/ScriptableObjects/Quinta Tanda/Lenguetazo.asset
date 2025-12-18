@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Lenguetazo
   m_EditorClassIdentifier: 
-  _name: Lenguetazo
+  _name: Lenguita
   _id: 6000001
   _price: 190
   originalPrice: 190
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 6100
   prefab: {fileID: 6035753757391575856, guid: f7f2679b485a4a94eb9f7bfd1d4a07e2, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Poco Dulce
   m_EditorClassIdentifier: 
-  _name: Poco Dulce
+  _name: Poco Dolcce
   _id: 6000003
   _price: 215
   originalPrice: 215
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 10200
   prefab: {fileID: 6903549059509758165, guid: 1481136a207fe274abaaafb07483e842, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

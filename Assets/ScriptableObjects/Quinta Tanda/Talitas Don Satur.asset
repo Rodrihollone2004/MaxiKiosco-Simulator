@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Talitas Don Satur
   m_EditorClassIdentifier: 
-  _name: Talitas Don Satur
+  _name: Talitas Don Sahur
   _id: 4000003
   _price: 1125
   originalPrice: 1125
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 22500
   prefab: {fileID: 4499638113284579109, guid: 213a8c2a310ac6543a0fe9d3b5db7156, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

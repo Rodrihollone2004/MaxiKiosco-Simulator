@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Marlboro 10
   m_EditorClassIdentifier: 
-  _name: Marlboro 10
+  _name: Malpuro 10
   _id: 0
   _price: 1500
   originalPrice: 1500
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 15000
   prefab: {fileID: 910439146355618762, guid: c75f52a5aadbc064893c24ec6691b73c, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

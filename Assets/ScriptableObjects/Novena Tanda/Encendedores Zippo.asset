@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Encendedores Zippo
   m_EditorClassIdentifier: 
-  _name: Encendedores Zippo
+  _name: Encendedores Zypper
   _id: 0
   _price: 6000
   originalPrice: 6000
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 90000
   prefab: {fileID: 4303049722648210798, guid: 494d252954063bc409df31d86d265492, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

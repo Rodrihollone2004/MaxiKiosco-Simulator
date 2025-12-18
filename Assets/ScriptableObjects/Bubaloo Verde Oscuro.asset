@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Bubaloo Verde Oscuro
   m_EditorClassIdentifier: 
-  _name: Bubaloo Verde Oscuro
+  _name: Labubalu Verde Oscuro
   _id: 13
   _price: 100
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 60
   _currentAmount: 60
   _packPrice: 6000
   prefab: {fileID: 878435155813229671, guid: 7becb8f98f715b248b5e74d148848839, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

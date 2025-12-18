@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Bubbaloo Naranja
   m_EditorClassIdentifier: 
-  _name: Bubbaloo Naranja
+  _name: Labubalu Naranja
   _id: 4
   _price: 100
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 60
   _currentAmount: 60
   _packPrice: 6000
   prefab: {fileID: 4110984287189198068, guid: 296e17e5ea80cd0448d4703644a96dcc, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

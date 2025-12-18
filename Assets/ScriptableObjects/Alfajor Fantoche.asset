@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Alfajor Fantoche
   m_EditorClassIdentifier: 
-  _name: Alfajor Fantoche
+  _name: Alfajor Fandolce
   _id: 7
   _price: 638
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 12
   _currentAmount: 12
   _packPrice: 7650
   prefab: {fileID: 8257239986813017104, guid: 4ed830e505c6dca4d93605c32dc2d859, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

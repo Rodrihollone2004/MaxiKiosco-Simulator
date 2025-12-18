@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Huevo Kinder Sorpresa
   m_EditorClassIdentifier: 
-  _name: Huevo Kinder Sorpresa
+  _name: Huevo Kender Sorpresa
   _id: 0
   _price: 1840
   originalPrice: 1840
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 22100
   prefab: {fileID: 6345254419879244669, guid: f7bd6f7cd88444e4aa279baa9fb71975, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

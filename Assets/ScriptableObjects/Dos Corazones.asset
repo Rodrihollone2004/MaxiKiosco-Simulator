@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Dos Corazones
   m_EditorClassIdentifier: 
-  _name: Dos Corazones
+  _name: Corazonados
   _id: 3000008
   _price: 1225
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 20
   _currentAmount: 20
   _packPrice: 24500
   prefab: {fileID: 1436226901980282762, guid: faf22498688cbf54fab43c6cb9976824, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

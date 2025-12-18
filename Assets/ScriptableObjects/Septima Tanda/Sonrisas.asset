@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Sonrisas
   m_EditorClassIdentifier: 
-  _name: Sonrisas
+  _name: Sinrisas
   _id: 4000004
   _price: 1210
   originalPrice: 1210
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 43500
   prefab: {fileID: 1812187624515445533, guid: 4ebfb74c2cb01564d9787fc1143a9836, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

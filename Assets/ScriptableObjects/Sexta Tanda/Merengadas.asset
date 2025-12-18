@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Merengadas
   m_EditorClassIdentifier: 
-  _name: Merengadas
+  _name: Merengas
   _id: 0
   _price: 845
   originalPrice: 845
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 30400
   prefab: {fileID: 434375992148466684, guid: 2c344d41c5a190d4e8dd78b34db05182, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

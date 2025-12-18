@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Chupetines Babydoll
   m_EditorClassIdentifier: 
-  _name: Chupetines Babydoll
+  _name: Chupetines PopDolly
   _id: 0
   _price: 460
   originalPrice: 460
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 8300
   prefab: {fileID: 4249902856780895087, guid: 0cebd41b00905d24f859279dc1c0b60e, type: 3}
   type: 6
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

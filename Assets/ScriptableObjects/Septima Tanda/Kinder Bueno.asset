@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Kinder Bueno
   m_EditorClassIdentifier: 
-  _name: Kinder Bueno
+  _name: Kender Malo
   _id: 4
   _price: 1415
   originalPrice: 1415
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 33000
   prefab: {fileID: 1665073379542652991, guid: cd1f1b8b1e663e445976d67a3dccbfed, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

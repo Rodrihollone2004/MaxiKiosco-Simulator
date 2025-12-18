@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Mentitas FelFort
   m_EditorClassIdentifier: 
-  _name: Mentitas FelFort
+  _name: Mentitas FeelIt
   _id: 0
   _price: 565
   originalPrice: 565
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 17000
   prefab: {fileID: 2026627089413915095, guid: 2768c31eecb054f4d879c9388a7caa6a, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

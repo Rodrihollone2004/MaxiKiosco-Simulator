@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Bonobon Blanco
   m_EditorClassIdentifier: 
-  _name: Bonobon Blanco
+  _name: BOMBOM Blanco
   _id: 0
   _price: 425
   originalPrice: 425
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 12700
   prefab: {fileID: 5021862802392282144, guid: 56a51fe14cd5f1e40905f6da02b202b7, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

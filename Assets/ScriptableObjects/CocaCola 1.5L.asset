@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: CocaCola 1.5L
   m_EditorClassIdentifier: 
-  _name: CocaCola 1.5L
+  _name: Cola-Loca 1.5L
   _id: 14
   _price: 1925
+  originalPrice: 0
   _placeZone: Heladera
   _packSize: 6
   _currentAmount: 6
   _packPrice: 11550
   prefab: {fileID: 432639686279751876, guid: 1b9f049933e8c9f4a88fdc612f3cc211, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

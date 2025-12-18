@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Bubaloo Rojo
   m_EditorClassIdentifier: 
-  _name: Bubaloo Rojo
+  _name: Labubalu Rojo
   _id: 10
   _price: 100
+  originalPrice: 0
   _placeZone: Isla
   _packSize: 60
   _currentAmount: 60
   _packPrice: 6000
   prefab: {fileID: 669459615903285511, guid: 300f25eec07e6f3459fdc6429cf9df86, type: 3}
+  type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

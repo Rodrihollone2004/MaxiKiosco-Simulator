@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Barra Bonobon blanco
   m_EditorClassIdentifier: 
-  _name: Barrita bonobon blanco
+  _name: Barrita BOMBOM blanco
   _id: 1
   _price: 585
   originalPrice: 585
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 11700
   prefab: {fileID: 466824719833173436, guid: 9a5e36555ba943848bfd3beb07fc6fa9, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

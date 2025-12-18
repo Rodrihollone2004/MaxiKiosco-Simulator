@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Chocolatin Arcor
   m_EditorClassIdentifier: 
-  _name: Chocolatin Arcor
+  _name: Chocolatin Arcos
   _id: 0
   _price: 400
   originalPrice: 400
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 8000
   prefab: {fileID: 8528833324276778471, guid: 69473ea05ec2ff442bcd8be922305e76, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

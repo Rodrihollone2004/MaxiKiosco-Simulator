@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Lucky 10
   m_EditorClassIdentifier: 
-  _name: Lucky 10
+  _name: Unlucky Stroke 10
   _id: 0
   _price: 2200
   originalPrice: 2200
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 22000
   prefab: {fileID: 1400311866090119984, guid: 53c060640ebce144e927860d3b24a633, type: 3}
   type: 5
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

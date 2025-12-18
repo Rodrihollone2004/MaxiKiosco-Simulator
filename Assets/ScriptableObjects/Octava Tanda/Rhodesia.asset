@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Rhodesia
   m_EditorClassIdentifier: 
-  _name: Rhodesia
+  _name: Rodelia
   _id: 0
   _price: 680
   originalPrice: 680
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 24500
   prefab: {fileID: 3914327827306567082, guid: 737edfe74373026449d3ed5c2203cb32, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

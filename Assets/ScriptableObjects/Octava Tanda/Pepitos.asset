@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Pepitos
   m_EditorClassIdentifier: 
-  _name: Pepitos
+  _name: Chocochips
   _id: 0
   _price: 685
   originalPrice: 685
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 20500
   prefab: {fileID: 3404731422188693688, guid: a6ca20835ce98124b8708a6378851e00, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

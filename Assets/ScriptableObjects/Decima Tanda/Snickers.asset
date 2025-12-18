@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Snickers
   m_EditorClassIdentifier: 
-  _name: Snickers
+  _name: Esnekis
   _id: 0
   _price: 1035
   originalPrice: 1035
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 24800
   prefab: {fileID: 5377346453728469148, guid: 6e7f63dd56524894e8b9bf19ce51524f, type: 3}
   type: 0
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533ca6fbe24ddc5408989121dda8d218, type: 3}
   m_Name: Macucas
   m_EditorClassIdentifier: 
-  _name: Macucas
+  _name: Macacos
   _id: 0
   _price: 965
   originalPrice: 965
@@ -22,3 +22,6 @@ MonoBehaviour:
   _packPrice: 34800
   prefab: {fileID: 6679324609269020149, guid: 3ae8fb8ce546c854487200a5e9767c83, type: 3}
   type: 4
+  IsNewProduct: 1
+  IsPriceCustomized: 0
+  IsNotStock: 0
